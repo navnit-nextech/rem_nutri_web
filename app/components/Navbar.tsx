@@ -37,15 +37,15 @@ const Navbar = () => {
           transition={{ duration: 1.5, ease: 'easeOut' }}
           className="flex items-center space-x-12"
         >
-          <div className="hidden md:flex items-center space-x-6">
-            <Link href="/about" className="text-gray-800 hover:text-fizeo-dark-green">About</Link>
-            <Link href="/services" className="text-gray-800 hover:text-fizeo-dark-green">Services</Link>
-            <Link href="/blog" className="text-gray-800 hover:text-fizeo-dark-green">Blog</Link>
-            <Link href="/contact" className="text-gray-800 hover:text-fizeo-dark-green">Contact</Link>
-          </div>
+          <div className="hidden md:flex items-center space-x-11">
+  <Link href="/about" className="text-gray-800 hover:text-fizeo-dark-green">About</Link>
+  <Link href="/services" className="text-gray-800 hover:text-fizeo-dark-green">Services</Link>
+  <Link href="/blog" className="text-gray-800 hover:text-fizeo-dark-green">Blog</Link>
+  <Link href="/contact" className="text-gray-800 hover:text-fizeo-dark-green">Contact</Link>
+</div>
 
-          {/* Book an Appointment Button */}
-          <Button className="bg-[#033D24] hover:bg-[#022b19] text-white text-3xl font-semibold px-7 py-7 rounded-lg shadow-md">
+{/* Book an Appointment Button */}
+<Button className="bg-[#033D24] hover:bg-[#022b19] text-white text-3xl font-semibold px-8 py-6.5 rounded-lg shadow-md ml-9">  
   Book an appointment
 </Button>
 
