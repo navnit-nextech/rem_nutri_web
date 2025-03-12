@@ -1,8 +1,5 @@
-
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import { Button } from "../components/ui/button";
-
 import Link from "next/link";
 
 interface BlogPost {
@@ -26,10 +23,17 @@ const BlogSection = () => {
   ];
 
   return (
-    <div
-  className="w-full py-16 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat"
->
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <div className="w-full py-16 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat relative">
+      <div className="absolute -top-14 left-167 w-27 h-27">
+        <svg viewBox="0 0 79 88" id="svg10114666377" className="w-full h-full">
+          <path
+            d="M 33.29 0.098 L 62.459 0.098 L 43.566 25.211 L 78.958 25.211 L 16.231 87.982 L 35.359 45.656 L 0.174 45.656 Z"
+            fill="#8FC2AB"
+          />
+        </svg>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
         <div className="mb-10">
           <h2 className="text-[#043A22] text-3xl md:text-5xl font-serif mb-4">
             Insights and tips from our<br />Physiotherapy experts
@@ -45,30 +49,26 @@ const BlogSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-  {blogPosts.map((post, index) => (
-    <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md">
-      {/* Larger Image */}
-      <div className="h-90 overflow-hidden">
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Larger Content */}
-      <div className="p-12">
-        <h3 className="text-[#043A22] text-2xl font-serif mb-3">
-          {post.title}
-        </h3>
-        <p className="text-[#043A22] text-base">
-          {post.description}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
-
+          {blogPosts.map((post, index) => (
+            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md">
+              <div className="h-90 overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-12">
+                <h3 className="text-[#043A22] text-2xl font-serif mb-3">
+                  {post.title}
+                </h3>
+                <p className="text-[#043A22] text-base">
+                  {post.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

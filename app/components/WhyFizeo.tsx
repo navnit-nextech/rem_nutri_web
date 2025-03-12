@@ -58,8 +58,11 @@ const WhyFizeo = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10 mt-8">
         <div className="flex flex-col lg:flex-row gap-10">
 
+        
+
           {/* Left content section */}
           <div className="w-full lg:w-1/2">
+            
             <h2 className="text-[#043A22] text-3xl md:text-5xl font-serif mb-9">
               Why Fizeo?
             </h2>
@@ -100,14 +103,7 @@ const WhyFizeo = () => {
 
 
           {/* Inserted SVG */}
-          {/* <div className="mt-8">
-              <svg viewBox="0 0 70 66" id="svg12024951801" className="w-16 h-30 absolute top-50 left-50">
-                <path
-                  d="M 48.292 12.972 L 35.025 0.157 L 21.758 12.972 L 0.186 25.348 L 10.29 45.126 L 13.433 65.918 L 35.025 63.539 L 56.617 65.918 L 59.76 45.126 L 69.864 25.348 Z"
-                  fill="RGB(143, 194, 171)"
-                />
-              </svg>
-          </div> */}
+          
 
         </div>
       </div>
