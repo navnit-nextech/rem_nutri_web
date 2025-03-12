@@ -7,13 +7,14 @@ const ServiceCard = ({ icon, title, description }: {
   description: string;
 }) => {
   return (
-    <div className="p-8 bg-[rgb(244,241,235] rounded-2xl shadow-lg flex flex-col gap-4 w-full sm:w-[300px] md:w-[320px] lg:w-[350px]">
+    <div className="p-8 bg-[rgb(244,241,235)] border hover:shadow-xl transition-shadow flex flex-col gap-4 w-full sm:w-[300px] md:w-[320px] lg:w-[350px]">
       <div className="text-[#043A22]">{icon}</div>
       <h3 className="text-[#043A22] text-2xl font-serif">{title}</h3>
       <p className="text-[#043A22] text-base leading-relaxed">{description}</p>
     </div>
   );
 };
+
 
 const ServicesGrid = () => {
   const services = [

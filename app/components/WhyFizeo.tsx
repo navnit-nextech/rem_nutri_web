@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Heart, Target, Leaf, User } from 'lucide-react';
 import { Button } from "../components/ui/button";
@@ -55,29 +54,26 @@ const WhyFizeo = () => {
   ];
 
   return (
-    <div
-      className="w-full py-20 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat"
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <div className="w-full py-20 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 mt-8">
         <div className="flex flex-col lg:flex-row gap-10">
+
           {/* Left content section */}
           <div className="w-full lg:w-1/2">
-            <h2 className="text-[#043A22] text-3xl md:text-4xl font-serif mb-5">
+            <h2 className="text-[#043A22] text-3xl md:text-5xl font-serif mb-9">
               Why Fizeo?
             </h2>
-            <p className="text-[#043A22] text-base mb-8">
-              Fizeo stands out for its commitment to personalized and
-              specialized physiotherapy, offering individualized care,
-              expertise in various specialties, a holistic wellness approach,
-              patient empowerment through education, positive
-              testimonials, and a dedication to staying at the forefront of
+            <p className="text-[#043A22] text-xl mb-8">
+              Fizeo stands out for its commitment to personalized and specialized
+              physiotherapy, offering individualized care, expertise in various specialties,
+              a holistic wellness approach, patient empowerment through education,
+              positive testimonials, and a dedication to staying at the forefront of
               cutting-edge practices.
             </p>
 
-            <Button className="bg-[#043A22] hover:bg-[#043A22]/90 text-white rounded-md font-medium px-6 py-2">
+            <Button className="bg-[#043A22] text-xl hover:bg-[#043A22]/90 text-white rounded-md font-medium px-6 py-2">
               About us
             </Button>
-
 
             <div className="mt-12">
               <div className="rounded-lg overflow-hidden">
@@ -91,16 +87,28 @@ const WhyFizeo = () => {
           </div>
 
           {/* Right features section */}
-          <div className="w-full lg:w-1/2 ">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-              />
-            ))}
-          </div>
+          <div className="w-full lg:w-1/2 min-h-[600px] flex flex-col justify-center">
+  {features.map((feature, index) => (
+    <FeatureCard
+      key={index}
+      icon={feature.icon}
+      title={feature.title}
+      description={feature.description}
+    />
+  ))}
+</div>
+
+
+          {/* Inserted SVG */}
+          {/* <div className="mt-8">
+              <svg viewBox="0 0 70 66" id="svg12024951801" className="w-16 h-30 absolute top-50 left-50">
+                <path
+                  d="M 48.292 12.972 L 35.025 0.157 L 21.758 12.972 L 0.186 25.348 L 10.29 45.126 L 13.433 65.918 L 35.025 63.539 L 56.617 65.918 L 59.76 45.126 L 69.864 25.348 Z"
+                  fill="RGB(143, 194, 171)"
+                />
+              </svg>
+          </div> */}
+
         </div>
       </div>
     </div>

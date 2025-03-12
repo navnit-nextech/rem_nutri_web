@@ -1,91 +1,152 @@
+
+
+
+
+
+
+
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+
+const testimonials = [
+  {
+    text: "After a sports injury left me sidelined, Fizeo's physiotherapy team played a crucial role in my recovery. Their personalized approach and targeted exercises not only alleviated my pain but also helped me regain strength and flexibility. I'm back in the game, thanks to Fizeo!",
+    name: "Sarah M",
+    image: "https://framerusercontent.com/images/F8FpD28VlKZcge0xDGDslltN6k.jpg?scale-down-to=2048",
+  },
+  {
+    text: "I cannot express enough gratitude to Fizeo for their exceptional physiotherapy services. Suffering from chronic back pain, I had tried various treatments with little success. The Fizeo team not only provided effective pain relief but also educated me on proactive strategies to manage my condition. Life-changing experience!",
+    name: "Todd S",
+    image: "https://framerusercontent.com/images/pDynE5qiJcGHCSqpdUsgCtF9coc.jpg?scale-down-to=2048",
+  },
+  {
+    text: "As someone with a neurological condition, finding the right physiotherapy was crucial. Fizeo exceeded my expectations. Their neuro-rehabilitation expertise and compassionate care have significantly improved my mobility and overall well-being. Highly recommended for anyone seeking top-notch physio services!",
+    name: "Melanie ]",
+    image: "https://framerusercontent.com/images/TnND6kc2yg1n6MNWVR7VfKcvqE.jpg?scale-down-to=2048",
+  },
+];
 
 const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <div className="w-full bg-[#024027] py-20 relative">
-      {/* Top decorative element */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="w-0 h-0 border-l-[30px] border-l-transparent border-b-[30px] border-b-fizeo-beige-bg border-r-[30px] border-r-transparent"></div>
-      </div>
+      <div className="relative md:absolute top-2 left-2 md:top-[-5.1%] md:left-165">
 
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" className="w-16 h-24 scale-70 md:w-20 md:h-32 md:scale-100 ">
+          <path
+            d="M 28.023 0 C 12.63 0 0.152 12.513 0.152 27.949 L 28.023 55.898 L 55.893 27.949 C 55.893 12.513 43.415 0 28.023 0 Z"
+            fill="rgb(143, 194, 170)"
+
+          />
+        </svg>
+      </div>
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        {/* Heading section */}
         <div className="text-center mb-16">
-          <h2 className="text-white font-serif text-4xl mb-4">
-            Real stories, <span className="text-fizeo-mint-green">real transformations</span>
+          <h2 className="text-white font-serif text-[45px] mb-4">
+            Real stories, <span className="text-[#6FE984]">real transformations</span>
           </h2>
           <p className="text-white text-lg max-w-2xl mx-auto">
             These real stories illuminate the path to transformation, showcasing the impact of personalized care on physical well-being.
           </p>
         </div>
 
-        {/* Video testimonial */}
         <div className="max-w-full mx-auto mb-16 relative flex justify-center">
-  <div className="rounded-2xl overflow-hidden shadow-lg w-[900px]">
-    <iframe
-      className="w-full h-[500px] rounded-2xl"
-      src="https://www.youtube.com/embed/W-XQS2NoRdc"
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-            {/* Heart decoration */}
-            <div className="absolute -right-6 top-1/2 transform -translate-y-1/2">
-              <div className="w-12 h-12 bg-fizeo-peach rounded-full flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.5 12.572L12 20L4.5 12.572C3.33333 11.4053 2.75 9.89867 2.75 8.05C2.75 6.20133 3.33333 4.69467 4.5 3.528C5.66667 2.36133 7.18333 1.778 9.05 1.778C10.9167 1.778 12.4333 2.36133 13.6 3.528L12 5.128L10.4 3.528C9.7 2.82933 8.85 2.48 7.85 2.48C6.85 2.48 6 2.82933 5.3 3.528C4.6 4.22733 4.25 5.072 4.25 6.065C4.25 7.05933 4.6 7.90467 5.3 8.604L12 15.2518L18.7 8.604C19.4 7.90467 19.75 7.05933 19.75 6.065C19.75 5.072 19.4 4.22733 18.7 3.528C18 2.82933 17.15 2.48 16.15 2.48C15.15 2.48 14.3 2.82933 13.6 3.528L12 5.128"
-                    stroke="white" strokeWidth="1.5" />
+          <div className="rounded-2xl overflow-hidden shadow-lg w-[900px]">
+            <iframe
+              className="w-full h-[500px] rounded-2xl shadow-[10px_10px_20px_rgba(255,255,255,0.5)]"
+              src="https://www.youtube.com/embed/W-XQS2NoRdc"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+
+            <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px]">
+              <div className="w-32 h-32 bg-fizeo-peach rounded-full flex items-center justify-center">
+                <svg
+                  width="240"
+                  height="240"
+                  viewBox="0 0 73 57"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="transform rotate-[-15deg]"
+                >
+                  <path
+                    d="M 29.194 4.376 C 21.822 -1.947 10.704 -1.109 4.369 6.247 C -1.958 13.595 -1.118 24.664 6.245 30.979 L 36.239 56.705 L 36.475 56.978 L 36.516 56.942 L 36.558 56.978 L 36.793 56.705 L 66.788 30.979 C 74.151 24.664 74.991 13.595 68.663 6.248 C 62.329 -1.108 51.211 -1.947 43.838 4.376 L 36.516 10.656 L 29.194 4.376 Z"
+                    fill="rgb(255, 189, 153)"
+                  />
                 </svg>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Testimonial text */}
-        <div className="max-w-3xl mx-auto text-center relative">
-          {/* Star rating */}
+
+
+        <div className="w-full h-[1px] bg-gray-500 my-20"></div>
+
+        <div className="max-w-5xl mx-auto text-center relative">
           <div className="flex justify-center mb-4">
             {[1, 2, 3, 4, 5].map((star) => (
-              <svg key={star} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-fizeo-mint-green">
+              <svg key={star} width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#6FE984]">
                 <path d="M10 1L13 7L19 8L14.5 13L16 19L10 16L4 19L5.5 13L1 8L7 7L10 1Z" fill="currentColor" />
               </svg>
             ))}
           </div>
 
-          {/* Quote */}
-          <p className="text-white text-lg italic mb-6">
-            "After a sports injury left me sidelined, Fizeo's physiotherapy team played a crucial role in my recovery. Their personalized approach and targeted exercises not only alleviated my pain but also helped me regain strength and flexibility. I'm back in the game, thanks to Fizeo!"
-          </p>
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
+            className="text-white !text-2xl mb-6"
+          >
+            "{testimonials[currentIndex].text}"
+          </motion.div>
 
-          {/* Author */}
           <div className="flex items-center justify-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden">
               <Image
-                src="/lovable-uploads/c64700c5-fd24-45d5-9767-e964340a771a.png"
-                alt="Sarah M"
+                src={testimonials[currentIndex].image}
+                alt={testimonials[currentIndex].name}
                 width={40}
                 height={40}
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="text-white">Sarah M</span>
+            <span className="text-white">{testimonials[currentIndex].name}</span>
           </div>
 
-          {/* Navigation arrows */}
-          <button className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-fizeo-dark-green/50 rounded-full p-2">
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 md:-left-20 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition"
+          >
             <ChevronLeft className="w-6 h-6 text-white" />
           </button>
-          <button className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-fizeo-dark-green/50 rounded-full p-2">
+          <button
+            onClick={handleNext}
+            className="absolute right-0 md:-right-20 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition"
+          >
             <ChevronRight className="w-6 h-6 text-white" />
           </button>
         </div>
-      </div>
-
-      {/* Bottom decorative element */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-        <div className="w-0 h-0 border-l-[30px] border-l-transparent border-t-[30px] border-t-fizeo-dark-green border-r-[30px] border-r-transparent"></div>
       </div>
     </div>
   );
