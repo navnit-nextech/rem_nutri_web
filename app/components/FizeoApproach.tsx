@@ -48,7 +48,7 @@ const FizeoApproach = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius<span className="hidden md:block"></span> enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros<span className="hidden md:block"></span> dolor interdum nulla, ut commodo diam libero vitae erat.
         </p>
 
-        <div className="inline-flex bg-white rounded-full p-1 mb-10 shadow-sm">
+        <div className="inline-flex bg-[rgb(244,241,235)] rounded-full p-1 mb-10 shadow-sm">
           {(['Evidence', 'Holistic', 'Empowering'] as ApproachTab[]).map((tab) => (
             <button
               key={tab}
