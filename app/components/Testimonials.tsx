@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 "use client";
 
 import { useState } from "react";
@@ -44,8 +38,8 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="w-full bg-[#024027] py-20 relative">
-      <div className="relative md:absolute top-2 left-2 md:top-[-5.1%] md:left-165">
+    <div className="w-full bg-[#024027] py-40 relative">
+      <div className=" absolute top-[-4.5%] left-[47%]">
 
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" className="w-16 h-24 scale-70 md:w-20 md:h-32 md:scale-100 ">
@@ -58,24 +52,39 @@ const Testimonials = () => {
       </div>
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="text-center mb-16">
-          <h2 className="text-white font-serif text-[45px] mb-4">
-            Real stories, <span className="text-[#6FE984]">real transformations</span>
+          <h2 className="text-white font-['Libre_Baskerville',serif] text-[40px] mb-4">
+            Real stories, <span className="text-[#76FB91]">real transformations</span>
           </h2>
-          <p className="text-white text-lg max-w-2xl mx-auto">
-            These real stories illuminate the path to transformation, showcasing the impact of personalized care on physical well-being.
+          <p className="text-white text-[24px] font-['Libre_Baskerville',serif]  mx-auto">
+            These real stories illuminate the path to transformation,<span className="hidden md:block"></span> showcasing the impact of personalized care on physical well-<span className="hidden md:block"></span>being.
           </p>
         </div>
 
-        <div className="max-w-full mx-auto mb-16 relative flex justify-center">
+        <div className="max-w-full mx-auto mb-12 relative flex justify-center">
           <div className="rounded-2xl overflow-hidden shadow-lg w-[900px]">
-            <iframe
-              className="w-full h-[500px] rounded-2xl shadow-[10px_10px_20px_rgba(255,255,255,0.5)]"
-              src="https://www.youtube.com/embed/W-XQS2NoRdc"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            <div className="relative w-full  inline-block">
+              {/* Right and Bottom Borders */}
+
+              
+              
+
+              {/* Embedded YouTube Video */}
+              <iframe
+                className="relative w-full h-[500px] rounded-2xl border-none"
+                src="https://www.youtube.com/embed/W-XQS2NoRdc"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+
+
+
+
+            </div>
+
+
+
 
             <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px]">
               <div className="w-32 h-32 bg-fizeo-peach rounded-full flex items-center justify-center">
@@ -99,10 +108,10 @@ const Testimonials = () => {
 
 
 
-        <div className="w-full h-[1px] bg-gray-500 my-20"></div>
+        <div className="w-full h-[1px] bg-gray-500 mb-20"></div>
 
         <div className="max-w-5xl mx-auto text-center relative">
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-7">
             {[1, 2, 3, 4, 5].map((star) => (
               <svg key={star} width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#6FE984]">
                 <path d="M10 1L13 7L19 8L14.5 13L16 19L10 16L4 19L5.5 13L1 8L7 7L10 1Z" fill="currentColor" />
@@ -116,13 +125,13 @@ const Testimonials = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
-            className="text-white !text-2xl mb-6"
+            className="text-white mb-6 font-['Libre_Baskerville',serif] text-[20px]"
           >
             "{testimonials[currentIndex].text}"
           </motion.div>
 
           <div className="flex items-center justify-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden">
+            <div className="w-15 h-15 rounded-full overflow-hidden">
               <Image
                 src={testimonials[currentIndex].image}
                 alt={testimonials[currentIndex].name}
@@ -131,7 +140,7 @@ const Testimonials = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="text-white">{testimonials[currentIndex].name}</span>
+            <span className="text-white font-['Libre_Baskerville',serif] text-[20px]">{testimonials[currentIndex].name}</span>
           </div>
 
           <button

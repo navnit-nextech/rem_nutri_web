@@ -1,14 +1,55 @@
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
+
+const Custommsg = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    className="w-8 h-8 text-[#043A22] fill-current"
+  >
+    <path d="M 216 48 H 40 A 16 16 0 0 0 24 64 V 224 a 15.84 15.84 0 0 0 9.25 14.5 A 16.05 16.05 0 0 0 40 240 a 15.89 15.89 0 0 0 10.25 -3.78 a 0.69 0.69 0 0 0 0.13 -0.11 L 82.5 208 H 216 a 16 16 0 0 0 16 -16 V 64 A 16 16 0 0 0 216 48 Z M 40 224 h 0 Z M 216 192 H 82.5 a 16 16 0 0 0 -10.3 3.75 l -0.12 0.11 L 40 224 V 64 H 216 Z"></path>
+  </svg>
+);
+
+const Customhome = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    className="w-6 h-6 text-[#043A22] fill-current"
+  >
+    <path d="M 218.83 103.77 l -80 -75.48 a 1.14 1.14 0 0 1 -0.11 -0.11 a 16 16 0 0 0 -21.53 0 l -0.11 0.11 L 37.17 103.77 A 16 16 0 0 0 32 115.55 V 208 a 16 16 0 0 0 16 16 H 96 a 16 16 0 0 0 16 -16 V 160 h 32 v 48 a 16 16 0 0 0 16 16 h 48 a 16 16 0 0 0 16 -16 V 115.55 A 16 16 0 0 0 218.83 103.77 Z M 208 208 H 160 V 160 a 16 16 0 0 0 -16 -16 H 112 a 16 16 0 0 0 -16 16 v 48 H 48 V 115.55 l 0.11 -0.1 L 128 40 l 79.9 75.43 l 0.11 0.1 Z"></path>
+  </svg>
+);
+
+const Customcall = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    className="w-6 h-6 text-[#043A22] fill-current"
+  >
+    <path d="M 222.37 158.46 l -47.11 -21.11 l -0.13 -0.06 a 16 16 0 0 0 -15.17 1.4 a 8.12 8.12 0 0 0 -0.75 0.56 L 134.87 160 c -15.42 -7.49 -31.34 -23.29 -38.83 -38.51 l 20.78 -24.71 c 0.2 -0.25 0.39 -0.5 0.57 -0.77 a 16 16 0 0 0 1.32 -15.06 l 0 -0.12 L 97.54 33.64 a 16 16 0 0 0 -16.62 -9.52 A 56.26 56.26 0 0 0 32 80 c 0 79.4 64.6 144 144 144 a 56.26 56.26 0 0 0 55.88 -48.92 A 16 16 0 0 0 222.37 158.46 Z M 176 208 A 128.14 128.14 0 0 1 48 80 A 40.2 40.2 0 0 1 82.87 40 a 0.61 0.61 0 0 0 0 0.12 l 21 47 L 83.2 111.86 a 6.13 6.13 0 0 0 -0.57 0.77 a 16 16 0 0 0 -1 15.7 c 9.06 18.53 27.73 37.06 46.46 46.11 a 16 16 0 0 0 15.75 -1.14 a 8.44 8.44 0 0 0 0.74 -0.56 L 168.89 152 l 47 21.05 h 0 s 0.08 0 0.11 0 A 40.21 40.21 0 0 1 176 208 Z"></path>
+  </svg>
+);
+
+const Custommail = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    className="w-6 h-6 text-[#043A22] fill-current"
+  >
+    <path d="M 224 48 H 32 a 8 8 0 0 0 -8 8 V 192 a 16 16 0 0 0 16 16 H 216 a 16 16 0 0 0 16 -16 V 56 A 8 8 0 0 0 224 48 Z m -96 85.15 L 52.57 64 H 203.43 Z M 98.71 128 L 40 181.81 V 74.19 Z m 11.84 10.85 l 12 11.05 a 8 8 0 0 0 10.82 0 l 12 -11.05 l 58 53.15 H 52.57 Z M 157.29 128 L 216 74.18 V 181.82 Z"></path>
+  </svg>
+);
+
 const GetInTouch = () => {
   return (
-    <div className="w-full py-16 px-4 relative bg-[#EBE5DA]">
-     
-      
+    <div className="w-full py-40 px-4 relative bg-[#EBE5DA]">
+
+
 
       {/* New SVG added here */}
-      <div className="absolute -top-10 left-165">
+      <div className="absolute -top-10 left-[47%]">
         <svg viewBox="0 0 57 57" width="110" height="110">
           <path
             d="M 42.55 56.735 L 28.366 56.735 L 42.55 -0.002 Z M 14.182 56.735 L -0.003 56.735 L 14.182 -0.002 Z"
@@ -23,17 +64,17 @@ const GetInTouch = () => {
         </svg>
       </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-[#043A22] text-4xl md:text-5xl font-serif">
-            Get moving, <span className="font-medium">get in touch!</span>
+          <h2 className="text-[#024027]  text-[40px] font-['Libre_Baskerville',serif] ">
+            Get moving, <span className="font-bold">get in touch!</span>
           </h2>
-          <p className="text-[#043A22] text-base max-w-2xl mx-auto mt-2">
+          <p className="text-[#024027] font-['DM_Sans', 'sans-serif'] text-[20px] max-w-2xl mx-auto mb-15 mt-6">
             Reach out to us and let's embark on a journey towards a healthier, happier you. Your optimal health is just a conversation away!
           </p>
         </div>
 
-        <div className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row w-full max-w-[1400px] min-h-[500px] mx-auto">
+        <div className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row w-full max-w-[1200px] min-h-[200px] mx-auto">
           {/* Image section */}
           <div className="md:w-3/5 h-[500px]">
             <img
@@ -42,38 +83,42 @@ const GetInTouch = () => {
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* Content section */}
-          <div className="md:w-2/5 p-6 md:p-10 flex flex-col justify-center bg-[rgb(244,241,235)]">
+          <div className="md:w-2/5 p-6 md:p-10 flex flex-col justify-center bg-[rgb(244,241,235)] rounded-xl shadow-sm">
+            {/* Message Icon + Heading */}
             <div className="mb-6">
-              <div className="flex items-start mb-3">
-                <h3 className="text-[#043A22] text-2xl font-serif">Let's chat</h3>
+              <Custommsg />
+              <div className="flex items-start mb-3 ">
+                <h3 className="text-[#024027] font-['Libre_Baskerville',serif] text-[32px] ">Let's chat</h3>
               </div>
-              <p className="text-gray-700 text-base mb-1">
-                Don't hesitate, take the first step toward a healthier you!
-              </p>
-              <p className="text-gray-700 text-base">
-                Your journey to well-being starts with a simple connection.
+              <p className="text-[#024027] text-base mb-1 font-['DM_Sans',sans-serif] text-[16px] leading-relaxed">
+                Don't hesitate, take the first step toward a healthier you! Your journey to well-being starts with a simple connection.
               </p>
             </div>
 
-            <div className="space-y-3 text-base">
-              <div className="flex items-center">
-                <MapPin className="mr-3 text-[#043A22]" size={18} />
-                <span className="text-[#043A22]">123 Main Street, French, 56789, Townsville.</span>
+            {/* Horizontal Line */}
+            <div className="w-full h-[1px] bg-[#DEDEDE] my-6"></div>
+
+            {/* Contact Details */}
+            <div className="space-y-4 text-base">
+              <div className="flex items-center space-x-3">
+                <Customhome />
+                <span className="text-[#024027] text-[16px] font-['DM_Sans',sans-serif]">
+                  123 Main Street, French, 56789, Townsville.
+                </span>
               </div>
-              <div className="flex items-center">
-                <Phone className="mr-3 text-[#043A22]" size={18} />
-                <span className="text-[#043A22]">8450 9087</span>
+              <div className="flex items-center space-x-3">
+                <Customcall />
+                <span className="text-[#024027] text-[16px] font-['DM_Sans',sans-serif]">8450 9087</span>
               </div>
-              <div className="flex items-center">
-                <Mail className="mr-3 text-[#043A22]" size={18} />
-                <a href="mailto:info@fizeo.com" className="text-[#043A22] hover:text-fizeo-mint-green transition-colors">
+              <div className="flex items-center space-x-3">
+                <Custommail />
+                <a href="mailto:info@fizeo.com" className="text-[#024027] font-['DM_Sans',sans-serif] underline">
                   info@fizeo.com
                 </a>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

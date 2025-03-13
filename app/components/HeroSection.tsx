@@ -16,26 +16,27 @@ const HeroSection = () => {
         {/* Background Section (Includes Text and Image) */}
         {/* <div className="relative bg-[#043B25] text-white p-20 md:p-12 lg:p-20 rounded-3xl w-full min-h-[530px] flex flex-col lg:flex-row items-center justify-between overflow-hidden"> */}
 
-        <div className="relative bg-[#043A22] text-white p-20 md:p-12 lg:p-20 rounded-3xl w-[90%] lg:w-[95%] mx-auto min-h-[530px] flex flex-col lg:flex-row items-center justify-between overflow-hidden">
+        <div className="relative bg-[#043A22] text-white p-20 md:p-12 lg:p-20 w-[90%] lg:w-[95%] mx-auto min-h-[530px] flex flex-col lg:flex-row items-center justify-between overflow-hidden 
+  rounded-[0px_24px_0px_24px]">
 
           {/* Left Content */}
           <div className="relative z-10 w-full lg:w-[55%]">
-            <h1 className="text-[30px] lg:text-[55px] font-normal leading-tight font-['Libre_Baskerville',serif]">
+            <h1 className="text-[30px] lg:text-[56px] font-normal leading-tight font-['Libre_Baskerville',serif]">
               Expert care for <span className="hidden md:block"></span>
-              your <span className="text-[#6FE984]">mobility</span>
+              your <span className="text-[#76FB91]">mobility</span>
             </h1>
 
-            <p className="mt-8 text-lg">
+            <p className="mt-8  text-[20px] font-['DM_Sans', 'sans-serif']">
               Experience expert physiotherapy for enhanced mobility <span className="hidden md:block"></span> and a
               vibrant life.
             </p>
 
             {/* Buttons */}
             <div className="mt-8 flex gap-4">
-              <button className="bg-[#6FE984] text-black font-semibold py-3 px-6 rounded-lg shadow-md">
+              <button className="bg-[#6FE984] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-3 px-6 rounded-lg shadow-md">
                 Book now
               </button>
-              <button className="border border-[#6FE984] text-[#6FE984] font-semibold py-3 px-6 rounded-lg shadow-md">
+              <button className="border border-[#6FE984] text-[#6FE984] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-3 px-6 rounded-lg shadow-md">
                 Contact us
               </button>
             </div>

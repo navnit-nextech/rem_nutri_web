@@ -33,18 +33,22 @@ const FizeoApproach = () => {
   };
 
   return (
-    <div className="w-full py-16 relative bg-[#EBE5DA]">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    // <div className="w-full pt-40 relative bg-[#EBE5DA] min-h-00px]">
+
+<div className="w-full pt-30 pb-40  bg-[#EBE5DA] min-h-[700px]">
+
+
+      <div className="absolute top-0 left-1/2 transform left-[50%] -translate-y-1/2">
         <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30 10C35 10 40 15 40 25C40 35 35 45 25 45C15 45 15 35 20 30" stroke="#77E190" strokeWidth="5" strokeLinecap="round" />
         </svg>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-[#043A22] text-3xl md:text-5xl font-serif mb-4 mb-7">
+        <h2 className="text-[#024027] font-['Libre_Baskerville',serif] text-[40px] text-3xl  mb-4 mb-7">
           The Fizeo Approach
         </h2>
-        <p className="text-[#043A22] text-base mb-10 md:text-xl max-w-5xl mx-auto mb-20">
+        <p className="text-[#024027] font-['DM_Sans', 'sans-serif'] text-base mb-10 text-[20px] max-w-5xl mx-auto mb-20">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius<span className="hidden md:block"></span> enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros<span className="hidden md:block"></span> dolor interdum nulla, ut commodo diam libero vitae erat.
         </p>
 
@@ -54,7 +58,7 @@ const FizeoApproach = () => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-20 py-4 text-sm font-bold  text-lg rounded-full transition-colors ${activeTab === tab
-                  ? 'bg-[#043A22] text-white'
+                  ? 'bg-[#024027] text-white'
                   : 'text-[#043A22] hover:bg-fizeo-beige-bg/50'
                 }`}
             >
@@ -69,16 +73,17 @@ const FizeoApproach = () => {
   <div className="absolute inset-0 bg-black/40 z-10"></div>
   
   <img
-    src={tabContent[activeTab].image}
-    alt={tabContent[activeTab].title}
-    className="w-full h-[500px] md:h-[600px] object-cover"
-  />
+  src={tabContent[activeTab].image}
+  alt={tabContent[activeTab].title}
+  className="w-full h-[500px] md:h-[600px] object-cover rounded-3xl"
+/>
+
 
   <div className="absolute bottom-0 left-0 p-12 z-20 text-left">
-    <h3 className="text-white text-4xl font-serif mb-4">
+    <h3 className="text-white text-[32px] font-['Libre_Baskerville',serif] mb-4">
       {tabContent[activeTab].title}
     </h3>
-    <p className="text-white text-lg max-w-2xl">
+    <p className="text-white text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
       {tabContent[activeTab].description}
     </p>
   </div>
@@ -91,13 +96,7 @@ const FizeoApproach = () => {
 
       </div>
 
-      {/* Decorative element at the bottom */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
-        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 15L40 45" stroke="#77E190" strokeWidth="5" strokeLinecap="round" />
-          <path d="M40 15L20 45" stroke="#77E190" strokeWidth="5" strokeLinecap="round" />
-        </svg>
-      </div>
+      
     </div>
   );
 };
