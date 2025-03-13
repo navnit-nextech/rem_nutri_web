@@ -61,7 +61,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="name@email.com"
-                className="flex-grow bg-white font-['DM_Sans', 'sans-serif'] text-[14px] border-none outline-none  p-3 mr-3 rounded-md"
+                className="flex-grow text-black bg-white font-['DM_Sans', 'sans-serif'] text-[14px] border-none outline-none  p-3 mr-3 rounded-md"
               />
               <button className="bg-[#6FE984] font-['DM_Sans', 'sans-serif'] text-[14px] text-black font-medium px-4 py-3 rounded-md">
                 Subscribe
