@@ -9,24 +9,34 @@ const FeatureCard = ({ icon, title, description }: {
 }) => {
   return (
     <div className="bg-[#F7F5F0] w-[575px] h-[220px] p-8 rounded-2xl shadow-sm border border-[#EAE5DC] flex flex-col justify-between">
-  <div>
-    <div className="flex items-center gap-3">
-      <span className="text-[#024027] text-[22px]">{icon}</span>
-      <h3 className="text-[#024027] text-[22px] font-bold font-['Libre_Baskerville']">
-        {title}
-      </h3>
+      <div>
+        <div className="flex items-center gap-3">
+          <span className="text-[#024027] text-[22px]">{icon}</span>
+          <h3 className="text-[#024027] text-[22px] font-bold font-['Libre_Baskerville']">
+            {title}
+          </h3>
+        </div>
+        <p className="text-[#024027] text-[16px] font-light leading-relaxed mt-4">
+          {description}
+        </p>
+      </div>
     </div>
-    <p className="text-[#024027] text-[16px] font-light leading-relaxed mt-4">
-      {description}
-    </p>
-  </div>
-</div>
 
 
   )
 
 };
 
+
+const Topdecorative = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    className="w-100 h-75 fill-[#8FC2AA] rotate-[30deg] absolute left-[37%] -top-30"
+  >
+    <path d="M 48.292 12.972 L 35.025 0.157 L 21.758 12.972 L 0.186 25.348 L 10.29 45.126 L 13.433 65.918 L 35.025 63.539 L 56.617 65.918 L 59.76 45.126 L 69.864 25.348 Z"></path>
+  </svg>
+);
 
 
 const Customcare = () => (
@@ -113,9 +123,15 @@ const WhyFizeo = () => {
   return (
     <div className="w-full py-20 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat">
       <div className="max-w-7xl mx-auto px-6 md:px-10 mt-8">
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="relative flex flex-col lg:flex-row gap-10">
 
-          
+
+          <Topdecorative />
+
+
+
+
+
 
 
 
@@ -126,7 +142,7 @@ const WhyFizeo = () => {
             <h2 className="text-[#024027] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
               Why Fizeo?
             </h2>
-            
+
             <p className="text-[#024027] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
               Fizeo stands out for its commitment to personalized and<span className="hidden md:block"></span> specialized
               physiotherapy, offering individualized care,<span className="hidden md:block"></span> expertise in various specialties,
@@ -139,12 +155,17 @@ const WhyFizeo = () => {
               About us
             </Button>
 
-            <div className="mt-12">
+            <div className="relative mt-12">
+              {/* Shadow Effects */}
+              <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB] rounded-3xl"></div>
+              <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB] rounded-3xl "></div>
+
+              {/* Image */}
               <div className="rounded-lg overflow-hidden">
                 <img
                   src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
                   alt="Patient receiving physiotherapy treatment"
-                  className="w-full h-175 object-cover"
+                  className="w-full h-175 object-cover z-10 "
                 />
               </div>
             </div>
@@ -152,16 +173,16 @@ const WhyFizeo = () => {
 
           {/* Right features section */}
           {/* Right features section */}
-<div className="w-full lg:w-1/2 min-h-[900px] flex flex-col mt-10 justify-center gap-y-6">
-  {features.map((feature, index) => (
-    <FeatureCard
-      key={index}
-      icon={feature.icon}
-      title={feature.title}
-      description={feature.description}
-    />
-  ))}
-</div>
+          <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col mt-10 justify-center gap-y-6">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))}
+          </div>
 
 
 

@@ -62,8 +62,10 @@ const Testimonials = () => {
 
         <div className="max-w-full mx-auto mb-12 relative flex justify-center">
           <div className="rounded-2xl overflow-hidden shadow-lg w-[900px]">
-            <div className="relative w-full  inline-block">
+            <div className="relative w-full  bg-red ">
               {/* Right and Bottom Borders */}
+
+              
 
               
               
@@ -86,7 +88,7 @@ const Testimonials = () => {
 
 
 
-            <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px]">
+            <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px] z-20">
               <div className="w-32 h-32 bg-fizeo-peach rounded-full flex items-center justify-center">
                 <svg
                   width="240"

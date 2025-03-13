@@ -11,6 +11,20 @@ interface TabContentItem {
   image: string;
 }
 
+
+const Topdecorative = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    className="w-120 h-120 fill-[#8FC2AA] absolute  rotate-180 left-[20%] -mt-135"
+  >
+    <path d="M 11.589 31.972 C 11.589 33.132 12.528 34.067 13.674 34.048 L 20.877 33.926 C 32.426 33.731 41.892 43.152 41.892 54.841 L 41.892 58.141 C 41.892 61.364 39.31 63.978 36.124 63.978 C 32.939 63.978 30.357 61.364 30.357 58.141 L 30.357 54.841 C 30.357 49.675 26.173 45.511 21.069 45.598 L 13.866 45.719 C 6.275 45.847 0.054 39.655 0.054 31.972 C 0.054 24.289 6.275 18.098 13.866 18.225 L 21.069 18.347 C 26.173 18.433 30.357 14.269 30.357 9.102 L 30.357 5.904 C 30.357 2.68 32.939 0.067 36.124 0.067 C 39.31 0.067 41.892 2.68 41.892 5.904 L 41.892 9.102 C 41.892 20.792 32.426 30.213 20.877 30.018 L 13.674 29.897 C 12.528 29.878 11.589 30.812 11.589 31.972 Z"></path>
+  </svg>
+);
+
+
+
+
 const FizeoApproach = () => {
   const [activeTab, setActiveTab] = useState<ApproachTab>('Evidence');
 
@@ -35,14 +49,10 @@ const FizeoApproach = () => {
   return (
     // <div className="w-full pt-40 relative bg-[#EBE5DA] min-h-00px]">
 
-<div className="w-full pt-30 pb-40  bg-[#EBE5DA] min-h-[700px]">
+    <div className="w-full pt-30 pb-40  bg-[#EBE5DA] min-h-[700px]">
 
 
-      <div className="absolute top-0 left-1/2 transform left-[50%] -translate-y-1/2">
-        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30 10C35 10 40 15 40 25C40 35 35 45 25 45C15 45 15 35 20 30" stroke="#77E190" strokeWidth="5" strokeLinecap="round" />
-        </svg>
-      </div>
+      <Topdecorative />
 
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-[#024027] font-['Libre_Baskerville',serif] text-[40px] text-3xl  mb-4 mb-7">
@@ -58,8 +68,8 @@ const FizeoApproach = () => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-20 py-4 text-sm font-bold  text-lg rounded-full transition-colors ${activeTab === tab
-                  ? 'bg-[#024027] text-white'
-                  : 'text-[#043A22] hover:bg-fizeo-beige-bg/50'
+                ? 'bg-[#024027] text-white'
+                : 'text-[#043A22] hover:bg-fizeo-beige-bg/50'
                 }`}
             >
               {tab}
@@ -69,34 +79,34 @@ const FizeoApproach = () => {
 
         {/* Tab content */}
         {/* Tab content */}
-<div className="relative rounded-xl overflow-hidden mb-10 w-full max-w-[1400px] mx-auto">
-  <div className="absolute inset-0 bg-black/40 z-10"></div>
-  
-  <img
-  src={tabContent[activeTab].image}
-  alt={tabContent[activeTab].title}
-  className="w-full h-[500px] md:h-[600px] object-cover rounded-3xl"
-/>
+        <div className="relative rounded-xl overflow-hidden mb-10 w-full max-w-[1400px] mx-auto">
+          <div className="absolute inset-0 bg-black/40 z-10"></div>
+
+          <img
+            src={tabContent[activeTab].image}
+            alt={tabContent[activeTab].title}
+            className="w-full h-[500px] md:h-[600px] object-cover rounded-3xl"
+          />
 
 
-  <div className="absolute bottom-0 left-0 p-12 z-20 text-left">
-    <h3 className="text-white text-[32px] font-['Libre_Baskerville',serif] mb-4">
-      {tabContent[activeTab].title}
-    </h3>
-    <p className="text-white text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
-      {tabContent[activeTab].description}
-    </p>
-  </div>
+          <div className="absolute bottom-0 left-0 p-12 z-20 text-left">
+            <h3 className="text-white text-[32px] font-['Libre_Baskerville',serif] mb-4">
+              {tabContent[activeTab].title}
+            </h3>
+            <p className="text-white text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
+              {tabContent[activeTab].description}
+            </p>
+          </div>
 
-  {/* Green border accent */}
-  <div className="absolute bottom-0 right-0 w-full h-8 bg-[#8FC2AB]"></div>
-  <div className="absolute top-0 right-0 w-8 h-full bg-[#8FC2AB]"></div>
-</div>
+          {/* Green border accent */}
+          <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB]"></div>
+          <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB]"></div>
+        </div>
 
 
       </div>
 
-      
+
     </div>
   );
 };
