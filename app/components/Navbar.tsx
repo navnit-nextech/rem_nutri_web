@@ -1,26 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { Button } from '../components/ui/button';
-import { motion } from 'framer-motion';
+import React from "react";
+import Link from "next/link";
+import { Button } from "../components/ui/button";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.5, ease: 'easeOut' }}
-      className="fixed top-0 left-0 w-full z-50 bg-[rgb(244,241,235)] border-b border-black-100 py-6 px-6"
-    >
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[rgb(244,241,235)] border-b border-black-100 py-6 px-6">
       <div className="max-w-7xl w-full mx-auto flex items-center justify-between px-9">
         {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          className="flex items-center"
-        >
+        <div className="flex items-center">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-11 h-11 rounded-xl flex items-center justify-center ">
               {/* SVG Logo */}
@@ -38,20 +28,11 @@ const Navbar = () => {
             <span className="text-[#024027] text-[20px] tracking-[0.2em] -ml-1 font-medium font-['DM_Sans', 'sans-serif']">
               FIZEO
             </span>
-
-
-
-
           </Link>
-        </motion.div>
+        </div>
 
         {/* Navigation Links & Button */}
-        <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          className="flex items-center space-x-12"
-        >
+        <div className="flex items-center space-x-12">
           <div className="hidden md:flex items-center space-x-9">
             <Link
               href="/about"
@@ -79,18 +60,14 @@ const Navbar = () => {
             </Link>
           </div>
 
-
           {/* Book an Appointment Button */}
           <Button className="bg-[#024027] hover:bg-[#035C3B] text-white text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md ml-6">
             Book an appointment
           </Button>
-
-
-        </motion.div>
+        </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
 export default Navbar;
-
