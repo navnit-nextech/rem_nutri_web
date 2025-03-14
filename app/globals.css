@@ -22,7 +22,21 @@
 }
 
 body {
-  background: #F4F1EB;
+  background: #f4f1eb;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-carousel {
+  animation: carousel 30s linear infinite;
+  width: 200%;
 }

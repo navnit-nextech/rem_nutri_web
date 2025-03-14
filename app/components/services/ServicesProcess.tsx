@@ -1,0 +1,240 @@
+"use client";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import ScrollAnimation from "../ScrollAnimation";
+
+interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+const processSteps: ProcessStep[] = [
+  {
+    number: "01",
+    title: "Comprehensive assessment",
+    description:
+      "Our journey begins with a thorough assessment of your condition. Our experienced physiotherapists evaluate your symptoms, medical history, and conduct physical examinations to diagnose the root cause of your discomfort.",
+  },
+  {
+    number: "02",
+    title: "Personalized treatment plan",
+    description:
+      "Following the assessment, we design a tailored treatment plan specifically for you. This plan outlines a series of targeted exercises, manual therapy techniques, and other interventions aimed at addressing your unique needs and promoting recovery.",
+  },
+  {
+    number: "03",
+    title: "Active rehabilitation",
+    description:
+      "We guide you through a progressive rehabilitation program that builds strength, improves mobility, and restores function. Our therapists provide hands-on support and education to ensure proper technique and maximize results.",
+  },
+  {
+    number: "04",
+    title: "Ongoing support",
+    description:
+      "Your wellness journey doesn't end when your treatment plan does. We provide ongoing support, home exercise programs, and preventative strategies to maintain your progress and prevent future issues.",
+  },
+  {
+    number: "05",
+    title: "Ongoing support",
+    description:
+      "Your wellness journey doesn't end when your treatment plan does. We provide ongoing support, home exercise programs, and preventative strategies to maintain your progress and prevent future issues.",
+  },
+];
+
+const ServicesProcess = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [svgHeight, setSvgHeight] = useState(0);
+  const [visibleSteps, setVisibleSteps] = useState<boolean[]>([
+    true,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const lineScaleFactor = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1, svgHeight / 160]
+  );
+
+  // Track scroll progress to reveal sections
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange((value) => {
+      if (!contentRef.current) return;
+
+      const totalHeight = contentRef.current.offsetHeight;
+      const currentLineHeight = totalHeight * value;
+
+      // Get positions of all steps
+      const stepPositions = stepRefs.current.map((ref) => ref?.offsetTop || 0);
+
+      // Calculate which steps should be visible based on line progress
+      const newVisibleSteps = stepPositions.map((position, index) => {
+        // First step is always visible initially
+        if (index === 0 && value < 0.1) return true;
+
+        // Progressive thresholds - earlier reveal for each subsequent step
+        let threshold;
+        if (index === 1) threshold = position - 400; // 2nd step
+        else if (index === 2) threshold = position - 600; // 3rd step
+        else if (index === 3) threshold = position - 800; // 4th step
+        else if (index === 4) threshold = position - 1000; // 5th step
+        else threshold = position - 300;
+
+        return currentLineHeight >= threshold;
+      });
+
+      // Force visibility for sections when we're at certain scroll points
+      if (value > 0.3 && !newVisibleSteps[1]) newVisibleSteps[1] = true; // 2nd step
+      if (value > 0.5 && !newVisibleSteps[2]) newVisibleSteps[2] = true; // 3rd step
+      if (value > 0.7 && !newVisibleSteps[3]) newVisibleSteps[3] = true; // 4th step
+      if (value > 0.85 && !newVisibleSteps[4]) newVisibleSteps[4] = true; // 5th step
+
+      setVisibleSteps(newVisibleSteps);
+    });
+
+    return () => unsubscribe();
+  }, [scrollYProgress]);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setSvgHeight(contentRef.current.offsetHeight);
+    }
+
+    const handleResize = () => {
+      if (contentRef.current) {
+        setSvgHeight(contentRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [initialLoad]);
+
+  return (
+    <section className="bg-[#024027] text-white py-20">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start ">
+            <ScrollAnimation>
+              <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
+                {" "}
+                <span className="text-[#75FB91]">Wellness approach </span>with
+                our proven process.
+              </h2>
+              <p className="text-lg mb-8">
+                We focus on personalized care and evidence-based techniques,
+                guiding you towards a healthier, pain-free life.
+              </p>
+              <div>
+                <a
+                  href="#book-appointment"
+                  className="inline-block bg-green-400 hover:bg-green-500 text-[#024027] font-medium py-3 px-6 rounded-md transition-colors"
+                >
+                  Book an appointment
+                </a>
+              </div>
+              <ScrollAnimation delay={0.6}>
+                <div className="relative mt-12">
+                  {/* Shadow Effects */}
+                  <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#8FC2AA] rounded-2xl"></div>
+
+                  {/* Image */}
+                  <div className="rounded-2xl overflow-hidden relative z-10">
+                    <img
+                      src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
+                      alt="Patient receiving physiotherapy treatment"
+                      className="w-full h-175 object-cover"
+                    />
+                  </div>
+                </div>
+              </ScrollAnimation>
+            </ScrollAnimation>
+          </div>
+
+          <motion.div
+            className="lg:col-span-7 relative overflow-hidden sm:pl-20 pl-10"
+            ref={containerRef}
+          >
+            <div className="space-y-48 relative" ref={contentRef}>
+              <div className="absolute left-0 top-0 h-full z-0">
+                <div className="absolute left-0 top-0 w-[2px] h-full bg-[#0F4C3A]"></div>
+
+                <div className="absolute left-0 top-0 h-full overflow-visible">
+                  <motion.div
+                    className="absolute left-0 top-0 w-[2px] bg-green-400 origin-top shadow-[0_0_8px_rgba(74,222,128,0.6)]"
+                    style={{
+                      height: initialLoad ? "250px" : "200px",
+                      scaleY: lineScaleFactor,
+                      transformOrigin: "top",
+                      transition: "all 0.1s ease-out",
+                    }}
+                  ></motion.div>
+                </div>
+              </div>
+
+              {processSteps.map((step, index) => (
+                <div
+                  key={index}
+                  className="relative flex items-start sm:pl-16 pl-12"
+                  ref={(el) => {
+                    stepRefs.current[index] = el;
+                  }}
+                >
+                  <div className="absolute left-0 -translate-x-1/2 bg-[#024027] py-4 z-10 font-['Libre_Baskerville',serif]">
+                    <motion.div
+                      className="relative text-7xl font-bold italic"
+                      animate={{
+                        color: visibleSteps[index] ? "#ffffff" : "#ffffff70",
+                      }}
+                    >
+                      {step.number}
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{
+                      opacity: visibleSteps[index] ? 1 : 0,
+                      y: visibleSteps[index] ? 0 : 50,
+                    }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                    }}
+                  >
+                    <div className="pt-4 pl-5">
+                      <div className="mb-2 text-green-400 text-sm">
+                        Precision diagnosis, personalized care.
+                      </div>
+                      <h3 className="text-4xl font-bold mb-4 font-['Libre_Baskerville',serif]">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-300 max-w-2xl">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      <div className="py-16"></div>
+    </section>
+  );
+};
+
+export default ServicesProcess;

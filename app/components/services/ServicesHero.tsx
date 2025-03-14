@@ -1,6 +1,5 @@
 import React from "react";
 
-// Custom Home Icon using Tailwind CSS
 const CustomHomeIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -103,60 +102,68 @@ const ServiceCard = ({
   );
 };
 
-const ServicesGrid = () => {
-  const services = [
-    {
-      icon: <CustomHomeIcon />,
-      title: "Musculoskeletal Rehab",
-      description:
-        "Tailored rehabilitation programs for musculoskeletal conditions, injuries, and post-surgical recovery to restore optimal function and mobility.",
-    },
-    {
-      icon: <Customsports />,
-      title: "Sports Injury Care",
-      description:
-        "Specialized care for athletes, including assessment, treatment, and prevention strategies to address sports-related injuries and enhance performance.",
-    },
-    {
-      icon: <CustomDiamondIcon />,
-      title: "Effective Pain Relief",
-      description:
-        "Comprehensive approach to alleviate pain through manual therapy, exercises, and education, targeting the root cause for long-term relief.",
-    },
-    {
-      icon: <CustomHexagon />,
-      title: "Neuro Rehab",
-      description:
-        "Specialized interventions for individuals with neurological disorders, focusing on improving movement, balance, and overall functional independence.",
-    },
-    {
-      icon: <Customwellness />,
-      title: "Preventive Wellness",
-      description:
-        "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education.",
-    },
-    {
-      icon: <Customworkplace />,
-      title: "Workplace Ergonomics",
-      description:
-        "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment.",
-    },
-  ];
+const services = [
+  {
+    icon: <CustomHomeIcon />,
+    title: "Musculoskeletal Rehab",
+    description:
+      "Tailored rehabilitation programs for musculoskeletal conditions, injuries, and post-surgical recovery to restore optimal function and mobility.",
+  },
+  {
+    icon: <Customsports />,
+    title: "Sports Injury Care",
+    description:
+      "Specialized care for athletes, including assessment, treatment, and prevention strategies to address sports-related injuries and enhance performance.",
+  },
+  {
+    icon: <CustomDiamondIcon />,
+    title: "Effective Pain Relief",
+    description:
+      "Comprehensive approach to alleviate pain through manual therapy, exercises, and education, targeting the root cause for long-term relief.",
+  },
+  {
+    icon: <CustomHexagon />,
+    title: "Neuro Rehab",
+    description:
+      "Specialized interventions for individuals with neurological disorders, focusing on improving movement, balance, and overall functional independence.",
+  },
+  {
+    icon: <Customwellness />,
+    title: "Preventive Wellness",
+    description:
+      "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education.",
+  },
+  {
+    icon: <Customworkplace />,
+    title: "Workplace Ergonomics",
+    description:
+      "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment.",
+  },
+];
 
+const ServicesHero = () => {
   return (
-    <div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 px-4 ">
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10">
-        {services.map((service, index) => (
-          <ServiceCard
-            key={index}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-          />
-        ))}
+    <div className="pt-20">
+      <div className="bg-[#024027] sm:p-20 sm:py-40 sm:pb-52 py-20 pb-36">
+        <h1 className=" font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-white text-center max-w-3xl mx-auto">
+          Strive and thrive with <span className="text-[#75FB91]">premier</span>{" "}
+          physio services
+        </h1>
+      </div>
+      <div className="bg-[#EBE5DA] pb-5">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10 px-4 relative -top-24">
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default ServicesGrid;
+export default ServicesHero;
