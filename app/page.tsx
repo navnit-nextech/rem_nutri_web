@@ -14,7 +14,6 @@ import ScrollAnimation from "./components/ScrollAnimation";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <HeroSection />
       <TherapeuticExcellence />
       <ScrollAnimation longFade>
@@ -25,7 +24,6 @@ const Index = () => {
       <FizeoApproach />
       <BlogSection />
       <GetInTouch />
-      <Footer />
     </div>
   );
 };
