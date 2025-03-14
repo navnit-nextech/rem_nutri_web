@@ -1,6 +1,6 @@
-import React from 'react';
-import { MapPin, Phone, Mail } from 'lucide-react';
-
+import React from "react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import ScrollAnimation from "./ScrollAnimation";
 
 const Custommsg = () => (
   <svg
@@ -44,13 +44,15 @@ const Custommail = () => (
 
 const GetInTouch = () => {
   return (
-    <div className="w-full py-40 px-4 relative bg-[#EBE5DA]">
-
-
-
+    <div className="w-full py-20 md:py-40 px-4 relative bg-[#EBE5DA]">
       {/* New SVG added here */}
-      <div className="absolute -top-10 left-[47%]">
-        <svg viewBox="0 0 57 57" width="110" height="110">
+      <div className="absolute -top-10 left-[50%] transform -translate-x-1/2">
+        <svg
+          viewBox="0 0 57 57"
+          width="80"
+          height="80"
+          className="md:w-[110px] md:h-[110px]"
+        >
           <path
             d="M 42.55 56.735 L 28.366 56.735 L 42.55 -0.002 Z M 14.182 56.735 L -0.003 56.735 L 14.182 -0.002 Z"
             transform="translate(0.159 0.113) rotate(180 21.65 28.866)"
@@ -65,61 +67,75 @@ const GetInTouch = () => {
       </div>
 
       <div className="max-w-8xl mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-[#024027]  text-[40px] font-['Libre_Baskerville',serif] ">
-            Get moving, <span className="font-bold">get in touch!</span>
-          </h2>
-          <p className="text-[#024027] font-['DM_Sans', 'sans-serif'] text-[20px] max-w-2xl mx-auto mb-15 mt-6">
-            Reach out to us and let's embark on a journey towards a healthier, happier you. Your optimal health is just a conversation away!
-          </p>
-        </div>
-
-        <div className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row w-full max-w-[1200px] min-h-[200px] mx-auto">
-          {/* Image section */}
-          <div className="md:w-3/5 h-[500px]">
-            <img
-              src="https://framerusercontent.com/images/Pgmx10jt5D9VoQrgCviW7WkbsI.jpg"
-              alt="Person exercising"
-              className="w-full h-full object-cover"
-            />
+        <ScrollAnimation delay={0.2}>
+          <div className="text-center mb-10 md:mb-20">
+            <h2 className="text-[#024027] text-[28px] md:text-[40px] font-['Libre_Baskerville',serif]">
+              Get moving, <span className="font-bold">get in touch!</span>
+            </h2>
+            <p className="text-[#024027] font-['DM_Sans', 'sans-serif'] text-[16px] md:text-[20px] max-w-2xl mx-auto mb-8 md:mb-15 mt-4 md:mt-6 px-4">
+              Reach out to us and let's embark on a journey towards a healthier,
+              happier you. Your optimal health is just a conversation away!
+            </p>
           </div>
-          <div className="md:w-2/5 p-6 md:p-10 flex flex-col justify-center bg-[rgb(244,241,235)] rounded-xl shadow-sm">
-            {/* Message Icon + Heading */}
-            <div className="mb-6">
-              <Custommsg />
-              <div className="flex items-start mb-3 ">
-                <h3 className="text-[#024027] font-['Libre_Baskerville',serif] text-[32px] ">Let's chat</h3>
-              </div>
-              <p className="text-[#024027] text-base mb-1 font-['DM_Sans',sans-serif] text-[16px] leading-relaxed">
-                Don't hesitate, take the first step toward a healthier you! Your journey to well-being starts with a simple connection.
-              </p>
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.4}>
+          <div className="relative max-w-[1200px] mx-auto flex flex-col lg:block">
+            {/* Image section */}
+            <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden">
+              <img
+                src="https://framerusercontent.com/images/Pgmx10jt5D9VoQrgCviW7WkbsI.jpg"
+                alt="Person exercising"
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            {/* Horizontal Line */}
-            <div className="w-full h-[1px] bg-[#DEDEDE] my-6"></div>
+            {/* Content section - positioned absolutely to overlap */}
+            <div className="relative lg:absolute lg:top-1/2 lg:right-0 lg:transform lg:-translate-y-1/2 w-full lg:w-[45%] p-6 md:p-8 lg:p-10 bg-[rgb(244,241,235)] rounded-2xl -mt-6 lg:mt-0 lg:h-full lg:pt-16">
+              {/* Message Icon + Heading */}
+              <div className="mb-4 md:mb-6">
+                <Custommsg />
+                <div className="flex items-start mb-2 md:mb-3 mt-3">
+                  <h3 className="text-[#024027] font-['Libre_Baskerville',serif] text-[24px] md:text-[32px]">
+                    Let's chat
+                  </h3>
+                </div>
+                <p className="text-[#024027] text-[14px] md:text-base mb-1 font-['DM_Sans',sans-serif] leading-relaxed">
+                  Don't hesitate, take the first step toward a healthier you!
+                  Your journey to well-being starts with a simple connection.
+                </p>
+              </div>
 
-            {/* Contact Details */}
-            <div className="space-y-4 text-base">
-              <div className="flex items-center space-x-3">
-                <Customhome />
-                <span className="text-[#024027] text-[16px] font-['DM_Sans',sans-serif]">
-                  123 Main Street, French, 56789, Townsville.
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Customcall />
-                <span className="text-[#024027] text-[16px] font-['DM_Sans',sans-serif]">8450 9087</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Custommail />
-                <a href="mailto:info@fizeo.com" className="text-[#024027] font-['DM_Sans',sans-serif] underline">
-                  info@fizeo.com
-                </a>
+              {/* Horizontal Line */}
+              <div className="w-full h-[1px] bg-[#DEDEDE] my-6"></div>
+
+              {/* Contact Details */}
+              <div className="space-y-3 md:space-y-4 text-sm md:text-base">
+                <div className="flex items-center space-x-3">
+                  <Customhome />
+                  <span className="text-[#024027] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
+                    123 Main Street, French, 56789, Townsville.
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Customcall />
+                  <span className="text-[#024027] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
+                    8450 9087
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Custommail />
+                  <a
+                    href="mailto:info@fizeo.com"
+                    className="text-[#024027] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif] underline"
+                  >
+                    info@fizeo.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-
-        </div>
+        </ScrollAnimation>
       </div>
     </div>
   );
