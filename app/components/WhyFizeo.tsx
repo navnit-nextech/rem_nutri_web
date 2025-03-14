@@ -1,14 +1,18 @@
-import React from 'react';
-import { Heart, Target, Leaf, User } from 'lucide-react';
+import React from "react";
+import { Heart, Target, Leaf, User } from "lucide-react";
 import { Button } from "../components/ui/button";
 
-const FeatureCard = ({ icon, title, description }: {
+const FeatureCard = ({
+  icon,
+  title,
+  description,
+}: {
   icon: React.ReactNode;
   title: string;
   description: string;
 }) => {
   return (
-    <div className="bg-[#F7F5F0] w-[575px] h-[220px] p-8 rounded-2xl shadow-sm border border-[#EAE5DC] flex flex-col justify-between">
+    <div className="bg-[#F7F5F0] sm:w-[575px] sm:h-[220px] p-8 rounded-2xl shadow-sm border border-[#EAE5DC] flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-3">
           <span className="text-[#024027] text-[22px]">{icon}</span>
@@ -21,23 +25,18 @@ const FeatureCard = ({ icon, title, description }: {
         </p>
       </div>
     </div>
-
-
-  )
-
+  );
 };
-
 
 const Topdecorative = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 256 256"
-    className="w-100 h-75 fill-[#8FC2AA] rotate-[30deg] absolute left-[37%] -top-30"
+    viewBox="0 0 100 100"
+    className="fill-[#8FC2AA] w-full h-full"
   >
     <path d="M 48.292 12.972 L 35.025 0.157 L 21.758 12.972 L 0.186 25.348 L 10.29 45.126 L 13.433 65.918 L 35.025 63.539 L 56.617 65.918 L 59.76 45.126 L 69.864 25.348 Z"></path>
   </svg>
 );
-
 
 const Customcare = () => (
   <svg
@@ -89,109 +88,106 @@ const Custompositive = () => (
   </svg>
 );
 
-
-
 const WhyFizeo = () => {
   const features = [
     {
       icon: <Customcare />,
       title: "Personalized Care",
-      description: "Fizeo is dedicated to tailoring physiotherapy treatments to the unique needs of each individual, ensuring a personalized and effective approach to rehabilitation."
+      description:
+        "Fizeo is dedicated to tailoring physiotherapy treatments to the unique needs of each individual, ensuring a personalized and effective approach to rehabilitation.",
     },
     {
       icon: <Customexpertise />,
       title: "Specialized Expertise",
-      description: "Our team of highly qualified physiotherapists brings specialized knowledge in orthopedic rehabilitation, sports injury management, and neurological rehabilitation, providing comprehensive care across various specialties."
+      description:
+        "Our team of highly qualified physiotherapists brings specialized knowledge in orthopedic rehabilitation, sports injury management, and neurological rehabilitation, providing comprehensive care across various specialties.",
     },
     {
       icon: <Customwellness />,
       title: "Holistic Wellness",
-      description: "Fizeo adopts a holistic approach to wellness, offering preventive programs, ergonomic consultations, and proactive strategies that go beyond immediate symptom relief, promoting long-term health benefits."
+      description:
+        "Fizeo adopts a holistic approach to wellness, offering preventive programs, ergonomic consultations, and proactive strategies that go beyond immediate symptom relief, promoting long-term health benefits.",
     },
     {
       icon: <Custompatient />,
       title: "Patient Empowerment",
-      description: "We believe in empowering patients through education, providing resources and support that enable individuals to actively participate in their recovery and self-management."
+      description:
+        "We believe in empowering patients through education, providing resources and support that enable individuals to actively participate in their recovery and self-management.",
     },
     {
       icon: <Custompositive />,
       title: "Positive Outcomes",
-      description: "The success stories of satisfied individuals stand as testimonials to the effectiveness of our services, reflecting positive outcomes, improved mobility, and life-changing experiences. Choose Fizeo for a track record of results and a commitment to your well-being."
-    }
+      description:
+        "The success stories of satisfied individuals stand as testimonials to the effectiveness of our services, reflecting positive outcomes, improved mobility, and life-changing experiences. Choose Fizeo for a track record of results and a commitment to your well-being.",
+    },
   ];
 
   return (
-    <div className="w-full py-20 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 mt-8">
-        <div className="relative flex flex-col lg:flex-row gap-10">
-
-
+    <>
+      <div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat relative">
+        <div className="absolute  max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[45%] -top-8 ">
           <Topdecorative />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 ">
+          <div className="relative flex flex-col lg:flex-row gap-10">
+            {/* Left content section */}
+            <div className="w-full lg:w-1/2 pt-10">
+              <h2 className="text-[#024027] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
+                Why Fizeo?
+              </h2>
 
+              <p className="text-[#024027] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
+                Fizeo stands out for its commitment to personalized and
+                <span className="hidden md:block"></span> specialized
+                physiotherapy, offering individualized care,
+                <span className="hidden md:block"></span> expertise in various
+                specialties, a holistic wellness approach,
+                <span className="hidden md:block"></span> patient empowerment
+                through education, positive{" "}
+                <span className="hidden md:block"></span>testimonials, and a
+                dedication to staying at the forefront of
+                <span className="hidden md:block"></span>
+                cutting-edge practices.
+              </p>
 
+              <Button className="bg-[#024027] font-['DM_Sans', 'sans-serif'] text-xl hover:bg-[#043A22]/90 text-white rounded text-[16px] px-5 py-6">
+                About us
+              </Button>
 
+              <div className="relative mt-12">
+                {/* Shadow Effects */}
+                <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB] rounded-3xl"></div>
+                <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB] rounded-3xl "></div>
 
-
-
-
-
-          {/* Left content section */}
-          <div className="w-full lg:w-1/2 pt-10">
-
-
-            <h2 className="text-[#024027] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
-              Why Fizeo?
-            </h2>
-
-            <p className="text-[#024027] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
-              Fizeo stands out for its commitment to personalized and<span className="hidden md:block"></span> specialized
-              physiotherapy, offering individualized care,<span className="hidden md:block"></span> expertise in various specialties,
-              a holistic wellness approach,<span className="hidden md:block"></span> patient empowerment through education,
-              positive <span className="hidden md:block"></span>testimonials, and a dedication to staying at the forefront of<span className="hidden md:block"></span>
-              cutting-edge practices.
-            </p>
-
-            <Button className="bg-[#024027] font-['DM_Sans', 'sans-serif'] text-xl hover:bg-[#043A22]/90 text-white rounded text-[16px] px-5 py-6">
-              About us
-            </Button>
-
-            <div className="relative mt-12">
-              {/* Shadow Effects */}
-              <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB] rounded-3xl"></div>
-              <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB] rounded-3xl "></div>
-
-              {/* Image */}
-              <div className="rounded-lg overflow-hidden">
-                <img
-                  src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
-                  alt="Patient receiving physiotherapy treatment"
-                  className="w-full h-175 object-cover z-10 "
-                />
+                {/* Image */}
+                <div className="rounded-lg overflow-hidden">
+                  <img
+                    src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
+                    alt="Patient receiving physiotherapy treatment"
+                    className="w-full h-175 object-cover z-10 "
+                  />
+                </div>
               </div>
             </div>
+
+            {/* Right features section */}
+            {/* Right features section */}
+            <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col mt-10 justify-center gap-y-6">
+              {features.map((feature, index) => (
+                <FeatureCard
+                  key={index}
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              ))}
+            </div>
+
+            {/* Inserted SVG */}
           </div>
-
-          {/* Right features section */}
-          {/* Right features section */}
-          <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col mt-10 justify-center gap-y-6">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-              />
-            ))}
-          </div>
-
-
-
-          {/* Inserted SVG */}
-
-
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
