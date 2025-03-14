@@ -21,13 +21,13 @@ const TherapeuticExcellence = () => {
         </div>
 
         <ScrollAnimation>
-          <h2 className="text-[#024027] text-[40px]  mb-5 max-w-2xl mt-8 font-['Libre_Baskerville',serif]">
+          <h2 className="text-[#024027] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-8 font-['Libre_Baskerville',serif]">
             Therapeutic excellence <br /> tailored for you.
           </h2>
         </ScrollAnimation>
 
         <ScrollAnimation delay={0.2}>
-          <p className="text-[#024027] text-[20px]  font-['DM_Sans', 'sans-serif'] max-w-4xl mx-auto mb-12 leading-relaxed">
+          <p className="text-[#024027] text-lg sm:text-[20px]  font-['DM_Sans', 'sans-serif'] max-w-4xl mx-auto mb-12 leading-relaxed">
             At Fizeo, we offer a diverse range of services meticulously designed
             to
             <span className="hidden md:block"></span> cater to your unique

@@ -47,6 +47,7 @@ const variants = {
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleNext = () => {
     setDirection(1);
@@ -60,9 +61,22 @@ const Testimonials = () => {
     );
   };
 
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = (newDirection: number) => {
+    if (newDirection > 0) {
+      handleNext();
+    } else {
+      handlePrev();
+    }
+  };
+
   return (
-    <div className="w-full bg-[#024027] py-40 relative">
-      <div className=" absolute top-[-4.5%] left-[47%]">
+    <div className="w-full bg-[#024027] py-20 sm:py-40 relative">
+      <div className=" absolute sm:top-[-4.5%] -top-12 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56 56"
@@ -77,11 +91,11 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <ScrollAnimation>
           <div className="text-center mb-16">
-            <h2 className="text-white font-['Libre_Baskerville',serif] text-[40px] mb-4">
+            <h2 className="text-white font-['Libre_Baskerville',serif] text-3xl sm:text-[40px] mb-4">
               Real stories,{" "}
               <span className="text-[#76FB91]">real transformations</span>
             </h2>
-            <p className="text-white text-[24px] font-['Libre_Baskerville',serif]  mx-auto">
+            <p className="text-white text-lg sm:text-[24px] font-['Libre_Baskerville',serif]  mx-auto">
               These real stories illuminate the path to transformation,
               <span className="hidden md:block"></span> showcasing the impact of
               personalized care on physical well-
@@ -92,13 +106,13 @@ const Testimonials = () => {
 
         <ScrollAnimation delay={0.2}>
           <div className="max-w-full mx-auto mb-12 relative flex justify-center">
-            <div className="rounded-2xl overflow-hidden shadow-lg w-[900px]">
+            <div className="rounded-2xl overflow-hidden w-[900px]">
               <div className="relative w-full  bg-red ">
                 {/* Right and Bottom Borders */}
 
                 {/* Embedded YouTube Video */}
                 <iframe
-                  className="relative w-full h-[500px] rounded-2xl border-none"
+                  className="relative w-full h-[200px] sm:h-[500px] rounded-2xl border-none"
                   src="https://www.youtube.com/embed/W-XQS2NoRdc"
                   title="YouTube video player"
                   frameBorder="0"
@@ -107,7 +121,7 @@ const Testimonials = () => {
                 ></iframe>
               </div>
 
-              <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px] z-20">
+              <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px] z-20 hidden sm:block">
                 <div className="w-32 h-32 bg-fizeo-peach rounded-full flex items-center justify-center">
                   <svg
                     width="240"
@@ -131,8 +145,8 @@ const Testimonials = () => {
         <div className="w-full h-[1px] bg-gray-500 mb-20"></div>
 
         <ScrollAnimation delay={0.4}>
-          <div className="max-w-5xl mx-auto text-center relative">
-            <div className="relative overflow-hidden h-[300px]">
+          <div className="max-w-5xl mx-auto text-center relative px-4">
+            <div className="relative overflow-hidden h-[300px] touch-pan-y">
               <AnimatePresence
                 initial={false}
                 custom={direction}
@@ -145,11 +159,24 @@ const Testimonials = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragStart={() => setIsDragging(true)}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    setIsDragging(false);
+                    const swipe = swipePower(offset.x, velocity.x);
+                    if (swipe < -swipeConfidenceThreshold) {
+                      paginate(1);
+                    } else if (swipe > swipeConfidenceThreshold) {
+                      paginate(-1);
+                    }
+                  }}
                   transition={{
                     x: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 },
                   }}
-                  className="absolute w-full left-0 right-0"
+                  className="absolute w-full left-0 right-0 cursor-grab active:cursor-grabbing"
                 >
                   <div className="flex justify-center mb-7">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -169,12 +196,12 @@ const Testimonials = () => {
                       </svg>
                     ))}
                   </div>
-                  <div className="text-white mb-6 font-['Libre_Baskerville',serif] text-[20px]">
+                  <div className="text-white mb-6 font-['Libre_Baskerville',serif] text-sm sm:text-[20px]">
                     "{testimonials[currentIndex].text}"
                   </div>
 
                   <div className="flex items-center justify-center gap-3">
-                    <div className="w-15 h-15 rounded-full overflow-hidden">
+                    <div className="sm:w-15 sm:h-15 w-10 h-10 rounded-full overflow-hidden">
                       <Image
                         src={testimonials[currentIndex].image}
                         alt={testimonials[currentIndex].name}
@@ -183,7 +210,7 @@ const Testimonials = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <span className="text-white font-['Libre_Baskerville',serif] text-[20px]">
+                    <span className="text-white font-['Libre_Baskerville',serif] text-sm sm:text-[20px]">
                       {testimonials[currentIndex].name}
                     </span>
                   </div>
@@ -191,15 +218,31 @@ const Testimonials = () => {
               </AnimatePresence>
             </div>
 
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1);
+                    setCurrentIndex(index);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentIndex ? "bg-[#6FE984] w-4" : "bg-white/50"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
             <button
               onClick={handlePrev}
-              className="absolute left-0 md:-left-20 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition md:-left-20 hidden md:block"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-0 md:-right-20 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition md:-right-20 hidden md:block"
             >
               <ChevronRight className="w-6 h-6 text-white" />
             </button>

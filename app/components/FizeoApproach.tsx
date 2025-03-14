@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import ScrollAnimation from "./ScrollAnimation";
+import { motion, AnimatePresence } from "framer-motion";
 
 type ApproachTab = "Evidence" | "Holistic" | "Empowering";
 
@@ -52,62 +54,90 @@ const FizeoApproach = () => {
     // <div className="w-full pt-40 relative bg-[#EBE5DA] min-h-00px]">
 
     <div className="w-full pt-30 pb-40  bg-[#EBE5DA] min-h-[700px]">
-      <Topdecorative />
+      {/* <Topdecorative /> */}
 
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-[#024027] font-['Libre_Baskerville',serif] text-[40px] text-3xl  mb-4 mb-7">
-          The Fizeo Approach
-        </h2>
-        <p className="text-[#024027] font-['DM_Sans', 'sans-serif'] text-base text-[20px] max-w-5xl mx-auto mb-20">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          varius<span className="hidden md:block"></span> enim in eros elementum
-          tristique. Duis cursus, mi quis viverra ornare, eros
-          <span className="hidden md:block"></span> dolor interdum nulla, ut
-          commodo diam libero vitae erat.
-        </p>
+        <ScrollAnimation>
+          <h2 className="text-[#024027] font-['Libre_Baskerville',serif] text-2xl sm:text-[40px] text-3xl  mb-4">
+            The Fizeo Approach
+          </h2>
+        </ScrollAnimation>
 
-        <div className="inline-flex bg-[rgb(244,241,235)] sm:rounded-full rounded-2xl px-6 py-4 mb-10 shadow-sm max-sm:flex-wrap">
-          {(["Evidence", "Holistic", "Empowering"] as ApproachTab[]).map(
-            (tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-20 py-4 max-sm:w-full font-bold  text-lg rounded-full font-['Libre_Baskerville',serif] transition-colors ${
-                  activeTab === tab
-                    ? "bg-[#024027] text-white"
-                    : "text-[#043A22] hover:bg-fizeo-beige-bg/50"
-                }`}
-              >
-                {tab}
-              </button>
-            )
-          )}
-        </div>
+        <ScrollAnimation delay={0.2}>
+          <p className="text-[#024027] font-['DM_Sans','sans-serif'] text-lg sm:text-[20px] max-w-5xl mx-auto mb-20">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            varius<span className="hidden md:block"></span> enim in eros
+            elementum tristique. Duis cursus, mi quis viverra ornare, eros
+            <span className="hidden md:block"></span> dolor interdum nulla, ut
+            commodo diam libero vitae erat.
+          </p>
+        </ScrollAnimation>
 
-        {/* Tab content */}
-        {/* Tab content */}
-        <div className="relative rounded-xl overflow-hidden mb-10 w-full max-w-[1400px] mx-auto">
-          <div className="absolute inset-0 bg-black/40 z-10"></div>
-
-          <img
-            src={tabContent[activeTab].image}
-            alt={tabContent[activeTab].title}
-            className="w-full h-[500px] md:h-[600px] object-cover rounded-3xl"
-          />
-
-          <div className="absolute bottom-0 left-0 p-12 z-20 text-left">
-            <h3 className="text-white text-[32px] font-['Libre_Baskerville',serif] mb-4">
-              {tabContent[activeTab].title}
-            </h3>
-            <p className="text-white text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
-              {tabContent[activeTab].description}
-            </p>
+        <ScrollAnimation delay={0.4}>
+          <div className="inline-flex bg-[rgb(244,241,235)] sm:rounded-full rounded-2xl px-6 py-4 shadow-sm max-sm:flex-wrap">
+            {(["Evidence", "Holistic", "Empowering"] as ApproachTab[]).map(
+              (tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-20 py-4 max-sm:w-full font-bold  text-lg rounded-full font-['Libre_Baskerville',serif] transition-colors ${
+                    activeTab === tab
+                      ? "bg-[#024027] text-white"
+                      : "text-[#043A22] hover:bg-fizeo-beige-bg/50"
+                  }`}
+                >
+                  {tab}
+                </button>
+              )
+            )}
           </div>
+        </ScrollAnimation>
 
-          {/* Green border accent */}
-          <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB]"></div>
-          <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB]"></div>
-        </div>
+        {/* Tab content */}
+        <ScrollAnimation delay={0.6}>
+          <div className="relative rounded-xl  mb-10 w-full max-w-[1400px] mx-auto">
+            <AnimatePresence mode="wait">
+              <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#8FC2AA] rounded-2xl z-0"></div>
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="relative mt-12"
+              >
+                <motion.img
+                  src={tabContent[activeTab].image}
+                  alt={tabContent[activeTab].title}
+                  className="w-full h-[500px] md:h-[600px] object-cover rounded-3xl z-10"
+                />
+                <div className="absolute inset-0 bg-black/40 z-20 rounded-3xl"></div>
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.4, ease: "easeInOut", delay: 0.2 }}
+                className="absolute bottom-0 left-0 p-12 z-20 text-left"
+              >
+                <h3 className="text-white text-[32px] font-['Libre_Baskerville',serif] mb-4">
+                  {tabContent[activeTab].title}
+                </h3>
+                <p className="text-white text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
+                  {tabContent[activeTab].description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Green border accent */}
+            {/* <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB]"></div>
+            <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB]"></div> */}
+          </div>
+        </ScrollAnimation>
       </div>
     </div>
   );

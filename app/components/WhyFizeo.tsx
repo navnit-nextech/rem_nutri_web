@@ -1,6 +1,7 @@
 import React from "react";
 import { Heart, Target, Leaf, User } from "lucide-react";
 import { Button } from "../components/ui/button";
+import ScrollAnimation from "./ScrollAnimation";
 
 const FeatureCard = ({
   icon,
@@ -12,7 +13,7 @@ const FeatureCard = ({
   description: string;
 }) => {
   return (
-    <div className="bg-[#F7F5F0] sm:w-[575px] sm:h-[220px] p-8 rounded-2xl shadow-sm border border-[#EAE5DC] flex flex-col justify-between">
+    <div className="bg-[#F7F5F0] sm:w-[575px] sm:h-[220px] border border-[#ebe5da] p-8 rounded-2xl flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-3">
           <span className="text-[#024027] text-[22px]">{icon}</span>
@@ -129,61 +130,66 @@ const WhyFizeo = () => {
           <Topdecorative />
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 ">
-          <div className="relative flex flex-col lg:flex-row gap-10">
+          <div className="relative flex flex-col lg:flex-row gap-16">
             {/* Left content section */}
             <div className="w-full lg:w-1/2 pt-10">
-              <h2 className="text-[#024027] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
-                Why Fizeo?
-              </h2>
+              <ScrollAnimation>
+                <h2 className="text-[#024027] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
+                  Why Fizeo?
+                </h2>
+              </ScrollAnimation>
 
-              <p className="text-[#024027] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
-                Fizeo stands out for its commitment to personalized and
-                <span className="hidden md:block"></span> specialized
-                physiotherapy, offering individualized care,
-                <span className="hidden md:block"></span> expertise in various
-                specialties, a holistic wellness approach,
-                <span className="hidden md:block"></span> patient empowerment
-                through education, positive{" "}
-                <span className="hidden md:block"></span>testimonials, and a
-                dedication to staying at the forefront of
-                <span className="hidden md:block"></span>
-                cutting-edge practices.
-              </p>
+              <ScrollAnimation delay={0.2}>
+                <p className="text-[#024027] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
+                  Fizeo stands out for its commitment to personalized and
+                  <span className="hidden md:block"></span> specialized
+                  physiotherapy, offering individualized care,
+                  <span className="hidden md:block"></span> expertise in various
+                  specialties, a holistic wellness approach,
+                  <span className="hidden md:block"></span> patient empowerment
+                  through education, positive{" "}
+                  <span className="hidden md:block"></span>testimonials, and a
+                  dedication to staying at the forefront of
+                  <span className="hidden md:block"></span>
+                  cutting-edge practices.
+                </p>
+              </ScrollAnimation>
 
-              <Button className="bg-[#024027] font-['DM_Sans', 'sans-serif'] text-xl hover:bg-[#043A22]/90 text-white rounded text-[16px] px-5 py-6">
-                About us
-              </Button>
+              <ScrollAnimation delay={0.4}>
+                <Button className="bg-[#024027] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-white rounded text-[16px] px-6 py-6">
+                  About us
+                </Button>
+              </ScrollAnimation>
 
-              <div className="relative mt-12">
-                {/* Shadow Effects */}
-                <div className="absolute bottom-0 right-0 w-full h-4 bg-[#8FC2AB] rounded-3xl"></div>
-                <div className="absolute top-0 right-0 w-4 h-full bg-[#8FC2AB] rounded-3xl "></div>
+              <ScrollAnimation delay={0.6}>
+                <div className="relative mt-12">
+                  {/* Shadow Effects */}
+                  <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#8FC2AA] rounded-2xl"></div>
 
-                {/* Image */}
-                <div className="rounded-lg overflow-hidden">
-                  <img
-                    src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
-                    alt="Patient receiving physiotherapy treatment"
-                    className="w-full h-175 object-cover z-10 "
-                  />
+                  {/* Image */}
+                  <div className="rounded-2xl overflow-hidden relative z-10">
+                    <img
+                      src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
+                      alt="Patient receiving physiotherapy treatment"
+                      className="w-full h-175 object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
+              </ScrollAnimation>
             </div>
 
-            {/* Right features section */}
             {/* Right features section */}
             <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col mt-10 justify-center gap-y-6">
               {features.map((feature, index) => (
-                <FeatureCard
-                  key={index}
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
+                <ScrollAnimation key={index} delay={0.2 * (index + 1)}>
+                  <FeatureCard
+                    icon={feature.icon}
+                    title={feature.title}
+                    description={feature.description}
+                  />
+                </ScrollAnimation>
               ))}
             </div>
-
-            {/* Inserted SVG */}
           </div>
         </div>
       </div>

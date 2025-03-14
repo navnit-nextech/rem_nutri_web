@@ -24,7 +24,7 @@ const libreBaskerville = Libre_Baskerville({
 });
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
-  weight: ["400", "700"],
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
 
