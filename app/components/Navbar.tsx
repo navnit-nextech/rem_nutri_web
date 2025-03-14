@@ -5,7 +5,13 @@ import Link from "next/link";
 import { Button } from "../components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Navbar = () => {
+interface NavbarProps {
+  bgColor?: string; // Optional prop for background color
+}
+
+const Navbar: React.FC<NavbarProps> = ({
+  bgColor = "bg-[rgb(244,241,235)]",
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
