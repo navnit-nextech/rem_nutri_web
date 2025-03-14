@@ -9,11 +9,7 @@ import ContactForm from "../components/ContactForm";
 
 
 const Contact= () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted');
-  };
+  
 
   return (
 
@@ -31,4 +27,8 @@ const Contact= () => {
 };
 
 export default Contact;
+
+
+
+
 

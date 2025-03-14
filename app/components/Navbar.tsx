@@ -5,13 +5,17 @@ import Link from 'next/link';
 import { Button } from '../components/ui/button';
 import { motion } from 'framer-motion';
 
-const Navbar = () => {
+interface NavbarProps {
+  bgColor?: string; // Optional prop for background color
+}
+
+const Navbar: React.FC<NavbarProps> = ({ bgColor = "bg-[rgb(244,241,235)]" }) => {
   return (
     <motion.nav
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5, ease: 'easeOut' }}
-      className="fixed top-0 left-0 w-full z-50 bg-[rgb(244,241,235)] border-b border-black-100 py-6 px-6"
+      className={`fixed top-0 left-0 w-full z-50 border-b border-black-100 py-6 px-6 ${bgColor}`}
     >
       <div className="max-w-7xl w-full mx-auto flex items-center justify-between px-9">
         {/* Logo */}
