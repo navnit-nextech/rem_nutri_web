@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // Custom Home Icon using Tailwind CSS
 const CustomHomeIcon = () => (
@@ -21,8 +21,6 @@ const Customsports = () => (
   </svg>
 );
 
-
-
 const CustomDiamondIcon = () => (
   <div style={{ display: "contents" }}>
     <svg
@@ -36,7 +34,6 @@ const CustomDiamondIcon = () => (
     </svg>
   </div>
 );
-
 
 const CustomHexagon = () => (
   <div style={{ display: "contents" }}>
@@ -54,12 +51,10 @@ const CustomHexagon = () => (
 
 const Customwellness = () => (
   <div style={{ display: "contents" }}>
-
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       className="w-6 h-6 text-[#043A22] fill-current"
-      
     >
       <g color="rgb(28, 51, 50)">
         <path d="M 201.54 54.46 A 104 104 0 0 0 54.46 201.54 A 104 104 0 0 0 201.54 54.46 Z M 96 210 V 152 h 64 v 58 a 88.33 88.33 0 0 1 -64 0 Z m 48 -74 H 112 V 100.94 l 32 -16 Z m 46.22 54.22 A 88.09 88.09 0 0 1 176 201.77 V 152 a 16 16 0 0 0 -16 -16 V 72 a 8 8 0 0 0 -11.58 -7.16 l -48 24 A 8 8 0 0 0 96 96 v 40 a 16 16 0 0 0 -16 16 v 49.77 a 88 88 0 1 1 110.22 -11.55 Z"></path>
@@ -70,12 +65,10 @@ const Customwellness = () => (
 
 const Customworkplace = () => (
   <div style={{ display: "contents" }}>
-  
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       className="w-6 h-6 text-[#043A22] fill-current"
-
     >
       <g color="rgb(28, 51, 50)">
         <path d="M 112 152 a 8 8 0 0 0 -8 8 v 28.69 L 75.72 160.4 A 39.71 39.71 0 0 1 64 132.12 V 95 a 32 32 0 1 0 -16 0 v 37.13 a 55.67 55.67 0 0 0 16.4 39.6 L 92.69 200 H 64 a 8 8 0 0 0 0 16 h 48 a 8 8 0 0 0 8 -8 V 160 A 8 8 0 0 0 112 152 Z M 40 64 A 16 16 0 1 1 56 80 A 16 16 0 0 1 40 64 Z m 168 97 V 123.88 a 55.67 55.67 0 0 0 -16.4 -39.6 L 163.31 56 H 192 a 8 8 0 0 0 0 -16 H 144 a 8 8 0 0 0 -8 8 V 96 a 8 8 0 0 0 16 0 V 67.31 L 180.28 95.6 A 39.71 39.71 0 0 1 192 123.88 V 161 a 32 32 0 1 0 16 0 Z m -8 47 a 16 16 0 1 1 16 -16 A 16 16 0 0 1 200 208 Z"></path>
@@ -83,52 +76,86 @@ const Customworkplace = () => (
     </svg>
   </div>
 );
-const ServiceCard = ({ icon, title, description }: {  
-  icon: React.ReactNode;  
-  title: string;  
-  description: string;  
-}) => {  
-  return (  
-    <div  
+const ServiceCard = ({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) => {
+  return (
+    <div
       className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[390px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[#F4F1EB] rounded-[16px] opacity-100"  
-    >  
-      <div className="flex items-center gap-2 text-[#043A22]">  
-        {icon}  
-        <h3 className="text-[24px] text-[#024027] font-['Libre_Baskerville',serif]">  
-          {title}  
-        </h3>  
-      </div>  
-      <p className="text-[#043A22] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">  
-        {description}  
-      </p>  
-    </div>  
-  );  
-};  
-
-
-
-
+                 border border-[#EBE5DA] bg-[#F4F1EB] rounded-[16px] opacity-100"
+    >
+      <div className="flex items-center gap-2 text-[#043A22]">
+        {icon}
+        <h3 className="text-[24px] text-[#024027] font-['Libre_Baskerville',serif]">
+          {title}
+        </h3>
+      </div>
+      <p className="text-[#043A22] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
+        {description}
+      </p>
+    </div>
+  );
+};
 
 const ServicesGrid = () => {
   const services = [
-    { icon: <CustomHomeIcon />, title: "Musculoskeletal Rehab", description: "Tailored rehabilitation programs for musculoskeletal conditions, injuries, and post-surgical recovery to restore optimal function and mobility." },
-    { icon: <Customsports />, title: "Sports Injury Care", description: "Specialized care for athletes, including assessment, treatment, and prevention strategies to address sports-related injuries and enhance performance." },
-    { icon: <CustomDiamondIcon />, title: "Effective Pain Relief", description: "Comprehensive approach to alleviate pain through manual therapy, exercises, and education, targeting the root cause for long-term relief." },
-    { icon: <CustomHexagon />, title: "Neuro Rehab", description: "Specialized interventions for individuals with neurological disorders, focusing on improving movement, balance, and overall functional independence." },
-    { icon: <Customwellness />, title: "Preventive Wellness", description: "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education." },
-    { icon: <Customworkplace />, title: "Workplace Ergonomics", description: "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment." }
+    {
+      icon: <CustomHomeIcon />,
+      title: "Musculoskeletal Rehab",
+      description:
+        "Tailored rehabilitation programs for musculoskeletal conditions, injuries, and post-surgical recovery to restore optimal function and mobility.",
+    },
+    {
+      icon: <Customsports />,
+      title: "Sports Injury Care",
+      description:
+        "Specialized care for athletes, including assessment, treatment, and prevention strategies to address sports-related injuries and enhance performance.",
+    },
+    {
+      icon: <CustomDiamondIcon />,
+      title: "Effective Pain Relief",
+      description:
+        "Comprehensive approach to alleviate pain through manual therapy, exercises, and education, targeting the root cause for long-term relief.",
+    },
+    {
+      icon: <CustomHexagon />,
+      title: "Neuro Rehab",
+      description:
+        "Specialized interventions for individuals with neurological disorders, focusing on improving movement, balance, and overall functional independence.",
+    },
+    {
+      icon: <Customwellness />,
+      title: "Preventive Wellness",
+      description:
+        "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education.",
+    },
+    {
+      icon: <Customworkplace />,
+      title: "Workplace Ergonomics",
+      description:
+        "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment.",
+    },
   ];
 
   return (
-<div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 ">
-  <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10">
-    {services.map((service, index) => (
-      <ServiceCard key={index} icon={service.icon} title={service.title} description={service.description} />
-    ))}
-  </div>
-</div>
-
+    <div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 px-4 ">
+      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10">
+        {services.map((service, index) => (
+          <ServiceCard
+            key={index}
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
