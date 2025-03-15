@@ -76,7 +76,7 @@ const Testimonials = () => {
 
   return (
     <div className="w-full bg-[#024027] py-20 sm:py-40 relative">
-      <div className=" absolute sm:top-[-4.5%] -top-12 left-[50%] transform -translate-x-1/2 ">
+      <div className=" absolute sm:top-[-4.2%] -top-12 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56 56"

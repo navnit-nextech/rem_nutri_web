@@ -21,7 +21,7 @@ const TherapeuticExcellence = () => {
         </div>
 
         <ScrollAnimation>
-          <h2 className="text-[#024027] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-8 font-['Libre_Baskerville',serif]">
+          <h2 className="text-[#024027] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[25%] font-['Libre_Baskerville',serif]">
             Therapeutic excellence <br /> tailored for you.
           </h2>
         </ScrollAnimation>

@@ -75,7 +75,7 @@ const HeroSection = () => {
 
         {/* Star decoration */}
         <ScrollAnimation delay={0.6}>
-          <div className="absolute z-10 bottom-[-60px] sm:left-[54%] left-[50%] transform -translate-x-1/2 rotate-12 scale-75 md:scale-100">
+          <div className="absolute z-10 bottom-[-60px] sm:left-[55%] left-[50%] transform -translate-x-1/2 rotate-12 scale-75 md:scale-100">
             <svg
               width="120"
               height="120"
