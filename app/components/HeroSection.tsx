@@ -55,7 +55,7 @@ const HeroSection = () => {
 
         {/* Desktop Image */}
         <ScrollAnimation delay={0.3} onlyFade>
-          <div className="absolute top-[-25%] right-[-2.5%] w-[60%] h-[140%] hidden lg:flex items-center justify-center overflow-visible">
+          <div className="absolute top-[-15%] right-[-2.5%] w-[60%] h-[140%] hidden lg:flex items-center justify-center overflow-visible ">
             <img
               src="https://framerusercontent.com/images/aNU3HkDM6E1ItviWon24xupCE.jpg?scale-down-to=4096"
               alt="Physiotherapist helping a client with mobility training"
