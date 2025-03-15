@@ -22,11 +22,13 @@ export default async function Blog() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="bg-[#024027] py-50 text-center relative">
-        <h1 className="text-[56px] font-['Libre_Baskerville',serif] text-white leading-tight">
-          Physio pulse to unleash <br />
-          <span className="text-[#76FB91]">the power of movement</span>
+      <div className="bg-[#024027] py-40  md:py-50 text-left md:text-center relative px-6 md:px-0">
+      <ScrollAnimation>
+        <h1 className="text-[40px] md:text-[56px] font-['Libre_Baskerville',serif] text-white leading-tight">
+          Physio pulse to unleash the <br />
+          <span className="text-[#76FB91]">power of movement</span>
         </h1>
+        </ScrollAnimation>
       </div>
 
       {/* Blog Posts Grid */}
@@ -60,7 +62,7 @@ export default async function Blog() {
       </div>
 
       <GetInTouch />
-     
+
     </div>
   );
 }
