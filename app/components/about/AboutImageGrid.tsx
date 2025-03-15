@@ -18,75 +18,77 @@ const AboutImageGrid = () => {
             </p>
           </div>
         </ScrollAnimation>
-        {/* image grid */}
         <div className="flex justify-center items-center gap-6">
-          {/* Column 1 - 4 images */}
-          <ScrollAnimation delay={0.2}>
-            <div className="flex flex-col gap-6 flex-1">
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/11.avif"
-                  alt="Fizeo facility"
-                  fill
-                  className="object-cover"
-                />
+          <div className=" flex-1">
+            <ScrollAnimation delay={0.2}>
+              <div className="flex flex-col gap-6">
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/11.avif"
+                    alt="Fizeo facility"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/12.avif"
+                    alt="Fizeo training"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/13.avif"
+                    alt="Fizeo equipment"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/21.avif"
+                    alt="Fizeo environment"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/12.avif"
-                  alt="Fizeo training"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/13.avif"
-                  alt="Fizeo equipment"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/21.avif"
-                  alt="Fizeo environment"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </ScrollAnimation>
+            </ScrollAnimation>
+          </div>
 
           {/* Column 2 - 3 images */}
-          <ScrollAnimation delay={0.4}>
-            <div className="flex flex-col gap-6 flex-1 max-sm:hidden">
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/22.avif"
-                  alt="Fizeo wellness"
-                  fill
-                  className="object-cover"
-                />
+          <div className="flex-1">
+            <ScrollAnimation delay={0.4}>
+              <div className="flex flex-col gap-6 max-sm:hidden">
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/22.avif"
+                    alt="Fizeo wellness"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/23.avif"
+                    alt="Fizeo therapy"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/about/stats.avif"
+                    alt="Fizeo statistics"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/23.avif"
-                  alt="Fizeo therapy"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/about/stats.avif"
-                  alt="Fizeo statistics"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </ScrollAnimation>
+            </ScrollAnimation>
+          </div>
         </div>
       </div>
     </div>
