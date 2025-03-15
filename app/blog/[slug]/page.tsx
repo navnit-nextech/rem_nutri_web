@@ -240,7 +240,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
             alt="Yoga session"
             width={1200}
             height={400}
-            className="w-full h-auto rounded-lg shadow-lg"
+            className="w-full h-auto rounded-lg shadow-lg "
           />
         </div>
 
@@ -265,7 +265,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
                     <img
                       src={post_.image}
                       alt={post_.title}
-                      className="w-full h-full object-cover rounded-2xl"
+                      className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:rotate-3 hover:scale-110"
                     />
                   </div>
 
