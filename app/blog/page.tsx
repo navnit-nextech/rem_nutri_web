@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import GetInTouch from "../components/GetInTouch";
-import Footer from "../components/Footer";
+
 import Link from "next/link";
 import { client } from "../../sanity/lib/client";
 import ScrollAnimation from "../components/ScrollAnimation";
@@ -60,7 +60,7 @@ export default async function Blog() {
       </div>
 
       <GetInTouch />
-      <Footer />
+     
     </div>
   );
 }
