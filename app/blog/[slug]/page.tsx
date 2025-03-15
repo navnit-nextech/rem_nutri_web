@@ -259,7 +259,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {relatedPosts.map((post_: { slug: string; image: string; title: string; description: string }, index: number) => (
               <Link key={index} href={`/blog/${post_.slug}`} passHref>
-                <div className="bg-white rounded-2xl overflow-hidden cursor-pointer md-h-[700px] ">
+                <div className="bg-white rounded-2xl overflow-hidden cursor-pointer md:h-[100%] ">
                   <div className="h-90 overflow-hidden rounded-2xl">
                     <img
                       src={post_.image}
