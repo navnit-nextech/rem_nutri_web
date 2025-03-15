@@ -35,7 +35,7 @@ export default async function Blog() {
       <div className="relative -mt-25 max-w-8xl mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 px-6 lg:px-30 mb-20 md:mb-40">
   {blogPosts.map((post: any, index: number) => (
     <Link key={index} href={`/blog/${post.slug}`} passHref>
-      <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[600px] mx-auto cursor-pointer">
+      <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[600px] mx-auto md:h-145 cursor-pointer">
         <div className="h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden">
           <Image
             src={post.image}
