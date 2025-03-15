@@ -3,12 +3,13 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 
+
 const Footer = () => {
   return (
     <footer className="w-full  bg-[#033D24] text-white py-12 text-[14px]">
       <div className="max-w-6xl mx-auto px-4 flex  flex-col items-start -md:pl-5 md:flex-row md:justify-between">
 
-      {/* <div className="max-w-6xl mx-auto px-4 flex flex-col items-start md:flex-row md:justify-between"></div> */}
+        {/* <div className="max-w-6xl mx-auto px-4 flex flex-col items-start md:flex-row md:justify-between"></div> */}
 
         {/* First Row: Logo */}
         <div className="w-full flex justify-center mb-6 md:mb-0">
@@ -33,32 +34,32 @@ const Footer = () => {
         <div className="w-full grid grid-cols-2 gap-8 md:grid-cols-2">
           {/* Menu */}
           <div>
-            <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] ">Menu</h3>
+            <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">Menu</h3>
             <ul className="space-y-2">
-              <li><a href="#" className=" font-['DM_Sans', 'sans-serif']">Home</a></li>
-              <li><a href="#" className=" font-['DM_Sans', 'sans-serif']">About</a></li>
-              <li><a href="#" className=" font-['DM_Sans', 'sans-serif']">Services</a></li>
-              <li><a href="#" className=" font-['DM_Sans', 'sans-serif']">Blog</a></li>
-              <li><a href="#" className="font-['DM_Sans', 'sans-serif']">Contact</a></li>
+              <li><a href="#" className=" font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Home</a></li>
+              <li><a href="#" className=" font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">About</a></li>
+              <li><a href="#" className=" font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm ">Services</a></li>
+              <li><a href="#" className=" font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm ">Blog</a></li>
+              <li><a href="#" className="font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Contact</a></li>
             </ul>
           </div>
 
           {/* Utilities */}
           <div>
-            <h3 className="text-lg font-medium mb-3">Utilities</h3>
+            <h3 className="text-lg font-medium mb-3 text-[10px] md:text-sm">Utilities</h3>
             <ul className="space-y-2">
-              <li><a href="#" className=" font-['DM_Sans', 'sans-serif']">Styleguide</a></li>
-              <li><a href="#" className="  font-['DM_Sans', 'sans-serif']">Privacy Policy</a></li>
-              <li><a href="#" className=" font-['DM_Sans', 'sans-serif']">Update Log</a></li>
-              <li><a href="#" className="font-['DM_Sans', 'sans-serif']">Feedback</a></li>
+              <li><a href="#" className=" font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Styleguide</a></li>
+              <li><a href="#" className="  font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Privacy Policy</a></li>
+              <li><a href="#" className=" font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Update Log</a></li>
+              <li><a href="#" className="font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Feedback</a></li>
             </ul>
           </div>
         </div>
 
         {/* Third Row: Subscribe */}
         <div className="w-full mt-6 md:mt-0">
-          <h3 className="text-lg font-medium font-['DM_Sans', 'sans-serif'] mb-3">Subscribe</h3>
-          <p className="mb-3 font-['DM_Sans', 'sans-serif']">Join our newsletter to stay up to date on features and releases.</p>
+          <h3 className="font-medium font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm mb-3">Subscribe</h3>
+          <p className="mb-3 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Join our newsletter to stay up to date on features and releases.</p>
 
           {/* Input & Button Container */}
           <div className="flex flex-col w-full md:flex-row md:items-center">
@@ -70,15 +71,15 @@ const Footer = () => {
             />
 
             {/* Subscribe Button */}
-            <button className="bg-[#98FB98] text-black font-medium px-4 py-3 rounded-md md:w-auto md:ml-3">
+            <button className="bg-[#98FB98] text-black font-medium px-4 py-3 rounded-md md:w-auto md:ml-3 text-[10px] md:text-sm">
               Subscribe
             </button>
           </div>
 
           {/* Privacy Policy Text */}
-          <p className="text-sm text-white/80 mt-3">
+          <p className="text-sm text-white/80 mt-3 text-[10px] md:text-[12px]">
             By subscribing you agree to our{' '}
-            <a href="#" className="underline hover:text-[#6FE984] font-['DM_Sans', 'sans-serif'] transition-colors">Privacy Policy</a>{' '}
+            <a href="#" className="underline hover:text-[#6FE984] font-['DM_Sans', 'sans-serif'] transition-colors text-[10px] md:text-[12px] ">Privacy Policy</a>{' '}
             and provide consent to receive updates from our company.
           </p>
         </div>
@@ -88,33 +89,39 @@ const Footer = () => {
 
       <div className="w-[80%] ml-[10%] h-[1px] bg-gray-500 mt-10 mb-5"></div>
 
-   
+      <div className="pt-6 px-[10%] flex flex-col items-start text-left md:flex-row md:justify-between">
+  {/* Copyright */}
+  <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
+    © 2024 Fizeo. All rights reserved.
+  </div>
 
-      {/* Footer Bottom Section */}
-      <div className="pt-6  px-[10%] flex flex-col md:flex-row items-center justify-center md:justify-between text-center md:text-left flex-wrap">
-        {/* Copyright */}
-        <div className="mb-4 md:mb-0 font-['DM_Sans', 'sans-serif'] ">
-          © 2024 Fizeo. All rights reserved. | Powered by{' '}
-          <a href="#" className="hover:text-[#6FE984] transition-colors font-['DM_Sans', 'sans-serif'] ">Framer</a> | Designed by{' '}
-          <a href="#" className="hover:text-[#6FE984] transition-colors font-['DM_Sans', 'sans-serif']">Vilu Creative</a>
-        </div>
+  {/* Powered by */}
+  <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
+    Powered by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Framer</a>
+  </div>
 
-        {/* Social Icons */}
-        <div className="flex space-x-4 mt-4 md:mt-0">
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Facebook size={20} />
-          </a>
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Instagram size={20} />
-          </a>
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Twitter size={20} />
-          </a>
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Linkedin size={20} />
-          </a>
-        </div>
-      </div>
+  {/* Designed by */}
+  <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
+    Designed by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Vilu Creative</a>
+  </div>
+
+  {/* Social Icons */}
+  <div className="flex space-x-4">
+    <a href="#" className="hover:text-[#6FE984] transition-colors">
+      <Facebook size={20} />
+    </a>
+    <a href="#" className="hover:text-[#6FE984] transition-colors">
+      <Instagram size={20} />
+    </a>
+    <a href="#" className="hover:text-[#6FE984] transition-colors">
+      <Twitter size={20} />
+    </a>
+    <a href="#" className="hover:text-[#6FE984] transition-colors">
+      <Linkedin size={20} />
+    </a>
+  </div>
+</div>
+
 
     </footer>
   );
@@ -125,19 +132,3 @@ export default Footer;
 
 
 
-
-
-<div className="flex space-x-4 mt-4 md:mt-0">
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Facebook size={20} />
-          </a>
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Instagram size={20} />
-          </a>
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Twitter size={20} />
-          </a>
-          <a href="#" className="hover:text-[#6FE984] transition-colors">
-            <Linkedin size={20} />
-          </a>
-        </div>

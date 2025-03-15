@@ -12,7 +12,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 
-import { Calendar, User, Clock } from "lucide-react";
+
 
 import Link from "next/link";
 
@@ -46,12 +46,18 @@ const Customtime = () => (
   </svg>
 );
 
+type BlogPostProps = {
+  params: { slug: string };
+};
 
 
 
 
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({ params ,}: { params: Promise <{ slug: string }> ; }) {
+
+  const {slug} = await params;
+
   const post = await client.fetch(`
     *[_type == "post" && slug.current == $slug][0]{
       title,
@@ -63,7 +69,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       readTime,
       body
     }
-  `, { slug: params.slug })
+  `, { slug })
 
   const relatedPosts = await client.fetch(`
   *[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0..1]{
@@ -72,7 +78,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     "image": mainImageUrl,
     "description": titleLine
   }
-`, { slug: params.slug });
+`, { slug });
 
 
   if (!post) {
@@ -122,6 +128,42 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl "
             />
           </div>
+          {/* Blog Card Section */}
+        <div className="w-[90%] mx-auto rounded-2xl ">
+          {/* Meta Information */}
+          <div className="p-6 flex flex-col sm:flex-row sm:justify-between text-black text-sm gap-6 sm:gap-0">
+
+            {/* Date */}
+            <div className="flex items-center gap-3">
+              <Customdate />
+              <div className="flex flex-col">
+                <span className="font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Date</span>
+                <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">
+                  {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </span>
+              </div>
+            </div>
+
+            {/* Author */}
+            <div className="flex items-center gap-3">
+              <Customauth />
+              <div className="flex flex-col">
+                <span className=" font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Author</span>
+                <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">{post.authorName}</span>
+              </div>
+            </div>
+
+            {/* Read Time */}
+            <div className="flex items-center gap-3">
+              <Customtime />
+              <div className="flex flex-col">
+                <span className=" font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Read time</span>
+                <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">{post.readTime} mins</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
         </div>
 
 
@@ -243,7 +285,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       </div>;
 
 
-      <Footer />
+      
 
 
     </div>

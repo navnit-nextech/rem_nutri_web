@@ -61,7 +61,7 @@ export default async function Blog() {
       </div>
 
       <GetInTouch />
-      <Footer />
+      
     </div>
   );
 }
