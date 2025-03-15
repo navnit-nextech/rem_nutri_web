@@ -1,6 +1,7 @@
 import React from "react";
 import ServicesHero from "../components/services/ServicesHero";
 import ServicesProcess from "../components/services/ServicesProcess";
+import ServiceQueries from "../components/services/ServiceQueries";
 import GetInTouch from "../components/GetInTouch";
 
 const page = () => {
@@ -8,6 +9,7 @@ const page = () => {
     <div>
       <ServicesHero />
       <ServicesProcess />
+      <ServiceQueries/>
       <GetInTouch />
     </div>
   );

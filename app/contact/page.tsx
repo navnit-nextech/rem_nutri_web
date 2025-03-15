@@ -18,7 +18,7 @@ const Contact= () => {
       <Navbar/>
 
       <ContactForm/>
-      <Footer/>
+      
 
     </div>
 
