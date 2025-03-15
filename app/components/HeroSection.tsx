@@ -55,20 +55,20 @@ const HeroSection = () => {
 
         {/* Desktop Image */}
         <ScrollAnimation delay={0.3} onlyFade>
-          <div className="absolute top-[-15%] right-[-2.5%] w-[60%] h-[140%] hidden lg:flex items-center justify-center overflow-visible ">
+          <div className="absolute top-[-15%] right-[-3.5%] w-[60%] h-[140%] hidden lg:flex items-center justify-center overflow-visible ">
             <img
               src="https://framerusercontent.com/images/aNU3HkDM6E1ItviWon24xupCE.jpg?scale-down-to=4096"
               alt="Physiotherapist helping a client with mobility training"
-              className="w-full max-w-[460px] h-[100%] object-cover rounded-3xl shadow-lg"
+              className="w-full max-w-[460px] h-[100%] object-cover rounded-3xl shadow-lg z-10"
             />
           </div>
         </ScrollAnimation>
 
         {/* Circle decoration */}
         <ScrollAnimation delay={0.6} onlyFade>
-          <div className="absolute top-10 right-16 translate-x-7 w-20 md:w-28 h-20 md:h-28 flex items-center justify-center max-sm:top-[43%] max-sm:right-6">
-            <div className="w-full h-full rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center">
-              <div className="w-3/4 h-3/4 rounded-full flex items-center justify-center border-[10px] md:border-[15px] border-[#F4C6A5]"></div>
+          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-20 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 z-20">
+            <div className="w-full h-full rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center z-20">
+              <div className="w-3/4 h-3/4 rounded-full flex items-center justify-center border-[10px] md:border-[15px] border-[#F4C6A5] z-20"></div>
             </div>
           </div>
         </ScrollAnimation>
