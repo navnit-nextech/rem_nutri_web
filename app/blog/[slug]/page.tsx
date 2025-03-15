@@ -182,7 +182,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
 
 
         {/* Blog Card Section */}
-        <div className="w-[90%] mx-auto rounded-2xl ">
+        <div className="w-[85%] absolute mt-[12%] md:mt-[2%] mx-auto rounded-2xl ">
           {/* Meta Information */}
           <div className="p-6 flex flex-col sm:flex-row sm:justify-between text-black text-sm gap-6 sm:gap-0">
 
@@ -219,11 +219,12 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
         </div>
 
 
-        <div className="w-full h-[1px] bg-gray-500 mt-7"></div>
+        <div className=" w-[80%] md:w-full h-[1px] bg-gray-500 mt-[65%]  md:mt-[10%]"></div>
 
 
 
-        <div className="max-w-4xl w-[60%] text-[14px] md:text-[18px] font-['DM_Sans', 'sans-serif'] text-black mt-[8%]">
+
+        <div className="max-w-4xl w-[60%] text-[14px] md:text-[18px] font-['DM_Sans', 'sans-serif'] text-black mt-[10%] md:mt-[8%]">
 
 
           {/* Section 1: Rehabilitation and Recovery */}

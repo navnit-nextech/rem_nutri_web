@@ -90,37 +90,37 @@ const Footer = () => {
       <div className="w-[80%] ml-[10%] h-[1px] bg-gray-500 mt-10 mb-5"></div>
 
       <div className="pt-6 px-[10%] flex flex-col items-start text-left md:flex-row md:justify-between">
-  {/* Copyright */}
-  <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
-    © 2024 Fizeo. All rights reserved.
-  </div>
+        {/* Copyright */}
+        <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
+          © 2024 Fizeo. All rights reserved.
+        </div>
 
-  {/* Powered by */}
-  <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
-    Powered by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Framer</a>
-  </div>
+        {/* Powered by */}
+        <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
+          Powered by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Framer</a>
+        </div>
 
-  {/* Designed by */}
-  <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
-    Designed by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Vilu Creative</a>
-  </div>
+        {/* Designed by */}
+        <div className="mb-4 font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[12px]">
+          Designed by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Vilu Creative</a>
+        </div>
 
-  {/* Social Icons */}
-  <div className="flex space-x-4">
-    <a href="#" className="hover:text-[#6FE984] transition-colors">
-      <Facebook size={20} />
-    </a>
-    <a href="#" className="hover:text-[#6FE984] transition-colors">
-      <Instagram size={20} />
-    </a>
-    <a href="#" className="hover:text-[#6FE984] transition-colors">
-      <Twitter size={20} />
-    </a>
-    <a href="#" className="hover:text-[#6FE984] transition-colors">
-      <Linkedin size={20} />
-    </a>
-  </div>
-</div>
+        {/* Social Icons */}
+        <div className="flex space-x-4">
+          <a href="#" className="hover:text-[#6FE984] transition-colors">
+            <Facebook size={20} />
+          </a>
+          <a href="#" className="hover:text-[#6FE984] transition-colors">
+            <Instagram size={20} />
+          </a>
+          <a href="#" className="hover:text-[#6FE984] transition-colors">
+            <Twitter size={20} />
+          </a>
+          <a href="#" className="hover:text-[#6FE984] transition-colors">
+            <Linkedin size={20} />
+          </a>
+        </div>
+      </div>
 
 
     </footer>
