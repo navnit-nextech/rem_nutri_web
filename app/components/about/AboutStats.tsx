@@ -35,15 +35,15 @@ const AboutStats = () => {
                 {stats.map((stat, index) => (
                   <div
                     key={index}
-                    className="bg-white/15 p-6 text-center rounded-lg w-full"
+                    className="bg-[var(--background-color-plain3)]/15 p-6 text-center rounded-lg w-full"
                   >
-                    <div className="text-[#75FB91] text-5xl md:text-6xl font-bold mb-3">
+                    <div className="text-[var(--text-color-light)] text-5xl md:text-6xl font-bold mb-3">
                       {stat.value}
                     </div>
-                    <div className="text-white text-xl md:text-2xl">
+                    <div className="text-[var(--text-color-plain)] text-xl md:text-2xl">
                       {stat.label}
                       {stat.subLabel && (
-                        <div className="text-white text-xl md:text-2xl">
+                        <div className="text-[var(--text-color-plain)] text-xl md:text-2xl">
                           {stat.subLabel}
                         </div>
                       )}
@@ -55,7 +55,7 @@ const AboutStats = () => {
           </div>
 
           {/* Description */}
-          <div className="text-white flex-1">
+          <div className="text-[var(--text-color-plain)] flex-1">
             <ScrollAnimation delay={0.4}>
               <p className="md:text-xl leading-relaxed max-sm:text-center">
                 Our skilled physiotherapy team is committed to providing

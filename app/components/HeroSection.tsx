@@ -9,20 +9,21 @@ const HeroSection = () => {
     >
       <div className="max-w-7xl w-full relative">
         <div
-          className="relative bg-[#043A22] text-white w-[95%] mx-auto flex flex-col lg:flex-row items-center justify-between overflow-hidden 
-          sm:rounded-[0px_24px_0px_24px] rounded-3xl"
+          className="relative bg-[var(--background-color-dark)] w-[95%] mx-auto flex flex-col lg:flex-row items-center justify-between overflow-hidden 
+  sm:rounded-[0px_24px_0px_24px] rounded-3xl"
+          
         >
           {/* Content */}
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left sm:!py-26 p-8 md:p-12 lg:p-20">
             <ScrollAnimation>
-              <h1 className="text-[36px] lg:text-[56px] font-normal leading-tight font-['Libre_Baskerville',serif]">
+              <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
                 Expert care for your{" "}
-                <span className="text-[#76FB91] ">mobility</span>
+                <span className="text-[var(--text-color-light)] ">mobility</span>
               </h1>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.2}>
-              <p className="mt-6 lg:mt-8 text-[18px] lg:text-[20px] font-['DM_Sans', 'sans-serif'] lg:px-0">
+              <p className="mt-6 lg:mt-8 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
                 Experience expert physiotherapy for enhanced mobility and a
                 vibrant life.
               </p>
@@ -31,10 +32,11 @@ const HeroSection = () => {
             {/* Buttons */}
             <ScrollAnimation delay={0.4}>
               <div className="mt-8 flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                <button className="w-full md:w-auto bg-[#6FE984] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
+                <button className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md" 
+                >
                   Book now
                 </button>
-                <button className="w-full md:w-auto border-2 border-[#6FE984] text-[#6FE984] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
+                <button className="w-full md:w-auto border-2 border-[var(--background-color-light] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
                   Contact us
                 </button>
               </div>
@@ -55,7 +57,7 @@ const HeroSection = () => {
 
         {/* Desktop Image */}
         <ScrollAnimation delay={0.3} onlyFade>
-          <div className="absolute top-[-15%] right-[-3.5%] w-[60%] h-[140%] hidden lg:flex items-center justify-center overflow-visible ">
+          <div className="absolute top-[-15%] right-[-3.5%] w-[60%] h-[130%] hidden lg:flex items-center justify-center overflow-visible ">
             <img
               src="https://framerusercontent.com/images/aNU3HkDM6E1ItviWon24xupCE.jpg?scale-down-to=4096"
               alt="Physiotherapist helping a client with mobility training"

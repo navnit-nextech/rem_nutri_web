@@ -123,14 +123,14 @@ const ServicesProcess = () => {
   }, [initialLoad]);
 
   return (
-    <section className="bg-[#024027] text-white py-20">
+    <section className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] py-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start ">
             <ScrollAnimation>
               <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
                 {" "}
-                <span className="text-[#75FB91]">Wellness approach </span>with
+                <span className="text-[var(--text-color-light)]">Wellness approach </span>with
                 our proven process.
               </h2>
               <p className="text-lg mb-8">
@@ -140,7 +140,7 @@ const ServicesProcess = () => {
               <div>
                 <a
                   href="#book-appointment"
-                  className="inline-block bg-green-400 hover:bg-green-500 text-[#024027] font-medium py-3 px-6 rounded-md transition-colors"
+                  className="inline-block bg-[var(--background-color-light)] hover:bg-green-500 text-[var(--text-color-dark)] font-medium py-3 px-6 rounded-md transition-colors"
                 >
                   Book an appointment
                 </a>
@@ -173,7 +173,7 @@ const ServicesProcess = () => {
 
                 <div className="absolute left-0 top-0 h-full overflow-visible">
                   <motion.div
-                    className="absolute left-0 top-0 w-[2px] bg-green-400 origin-top shadow-[0_0_8px_rgba(74,222,128,0.6)]"
+                    className="absolute left-0 top-0 w-[2px] bg-[var(--background-color-light)] origin-top shadow-[0_0_8px_rgba(74,222,128,0.6)]"
                     style={{
                       height: initialLoad ? "250px" : "200px",
                       scaleY: lineScaleFactor,
@@ -192,7 +192,7 @@ const ServicesProcess = () => {
                     stepRefs.current[index] = el;
                   }}
                 >
-                  <div className="absolute left-0 -translate-x-1/2 bg-[#024027] py-4 z-10 font-['Libre_Baskerville',serif]">
+                  <div className="absolute left-0 -translate-x-1/2 bg-[var(--background-color-dark)] py-4 z-10 font-['Libre_Baskerville',serif]">
                     <motion.div
                       className="relative text-7xl font-bold italic"
                       animate={{
@@ -215,13 +215,13 @@ const ServicesProcess = () => {
                     }}
                   >
                     <div className="pt-4 pl-5">
-                      <div className="mb-2 text-green-400 text-sm">
+                      <div className="mb-2 text-[var(--text-color-light)] text-sm">
                         Precision diagnosis, personalized care.
                       </div>
-                      <h3 className="text-4xl font-bold mb-4 font-['Libre_Baskerville',serif]">
+                      <h3 className="text-4xl text-[var(--text-color-plain)] font-bold mb-4 font-['Libre_Baskerville',serif]">
                         {step.title}
                       </h3>
-                      <p className="text-gray-300 max-w-2xl">
+                      <p className="text-gray-300 text-[var(--text-color-plain)] max-w-2xl">
                         {step.description}
                       </p>
                     </div>

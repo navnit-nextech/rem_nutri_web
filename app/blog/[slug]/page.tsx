@@ -89,28 +89,28 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
     <div>
       <Navbar />
 
-      <header className="bg-[#024027] text-white pt-[13%] pb-[5%] px-[8%] mt-20 min-h-[100vh] relative">
+      <header className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-[13%] pb-[5%] px-[8%] mt-20 min-h-[100vh] relative">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
           <nav className="text-sm mb-6">
-            <span className="underline font-['DM_Sans', 'sans-serif'] text-[16px]">Home</span>
-            <span className="mx-2 font-['DM_Sans', 'sans-serif'] text-[16px]">{">"}</span>
-            <span className="underline font-['DM_Sans', 'sans-serif'] text-[16px]">Blog</span>
-            <span className="mx-2 font-['DM_Sans', 'sans-serif'] text-[16px]">{">"}</span>
-            <span className="font-['DM_Sans', 'sans-serif'] text-[16px]">
+            <span className="underline font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[16px]">Home</span>
+            <span className="mx-2 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[16px]">{">"}</span>
+            <span className="underline font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[16px]">Blog</span>
+            <span className="mx-2 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[16px]">{">"}</span>
+            <span className="font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)]text-[16px]">
               {post.title}
 
             </span>
           </nav>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-[56px] font-['Libre_Baskerville',serif] mt-[5%] leading-tight">
+          <h1 className="text-4xl md:text-[56px] text-[var(--text-color-plain)] font-['Libre_Baskerville',serif] mt-[5%] leading-tight">
             {post.title}
           </h1>
 
 
           {/* Subtitle */}
-          <p className="text-base md:text-[20px] mt-4 font-['DM_Sans', 'sans-serif'] max-w-2xl">
+          <p className="text-base md:text-[20px] text-[var(--text-color-plain)] mt-4 font-['DM_Sans', 'sans-serif'] max-w-2xl">
             {post.titleLine}
 
           </p>
@@ -249,7 +249,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
 
 
 
-      <div className="w-full pb-16 pt-[7%] -mb-5  bg-[#EBE5DA] bg-cover bg-center bg-no-repeat relative py-40">
+      <div className="w-full pb-16 pt-[7%] -mb-5  bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative py-40">
         <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
           <div className="mb-15">
             <h2 className="text-[#1A1A1A] text-[40px] font-['Libre_Baskerville',serif]">
@@ -260,7 +260,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {relatedPosts.map((post_: { slug: string; image: string; title: string; description: string }, index: number) => (
               <Link key={index} href={`/blog/${post_.slug}`} passHref>
-                <div className="bg-white rounded-2xl overflow-hidden cursor-pointer md:h-[100%] ">
+                <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden cursor-pointer md:h-[100%] ">
                   <div className="h-90 overflow-hidden rounded-2xl">
                     <img
                       src={post_.image}
@@ -270,10 +270,10 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
                   </div>
 
                   <div className="p-12">
-                    <h3 className="text-[#043A22] font-['Libre_Baskerville',serif] text-[20px] mb-3">
+                    <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px] mb-3">
                       {post_.title}
                     </h3>
-                    <p className="text-[#043A22] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
+                    <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
                       {post_.description}
                     </p>
                   </div>

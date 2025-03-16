@@ -13,15 +13,15 @@ const FeatureCard = ({
   description: string;
 }) => {
   return (
-    <div className="bg-[#F7F5F0] sm:w-[575px] sm:h-[220px] border border-[#ebe5da] p-8 rounded-2xl flex flex-col justify-between">
+    <div className="bg-[var(--background-color-plain)] sm:w-[575px] sm:h-[220px] border border-[#ebe5da] p-8 rounded-2xl flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-3">
-          <span className="text-[#024027] text-[22px]">{icon}</span>
-          <h3 className="text-[#024027] text-[22px] font-bold font-['Libre_Baskerville']">
+          <span className="text-[var(--text-color-dark)] text-[22px]">{icon}</span>
+          <h3 className="text-[var(--text-color-dark)] text-[22px] font-bold font-['Libre_Baskerville']">
             {title}
           </h3>
         </div>
-        <p className="text-[#024027] text-[16px] font-light leading-relaxed mt-4">
+        <p className="text-[var(--text-color-dark)] text-[16px] font-light leading-relaxed mt-4">
           {description}
         </p>
       </div>
@@ -134,13 +134,13 @@ const WhyFizeo = () => {
             {/* Left content section */}
             <div className="w-full lg:w-1/2 pt-10">
               <ScrollAnimation>
-                <h2 className="text-[#024027] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
+                <h2 className="text-[var(--text-color-dark)] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
                   Why Fizeo?
                 </h2>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.2}>
-                <p className="text-[#024027] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
+                <p className="text-[var(--text-color-dark)] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
                   Fizeo stands out for its commitment to personalized and
                   <span className="hidden md:block"></span> specialized
                   physiotherapy, offering individualized care,
@@ -156,7 +156,7 @@ const WhyFizeo = () => {
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.4}>
-                <Button className="bg-[#024027] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-white rounded text-[16px] px-6 py-6">
+                <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-6">
                   About us
                 </Button>
               </ScrollAnimation>

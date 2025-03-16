@@ -75,7 +75,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="w-full bg-[#024027] py-20 sm:py-40 relative">
+    <div className="w-full bg-[var(--background-color-dark)] py-20 sm:py-40 relative">
       <div className=" absolute sm:top-[-4.2%] -top-12 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -91,11 +91,11 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <ScrollAnimation>
           <div className="text-center mb-16">
-            <h2 className="text-white font-['Libre_Baskerville',serif] text-3xl sm:text-[40px] mb-4">
+            <h2 className="text-[var(--text-color-plain)]  font-['Libre_Baskerville',serif] text-3xl sm:text-[40px] mb-4">
               Real stories,{" "}
-              <span className="text-[#76FB91]">real transformations</span>
+              <span className="text-[var(--text-color-light)] ">real transformations</span>
             </h2>
-            <p className="text-white text-lg sm:text-[24px] font-['Libre_Baskerville',serif]  mx-auto">
+            <p className="text-[var(--text-color-plain)]  text-lg sm:text-[24px] font-['Libre_Baskerville',serif]  mx-auto">
               These real stories illuminate the path to transformation,
               <span className="hidden md:block"></span> showcasing the impact of
               personalized care on physical well-
@@ -111,6 +111,7 @@ const Testimonials = () => {
                 {/* Right and Bottom Borders */}
 
                 {/* Embedded YouTube Video */}
+                
                 <iframe
                   className="relative w-full h-[200px] sm:h-[500px] rounded-2xl border-none"
                   src="https://www.youtube.com/embed/W-XQS2NoRdc"
@@ -196,7 +197,7 @@ const Testimonials = () => {
                       </svg>
                     ))}
                   </div>
-                  <div className="text-white mb-6 font-['Libre_Baskerville',serif] text-sm sm:text-[20px]">
+                  <div className="text-[var(--text-color-plain)]  mb-6 font-['Libre_Baskerville',serif] text-sm sm:text-[20px]">
                     "{testimonials[currentIndex].text}"
                   </div>
 
@@ -210,7 +211,7 @@ const Testimonials = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <span className="text-white font-['Libre_Baskerville',serif] text-sm sm:text-[20px]">
+                    <span className="text-[var(--text-color-plain)]  font-['Libre_Baskerville',serif] text-sm sm:text-[20px]">
                       {testimonials[currentIndex].name}
                     </span>
                   </div>
@@ -227,7 +228,7 @@ const Testimonials = () => {
                     setCurrentIndex(index);
                   }}
                   className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentIndex ? "bg-[#6FE984] w-4" : "bg-white/50"
+                    index === currentIndex ? "bg-[var(--background-color-light)] w-4" : "bg-white/50"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />

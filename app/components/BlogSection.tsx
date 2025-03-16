@@ -41,7 +41,7 @@ const BlogSection = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
         <ScrollAnimation>
           <div className="mb-10">
-            <h2 className="text-[#1A1A1A] text-[40px] font-['Libre_Baskerville',serif]  mb-4">
+            <h2 className="text-[var(--text-color-dark)] text-[40px] font-['Libre_Baskerville',serif]  mb-4">
               Insights and tips from our
               <br />
               Physiotherapy experts
@@ -49,7 +49,7 @@ const BlogSection = () => {
             <Link href="/blog">
               <Button
                 variant="default"
-                className="bg-[#024027] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-white rounded text-[16px] px-6 py-5"
+                className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-5"
               >
                 View blog
               </Button>
@@ -57,10 +57,10 @@ const BlogSection = () => {
           </div>
         </ScrollAnimation>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 mb-15">
           {blogPosts.map((post, index) => (
             <ScrollAnimation key={index} delay={index * 0.2}>
-              <div className="bg-white rounded-2xl overflow-hidden h-full">
+              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden h-full">
                 <div className="h-90 overflow-hidden rounded-2xl">
                   <img
                     src={post.image}
@@ -70,10 +70,10 @@ const BlogSection = () => {
                 </div>
 
                 <div className="p-12">
-                  <h3 className="text-[#043A22] font-['Libre_Baskerville',serif] text-[20px]  mb-3">
+                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px]  mb-3">
                     {post.title}
                   </h3>
-                  <p className="text-[#043A22] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
+                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
                     {post.description}
                   </p>
                 </div>

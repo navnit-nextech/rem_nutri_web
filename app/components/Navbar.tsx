@@ -20,7 +20,8 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-[rgb(244,241,235)] border-b border-[#dedede] py-6 px-6">
+      <nav className="fixed bg-[var(--background-color-plain)] top-0 left-0 w-full z-50  border-b border-[#dedede] py-6 px-6"
+      >
         <div className="max-w-7xl w-full mx-auto flex items-center justify-between sm:px-8">
           {/* Logo */}
           <div className="flex items-center">
@@ -38,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   />
                 </svg>
               </div>
-              <span className="text-[#024027] text-[20px] tracking-[0.2em] -ml-1 font-medium font-['DM_Sans', 'sans-serif']">
+              <span className="text-[var(--text-color-dark)] text-[20px] tracking-[0.2em] -ml-1 font-medium font-['DM_Sans', 'sans-serif']">
                 FIZEO
               </span>
             </Link>
@@ -49,30 +50,30 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="flex items-center space-x-9">
               <Link
                 href="/about"
-                className="text-[#024027] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
               >
                 About
               </Link>
               <Link
                 href="/services"
-                className="text-[#024027] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
               >
                 Services
               </Link>
               <Link
                 href="/blog"
-                className="text-[#024027] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
               >
                 Blog
               </Link>
               <Link
                 href="/contact"
-                className="text-[#024027] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
               >
                 Contact
               </Link>
             </div>
-            <Button className="bg-[#024027] hover:bg-[#035C3B] tracking-wide text-white text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md">
+            <Button className="hover:bg-[#035C3B] tracking-wide text-[var(--text-color-plain)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md" style={{ backgroundColor: "var(--background-color-dark)" }}>
               Book an appointment
             </Button>
           </div>
@@ -122,7 +123,7 @@ const Navbar: React.FC<NavbarProps> = ({
               stiffness: 300,
               duration: 0.5,
             }}
-            className="fixed inset-0 bg-[rgb(244,241,235)] z-40 md:hidden overflow-hidden shadow-lg"
+            className="fixed inset-0 bg-[var(--background-color-plain)] z-40 md:hidden overflow-hidden shadow-lg"
             style={{
               borderBottomLeftRadius: "20px",
               borderBottomRightRadius: "20px",
@@ -167,7 +168,7 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/about"
-                  className="text-[#024027] text-[24px] font-normal"
+                  className=" text-[24px] font-normal"
                   onClick={() => setIsOpen(false)}
                 >
                   About
@@ -187,7 +188,7 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/services"
-                  className="text-[#024027] text-[24px] font-normal"
+                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
                   onClick={() => setIsOpen(false)}
                 >
                   Services
@@ -207,7 +208,7 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/blog"
-                  className="text-[#024027] text-[24px] font-normal"
+                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
                   onClick={() => setIsOpen(false)}
                 >
                   Blog
@@ -227,7 +228,7 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/contact"
-                  className="text-[#024027] text-[24px] font-normal"
+                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
@@ -251,7 +252,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 }}
               >
                 <Button
-                  className="bg-[#76FB91] hover:bg-[#5FE87A] text-[#024027] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md mt-8 font-['DM_Sans',serif] w-full"
+                  className="bg-[var(--background-color-light)] hover:bg-[#5FE87A] text-[var(--text-color-dark)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md mt-8 font-['DM_Sans',serif] w-full"
                   onClick={() => setIsOpen(false)}
                 >
                   Book an appointment

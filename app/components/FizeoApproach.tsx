@@ -53,18 +53,18 @@ const FizeoApproach = () => {
   return (
     // <div className="w-full pt-40 relative bg-[#EBE5DA] min-h-00px]">
 
-    <div className="w-full pt-30 pb-40  bg-[#EBE5DA] min-h-[700px]">
+    <div className="w-full pt-30 pb-40 bg-[var(--background-color-plain2)] min-h-[700px]">
       {/* <Topdecorative /> */}
 
       <div className="max-w-7xl mx-auto px-6 text-center">
         <ScrollAnimation>
-          <h2 className="text-[#024027] font-['Libre_Baskerville',serif] text-2xl sm:text-[40px] text-3xl  mb-4">
+          <h2 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-2xl sm:text-[40px] text-3xl  mb-4">
             The Fizeo Approach
           </h2>
         </ScrollAnimation>
 
         <ScrollAnimation delay={0.2}>
-          <p className="text-[#024027] font-['DM_Sans','sans-serif'] text-lg sm:text-[20px] max-w-5xl mx-auto mb-20">
+          <p className="text-[var(--text-color-dark)] font-['DM_Sans','sans-serif'] text-lg sm:text-[20px] max-w-5xl mx-auto mb-20">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             varius<span className="hidden md:block"></span> enim in eros
             elementum tristique. Duis cursus, mi quis viverra ornare, eros
@@ -74,7 +74,7 @@ const FizeoApproach = () => {
         </ScrollAnimation>
 
         <ScrollAnimation delay={0.4}>
-          <div className="inline-flex bg-[rgb(244,241,235)] sm:rounded-full rounded-2xl px-6 py-4 shadow-sm max-sm:flex-wrap">
+          <div className="inline-flex bg-[var(--background-color-plain)] sm:rounded-full rounded-2xl px-6 py-4 shadow-sm max-sm:flex-wrap">
             {(["Evidence", "Holistic", "Empowering"] as ApproachTab[]).map(
               (tab) => (
                 <button
@@ -82,7 +82,7 @@ const FizeoApproach = () => {
                   onClick={() => setActiveTab(tab)}
                   className={`px-20 py-4 max-sm:w-full font-bold  text-lg rounded-full font-['Libre_Baskerville',serif] transition-colors ${
                     activeTab === tab
-                      ? "bg-[#024027] text-white"
+                      ? "bg-[var(--background-color-dark)] text-[var(--text-color-plain)]"
                       : "text-[#043A22] hover:bg-fizeo-beige-bg/50"
                   }`}
                 >
@@ -124,10 +124,10 @@ const FizeoApproach = () => {
                 transition={{ duration: 0.4, ease: "easeInOut", delay: 0.2 }}
                 className="absolute bottom-0 left-0 p-12 z-20 text-left"
               >
-                <h3 className="text-white text-[32px] font-['Libre_Baskerville',serif] mb-4">
+                <h3 className="text-[var(--text-color-plain)] text-[32px] font-['Libre_Baskerville',serif] mb-4">
                   {tabContent[activeTab].title}
                 </h3>
-                <p className="text-white text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
+                <p className="text-[var(--text-color-plain)] text-[20px] font-['DM_Sans', 'sans-serif'] text-lg max-w-2xl">
                   {tabContent[activeTab].description}
                 </p>
               </motion.div>

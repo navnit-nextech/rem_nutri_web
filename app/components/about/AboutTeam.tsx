@@ -50,16 +50,16 @@ const AboutTeam = () => {
   ];
 
   return (
-    <div className="bg-[#024027] text-white pb-10 sm:pb-20">
+    <div className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pb-10 sm:pb-20">
       <div className="container mx-auto px-4 md:px-6">
         <ScrollAnimation>
           <div className="py-12 pt-32">
-            <h2 className="font-['Libre_Baskerville',serif] text-3xl md:text-5xl mb-5 max-w-4xl">
+            <h2 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] text-3xl md:text-5xl mb-5 max-w-4xl">
               Meet your{" "}
-              <span className="text-[#75FB91]">dedicated partners</span> in
+              <span className="text-[var(--text-color-light)]">dedicated partners</span> in
               wellness
             </h2>
-            <p className="text-lg max-w-3xl mb-12 md:px-0">
+            <p className="text-lg max-w-3xl mb-12 text-[var(--text-color-plain)] md:px-0">
               Embark on a journey to optimal well-being with our dedicated
               partners in wellness. We are committed to supporting and guiding
               you on your path to a healthier and happier life.
@@ -71,7 +71,7 @@ const AboutTeam = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
           {teamMembers.map((member, index) => (
             <ScrollAnimation key={member.id} delay={0.1 * (index % 3)}>
-              <div className="bg-[#F5F0E1] text-black rounded-2xl overflow-hidden">
+              <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden">
                 <div className="relative h-[400px] w-full">
                   <Image
                     src={member.image}
@@ -86,7 +86,7 @@ const AboutTeam = () => {
                       <h3 className="text-2xl font-semibold font-['Libre_Baskerville',serif]">
                         {member.name}
                       </h3>
-                      <p className="text-[#024027]">{member.role}</p>
+                      <p className="text-[var(--text-color-dark)]">{member.role}</p>
                     </div>
                     <Link
                       href={member.linkedin}

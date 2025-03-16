@@ -88,15 +88,15 @@ const ServiceCard = ({
   return (
     <div
       className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[390px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[#F4F1EB] rounded-[16px] opacity-100"
+                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100"
     >
-      <div className="flex items-center gap-2 text-[#043A22]">
+      <div className="flex items-center gap-2 text-[var(--text-color-dark)] ">
         {icon}
-        <h3 className="text-[24px] text-[#024027] font-['Libre_Baskerville',serif]">
+        <h3 className="text-[24px] text-[var(--text-color-dark)]  font-['Libre_Baskerville',serif]">
           {title}
         </h3>
       </div>
-      <p className="text-[#043A22] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
+      <p className="text-[var(--text-color-dark)]  font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
         {description}
       </p>
     </div>

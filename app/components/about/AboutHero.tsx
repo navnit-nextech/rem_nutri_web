@@ -30,22 +30,22 @@ const imageCol2 = [
 const AboutHero = () => {
   return (
     <ScrollAnimation onlyFade>
-      <div className="w-full bg-[#024027] text-white pt-6 sm:pt-10 pb-10 sm:pb-20 relative overflow-hidden min-h-[100dvh] pt-20">
+      <div className="w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-6 sm:pt-10 pb-10 sm:pb-20 relative overflow-hidden min-h-[100dvh] pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Content Section */}
           <div className="flex-1 text-center lg:text-left mt-16 sm:mt-24 lg:mt-48">
-            <h1 className="font-['Libre_Baskerville',serif] text-2xl sm:text-3xl md:text-[40px] mb-4 sm:mb-6 px-2 sm:px-0">
+            <h1 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)]text-2xl sm:text-3xl md:text-[40px] mb-4 sm:mb-6 px-2 sm:px-0">
               Our passion for physical{" "}
-              <span className="text-[#76FB91]">therapy excellence</span>
+              <span className="text-[var(--text-color-light)]">therapy excellence</span>
             </h1>
-            <p className="text-white font-['DM_Sans','sans-serif'] text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-2 sm:px-0">
+            <p className="font-['DM_Sans','sans-serif'] text-[var(--text-color-plain)] text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-2 sm:px-0">
               At Fizeo, we are your dedicated physiotherapy partners, blending
               expertise with empathy. Our mission is simple: to guide you on the
               path to optimal health through personalized and evidence-based
               care. Experience the difference of healing with Fizeo, where your
               well-being is our priority.
             </p>
-            <button className="w-[90%] sm:w-auto bg-[#76FB91] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-3 sm:py-4 md:py-3 px-6 rounded-lg shadow-md hover:bg-[#5ee079] transition-colors">
+            <button className="w-[90%] sm:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-3 sm:py-4 md:py-3 px-6 rounded-lg shadow-md hover:bg-[#5ee079] transition-colors">
               View our services
             </button>
           </div>

@@ -52,19 +52,19 @@ const faqItems = [
 
 const ServiceQueries = () => {
   return (
-    <div className="w-full bg-[rgb(244,241,235)] py-[10%]">
+    <div className="w-full bg-[var(--background-color-plain)] py-[10%]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <h2 className="text-[#024027] font-['Libre_Baskerville',serif] text-4xl md:text-5xl md:text-[56px] text-center mb-16">
+        <h2 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-4xl md:text-5xl md:text-[56px] text-center mb-16">
           Unraveling your<br />health queries
         </h2>
         
         <Accordion type="single" collapsible className="w-full mt-[10%]">
           {faqItems.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="border-b border-[#024027]/10 py-2">
-              <AccordionTrigger className="flex text-[#024027]  font-['Libre_Baskerville',serif] hover:no-underline  sm:text-lg py-5 text-24px ">
+              <AccordionTrigger className="flex text-[var(--text-color-dark)]  font-['Libre_Baskerville',serif] hover:no-underline  sm:text-lg py-5 text-24px ">
                 <span className="text-left">{item.question}</span>
               </AccordionTrigger>
-              <AccordionContent className="text-[#024027] font-['DM_Sans', 'sans-serif']  md:text-[20px] sm:text-base">
+              <AccordionContent className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif']  md:text-[20px] sm:text-base">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

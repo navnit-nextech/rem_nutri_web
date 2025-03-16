@@ -21,7 +21,7 @@ const TherapeuticExcellence = () => {
         </div>
 
         <ScrollAnimation>
-          <h2 className="text-[#024027] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[25%] font-['Libre_Baskerville',serif]">
+          <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[25%] font-['Libre_Baskerville',serif]">
             Therapeutic excellence <br /> tailored for you.
           </h2>
         </ScrollAnimation>
@@ -41,7 +41,7 @@ const TherapeuticExcellence = () => {
         </ScrollAnimation>
 
         <Link href="/services">
-          <Button className="bg-[#76FB91] font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[#043A22] !font-bold rounded-md px-6 py-6">
+          <Button className="bg-[var(--background-color-light)]  font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[var(--text-color-dark)]  !font-bold rounded-md px-6 py-6">
             Our services
           </Button>
         </Link>

@@ -44,7 +44,7 @@ const Custommail = () => (
 
 const GetInTouch = () => {
   return (
-    <div className="w-full py-20 md:py-40 px-4 relative bg-[#EBE5DA]">
+    <div className="w-full py-20 md:py-40 px-4 relative bg-[var(--background-color-plain2)]">
       {/* New SVG added here */}
       <div className="absolute -top-10 left-[50%] transform -translate-x-1/2">
         <svg
@@ -69,10 +69,10 @@ const GetInTouch = () => {
       <div className="max-w-8xl mx-auto">
         <ScrollAnimation delay={0.2}>
           <div className="text-center mb-10 md:mb-20">
-            <h2 className="text-[#024027] text-[28px] md:text-[40px] font-['Libre_Baskerville',serif]">
+            <h2 className="text-[var(--text-color-dark)] text-[28px] md:text-[40px] font-['Libre_Baskerville',serif]">
               Get moving, <span className="font-bold">get in touch!</span>
             </h2>
-            <p className="text-[#024027] font-['DM_Sans', 'sans-serif'] text-[16px] md:text-[20px] max-w-2xl mx-auto mb-8 md:mb-15 mt-4 md:mt-6 px-4">
+            <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] md:text-[20px] max-w-2xl mx-auto mb-8 md:mb-15 mt-4 md:mt-6 px-4">
               Reach out to us and let's embark on a journey towards a healthier,
               happier you. Your optimal health is just a conversation away!
             </p>
@@ -91,16 +91,16 @@ const GetInTouch = () => {
             </div>
 
             {/* Content section - positioned absolutely to overlap */}
-            <div className="relative lg:absolute lg:top-1/2 lg:right-0 lg:transform lg:-translate-y-1/2 w-full lg:w-[45%] p-6 md:p-8 lg:p-10 bg-[rgb(244,241,235)] rounded-2xl -mt-6 lg:mt-0 lg:h-full lg:pt-16">
+            <div className="relative lg:absolute lg:top-1/2 lg:right-0 lg:transform lg:-translate-y-1/2 w-full lg:w-[45%] p-6 md:p-8 lg:p-10 bg-[var(--background-color-plain)] rounded-2xl -mt-6 lg:mt-0 lg:h-full lg:pt-16">
               {/* Message Icon + Heading */}
               <div className="mb-4 md:mb-6">
                 <Custommsg />
                 <div className="flex items-start mb-2 md:mb-3 mt-3">
-                  <h3 className="text-[#024027] font-['Libre_Baskerville',serif] text-[24px] md:text-[32px]">
+                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[24px] md:text-[32px]">
                     Let's chat
                   </h3>
                 </div>
-                <p className="text-[#024027] text-[14px] md:text-base mb-1 font-['DM_Sans',sans-serif] leading-relaxed">
+                <p className="text-[var(--text-color-dark)] text-[14px] md:text-base mb-1 font-['DM_Sans',sans-serif] leading-relaxed">
                   Don't hesitate, take the first step toward a healthier you!
                   Your journey to well-being starts with a simple connection.
                 </p>
@@ -113,13 +113,13 @@ const GetInTouch = () => {
               <div className="space-y-3 md:space-y-4 text-sm md:text-base">
                 <div className="flex items-center space-x-3">
                   <Customhome />
-                  <span className="text-[#024027] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
+                  <span className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
                     123 Main Street, French, 56789, Townsville.
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Customcall />
-                  <span className="text-[#024027] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
+                  <span className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
                     8450 9087
                   </span>
                 </div>
@@ -127,7 +127,7 @@ const GetInTouch = () => {
                   <Custommail />
                   <a
                     href="mailto:info@fizeo.com"
-                    className="text-[#024027] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif] underline"
+                    className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif] underline"
                   >
                     info@fizeo.com
                   </a>

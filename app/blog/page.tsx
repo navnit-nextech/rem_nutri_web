@@ -22,11 +22,11 @@ export default async function Blog() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="bg-[#024027] py-40  md:py-50 text-left md:text-center relative px-6 md:px-0">
+      <div className="bg-[var(--background-color-dark)] py-40  md:py-50 text-left md:text-center relative px-6 md:px-0">
       <ScrollAnimation>
-        <h1 className="text-[40px] md:text-[56px] font-['Libre_Baskerville',serif] text-white leading-tight">
+        <h1 className="text-[40px] md:text-[56px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] leading-tight">
           Physio pulse to unleash the <br />
-          <span className="text-[#76FB91]">power of movement</span>
+          <span className="text-[var(--text-color-light)]">power of movement</span>
         </h1>
         </ScrollAnimation>
       </div>
@@ -36,7 +36,7 @@ export default async function Blog() {
         {blogPosts.map((post: any, index: number) => (
           <ScrollAnimation key={index} delay={index * 0.2}>
             <Link href={`/blog/${post.slug}`} passHref>
-              <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[600px] mx-auto md:h-145 cursor-pointer">
+              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden w-full max-w-[600px] mx-auto md:h-145 cursor-pointer">
                 <div className="h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden">
                   <Image
                     src={post.image}
@@ -48,10 +48,10 @@ export default async function Blog() {
                   />
                 </div>
                 <div className="p-6 md:p-8">
-                  <h3 className="text-[#043A22] font-['Libre_Baskerville',serif] text-xl md:text-2xl leading-snug font-semibold">
+                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-xl md:text-2xl leading-snug font-semibold">
                     {post.title}
                   </h3>
-                  <p className="text-gray-700 font-['DM_Sans', 'sans-serif'] text-sm md:text-base mt-4">
+                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-sm md:text-base mt-4">
                     {post.description}
                   </p>
                 </div>

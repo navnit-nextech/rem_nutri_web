@@ -4,7 +4,7 @@ import ScrollAnimation from "../ScrollAnimation";
 
 const AboutImageGrid = () => {
   return (
-    <div className="bg-[#EBE5DA] text-[#024027] py-16 px-4 md:px-8">
+    <div className="bg-[var(--background-color-plain2)] text-[var(--text-color-dark)] py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
         <ScrollAnimation>
           <div className="sm:my-20">

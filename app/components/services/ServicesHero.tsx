@@ -87,15 +87,15 @@ const ServiceCard = ({
   return (
     <div
       className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[390px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[#F4F1EB] rounded-[16px] opacity-100"
+                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100"
     >
-      <div className="flex items-center gap-2 text-[#043A22]">
+      <div className="flex items-center gap-2 text-[var(--text-color-dark)]">
         {icon}
-        <h3 className="text-[24px] text-[#024027] font-['Libre_Baskerville',serif]">
+        <h3 className="text-[24px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif]">
           {title}
         </h3>
       </div>
-      <p className="text-[#043A22] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
+      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
         {description}
       </p>
     </div>
@@ -144,13 +144,13 @@ const services = [
 const ServicesHero = () => {
   return (
     <div className="pt-20">
-      <div className="bg-[#024027] sm:p-20 sm:py-40 sm:pb-52 py-20 pb-36">
-        <h1 className=" font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-white text-center max-w-3xl mx-auto">
-          Strive and thrive with <span className="text-[#75FB91]">premier</span>{" "}
+      <div className="bg-[var(--background-color-dark)] sm:p-20 sm:py-40 sm:pb-52 py-20 pb-36">
+        <h1 className=" font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-[var(--text-color-plain)] text-center max-w-3xl mx-auto">
+          Strive and thrive with <span className="text-[var(--text-color-light)]">premier</span>{" "}
           physio services
         </h1>
       </div>
-      <div className="bg-[#EBE5DA] pb-5">
+      <div className="bg-[var(--background-color-plain)] pb-5">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10 px-4 relative -top-24">
           {services.map((service, index) => (
             <ServiceCard
