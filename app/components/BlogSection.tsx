@@ -44,7 +44,7 @@ const BlogSection = () => {
             <h2 className="text-[var(--text-color-dark)] text-[40px] font-['Libre_Baskerville',serif]  mb-4">
               Insights and tips from our
               <br />
-              Physiotherapy experts
+              health experts
             </h2>
             <Link href="/blog">
               <Button
