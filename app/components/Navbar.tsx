@@ -39,14 +39,14 @@ const Navbar: React.FC<NavbarProps> = ({
                   />
                 </svg>
               </div>
-              <span className="text-[var(--text-color-dark)] text-[20px] tracking-[0.2em] -ml-1 font-medium font-['DM_Sans', 'sans-serif']">
-                FIZEO
+              <span className="text-[var(--text-color-dark)] text-[20px]  -ml-1 font-medium font-['DM_Sans', 'sans-serif']">
+                RemDi
               </span>
             </Link>
           </div>
 
           {/* Navigation Links & Button - Desktop */}
-          <div className="hidden md:flex items-center space-x-12">
+          <div className="hidden md:flex items-center space-x-15">
             <div className="flex items-center space-x-9">
               <Link
                 href="/about"

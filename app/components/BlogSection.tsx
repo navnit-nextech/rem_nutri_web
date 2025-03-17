@@ -12,23 +12,23 @@ interface BlogPost {
 const BlogSection = () => {
   const blogPosts: BlogPost[] = [
     {
-      title: "The transformative power of physiotherapy",
+      title: "Reversing Type 2 Diabetes: A New Approach with RemDi",
       description:
-        "Physiotherapy, a beacon of hope in healthcare, employs diverse techniques to address physical ailments, fostering recovery and overall well-being.",
+        "Discover how RemDi's personalised nutrition and lifestyle-based approach can help manage and potentially reverse Type 2 Diabetes for long-term health benefits.",
       image:
-        "https://framerusercontent.com/images/OeRclbjsWeC0jMfoFuBzCCMlSU.jpg?scale-down-to=4096",
+        "https://images.unsplash.com/photo-1463367620918-d4824d05ce0e?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      title: "The role of physiotherapy in enhancing physical wellness",
+      title: "The Role of Nutrition in Managing Metabolic Disorders",
       description:
-        "This blog explores physiotherapy's pivotal role in promoting physical wellness, highlighting diverse applications, benefits, and its overall impact on individuals' well-being.",
+        "Explore how tailored nutrition and holistic wellness strategies at RemDi can help balance metabolism and support better health outcomes.",
       image:
-        "https://framerusercontent.com/images/lxAtPAUIneh071YKKbabBgH7edY.jpg?scale-down-to=2048",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
   return (
-    <div className="w-full py-16 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full py-16 bg-[var(--background-color-plain)] bg-cover bg-center bg-no-repeat relative">
       <div className="absolute -top-0 left-[50%] w-27 h-27 transform -translate-x-1/2 -translate-y-1/2">
         <svg viewBox="0 0 79 88" id="svg10114666377" className="w-full h-full">
           <path

@@ -21,7 +21,7 @@ const Index = () => {
       </ScrollAnimation>
       <Testimonials />
       <WhyFizeo />
-      <FizeoApproach />
+      {/* <FizeoApproach /> */}
       <BlogSection />
       <GetInTouch />
     </div>

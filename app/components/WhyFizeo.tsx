@@ -93,39 +93,45 @@ const WhyFizeo = () => {
   const features = [
     {
       icon: <Customcare />,
-      title: "Personalized Care",
+      title: "Empowerment for Long-Term Success",
       description:
-        "Fizeo is dedicated to tailoring physiotherapy treatments to the unique needs of each individual, ensuring a personalized and effective approach to rehabilitation.",
+        "We enable you to inculcate healthy habits that stick with you for life to aid your recovery by empowering you with knowledge through an 8 to 12 week programme that covers the basic symptoms and solutions to easing your problem.",
     },
     {
       icon: <Customexpertise />,
-      title: "Specialized Expertise",
+      title: "Evidence-Based Approach",
       description:
-        "Our team of highly qualified physiotherapists brings specialized knowledge in orthopedic rehabilitation, sports injury management, and neurological rehabilitation, providing comprehensive care across various specialties.",
+        "Created by professionals with decades of experience in the field of health and wellness, all our programmes are backed by science and approved by doctors and dietitians across the world.",
     },
     {
       icon: <Customwellness />,
-      title: "Holistic Wellness",
+      title: "Personalised Support",
       description:
-        "Fizeo adopts a holistic approach to wellness, offering preventive programs, ergonomic consultations, and proactive strategies that go beyond immediate symptom relief, promoting long-term health benefits.",
+        "Experience personalised care from dietitians and doctors with constant oversight and one-on-one sessions, ensuring that your road to recovery is smooth and seamless!",
     },
     {
       icon: <Custompatient />,
-      title: "Patient Empowerment",
+      title: "Holistic Approach",
       description:
-        "We believe in empowering patients through education, providing resources and support that enable individuals to actively participate in their recovery and self-management.",
+        "Embrace a 360 degree approach with tailored diets, exercise plans, educational resources, yoga classes, and supportive groups that encourage holistic healing.",
     },
     {
       icon: <Custompositive />,
-      title: "Positive Outcomes",
+      title: "Convenient and Delicious Meal Delivery",
       description:
-        "The success stories of satisfied individuals stand as testimonials to the effectiveness of our services, reflecting positive outcomes, improved mobility, and life-changing experiences. Choose Fizeo for a track record of results and a commitment to your well-being.",
+        "Relish in our meal plans that are designed to help your body heal, manage hormonal balance and improve gut health. Choose between desi and contemporary cuisine, select meal frequencies that suit you for a convenient delivery right to your doorstep. ",
     },
+    {
+      icon: <Custompositive />,
+      title: "Supportive Community",
+      description:
+        "Stay on track with a supportive community that scales the mountain of recovery with you- through group sessions, classes and access to messaging forums where you can share your journey with others!",
+    }
   ];
 
   return (
     <>
-      <div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat relative">
+      <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
         <div className="absolute  max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[45%] -top-8 ">
           <Topdecorative />
         </div>
@@ -135,23 +141,15 @@ const WhyFizeo = () => {
             <div className="w-full lg:w-1/2 pt-10">
               <ScrollAnimation>
                 <h2 className="text-[var(--text-color-dark)] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
-                  Why Fizeo?
+                  Why RemDi?
                 </h2>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.2}>
                 <p className="text-[var(--text-color-dark)] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
-                  Fizeo stands out for its commitment to personalized and
-                  <span className="hidden md:block"></span> specialized
-                  physiotherapy, offering individualized care,
-                  <span className="hidden md:block"></span> expertise in various
-                  specialties, a holistic wellness approach,
-                  <span className="hidden md:block"></span> patient empowerment
-                  through education, positive{" "}
-                  <span className="hidden md:block"></span>testimonials, and a
-                  dedication to staying at the forefront of
-                  <span className="hidden md:block"></span>
-                  cutting-edge practices.
+                RemDi focuses on sustainable health transformation by combining expert-led programmes with practical lifestyle changes. It offers personalized care, holistic wellness strategies, and structured meal plans to support recovery <span className="hidden md:block"></span>and long-term well-being. 
+                  
+                  
                 </p>
               </ScrollAnimation>
 
@@ -169,9 +167,9 @@ const WhyFizeo = () => {
                   {/* Image */}
                   <div className="rounded-2xl overflow-hidden relative z-10">
                     <img
-                      src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
+                      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
-                      className="w-full h-175 object-cover"
+                      className="w-full h-240 object-cover"
                     />
                   </div>
                 </div>

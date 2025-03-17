@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "../components/ui/button";
+import Link from "next/link";
 
 // Custom Home Icon using Tailwind CSS
 const CustomHomeIcon = () => (
@@ -87,8 +89,8 @@ const ServiceCard = ({
 }) => {
   return (
     <div
-      className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[390px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100"
+      className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[500px] flex flex-col gap-4  
+                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 overflow-hidden"
     >
       <div className="flex items-center gap-2 text-[var(--text-color-dark)] ">
         {icon}
@@ -107,45 +109,45 @@ const ServicesGrid = () => {
   const services = [
     {
       icon: <CustomHomeIcon />,
-      title: "Musculoskeletal Rehab",
+      title: "RemDi 2",
       description:
-        "Tailored rehabilitation programs for musculoskeletal conditions, injuries, and post-surgical recovery to restore optimal function and mobility.",
+        "RemDi utilises the power of nutrition to help individuals achieve remission and get their lives back on track. Achieve diabetes reversal or remission & reduce or even eliminate your dependence on medications. ",
     },
     {
       icon: <Customsports />,
-      title: "Sports Injury Care",
+      title: "Rem Bliss",
       description:
-        "Specialized care for athletes, including assessment, treatment, and prevention strategies to address sports-related injuries and enhance performance.",
+        "The programme utilises the power of nutrition and education to manage menopause & PCOS symptoms, lose weight, improve your hormonal balance, and boost your overall health.",
     },
     {
       icon: <CustomDiamondIcon />,
-      title: "Effective Pain Relief",
+      title: "Rem Meta",
       description:
-        "Comprehensive approach to alleviate pain through manual therapy, exercises, and education, targeting the root cause for long-term relief.",
+        "This program focuses on identifying the root cause of your metabolic disorder and developing a personalised plan to manage it. ",
     },
     {
       icon: <CustomHexagon />,
-      title: "Neuro Rehab",
+      title: "Rem Fit",
       description:
-        "Specialized interventions for individuals with neurological disorders, focusing on improving movement, balance, and overall functional independence.",
+        "Learn healthy habits and achieve your weight loss goals with our sustainable program, going beyond just calorie counting!",
     },
-    {
-      icon: <Customwellness />,
-      title: "Preventive Wellness",
-      description:
-        "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education.",
-    },
-    {
-      icon: <Customworkplace />,
-      title: "Workplace Ergonomics",
-      description:
-        "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment.",
-    },
+    // {
+    //   icon: <Customwellness />,
+    //   title: "Preventive Wellness",
+    //   description:
+    //     "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education.",
+    // },
+    // {
+    //   icon: <Customworkplace />,
+    //   title: "Workplace Ergonomics",
+    //   description:
+    //     "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment.",
+    // },
   ];
 
   return (
-    <div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 px-4 ">
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10">
+    <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat pb-28 px-4">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10  gap-y-6 justify-items-center">
         {services.map((service, index) => (
           <ServiceCard
             key={index}
@@ -155,8 +157,31 @@ const ServicesGrid = () => {
           />
         ))}
       </div>
+
+
+    <div className="px-[41%] mt-[5%]"><Link href="/contact">
+        <Button className="bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[var(--text-color-dark)] !font-bold rounded-md px-6 py-6">
+          FIND THE RIGHT PROGRAMME
+        </Button>
+      </Link>
+
+
+      {/* <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
+        Say good-bye to health conditions that hold you back!
+      </h2> */}
+      
+      
+      </div>
+
+      
+
+
     </div>
   );
+
+
+
+
 };
 
 export default ServicesGrid;

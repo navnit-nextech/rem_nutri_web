@@ -5,10 +5,11 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const TherapeuticExcellence = () => {
   return (
-    <div className="w-full py-20 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full py-20 bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
+
       <div className="max-w-7xl mx-auto px-6 md:px-20 flex flex-col items-center text-center relative">
         {/* Positioned SVG */}
-        <div className="relative md:absolute top-2 left-2 md:top-[-10%] md:left-[10%] hidden sm:block">
+        <div className="relative md:absolute top-2 left-2 md:top-[8%] md:left-[10%] hidden sm:block">
           <svg
             viewBox="0 0 59 59"
             className="w-24 h-24 scale-75 md:w-32 md:h-32 md:scale-100 rotate-180"
@@ -21,12 +22,23 @@ const TherapeuticExcellence = () => {
         </div>
 
         <ScrollAnimation>
-          <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[25%] font-['Libre_Baskerville',serif]">
-            Therapeutic excellence <br /> tailored for you.
+          <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
+          Say good-bye to health conditions that hold you back!  
           </h2>
         </ScrollAnimation>
 
-        <ScrollAnimation delay={0.2}>
+
+        {/* <ScrollAnimation delay={0.2}>
+          <p className="text-[#024027] text-lg sm:text-[20px]  font-['DM_Sans', 'sans-serif'] max-w-4xl mx-auto mb-12 leading-relaxed">
+          Take the first step towards a healthier and happier you. Our free <span className="hidden md:block"></span>  consultation allows you to discuss your health goals with our program <span className="hidden md:block"></span>  advisors and learn more about how RemDi can help you achieve them. 
+            
+            
+          </p>
+        </ScrollAnimation> */}
+
+
+
+        {/* <ScrollAnimation delay={0.2}>
           <p className="text-[#024027] text-lg sm:text-[20px]  font-['DM_Sans', 'sans-serif'] max-w-4xl mx-auto mb-12 leading-relaxed">
             At Fizeo, we offer a diverse range of services meticulously designed
             to
@@ -34,17 +46,16 @@ const TherapeuticExcellence = () => {
             needs. Whether you're recovering from an injury,{" "}
             <span className="hidden md:block"></span> seeking relief from pain,
             or aiming to optimize your physical well-being,{" "}
-            <span className="hidden md:block"></span> our team of dedicated
-            professionals is committed to providing therapeutic{" "}
-            <span className="hidden md:block"></span>excellence.
+            
+            
           </p>
-        </ScrollAnimation>
+        </ScrollAnimation> */}
 
-        <Link href="/services">
+        {/* <Link href="/services">
           <Button className="bg-[var(--background-color-light)]  font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[var(--text-color-dark)]  !font-bold rounded-md px-6 py-6">
-            Our services
+          Book A Free Consultation
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -2,11 +2,12 @@
 
 import React from 'react';
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer className="w-full  bg-[var(--background-color-dark)] text-white py-12 text-[14px]">
-      <div className="max-w-6xl mx-auto px-4 flex  flex-col items-start -md:pl-5 md:flex-row md:justify-between">
+      <div className="max-w-6xl mx-auto px-4 flex  flex-col items-start -md:pl-5 md:flex-row md:justify-between ">
 
         {/* <div className="max-w-6xl mx-auto px-4 flex flex-col items-start md:flex-row md:justify-between"></div> */}
 
@@ -24,7 +25,7 @@ const Footer = () => {
               />
             </svg>
             <span className="text-[var(--text-color-plain)] text-[20px] font-['DM_Sans', 'sans-serif'] tracking-[0.2em] font-medium">
-              FIZEO
+              RemDi
             </span>
           </div>
         </div>
@@ -48,7 +49,16 @@ const Footer = () => {
             <h3 className="text-lg text-[var(--text-color-plain)] font-medium mb-3 text-[10px] md:text-sm">Utilities</h3>
             <ul className="space-y-2">
               <li><a href="#" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Styleguide</a></li>
-              <li><a href="#" className="  text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Privacy Policy</a></li>
+
+              {/* <li>
+              <Link
+                href="/contact"
+                className="className= text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm"
+              >
+                Contact
+              </Link>
+              </li> */}
+              <li><Link href="privacy" className="  text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Privacy Policy</Link></li>
               <li><a href="#" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Update Log</a></li>
               <li><a href="#" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Feedback</a></li>
             </ul>
@@ -116,7 +126,7 @@ const Footer = () => {
           <a href="#" className="hover:text-[var(--text-color-light)] transition-colors">
           <Twitter size={20} />
           </a>
-          <a href="#" className="hover:text-[var(--text-color-light)] transition-colors">
+          <a href="#" className="hover: transition-colors">
             <Linkedin size={20} />
           </a>
         </div>

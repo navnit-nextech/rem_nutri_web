@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <div
       className="relative w-full min-h-screen pt-32 flex items-center justify-center 
-      bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
+      bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
     >
       <div className="max-w-7xl w-full relative">
         <div
@@ -17,15 +17,14 @@ const HeroSection = () => {
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left sm:!py-26 p-8 md:p-12 lg:p-20">
             <ScrollAnimation>
               <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
-                Expert care for your{" "}
-                <span className="text-[var(--text-color-light)] ">mobility</span>
+                We Care to{" "} <span className="hidden md:block"></span>
+                <span className="text-[var(--text-color-light)] ">Cure</span>
               </h1>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.2}>
               <p className="mt-6 lg:mt-8 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
-                Experience expert physiotherapy for enhanced mobility and a
-                vibrant life.
+              Discover the power of nutrition and education to achieve your health goals.
               </p>
             </ScrollAnimation>
 
@@ -34,11 +33,11 @@ const HeroSection = () => {
               <div className="mt-8 flex flex-col md:flex-row gap-4 w-full md:w-auto">
                 <button className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md" 
                 >
-                  Book now
+                  Know Yourself
                 </button>
-                <button className="w-full md:w-auto border-2 border-[var(--background-color-light] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
+                {/* <button className="w-full md:w-auto border-2 border-[var(--background-color-light] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
                   Contact us
-                </button>
+                </button> */}
               </div>
             </ScrollAnimation>
           </div>
@@ -47,7 +46,7 @@ const HeroSection = () => {
           <ScrollAnimation delay={0.3}>
             <div className="mt-3 lg:hidden w-full">
               <img
-                src="https://framerusercontent.com/images/aNU3HkDM6E1ItviWon24xupCE.jpg?scale-down-to=4096"
+                src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Physiotherapist helping a client with mobility training"
                 className="w-full h-[500px] object-cover sm:rounded-2xl shadow-lg"
               />
@@ -59,7 +58,7 @@ const HeroSection = () => {
         <ScrollAnimation delay={0.3} onlyFade>
           <div className="absolute top-[-15%] right-[-3.5%] w-[60%] h-[130%] hidden lg:flex items-center justify-center overflow-visible ">
             <img
-              src="https://framerusercontent.com/images/aNU3HkDM6E1ItviWon24xupCE.jpg?scale-down-to=4096"
+              src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Physiotherapist helping a client with mobility training"
               className="w-full max-w-[460px] h-[100%] object-cover rounded-3xl shadow-lg z-10"
             />

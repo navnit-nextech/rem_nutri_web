@@ -8,23 +8,23 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const testimonials = [
   {
-    text: "After a sports injury left me sidelined, Fizeo's physiotherapy team played a crucial role in my recovery. Their personalized approach and targeted exercises not only alleviated my pain but also helped me regain strength and flexibility. I'm back in the game, thanks to Fizeo!",
-    name: "Sarah M",
+    text: "With the help of Rem Nutri's team, I've been able to manage my blood sugar levels naturally and even reduce my medication!",
+    name: "Sarah Jones",
     image:
       "https://framerusercontent.com/images/F8FpD28VlKZcge0xDGDslltN6k.jpg?scale-down-to=2048",
   },
   {
-    text: "I cannot express enough gratitude to Fizeo for their exceptional physiotherapy services. Suffering from chronic back pain, I had tried various treatments with little success. The Fizeo team not only provided effective pain relief but also educated me on proactive strategies to manage my condition. Life-changing experience!",
-    name: "Todd S",
+    text: "The personalised meal plan and stress management techniques  by Rem Nutri helped me regulate my hormones and lose weight. Now, I feel more in control of my body and my health than ever before.",
+    name: "Priya Sharma",
     image:
-      "https://framerusercontent.com/images/pDynE5qiJcGHCSqpdUsgCtF9coc.jpg?scale-down-to=2048",
+      "https://images.unsplash.com/photo-1631005436794-ccaa79de61ba?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aW5kaWFuJTIwd29tYW58ZW58MHx8MHx8fDA%3D",
   },
-  {
-    text: "As someone with a neurological condition, finding the right physiotherapy was crucial. Fizeo exceeded my expectations. Their neuro-rehabilitation expertise and compassionate care have significantly improved my mobility and overall well-being. Highly recommended for anyone seeking top-notch physio services!",
-    name: "Melanie ]",
-    image:
-      "https://framerusercontent.com/images/TnND6kc2yg1n6MNWVR7VfKcvqE.jpg?scale-down-to=2048",
-  },
+  // {
+  //   text: "As someone with a neurological condition, finding the right physiotherapy was crucial. Fizeo exceeded my expectations. Their neuro-rehabilitation expertise and compassionate care have significantly improved my mobility and overall well-being. Highly recommended for anyone seeking top-notch physio services!",
+  //   name: "Melanie ]",
+  //   image:
+  //     "https://framerusercontent.com/images/TnND6kc2yg1n6MNWVR7VfKcvqE.jpg?scale-down-to=2048",
+  // },
 ];
 
 const variants = {

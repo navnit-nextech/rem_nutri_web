@@ -74,13 +74,13 @@ const FizeoApproach = () => {
         </ScrollAnimation>
 
         <ScrollAnimation delay={0.4}>
-          <div className="inline-flex bg-[var(--background-color-plain)] sm:rounded-full rounded-2xl px-6 py-4 shadow-sm max-sm:flex-wrap">
+          <div className="inline-flex bg-[var(--background-color-plain)] -mb-5 sm:rounded-full rounded-2xl px-15 py-2 shadow-sm gap-10 max-sm:flex-wrap">
             {(["Evidence", "Holistic", "Empowering"] as ApproachTab[]).map(
               (tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-20 py-4 max-sm:w-full font-bold  text-lg rounded-full font-['Libre_Baskerville',serif] transition-colors ${
+                  className={`px-8 py-2 max-sm:w-full  text-lg rounded-full text-[20px] font-['Libre_Baskerville',serif] transition-colors ${
                     activeTab === tab
                       ? "bg-[var(--background-color-dark)] text-[var(--text-color-plain)]"
                       : "text-[#043A22] hover:bg-fizeo-beige-bg/50"
@@ -95,7 +95,7 @@ const FizeoApproach = () => {
 
         {/* Tab content */}
         <ScrollAnimation delay={0.6}>
-          <div className="relative rounded-xl  mb-10 w-full max-w-[1400px] mx-auto">
+          <div className="relative rounded-xl  mb-10 w-[98%] max-w-[1400px] mx-auto">
             <AnimatePresence mode="wait">
               <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#8FC2AA] rounded-2xl z-0"></div>
               <motion.div
@@ -109,9 +109,9 @@ const FizeoApproach = () => {
                 <motion.img
                   src={tabContent[activeTab].image}
                   alt={tabContent[activeTab].title}
-                  className="w-full h-[500px] md:h-[600px] object-cover rounded-3xl z-10"
+                  className="w-full h-[500px] md:h-[580px] object-cover rounded-3xl z-10"
                 />
-                <div className="absolute inset-0 bg-black/40 z-20 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-black/50 z-20 rounded-3xl"></div>
               </motion.div>
             </AnimatePresence>
 
