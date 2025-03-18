@@ -25,7 +25,10 @@ const TherapeuticExcellence = () => {
           <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
           Say good-bye to health conditions that hold you back!  
           </h2>
+          
         </ScrollAnimation>
+
+        
 
 
         {/* <ScrollAnimation delay={0.2}>
