@@ -75,8 +75,8 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--background-color-dark)] py-20 sm:py-40 relative">
-      <div className=" absolute sm:top-[-4.2%] -top-12 left-[50%] transform -translate-x-1/2 ">
+    <div className="w-full bg-[var(--background-color-dark)] pt-20 md:pb-25 sm:pt-40 sm:pb-15  relative">
+      <div className=" absolute sm:top-[-4.5%] -top-12 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56 56"
@@ -219,21 +219,7 @@ const Testimonials = () => {
               </AnimatePresence>
             </div>
 
-            <div className="flex justify-center gap-2 mt-8">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1);
-                    setCurrentIndex(index);
-                  }}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentIndex ? "bg-[var(--background-color-light)] w-4" : "bg-white/50"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
+            
 
             <button
               onClick={handlePrev}

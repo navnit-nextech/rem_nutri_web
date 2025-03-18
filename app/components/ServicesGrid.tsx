@@ -100,7 +100,8 @@ const ServiceCard = ({ icon, title, description, onClick }: {
   return (
     <div
       className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[500px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 overflow-hidden cursor-pointer"
+                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 overflow-hidden cursor-pointer
+                 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out"
       onClick={onClick}
     >
       <div className="flex items-center gap-2 text-[var(--text-color-dark)] ">
@@ -220,7 +221,7 @@ const ServicesGrid = () => {
 
   return (
     <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat pb-28 px-4">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center ">
         {services.map((service, index) => (
           <ServiceCard
             key={index}
@@ -232,13 +233,13 @@ const ServicesGrid = () => {
         ))}
       </div>
   
-      <div className="md:px-[41%] mt-[5%]">
+      {/* <div className="md:px-[41%] mt-[5%]">
         <Link href="/contact">
           <Button className="bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[var(--text-color-dark)] !font-bold rounded-md w-full px-6 py-6">
             FIND THE RIGHT PROGRAMME
           </Button>
         </Link>
-      </div>
+      </div> */}
   
       {selectedService && (
         <Modal

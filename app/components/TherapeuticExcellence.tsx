@@ -5,7 +5,7 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const TherapeuticExcellence = () => {
   return (
-    <div className="w-full py-20 bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full py-10 bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
 
       <div className="max-w-7xl mx-auto px-6 md:px-20 flex flex-col items-center text-center relative">
         {/* Positioned SVG */}
@@ -22,7 +22,7 @@ const TherapeuticExcellence = () => {
         </div>
 
         <ScrollAnimation>
-          <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-5 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
+          <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-7 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
           Say good-bye to health conditions that hold you back!  
           </h2>
           
@@ -54,11 +54,11 @@ const TherapeuticExcellence = () => {
           </p>
         </ScrollAnimation> */}
 
-        {/* <Link href="/services">
-          <Button className="bg-[var(--background-color-light)]  font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[var(--text-color-dark)]  !font-bold rounded-md px-6 py-6">
-          Book A Free Consultation
+        <Link href="/contact">
+          <Button className="bg-[var(--background-color-light)]  hover:opacity-80 font-['DM_Sans', 'sans-serif'] text-[16px] text-[var(--text-color-dark)]  !font-bold rounded-md px-6 py-6 cursor-pointer">
+          FIND THE RIGHT PROGRAMME
           </Button>
-        </Link> */}
+        </Link>
       </div>
     </div>
   );

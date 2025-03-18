@@ -2,6 +2,7 @@ import React from "react";
 import { Heart, Target, Leaf, User } from "lucide-react";
 import { Button } from "../components/ui/button";
 import ScrollAnimation from "./ScrollAnimation";
+import Link from "next/link";
 
 const FeatureCard = ({
   icon,
@@ -33,7 +34,7 @@ const Topdecorative = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
-    className="fill-[#8FC2AA] w-full h-full"
+    className="fill-[#8FC2AA] w-full h-full  md:w-30 md:h-30"
   >
     <path d="M 48.292 12.972 L 35.025 0.157 L 21.758 12.972 L 0.186 25.348 L 10.29 45.126 L 13.433 65.918 L 35.025 63.539 L 56.617 65.918 L 59.76 45.126 L 69.864 25.348 Z"></path>
   </svg>
@@ -132,7 +133,8 @@ const WhyFizeo = () => {
   return (
     <>
       <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
-        <div className="absolute  max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[45%] -top-8 ">
+      <div className="absolute max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[42%] md:left-[48%] -top-5 md:-top-12 transition-transform duration-300 rotate-45">
+
           <Topdecorative />
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 ">
@@ -154,10 +156,12 @@ const WhyFizeo = () => {
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.4}>
-                <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-6">
-                  About us
-                </Button>
-              </ScrollAnimation>
+  <Link href="/about" >
+    <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:opacity-80 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-6 cursor-pointer">
+      About Us
+    </Button>
+  </Link>
+</ScrollAnimation>
 
               <ScrollAnimation delay={0.6}>
                 <div className="relative mt-12">

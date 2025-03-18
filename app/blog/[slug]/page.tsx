@@ -235,14 +235,14 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
         </div>
         {/* Image Section */}
         <div className="w-[60%] max-w-4xl mt-30">
-          <Image
-            src={post.secondImageUrl}
-            alt="Yoga session"
-            width={1200}
-            height={400}
-            className="w-full h-auto rounded-lg shadow-lg "
-          />
-        </div>
+  <Image
+    src={post.secondImageUrl}
+    alt="Yoga session"
+    width={1200} 
+    height={400} 
+    className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+  />
+</div>
 
       </div>
 

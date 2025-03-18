@@ -84,7 +84,7 @@ const GetInTouch = () => {
             {/* Image section */}
             <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden">
               <img
-                src="https://framerusercontent.com/images/Pgmx10jt5D9VoQrgCviW7WkbsI.jpg"
+                src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Person exercising"
                 className="w-full h-full object-cover"
               />
@@ -114,7 +114,7 @@ const GetInTouch = () => {
                 <div className="flex items-center space-x-3">
                   <Customhome />
                   <span className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
-                    123 Main Street, French, 56789, Townsville.
+                    123 Main Street,Banglore.
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -129,7 +129,7 @@ const GetInTouch = () => {
                     href="mailto:info@fizeo.com"
                     className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif] underline"
                   >
-                    info@fizeo.com
+                    info@remDi.com
                   </a>
                 </div>
               </div>

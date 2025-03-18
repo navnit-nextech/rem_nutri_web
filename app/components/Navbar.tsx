@@ -24,16 +24,16 @@ const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="max-w-7xl w-full h-full mx-auto flex  items-center justify-between sm:px-8">
           {/* Logo */}
-         
-            <Link href="/" className="">
-              <div className="w-40 h-40 -pr-15 rounded-xl pt-16 pr-5">
-                {/* SVG Logo */}
-                <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" />
 
-              </div>
-              
-            </Link>
-          
+          <Link href="/" className="">
+            <div className="w-40 h-40 -pr-15 rounded-xl pt-16 pr-5">
+              {/* SVG Logo */}
+              <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" />
+
+            </div>
+
+          </Link>
+
 
           {/* Navigation Links & Button - Desktop */}
           <div className="hidden md:flex items-center space-x-15">
@@ -63,9 +63,14 @@ const Navbar: React.FC<NavbarProps> = ({
                 Contact
               </Link>
             </div>
-            <Button className="hover:bg-[#035C3B] tracking-wide text-[var(--text-color-plain)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md" style={{ backgroundColor: "var(--background-color-dark)" }}>
-              Book an appointment
-            </Button>
+            <Button
+  className="bg-[var(--background-color-dark)] hover:opacity-80 text-[var(--text-color-plain)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md cursor-pointer"
+>
+  <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
+    Book an appointment
+  </a>
+</Button>
+
           </div>
 
           {/* Hamburger Menu Button - Mobile */}
@@ -157,12 +162,12 @@ const Navbar: React.FC<NavbarProps> = ({
                 }}
               >
                 <Link
-  href="/about"
-  className="text-[var(--text-color-dark)] text-[24px] font-normal"
-  onClick={() => setIsOpen(false)}
->
-  About
-</Link>
+                  href="/about"
+                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
+                  onClick={() => setIsOpen(false)}
+                >
+                  About
+                </Link>
 
               </motion.div>
 
@@ -242,12 +247,20 @@ const Navbar: React.FC<NavbarProps> = ({
                   exit: { y: 20, opacity: 0 },
                 }}
               >
+
+
                 <Button
-                  className="bg-[var(--background-color-light)] hover:bg-[#5FE87A] text-[var(--text-color-dark)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md mt-8 font-['DM_Sans',serif] w-full"
-                  onClick={() => setIsOpen(false)}
+                  className="bg-[var(--background-color-light)] hover:opacity-80 text-[var(--text-color-dark)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md mt-8 w-full"
+                  asChild
                 >
-                  Book an appointment
+                  <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
+                    Book an appointment
+                  </a>
                 </Button>
+
+
+
+
               </motion.div>
             </motion.div>
           </motion.div>

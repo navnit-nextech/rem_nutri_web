@@ -35,7 +35,7 @@ const HeroSection = () => {
                   href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center"
+                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 "
                 >
                   Know Yourself
                 </a>
