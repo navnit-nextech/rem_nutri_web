@@ -366,7 +366,9 @@ const ServicesGrid = () => {
     icon: React.JSX.Element;
     title: string;
     description: string;
+    details: string; // ✅ Add this
   } | null>(null);
+  
   
   const services = [
     {
@@ -451,7 +453,7 @@ const ServicesGrid = () => {
       {selectedService && (
         <Modal
           title={selectedService.title}
-          description={selectedService.description}  // Changed to 'description'
+          description={selectedService.details}  // Changed to 'description'
           onClose={() => setSelectedService(null)}
         />
       )}
