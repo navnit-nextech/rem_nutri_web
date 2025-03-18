@@ -24,7 +24,7 @@ const AboutImageGrid = () => {
               <div className="flex flex-col gap-6">
                 <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <Image
-                    src="/images/about/11.avif"
+                    src="https://plus.unsplash.com/premium_photo-1709560427703-f1d6336971ca?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Fizeo facility"
                     fill
                     className="object-cover"
@@ -32,7 +32,7 @@ const AboutImageGrid = () => {
                 </div>
                 <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <Image
-                    src="/images/about/12.avif"
+                    src="https://images.unsplash.com/photo-1621919472462-6db865a003e4?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Fizeo training"
                     fill
                     className="object-cover"
@@ -40,7 +40,7 @@ const AboutImageGrid = () => {
                 </div>
                 <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <Image
-                    src="/images/about/13.avif"
+                    src="https://images.unsplash.com/photo-1629121958394-3be95d8c057c?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Fizeo equipment"
                     fill
                     className="object-cover"
@@ -48,7 +48,7 @@ const AboutImageGrid = () => {
                 </div>
                 <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <Image
-                    src="/images/about/21.avif"
+                    src="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Fizeo environment"
                     fill
                     className="object-cover"
@@ -64,7 +64,7 @@ const AboutImageGrid = () => {
               <div className="flex flex-col gap-6 max-sm:hidden">
                 <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <Image
-                    src="/images/about/22.avif"
+                    src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Fizeo wellness"
                     fill
                     className="object-cover"
@@ -72,7 +72,7 @@ const AboutImageGrid = () => {
                 </div>
                 <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <Image
-                    src="/images/about/23.avif"
+                    src="https://images.unsplash.com/photo-1567740034541-1ff8b618a370?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Fizeo therapy"
                     fill
                     className="object-cover"

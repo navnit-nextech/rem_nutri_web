@@ -16,6 +16,18 @@ import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
 
 
+const Customright = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    
+    className="w-120 h-60 absolute left-auto -right-55 text-[#8FC2AB] top-[45%] fill-current -rotate-90 opacity-30"
+
+  >
+    <path d="M 289.837 132.633 L 346.008 100.194 L 336.064 82.966 L 278.661 116.116 C 276.455 113.366 274.133 110.711 271.7 108.16 L 319.054 60.793 L 304.991 46.726 L 256.831 94.898 C 254.142 92.865 251.37 90.943 248.523 89.137 L 282.823 29.713 L 265.599 19.766 L 230.903 79.878 C 227.898 78.599 224.844 77.442 221.746 76.409 L 239.785 9.07 L 220.575 3.922 L 202.423 71.68 C 199.256 71.174 196.07 70.792 192.872 70.536 L 192.872 0.274 L 172.984 0.274 L 172.984 70.536 C 169.786 70.792 166.6 71.174 163.432 71.68 L 145.281 3.922 L 126.071 9.07 L 144.109 76.409 C 141.012 77.442 137.957 78.599 134.953 79.878 L 100.256 19.766 L 83.032 29.713 L 117.333 89.137 C 114.486 90.943 111.714 92.865 109.025 94.898 L 60.865 46.726 L 46.802 60.793 L 94.156 108.16 C 91.723 110.711 89.4 113.366 87.194 116.116 L 29.792 82.966 L 19.848 100.194 L 76.019 132.633 C 74.191 135.873 72.513 139.195 70.988 142.588 L 9.155 126.015 L 4.008 145.231 L 64.328 161.397 C 63.322 165.203 62.501 169.055 61.868 172.94 L 0.36 172.94 L 0.36 192.834 L 365.495 192.834 L 365.495 172.94 L 303.988 172.94 C 303.355 169.055 302.534 165.203 301.529 161.397 L 361.848 145.231 L 356.701 126.015 L 294.868 142.588 C 293.343 139.195 291.664 135.873 289.837 132.633 Z"></path>
+  </svg>
+);
+
 
 const Custommsg = () => (
   <svg
@@ -94,18 +106,22 @@ const ContactForm = () => {
   
   
   
-  <div className="w-full bg-[var(--background-color-plain1)] py-16 md:py-24 mt-25">
+  <div className="w-full bg-[var(--background-color-plain1)] py-30 md:py-50 ">
+
+    <Customright/>
       
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 z=10">
         <div className="grid grid-cols-1 md:grid-cols-2  ">
           {/* Left column with text and contact info */}
           <div className="space-y-12">
             {/* Heading and intro text */}
             <div className="space-y-6">
-              <h2 className="text-[26px] md:text-[40px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">Let's talk</h2>
+              <h2 className="text-[26px] md:text-[40px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">Ready to Take Control of Your Health? </h2>
               <p className="text-[20px] font-['DM_Sans', 'sans-serif'] text-[var(--text-color-dark)] leading-relaxed">
-                From pain management to performance optimization, <span className="hidden md:block"></span>we're here to understand your needs and guide you <span className="hidden md:block"></span>toward a healthier, more active life. Start a <span className="hidden md:block"></span>conversation with us for a personalized approach to<span className="hidden md:block"></span> your well-being journey.
+              At RemDi, we're here to support you on <span className="hidden md:block"></span> your journey to a healthier you. Contact <span className="hidden md:block"></span>us today to discuss your health goals and learn <span className="hidden md:block"></span>how our programs can help you achieve them. 
               </p>
+
+              
             </div>
 
             {/* Separator line */}
@@ -120,7 +136,7 @@ const ContactForm = () => {
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px] font-['Libre_Baskerville',serif]">Email us</h3>
                   <a href="mailto:info@fizeo.com" className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">
-                    info@fizeo.com
+                    info@remDi.com
                   </a>
                 </div>
               </div>
@@ -141,7 +157,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px]  font-['Libre_Baskerville',serif]">Find us</h3>
-                  <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">123 Main Street, French, 56789, Townsville.</span>
+                  <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">123 Main Street, Banglore</span>
                 </div>
               </div>
             </div>
@@ -164,10 +180,14 @@ const ContactForm = () => {
                 <Custtwit />
               </a>
             </div>
+
+            {/* <span className="text-[var(--text-color-dark)] text-[30px] font-['DM_Sans', 'sans-serif']">We look forward to hearing from you!</span> */}
           </div>
+          
+
 
           {/* Right column with form */}
-          <div className="border border-[#ebe5da] bg-[var(--background-color-plain)] px-16 py-20 rounded-2xl relative -ml-4 md:-ml-8">
+          <div className="border border-[#ebe5da] bg-[var(--background-color-plain)] px-16 py-35 rounded-2xl relative -ml-4 md:-ml-8">
 
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -235,6 +255,10 @@ const ContactForm = () => {
               >
                 Submit
               </Button>
+
+              <span className="text-[var(--text-color-dark)] text-[30px] font-['DM_Sans', 'sans-serif']">We look forward to hearing from you!</span>
+
+             
             </form>
           </div>
 

@@ -44,7 +44,7 @@ const HeroSection = () => {
 
           {/* Mobile Image */}
           <ScrollAnimation delay={0.3}>
-            <div className="mt-3 lg:hidden w-full">
+            <div className="mt-3 lg:hidden w-full bg-red-500">
               <img
                 src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Physiotherapist helping a client with mobility training"
@@ -67,7 +67,7 @@ const HeroSection = () => {
 
         {/* Circle decoration */}
         <ScrollAnimation delay={0.6} onlyFade>
-          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-20 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 z-20">
+          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-25 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 z-20">
             <div className="w-full h-full rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center z-20">
               <div className="w-3/4 h-3/4 rounded-full flex items-center justify-center border-[10px] md:border-[15px] border-[#F4C6A5] z-20"></div>
             </div>

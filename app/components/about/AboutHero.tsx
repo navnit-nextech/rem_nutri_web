@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollAnimation from "../ScrollAnimation";
 
@@ -28,25 +29,45 @@ const imageCol2 = [
 ];
 
 const AboutHero = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleText = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <ScrollAnimation onlyFade>
       <div className="w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-6 sm:pt-10 pb-10 sm:pb-20 relative overflow-hidden min-h-[100dvh] pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Content Section */}
           <div className="flex-1 text-center lg:text-left mt-16 sm:mt-24 lg:mt-48">
-            <h1 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)]text-2xl sm:text-3xl md:text-[40px] mb-4 sm:mb-6 px-2 sm:px-0">
-              Our passion for physical{" "}
-              <span className="text-[var(--text-color-light)]">therapy excellence</span>
+            <h1 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] text-2xl sm:text-3xl md:text-[40px] mb-4 sm:mb-6 px-2 sm:px-0">
+              OUR{" "}
+              <span className="text-[var(--text-color-light)]">STORY</span>
             </h1>
-            <p className="font-['DM_Sans','sans-serif'] text-[var(--text-color-plain)] text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-2 sm:px-0">
-              At Fizeo, we are your dedicated physiotherapy partners, blending
-              expertise with empathy. Our mission is simple: to guide you on the
-              path to optimal health through personalized and evidence-based
-              care. Experience the difference of healing with Fizeo, where your
-              well-being is our priority.
-            </p>
-            <button className="w-[90%] sm:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-3 sm:py-4 md:py-3 px-6 rounded-lg shadow-md hover:bg-[#5ee079] transition-colors">
-              View our services
+
+            {/* Scrollable Content Section */}
+            <div
+              className={`max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-2 sm:px-0 transition-all duration-500 ${
+                isExpanded ? "h-auto max-h-[500px] overflow-y-auto" : "h-[250px] sm:h-[300px] overflow-y-auto"
+              }`}
+            >
+              <p className="font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-base sm:text-lg md:text-xl">
+                {isExpanded
+                  ? `This is the story of two best friends that began some 38 years ago at Padmavathi University when Sri & Hithasri were doing their postgraduate studies in Nutrition & Dietetics. It was here that they were both first exposed to the transformative wonders of nutrition in disease management while pursuing their Postgraduate Diploma in Nutrition & Dietetics. This pivotal period marked the beginning of their journey into healthcare, fuelled by a deep understanding of the transformative power of nutrition & education in managing chronic illnesses. While Hithasri pursued her career as Chief Dietitian at NIIMS, Hyderabad, India, Sri pursued her career as Clinical Lead for Nutrition & Dietetics in the United Kingdom at Rotherham NHS Foundation Trust..  
+                
+                Sri's illustrious career in Nutrition and Dietetic services spans over 30 years both here in India in the early stages of her career and then in the UK for 26yrs. Her PGDip in Dietetics was complemented by her Master's in Diabetes care from York University. Hithasri on the other hand has gained experience and expertise in the Indian setting working at the World famous Nizams Institute of Medical Sciences. The genesis of RemDi is a testament to their collective experience with healthcare mavericks from across India and the world, and the support of their friends and family over the years. Over the years of their practice they have seen how little people understood the value of food for their health.
+
+                With RemDi, Sri and Hithasri aspire to empower countless Indians to take control of their chronic illnesses and reclaim their lives. This pioneering endeavour is a culmination of her unwavering dedication, expertise, and passion for making a meaningful difference in the lives of others. They are passionate about giving people the skills and knowledge to eat well for themselves and their families. Making people realise the truth of the age old adage- “Food is the best medicine.”`
+                  : `This is the story of two best friends that began some 38 years ago at Padmavathi University when Sri & Hithasri were doing their postgraduate studies in Nutrition & Dietetics. It was here that they were both first exposed to the transformative wonders of nutrition in disease management while pursuing their Postgraduate Diploma in Nutrition & Dietetics. This pivotal period marked the beginning of their journey into healthcare, fuelled by a deep understanding of the transformative power of nutrition & education in managing chronic illnesses.`}
+              </p>
+            </div>
+
+            <button
+              className="w-[90%] sm:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-3 sm:py-4 md:py-3 px-6 rounded-lg shadow-md hover:bg-[#5ee079] transition-colors"
+              onClick={toggleText}
+            >
+              {isExpanded ? "Read Less" : "Read More"}
             </button>
           </div>
 
@@ -117,6 +138,7 @@ const AboutHero = () => {
 };
 
 export default AboutHero;
+
 
 const HeroSvg1 = () => (
   <svg viewBox="0 0 88 88" id="svg12565848380">
