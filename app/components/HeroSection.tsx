@@ -11,7 +11,7 @@ const HeroSection = () => {
         <div
           className="relative bg-[var(--background-color-dark)] w-[95%] mx-auto flex flex-col lg:flex-row items-center justify-between overflow-hidden 
   sm:rounded-[0px_24px_0px_24px] rounded-3xl"
-          
+
         >
           {/* Content */}
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left sm:!py-26 p-8 md:p-12 lg:p-20">
@@ -24,22 +24,27 @@ const HeroSection = () => {
 
             <ScrollAnimation delay={0.2}>
               <p className="mt-6 lg:mt-8 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
-              Discover the power of nutrition and education to achieve your health goals.
+                Discover the power of nutrition and education to achieve your health goals.
               </p>
             </ScrollAnimation>
 
             {/* Buttons */}
             <ScrollAnimation delay={0.4}>
               <div className="mt-8 flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                <button className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md" 
+                <a
+                  href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center"
                 >
                   Know Yourself
-                </button>
-                {/* <button className="w-full md:w-auto border-2 border-[var(--background-color-light] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
-                  Contact us
-                </button> */}
+                </a>
+                {/* <button className="w-full md:w-auto border-2 border-[var(--background-color-light)] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
+      Contact us
+    </button> */}
               </div>
             </ScrollAnimation>
+
           </div>
 
           {/* Mobile Image */}

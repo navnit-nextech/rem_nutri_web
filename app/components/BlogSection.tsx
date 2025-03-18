@@ -2,30 +2,26 @@ import React from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import ScrollAnimation from "./ScrollAnimation";
+import Image from "next/image";
+import { client } from "../../sanity/lib/client";
 
 interface BlogPost {
   title: string;
   description: string;
   image: string;
+  slug: string;
 }
 
-const BlogSection = () => {
-  const blogPosts: BlogPost[] = [
-    {
-      title: "Reversing Type 2 Diabetes: A New Approach with RemDi",
-      description:
-        "Discover how RemDi's personalised nutrition and lifestyle-based approach can help manage and potentially reverse Type 2 Diabetes for long-term health benefits.",
-      image:
-        "https://images.unsplash.com/photo-1463367620918-d4824d05ce0e?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      title: "The Role of Nutrition in Managing Metabolic Disorders",
-      description:
-        "Explore how tailored nutrition and holistic wellness strategies at RemDi can help balance metabolism and support better health outcomes.",
-      image:
-        "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
+const BlogSection = async () => {
+  const blogPosts: BlogPost[] = await client.fetch(`
+    *[_type == "post"] | order(publishedAt desc)[0..1]{
+      title,
+      "slug": slug.current,
+      "image": mainImageUrl,
+      "description": titleLine,
+      publishedAt
+    }
+  `);
 
   return (
     <div className="w-full py-16 bg-[var(--background-color-plain)] bg-cover bg-center bg-no-repeat relative">
@@ -60,24 +56,29 @@ const BlogSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 mb-15">
           {blogPosts.map((post, index) => (
             <ScrollAnimation key={index} delay={index * 0.2}>
-              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden h-full">
-                <div className="h-90 overflow-hidden rounded-2xl">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:rotate-3 hover:scale-110"
-                  />
-                </div>
+              <Link href={`/blog/${post.slug}`}>
+                <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden h-full cursor-pointer">
+                  <div className="h-90 overflow-hidden rounded-2xl">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:rotate-3 hover:scale-110"
+                      width={600}
+                      height={350}
+                      priority
+                    />
+                  </div>
 
-                <div className="p-12">
-                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px]  mb-3">
-                    {post.title}
-                  </h3>
-                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
-                    {post.description}
-                  </p>
+                  <div className="p-12">
+                    <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px]  mb-3">
+                      {post.title}
+                    </h3>
+                    <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
+                      {post.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </ScrollAnimation>
           ))}
         </div>

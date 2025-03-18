@@ -157,12 +157,13 @@ const Navbar: React.FC<NavbarProps> = ({
                 }}
               >
                 <Link
-                  href="/about"
-                  className=" text-[24px] font-normal"
-                  onClick={() => setIsOpen(false)}
-                >
-                  About
-                </Link>
+  href="/about"
+  className="text-[var(--text-color-dark)] text-[24px] font-normal"
+  onClick={() => setIsOpen(false)}
+>
+  About
+</Link>
+
               </motion.div>
 
               <motion.div
