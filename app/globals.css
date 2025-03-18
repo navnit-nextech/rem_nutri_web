@@ -5,13 +5,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --background-color-dark: #024027;
-  --background-color-light: #76FB91 ;
+  --background-color-dark: #1B0D30;
+  --background-color-light: #D0B3FF ;
   --background-color-plain: #F4F1EB;
   --background-color-plain2: #EBE5DA;
   --background-color-plain3: #FFFFFF;
-  --text-color-dark: #024027;
-  --text-color-light: #76FB91;
+  --text-color-dark: #1B0D30;
+  --text-color-light: #D0B3FF;
   --text-color-plain: #FFFFFF;
 
   

@@ -89,7 +89,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
     <div>
       <Navbar />
 
-      <header className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-[13%] pb-[5%] px-[8%] mt-20 min-h-[100vh] relative">
+      <header className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-[13%] pb-[5%] px-[8%] min-h-[100vh] relative">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
           <nav className="text-sm mb-6">
