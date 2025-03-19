@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "../components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   bgColor?: string; // Optional prop for background color
@@ -13,6 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({
   bgColor = "bg-[rgb(244,241,235)]",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -40,36 +42,52 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="flex items-center space-x-9">
               <Link
                 href="/about"
-                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                  pathname === "/about" 
+                    ? "text-[var(--text-color-light)] font-medium" 
+                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                }`}
               >
                 About
               </Link>
               <Link
                 href="/services"
-                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                  pathname === "/services" 
+                    ? "text-[var(--text-color-light)] font-medium" 
+                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                }`}
               >
                 Services
               </Link>
               <Link
                 href="/blog"
-                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                  pathname === "/blog" 
+                    ? "text-[var(--text-color-light)] font-medium" 
+                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                }`}
               >
                 Blog
               </Link>
               <Link
                 href="/contact"
-                className="text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal hover:text-fizeo-dark-green transition-colors"
+                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                  pathname === "/contact" 
+                    ? "text-[var(--text-color-light)] font-medium" 
+                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                }`}
               >
                 Contact
               </Link>
             </div>
             <Button
-  className="bg-[var(--background-color-dark)] hover:opacity-80 text-[var(--text-color-plain)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md cursor-pointer"
->
-  <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
-    Book an appointment
-  </a>
-</Button>
+              className="bg-[var(--background-color-dark)] hover:opacity-80 text-[var(--text-color-plain)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md cursor-pointer"
+            >
+              <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
+                Book an appointment
+              </a>
+            </Button>
 
           </div>
 
@@ -163,7 +181,11 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/about"
-                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
+                  className={`text-[24px] font-normal ${
+                    pathname === "/about" 
+                      ? "text-[var(--text-color-light)] font-medium" 
+                      : "text-[var(--text-color-dark)]"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   About
@@ -184,7 +206,11 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/services"
-                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
+                  className={`text-[24px] font-normal ${
+                    pathname === "/services" 
+                      ? "text-[var(--text-color-light)] font-medium" 
+                      : "text-[var(--text-color-dark)]"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   Services
@@ -204,7 +230,11 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/blog"
-                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
+                  className={`text-[24px] font-normal ${
+                    pathname === "/blog" 
+                      ? "text-[var(--text-color-light)] font-medium" 
+                      : "text-[var(--text-color-dark)]"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   Blog
@@ -224,7 +254,11 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/contact"
-                  className="text-[var(--text-color-dark)] text-[24px] font-normal"
+                  className={`text-[24px] font-normal ${
+                    pathname === "/contact" 
+                      ? "text-[var(--text-color-light)] font-medium" 
+                      : "text-[var(--text-color-dark)]"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   Contact

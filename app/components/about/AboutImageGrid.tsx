@@ -9,10 +9,10 @@ const AboutImageGrid = () => {
         <ScrollAnimation>
           <div className="sm:my-20">
             <h2 className="text-3xl md:text-5xl text-center mb-4 font-['Libre_Baskerville',serif]">
-              Inside Fizeo
+              Inside RemDi
             </h2>
             <p className="text-lg text-center max-w-3xl mx-auto mb-12">
-              Step inside the life at Fizeo. Witness the warm and welcoming
+              Step inside the life at RemDi. Witness the warm and welcoming
               environment, cutting-edge facilities, and compassionate team
               dedicated to your well-being.
             </p>

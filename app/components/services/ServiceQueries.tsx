@@ -9,44 +9,44 @@ import {
 } from "../../components/ui/accordion";
 const faqItems = [
   {
-    question: "How can physiotherapy benefit me?",
-    answer: "Physiotherapy enhances mobility, reduces pain, and promotes overall well-being. Our personalized approach addresses your specific needs, whether recovering from an injury, managing a chronic condition, or optimizing performance."
+    question: "How does diabetes affect the body?",
+    answer: "Diabetes is a metabolic disorder characterised by high blood glucose levels due to insufficient insulin production or ineffective insulin use in the body."
   },
   {
-    question: "What conditions do physiotherapists treat?",
-    answer: "Physiotherapists treat a wide range of conditions, including musculoskeletal issues, sports injuries, neurological disorders, and respiratory conditions. Our team is equipped to address diverse health concerns."
+    question: "What does it mean to have prediabetes?",
+    answer: "Prediabetes is a condition where blood glucose levels are higher than normal but not yet high enough to be diagnosed as type 2 diabetes."
   },
   {
-    question: "How long does a typical physiotherapy session last?",
-    answer: "Sessions typically last 45 to 60 minutes, but the duration may vary based on your condition and treatment plan. Our focus is on quality care, ensuring ample time for assessment, treatment, and education."
+    question: "Why is high blood pressure dangerous?",
+    answer: "High blood pressure, or hypertension, is a condition where the force of blood against the artery walls is consistently too high, increasing the risk of heart disease and other health complications."
   },
   {
-    question: "What should I expect during my first physiotherapy session?",
-    answer: "Your initial session involves a comprehensive assessment, where we discuss your medical history, assess your condition, and outline a personalized treatment plan. It's an opportunity for us to understand your goals and tailor our approach."
+    question: "What are PCOS and PCOD, and how do they impact health?",
+    answer: "PCOS (Polycystic Ovary Syndrome) or PCOD (Polycystic Ovarian Disorder) is a hormonal disorder common among women of reproductive age, characterised by irregular menstrual cycles, excess androgen levels, and cysts in the ovaries, often leading to fertility issues and other health concerns."
   },
   {
-    question: "Is physiotherapy painful?",
-    answer: "While some treatments may involve discomfort, our goal is to minimize pain and maximize comfort. We communicate closely with you, adjusting treatments based on your feedback to ensure a positive and effective experience."
+    question: "What happens during menopause?",
+    answer: "Menopause is a natural biological process that occurs in women typically around the age of 50, marking the end of menstrual cycles and fertility due to a decrease in hormone production, often accompanied by symptoms like hot flashes, mood swings, and changes in sleep patterns."
   },
   {
-    question: "How many sessions will I need?",
-    answer: "The number of sessions varies depending on your condition and response to treatment. We work collaboratively, regularly assessing progress and adjusting the treatment plan to achieve optimal results."
+    question: "How does hypothyroidism affect the body?",
+    answer: "Hypothyroidism is a condition where the thyroid gland does not produce enough thyroid hormones, leading to symptoms such as fatigue, weight gain, cold sensitivity, and dry skin. It can affect metabolism and overall bodily functions if left untreated."
   },
   {
-    question: "Do I need a referral from a doctor to see a physiotherapist?",
-    answer: "In most cases, you can directly access physiotherapy without a doctor's referral. However, some insurance plans may require a referral for coverage. Check with your insurance provider or contact us for more information."
+    question: "What is cardiovascular disease, and what causes it?",
+    answer: "Cardiovascular disease refers to conditions that affect the heart or blood vessels, including coronary artery disease, heart attacks, stroke, and peripheral artery disease, often caused by factors like high blood pressure, high cholesterol, smoking, and diabetes. It is a leading cause of death worldwide."
   },
   {
-    question: "Can physiotherapy help prevent injuries?",
-    answer: "Absolutely! Physiotherapy includes education on proper body mechanics, posture, and exercises to strengthen and prevent future injuries. We focus not only on treatment but also on empowering you with tools for injury prevention."
+    question: "What is fatty liver, and how can it impact health?",
+    answer: "Fatty liver, also known as hepatic steatosis, is a condition where excess fat accumulates in the liver cells. Fatty liver can lead to inflammation, liver scarring (cirrhosis), and liver failure if not managed properly."
   },
   {
-    question: "What should I wear to a physiotherapy session?",
-    answer: "Wear comfortable clothing that allows easy movement and access to the area being treated. We may ask you to change into a gown for specific assessments, so it's helpful to bring appropriate attire."
+    question: "How do overweight and obesity affect health?",
+    answer: "Overweight and obesity are conditions characterized by excessive body fat accumulation, impacting health and well-being. Overweight is defined by a Body Mass Index (BMI) between 25 and 29.9, while obesity is indicated by a BMI of 30 or higher, posing significant risks to various aspects of physical and mental health."
   },
   {
-    question: "Can I continue physio exercises at home?",
-    answer: "Yes, home exercises are often a crucial part of your treatment plan. We provide clear instructions and any necessary equipment, empowering you to continue progress between sessions and maintain your health over the long term."
+    question: "What does 'Healthy You' mean, and how can it be achieved?",
+    answer: "'Healthy You' encompasses a holistic approach to well-being, focusing on maintaining physical, mental, and emotional health through balanced nutrition, regular exercise, adequate sleep, stress management, and positive lifestyle choices."
   }
 ];
 

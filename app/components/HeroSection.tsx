@@ -40,8 +40,8 @@ const HeroSection = () => {
                   Know Yourself
                 </a>
                 {/* <button className="w-full md:w-auto border-2 border-[var(--background-color-light)] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
-      Contact us
-    </button> */}
+                  Contact us
+                    </button> */}
               </div>
             </ScrollAnimation>
 
@@ -49,7 +49,7 @@ const HeroSection = () => {
 
           {/* Mobile Image */}
           <ScrollAnimation delay={0.3}>
-            <div className="mt-3 lg:hidden w-full bg-red-500">
+            <div className="mt-3 lg:hidden w-[100%] ">
               <img
                 src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Physiotherapist helping a client with mobility training"

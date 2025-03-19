@@ -99,7 +99,7 @@ const Footer = () => {
         
         {/* Copyright */}
         <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-          © 2024 Fizeo. All rights reserved.
+          © 2024 remDi. All rights reserved.
         </div>
 
         {/* Powered by */}

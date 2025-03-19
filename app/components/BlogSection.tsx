@@ -70,7 +70,7 @@ const BlogSection = async () => {
                   </div>
 
                   <div className="p-12">
-                    <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px]  mb-3">
+                    <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] font-bold  text-[20px]  mb-3">
                       {post.title}
                     </h3>
                     <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
