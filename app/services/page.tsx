@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div>
       <ServicesHero />
-      <Servicelist/>
+      {/* <Servicelist/> */}
       <ServicesProcess />
       <ServiceQueries/>
       <GetInTouch />
