@@ -54,9 +54,9 @@ type BlogPostProps = {
 
 
 
-export default async function BlogPost({ params ,}: { params: Promise <{ slug: string }> ; }) {
+export default async function BlogPost({ params, }: { params: Promise<{ slug: string }>; }) {
 
-  const {slug} = await params;
+  const { slug } = await params;
 
   const post = await client.fetch(`
     *[_type == "post" && slug.current == $slug][0]{
@@ -89,7 +89,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
     <div>
       <Navbar />
 
-      <header className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-[13%] pb-[5%] px-[8%] min-h-[100vh] relative">
+      <header className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)]  pt-40 md:pt-[13%] pb-[5%] px-[8%] min-h-[100vh] relative">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
           <nav className="text-sm mb-6">
@@ -129,41 +129,41 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
             />
           </div>
           {/* Blog Card Section */}
-        <div className="w-[90%] mx-auto rounded-2xl ">
-          {/* Meta Information */}
-          <div className="p-6 flex flex-col sm:flex-row sm:justify-between text-black text-sm gap-6 sm:gap-0">
+          <div className="w-[90%] mx-auto rounded-2xl ">
+            {/* Meta Information */}
+            <div className="p-6 flex flex-col sm:flex-row sm:justify-between text-black text-sm gap-6 sm:gap-0">
 
-            {/* Date */}
-            <div className="flex items-center gap-3">
-              <Customdate />
-              <div className="flex flex-col">
-                <span className="font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Date</span>
-                <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">
-                  {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </span>
+              {/* Date */}
+              <div className="flex items-center gap-3">
+                <Customdate />
+                <div className="flex flex-col">
+                  <span className="font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Date</span>
+                  <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">
+                    {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {/* Author */}
-            <div className="flex items-center gap-3">
-              <Customauth />
-              <div className="flex flex-col">
-                <span className=" font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Author</span>
-                <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">{post.authorName}</span>
+              {/* Author */}
+              <div className="flex items-center gap-3">
+                <Customauth />
+                <div className="flex flex-col">
+                  <span className=" font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Author</span>
+                  <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">{post.authorName}</span>
+                </div>
               </div>
-            </div>
 
-            {/* Read Time */}
-            <div className="flex items-center gap-3">
-              <Customtime />
-              <div className="flex flex-col">
-                <span className=" font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Read time</span>
-                <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">{post.readTime} mins</span>
+              {/* Read Time */}
+              <div className="flex items-center gap-3">
+                <Customtime />
+                <div className="flex flex-col">
+                  <span className=" font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">Read time</span>
+                  <span className="font-semibold font-['DM_Sans', 'sans-serif'] text-[16px] leading-tight">{post.readTime} mins</span>
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
-        </div>
         </div>
 
 
@@ -182,7 +182,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
 
 
         {/* Blog Card Section */}
-        <div className="w-[85%] absolute mt-[12%] md:mt-[2%] mx-auto rounded-2xl ">
+        <div className="w-[85%] absolute mt-[20%] md:mt-[2%] mx-auto rounded-2xl ">
           {/* Meta Information */}
           <div className="p-6 flex flex-col sm:flex-row sm:justify-between text-black text-sm gap-6 sm:gap-0">
 
@@ -219,12 +219,12 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
         </div>
 
 
-        <div className=" w-[80%] md:w-full h-[1px] bg-gray-500 mt-[65%]  md:mt-[10%]"></div>
+        <div className=" w-[80%] md:w-full h-[1px] bg-gray-500 mt-[75%]  md:mt-[10%]"></div>
 
 
 
 
-        <div className="max-w-4xl w-[60%] text-[14px] md:text-[18px] font-['DM_Sans', 'sans-serif'] text-black mt-[10%] md:mt-[8%]">
+        <div className="max-w-4xl w-[75%] md:w-[60%] text-[14px] md:text-[18px] font-['DM_Sans', 'sans-serif'] text-black mt-[10%] md:mt-[8%]">
 
 
           {/* Section 1: Rehabilitation and Recovery */}
@@ -234,22 +234,24 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
 
         </div>
         {/* Image Section */}
-        <div className="w-[60%] max-w-4xl mt-30">
+        <div className="w-[75%] md:w-[60%] max-w-4xl mt-15 md:mt-30">
   <Image
     src={post.secondImageUrl}
     alt="Yoga session"
-    width={1200} 
-    height={400} 
-    className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+    width={1200}
+    height={400}
+    className="w-full h-auto aspect-video object-cover object-top rounded-lg shadow-lg"
   />
 </div>
+
+
 
       </div>
 
 
 
 
-      <div className="w-full pb-16 pt-[7%] -mb-5  bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative py-40">
+      <div className="w-full pb-16 pt-[8%] -mb-5  bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative py-40">
         <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
           <div className="mb-15">
             <h2 className="text-[#1A1A1A] text-[40px] font-['Libre_Baskerville',serif]">
@@ -286,7 +288,7 @@ export default async function BlogPost({ params ,}: { params: Promise <{ slug: s
       </div>;
 
 
-      
+
 
 
     </div>

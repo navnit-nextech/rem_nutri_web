@@ -12,80 +12,52 @@ const AboutImageGrid = () => {
               Inside RemDi
             </h2>
             <p className="text-lg text-center max-w-3xl mx-auto mb-12">
-              Step inside the life at RemDi. Witness the warm and welcoming
+              Step inside the life at remDi. Witness the warm and welcoming
               environment, cutting-edge facilities, and compassionate team
               dedicated to your well-being.
             </p>
           </div>
         </ScrollAnimation>
-        <div className="flex justify-center items-center gap-6">
-          <div className=" flex-1">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+          <div className="flex-1 w-full md:w-auto">
             <ScrollAnimation delay={0.2}>
               <div className="flex flex-col gap-6">
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="https://plus.unsplash.com/premium_photo-1709560427703-f1d6336971ca?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Fizeo facility"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1621919472462-6db865a003e4?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Fizeo training"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1629121958394-3be95d8c057c?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Fizeo equipment"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Fizeo environment"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                {[ 
+                  "https://plus.unsplash.com/premium_photo-1709560427703-f1d6336971ca?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "https://images.unsplash.com/photo-1621919472462-6db865a003e4?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "https://images.unsplash.com/photo-1629121958394-3be95d8c057c?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ].map((src, index) => (
+                  <div key={index} className="relative overflow-hidden rounded-2xl w-full md:aspect-square aspect-[4/3]">
+                    <Image
+                      src={src}
+                      alt={`Image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             </ScrollAnimation>
           </div>
 
-          {/* Column 2 - 3 images */}
-          <div className="flex-1">
+          <div className="flex-1 w-full md:w-auto">
             <ScrollAnimation delay={0.4}>
               <div className="flex flex-col gap-6 max-sm:hidden">
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Fizeo wellness"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1567740034541-1ff8b618a370?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Fizeo therapy"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-2xl">
-                  <Image
-                    src="/images/about/stats.avif"
-                    alt="Fizeo statistics"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                {[ 
+                  "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "https://images.unsplash.com/photo-1567740034541-1ff8b618a370?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "/images/about/stats.avif"
+                ].map((src, index) => (
+                  <div key={index} className="relative overflow-hidden rounded-2xl w-full md:aspect-square aspect-[4/3]">
+                    <Image
+                      src={src}
+                      alt={`Image ${index + 5}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             </ScrollAnimation>
           </div>

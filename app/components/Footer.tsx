@@ -102,15 +102,7 @@ const Footer = () => {
           © 2024 remDi. All rights reserved.
         </div>
 
-        {/* Powered by */}
-        <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-          Powered by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Framer</a>
-        </div>
-
-        {/* Designed by */}
-        <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-          Designed by <a href="#" className="hover:text-[#6FE984] transition-colors text-[10px] md:text-[12px]">Vilu Creative</a>
-        </div>
+       
 
         </div>
 

@@ -25,7 +25,7 @@ const CustomDiamondIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
-      className="w-6 h-6 text-[#043A22] fill-current"
+      className="w-8 h-8 text-[#043A22] fill-current"
     >
       <g color="rgb(28, 51, 50)">
         <path d="M235.33,116.72L139.28,20.66a16,16,0,0,0-22.56,0L20.67,116.72a16,16,0,0,0,0,22.56L116.72,235.33a16,16,0,0,0,22.56,0l96.05-96.05A16,16,0,0,0,235.33,116.72ZM128,224L32,128,128,32l96,96Z"></path>
@@ -39,7 +39,7 @@ const CustomHexagon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
-      className="w-6 h-6 text-[#043A22] fill-current"
+      className="w-8 h-8 text-[#043A22] fill-current"
     >
       <g color="rgb(28, 51, 50)">
         <path d="M 223.68 66.15 L 135.68 18 h 0 a 15.88 15.88 0 0 0 -15.36 0 l -88 48.17 a 16 16 0 0 0 -8.32 14 v 95.64 a 16 16 0 0 0 8.32 14 l 88 48.17 a 15.88 15.88 0 0 0 15.36 0 l 88 -48.17 a 16 16 0 0 0 8.32 -14 V 80.18 A 16 16 0 0 0 223.68 66.15 Z M 216 175.82 L 128 224 L 40 175.82 V 80.18 L 128 32 h 0 l 88 48.17 Z"></path>
@@ -53,7 +53,7 @@ const Customwellness = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
-      className="w-6 h-6 text-[#043A22] fill-current"
+      className="w-8 h-8 text-[#043A22] fill-current"
     >
       <g color="rgb(28, 51, 50)">
         <path d="M 201.54 54.46 A 104 104 0 0 0 54.46 201.54 A 104 104 0 0 0 201.54 54.46 Z M 96 210 V 152 h 64 v 58 a 88.33 88.33 0 0 1 -64 0 Z m 48 -74 H 112 V 100.94 l 32 -16 Z m 46.22 54.22 A 88.09 88.09 0 0 1 176 201.77 V 152 a 16 16 0 0 0 -16 -16 V 72 a 8 8 0 0 0 -11.58 -7.16 l -48 24 A 8 8 0 0 0 96 96 v 40 a 16 16 0 0 0 -16 16 v 49.77 a 88 88 0 1 1 110.22 -11.55 Z"></path>
@@ -104,41 +104,24 @@ const ServiceCard = ({
 
 const services = [
   {
-    icon: <CustomHomeIcon />,
-    title: "Musculoskeletal Rehab",
-    description:
-      "Tailored rehabilitation programs for musculoskeletal conditions, injuries, and post-surgical recovery to restore optimal function and mobility.",
-  },
-  {
-    icon: <Customsports />,
-    title: "Sports Injury Care",
-    description:
-      "Specialized care for athletes, including assessment, treatment, and prevention strategies to address sports-related injuries and enhance performance.",
-  },
-  {
-    icon: <CustomDiamondIcon />,
-    title: "Effective Pain Relief",
-    description:
-      "Comprehensive approach to alleviate pain through manual therapy, exercises, and education, targeting the root cause for long-term relief.",
-  },
-  {
     icon: <CustomHexagon />,
-    title: "Neuro Rehab",
+    title: "Remission & Reversal Programmes ",
     description:
-      "Specialized interventions for individuals with neurological disorders, focusing on improving movement, balance, and overall functional independence.",
+      "Personalized health plans designed to help you manage and reverse chronic conditions naturally. Our expert-guided programs focus on sustainable lifestyle changes for long-term well-being.",
   },
   {
     icon: <Customwellness />,
-    title: "Preventive Wellness",
+    title: "Meal Delivery",
     description:
-      "Proactive and personalized programs designed to prevent injuries, enhance physical fitness, and promote overall well-being through targeted exercises and education.",
+      " Nutritious, dietitian-approved meals tailored to your health goals, delivered fresh to your doorstep. Enjoy balanced, wholesome meals that support your journey to better health. Every meal is crafted with quality ingredients to ensure optimal nutrition and taste.",
   },
   {
-    icon: <Customworkplace />,
-    title: "Workplace Ergonomics",
+    icon: <CustomDiamondIcon />,
+    title: "Corporate Services",
     description:
-      "Assessment and recommendations to optimize workplace ergonomics, reducing the risk of musculoskeletal issues and promoting a healthy work environment.",
+      "Customized wellness programs for organizations to promote employee health and productivity. We offer nutrition plans, workshops, and expert guidance to create a healthier workplace.",
   },
+  
 ];
 
 const ServicesHero = () => {
@@ -146,11 +129,11 @@ const ServicesHero = () => {
     <div className="pt-20">
       <div className="bg-[var(--background-color-dark)] sm:p-20 sm:py-40 sm:pb-52 py-20 pb-36">
         <h1 className=" font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-[var(--text-color-plain)] text-center max-w-3xl mx-auto">
-          Strive and thrive with <span className="text-[var(--text-color-light)]">premier</span>{" "}
-          physio services
+        We provide for <span className="text-[var(--text-color-light)]">your health </span>{" "}
+        
         </h1>
       </div>
-      <div className="bg-[var(--background-color-plain)] pb-5">
+      <div className="bg-[var(--background-color-plain)] ">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10 px-4 relative -top-24">
           {services.map((service, index) => (
             <ServiceCard

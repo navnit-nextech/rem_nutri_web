@@ -82,13 +82,14 @@ const GetInTouch = () => {
         <ScrollAnimation delay={0.4}>
           <div className="relative max-w-[1200px] mx-auto flex flex-col lg:block">
             {/* Image section */}
-            <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Person exercising"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden bg-[#FFFFFF] flex items-center justify-center">
+  <img
+    src="images/get_touch.jpeg"
+    alt="Person exercising"
+    className="w-full h-full object-contain"
+  />
+</div>
+
 
             {/* Content section - positioned absolutely to overlap */}
             <div className="relative lg:absolute lg:top-1/2 lg:right-0 lg:transform lg:-translate-y-1/2 w-full lg:w-[45%] p-6 md:p-8 lg:p-10 bg-[var(--background-color-plain)] rounded-2xl -mt-6 lg:mt-0 lg:h-full lg:pt-16">
