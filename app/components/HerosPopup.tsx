@@ -99,7 +99,7 @@ export default function AlternativeAnimation() {
     <div className="relative w-full md:w-[500px] lg:w-[550px] h-[396px] md:h-[462px] lg:h-[528px] overflow-hidden rounded-2xl">
       <div className="absolute inset-0">
         <Image
-          src="/images/rem_nutri_hero_Section.webp"
+          src=""
           alt="Wellness background"
           fill
           className="object-cover"
