@@ -171,7 +171,7 @@ const WhyFizeo = () => {
                   {/* Image */}
                   <div className="rounded-2xl overflow-hidden relative z-10">
                     <img
-                      src=""
+                      // src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
                       className="w-full h-240 object-cover"
                     />
