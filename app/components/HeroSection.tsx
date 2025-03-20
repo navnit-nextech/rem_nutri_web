@@ -58,7 +58,7 @@ const HeroSection = () => {
               />
             </div>
           </ScrollAnimation> */}
-          <AlternativeAnimation/>
+          {/* <AlternativeAnimation/> */}
         </div>
 
         
