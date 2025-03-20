@@ -75,74 +75,129 @@ const Customworkplace = () => (
     </svg>
   </div>
 );
+
 const ServiceCard = ({
   icon,
   title,
   description,
+  quote,
+  features,
+  ctaText,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
+  quote?: { text: string; author: string };
+  features?: string[];
+  ctaText?: string;
 }) => {
   return (
-    <div
-      className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[390px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100"
-    >
-      <div className="flex items-center gap-2 text-[var(--text-color-dark)]">
+    <div className="px-10 py-12 w-full md:w-[480px] lg:w-[580px] flex flex-col gap-7 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 min-h-[600px] hover:shadow-lg transition-shadow">
+      <div className="flex items-center gap-3 text-[var(--text-color-dark)]">
         {icon}
-        <h3 className="text-[24px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif]">
+        <h3 className="text-[28px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] font-bold">
           {title}
         </h3>
       </div>
-      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
+
+      {quote && (
+        <div className="border-l-4 border-[var(--text-color-light)] pl-6 my-3 italic">
+          <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-lg mb-2 font-medium">
+            "{quote.text}"
+          </p>
+          <p className="text-[var(--text-color-light)] text-sm font-medium">– {quote.author}</p>
+        </div>
+      )}
+
+      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[17px] leading-relaxed font-medium">
         {description}
       </p>
+
+      {features && (
+        <ul className="space-y-4 flex-grow">
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-start gap-3">
+              <span className="text-[var(--text-color-light)] mt-1 text-lg">•</span>
+              <p className="text-[var(--text-color-dark)]/90 font-['DM_Sans', 'sans-serif'] text-[16px] font-medium">
+                {feature}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {ctaText && (
+        <button className="mt-auto w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-6 rounded-lg hover:bg-[var(--background-color-dark)]/90 transition-all hover:transform hover:scale-[1.02]">
+          {ctaText}
+        </button>
+      )}
     </div>
   );
 };
 
 const services = [
   {
-    icon: <CustomHexagon />,
-    title: "Remission & Reversal Programmes ",
-    description:
-      "Personalized health plans designed to help you manage and reverse chronic conditions naturally. Our expert-guided programs focus on sustainable lifestyle changes for long-term well-being.",
-  },
-  {
     icon: <Customwellness />,
-    title: "Meal Delivery",
-    description:
-      " Nutritious, dietitian-approved meals tailored to your health goals, delivered fresh to your doorstep. Enjoy balanced, wholesome meals that support your journey to better health. Every meal is crafted with quality ingredients to ensure optimal nutrition and taste.",
+    title: "Rem Fresh",
+    quote: {
+      text: "We are what we repeatedly eat. Healthy eating is not an act, but a habit.",
+      author: "Felicity Luckey"
+    },
+    description: "Enjoy delicious, healthy, and balanced meals delivered straight to your door. Perfect for busy lifestyles or those seeking support with healthy eating.",
+    features: [
+      "Diverse and authentic menu crafted by expert chefs",
+      "Customizable delivery schedules and cuisine preferences",
+      "Dietitian-approved meals for optimal nutrition",
+      "Option to receive just the recipes for home cooking"
+    ],
+    ctaText: "Explore Meal Plans"
   },
   {
     icon: <CustomDiamondIcon />,
-    title: "Corporate Services",
-    description:
-      "Customized wellness programs for organizations to promote employee health and productivity. We offer nutrition plans, workshops, and expert guidance to create a healthier workplace.",
-  },
-  
+    title: "Rem Essentials",
+    quote: {
+      text: "The right tools make any journey easier.",
+      author: "RemDi Team"
+    },
+    description: "Discover our curated selection of health and wellness products designed to complement your RemDi programme and support your journey.",
+    features: [
+      "Premium blood glucose monitors for accurate tracking",
+      "High-quality nutritional supplements",
+      "Advanced fitness tracking devices",
+      "Exclusive healthy recipe collections"
+    ],
+    ctaText: "Explore Products"
+  }
 ];
 
 const ServicesHero = () => {
   return (
     <div className="pt-20">
-      <div className="bg-[var(--background-color-dark)] sm:p-20 sm:py-40 sm:pb-52 py-20 pb-36">
-        <h1 className=" font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-[var(--text-color-plain)] text-center max-w-3xl mx-auto">
-        We provide for <span className="text-[var(--text-color-light)]">your health </span>{" "}
-        
+      <div className="bg-[var(--background-color-dark)] sm:p-20 sm:py-32 sm:pb-52 py-20 pb-36">
+        <h1 className="font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-[var(--text-color-plain)] text-center max-w-3xl mx-auto font-bold">
+          Supporting <span className="text-[var(--text-color-light)]">Your Health</span> Journey
         </h1>
       </div>
-      <div className="bg-[var(--background-color-plain)] ">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 mb-10 px-4 relative -top-24">
+      
+      <div className="bg-[var(--background-color-plain2)]">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24">
           {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-            />
+            <ServiceCard key={index} {...service} />
           ))}
+        </div>
+
+        <div className="max-w-2xl mx-auto text-center -mt-4 pb-20 px-4">
+          <div className="bg-[var(--background-color-plain)] py-8 px-6 rounded-2xl border border-[#EBE5DA] shadow-sm">
+            <h2 className="font-['Libre_Baskerville',serif] text-2xl text-[var(--text-color-dark)] mb-4 font-bold">
+              Still struggling to understand which programme will help manage your health concern?
+            </h2>
+            <p className="text-[var(--text-color-dark)]/90 mb-8 text-lg font-medium">
+              Let's talk and find the perfect solution for you.
+            </p>
+            <button className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-10 rounded-lg hover:bg-[var(--background-color-dark)]/90 transition-all hover:transform hover:scale-[1.02]">
+              Book Now
+            </button>
+          </div>
         </div>
       </div>
     </div>

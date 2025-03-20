@@ -132,7 +132,7 @@ const WhyFizeo = () => {
 
   return (
     <>
-      <div className="w-full bg-cover bg-center bg-no-repeat relative">
+      <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
       <div className="absolute max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[42%] md:left-[48%] -top-5 md:-top-12 transition-transform duration-300 rotate-45">
 
           <Topdecorative />
@@ -171,7 +171,7 @@ const WhyFizeo = () => {
                   {/* Image */}
                   <div className="rounded-2xl overflow-hidden relative z-10">
                     <img
-                      // src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
                       className="w-full h-240 object-cover"
                     />

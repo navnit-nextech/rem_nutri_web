@@ -52,7 +52,7 @@ const faqItems = [
 
 const ServiceQueries = () => {
   return (
-    <div className="w-full bg-cover bg-center bg-no-repeat py-[10%]">
+    <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')]  bg-cover bg-center bg-no-repeat py-[10%]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <h2 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-4xl md:text-5xl md:text-[56px] text-center mb-16">
           Unraveling your<br />health queries

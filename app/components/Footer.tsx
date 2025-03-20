@@ -103,8 +103,12 @@ const Footer = () => {
         </div>
 
         <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-          © 2024 RemNutri Health Private Limited 
-        </div>
+  Designed and Developed by by &nbsp;
+  <a href="https://www.nextechz.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+    Nextech
+  </a>
+</div>
+
 
        
 

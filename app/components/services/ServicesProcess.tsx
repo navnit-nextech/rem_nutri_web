@@ -12,34 +12,28 @@ interface ProcessStep {
 const processSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "Comprehensive assessment",
+    title: "Created by experts",
     description:
-      "Our journey begins with a thorough assessment of your condition. Our experienced physiotherapists evaluate your symptoms, medical history, and conduct physical examinations to diagnose the root cause of your discomfort.",
+      "Our programme is designed by a team of experts, including internationally trained, multidisciplinary professionals. Our team comprises advanced dietetic practitioners, endocrinologists, specialised physiotherapists, and psychologists, ensuring comprehensive and holistic care.",
   },
   {
     number: "02",
-    title: "Personalized treatment plan",
+    title: "Evidence-based, sustainable recovery",
     description:
-      "Following the assessment, we design a tailored treatment plan specifically for you. This plan outlines a series of targeted exercises, manual therapy techniques, and other interventions aimed at addressing your unique needs and promoting recovery.",
+      "Our programme is built on robust research and evidence-based practices, combining the wisdom of Ayurveda with modern medicine. This science-backed approach ensures sustainable recovery and optimal health outcomes.",
   },
   {
     number: "03",
-    title: "Active rehabilitation",
+    title: "Tailor-made solutions-",
     description:
-      "We guide you through a progressive rehabilitation program that builds strength, improves mobility, and restores function. Our therapists provide hands-on support and education to ensure proper technique and maximize results.",
+      "Our tailor-made solutions include personalised diet plans, continuous health monitoring, and expert counselling, ensuring each individual's unique needs are met for optimal results.",
   },
   {
     number: "04",
-    title: "Ongoing support",
+    title: "Holistic healing without any fads or crash diets",
     description:
-      "Your wellness journey doesn't end when your treatment plan does. We provide ongoing support, home exercise programs, and preventative strategies to maintain your progress and prevent future issues.",
-  },
-  {
-    number: "05",
-    title: "Ongoing support",
-    description:
-      "Your wellness journey doesn't end when your treatment plan does. We provide ongoing support, home exercise programs, and preventative strategies to maintain your progress and prevent future issues.",
-  },
+      "Embrace holistic healing without resorting to fads or crash diets. Our programme features expert-led sessions for knowledge transfer, exercise modules and nutrition plans crafted to foster enduring health and well-being.",
+  }
 ];
 
 const ServicesProcess = () => {
@@ -130,8 +124,7 @@ const ServicesProcess = () => {
             <ScrollAnimation>
               <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
                 {" "}
-                <span className="text-[var(--text-color-light)]">Wellness approach </span>with
-                our proven process.
+                <span className="text-[var(--text-color-light)]">WHY CHOOSE  </span>US 
               </h2>
               <p className="text-lg mb-8">
                 We focus on personalized care and evidence-based techniques,

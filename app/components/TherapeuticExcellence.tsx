@@ -5,7 +5,7 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const TherapeuticExcellence = () => {
   return (
-    <div className="w-full py-10 bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full py-10 bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
 
       <div className="max-w-7xl mx-auto px-6 md:px-20 flex flex-col items-center text-center relative">
         {/* Positioned SVG */}

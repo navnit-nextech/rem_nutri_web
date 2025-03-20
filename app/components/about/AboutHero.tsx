@@ -29,11 +29,25 @@ const imageCol2 = [
 ];
 
 const AboutHero = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeStory, setActiveStory] = useState(0);
 
-  const toggleText = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const storyContent = [
+    {
+      title: "The Beginning",
+      content: "This is the story of two best friends that began some 38 years ago at Padmavathi University when Sri & Hithasri were doing their postgraduate studies in Nutrition & Dietetics. It was here that they were both first exposed to the transformative wonders of nutrition in disease management while pursuing their Postgraduate Diploma in Nutrition & Dietetics.",
+      highlight: "A friendship that transformed into a mission"
+    },
+    {
+      title: "The Journey",
+      content: "While Hithasri pursued her career as Chief Dietitian at NIIMS, Hyderabad, India, Sri pursued her career as Clinical Lead for Nutrition & Dietetics in the United Kingdom at Rotherham NHS Foundation Trust. Sri's illustrious career spans over 30 years across India and the UK, complemented by her Master's in Diabetes care from York University. Hithasri gained expertise working at the World famous Nizams Institute of Medical Sciences.",
+      highlight: "Decades of combined expertise"
+    },
+    {
+      title: "The Vision",
+      content: "With RemDi, Sri and Hithasri aspire to empower countless Indians to take control of their chronic illnesses and reclaim their lives. This pioneering endeavour is a culmination of their unwavering dedication, expertise, and passion for making a meaningful difference in the lives of others.",
+      highlight: "Food is the best medicine"
+    }
+  ];
 
   return (
     <ScrollAnimation onlyFade>
@@ -46,29 +60,64 @@ const AboutHero = () => {
               <span className="text-[var(--text-color-light)]">STORY</span>
             </h1>
 
-            {/* Scrollable Content Section */}
-            <div
-              className={`max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-2 sm:px-0 transition-all duration-500 ${
-                isExpanded ? "h-auto max-h-[500px] overflow-y-auto" : "h-[250px] sm:h-[300px] overflow-y-auto"
-              }`}
-            >
-              <p className="font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-base sm:text-lg md:text-xl">
-                {isExpanded
-                  ? `This is the story of two best friends that began some 38 years ago at Padmavathi University when Sri & Hithasri were doing their postgraduate studies in Nutrition & Dietetics. It was here that they were both first exposed to the transformative wonders of nutrition in disease management while pursuing their Postgraduate Diploma in Nutrition & Dietetics. This pivotal period marked the beginning of their journey into healthcare, fuelled by a deep understanding of the transformative power of nutrition & education in managing chronic illnesses. While Hithasri pursued her career as Chief Dietitian at NIIMS, Hyderabad, India, Sri pursued her career as Clinical Lead for Nutrition & Dietetics in the United Kingdom at Rotherham NHS Foundation Trust..  
-                
-                Sri's illustrious career in Nutrition and Dietetic services spans over 30 years both here in India in the early stages of her career and then in the UK for 26yrs. Her PGDip in Dietetics was complemented by her Master's in Diabetes care from York University. Hithasri on the other hand has gained experience and expertise in the Indian setting working at the World famous Nizams Institute of Medical Sciences. The genesis of RemDi is a testament to their collective experience with healthcare mavericks from across India and the world, and the support of their friends and family over the years. Over the years of their practice they have seen how little people understood the value of food for their health.
-
-                With RemDi, Sri and Hithasri aspire to empower countless Indians to take control of their chronic illnesses and reclaim their lives. This pioneering endeavour is a culmination of her unwavering dedication, expertise, and passion for making a meaningful difference in the lives of others. They are passionate about giving people the skills and knowledge to eat well for themselves and their families. Making people realise the truth of the age old adage- “Food is the best medicine.”`
-                  : `This is the story of two best friends that began some 38 years ago at Padmavathi University when Sri & Hithasri were doing their postgraduate studies in Nutrition & Dietetics. It was here that they were both first exposed to the transformative wonders of nutrition in disease management while pursuing their Postgraduate Diploma in Nutrition & Dietetics. This pivotal period marked the beginning of their journey into healthcare, fuelled by a deep understanding of the transformative power of nutrition & education in managing chronic illnesses.`}
-              </p>
+            {/* Story Navigation */}
+            <div className="flex justify-center lg:justify-start gap-4 mb-8">
+              {storyContent.map((section, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveStory(index)}
+                  className={`relative px-4 py-2 transition-all ${
+                    activeStory === index
+                      ? 'text-[var(--text-color-light)]'
+                      : 'text-[var(--text-color-plain)]/70 hover:text-[var(--text-color-plain)]'
+                  }`}
+                >
+                  {section.title}
+                  {activeStory === index && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--text-color-light)]"
+                    />
+                  )}
+                </button>
+              ))}
             </div>
 
-            <button
-              className="w-[90%] sm:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-3 sm:py-4 md:py-3 px-6 rounded-lg shadow-md hover:bg-[#5ee079] transition-colors"
-              onClick={toggleText}
-            >
-              {isExpanded ? "Read Less" : "Read More"}
-            </button>
+            {/* Story Content */}
+            <div className="relative">
+              <motion.div
+                key={activeStory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8"
+              >
+                <div className="bg-[var(--background-color-light)]/5 rounded-xl p-6 mb-6">
+                  <p className="text-[var(--text-color-light)] text-lg mb-2 font-['Libre_Baskerville',serif]">
+                    {storyContent[activeStory].highlight}
+                  </p>
+                  <p className="font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-base sm:text-lg leading-relaxed">
+                    {storyContent[activeStory].content}
+                  </p>
+                </div>
+
+                {/* Navigation Dots */}
+                <div className="flex justify-center lg:justify-start items-center gap-2 mt-6">
+                  {storyContent.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveStory(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        activeStory === index
+                          ? 'bg-[var(--text-color-light)] w-4'
+                          : 'bg-[var(--text-color-plain)]/30'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Image Galleries */}

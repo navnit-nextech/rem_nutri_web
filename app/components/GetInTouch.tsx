@@ -84,7 +84,7 @@ const GetInTouch = () => {
   {/* Image section */}
   <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden bg-[#faf3e5] bg-opacity-90 flex items-center justify-center">
     <img
-      src=""
+      src="images/get_touch_.png"
       alt="Person exercising"
       className="w-full h-full object-contain md:pr-[15%]"
     />
