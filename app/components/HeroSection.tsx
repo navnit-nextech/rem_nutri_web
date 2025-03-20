@@ -1,5 +1,6 @@
 import React from "react";
 import ScrollAnimation from "./ScrollAnimation";
+import AlternativeAnimation from "./HerosPopup";
 
 const HeroSection = () => {
   return (
@@ -10,27 +11,27 @@ const HeroSection = () => {
       <div className="max-w-7xl w-full relative">
         <div
           className="relative bg-[var(--background-color-dark)] w-[95%] mx-auto flex flex-col lg:flex-row items-center justify-between overflow-hidden 
-  sm:rounded-[0px_24px_0px_24px] rounded-3xl"
+  sm:rounded-[0px_24px_0px_24px] rounded-3xl min-h-[422px] lg:min-h-[475px]"
 
         >
           {/* Content */}
-          <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left sm:!py-26 p-8 md:p-12 lg:p-20">
+          <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 md:p-7 lg:p-9">
             <ScrollAnimation>
               <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
-                We Care to{" "} <span className="hidden md:block"></span>
-                <span className="text-[var(--text-color-light)] ">Cure</span>
+                Remission through{" "} <span className="hidden md:block"></span>
+                <span className="text-[var(--text-color-light)] ">Nutrition</span>
               </h1>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.2}>
-              <p className="mt-6 lg:mt-8 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
+              <p className="mt-4 lg:mt-6 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
                 Discover the power of nutrition and education to achieve your health goals.
               </p>
             </ScrollAnimation>
 
             {/* Buttons */}
             <ScrollAnimation delay={0.4}>
-              <div className="mt-8 flex flex-col md:flex-row gap-4 w-full md:w-auto">
+              <div className="mt-6 flex flex-col md:flex-row gap-4 w-full md:w-auto">
                 <a
                   href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
                   target="_blank"
@@ -48,7 +49,7 @@ const HeroSection = () => {
           </div>
 
           {/* Mobile Image */}
-          <ScrollAnimation delay={0.3}>
+          {/* <ScrollAnimation delay={0.3}>
             <div className="mt-3 lg:hidden w-[100%] ">
               <img
                 src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -56,11 +57,14 @@ const HeroSection = () => {
                 className="w-full h-[500px] object-cover sm:rounded-2xl shadow-lg"
               />
             </div>
-          </ScrollAnimation>
+          </ScrollAnimation> */}
+          <AlternativeAnimation/>
         </div>
 
+        
+
         {/* Desktop Image */}
-        <ScrollAnimation delay={0.3} onlyFade>
+        {/* <ScrollAnimation delay={0.3} onlyFade>
           <div className="absolute top-[-15%] right-[-3.5%] w-[60%] h-[130%] hidden lg:flex items-center justify-center overflow-visible ">
             <img
               src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -68,13 +72,13 @@ const HeroSection = () => {
               className="w-full max-w-[460px] h-[100%] object-cover rounded-3xl shadow-lg z-10"
             />
           </div>
-        </ScrollAnimation>
+        </ScrollAnimation> */}
 
         {/* Circle decoration */}
         <ScrollAnimation delay={0.6} onlyFade>
-          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-25 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 z-20">
-            <div className="w-full h-full rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center z-20">
-              <div className="w-3/4 h-3/4 rounded-full flex items-center justify-center border-[10px] md:border-[15px] border-[#F4C6A5] z-20"></div>
+          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-25 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 ">
+            <div className="w-full h-full rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center ">
+              <div className="w-3/4 h-3/4 rounded-full flex items-center justify-center border-[10px] md:border-[15px] border-[#F4C6A5] "></div>
             </div>
           </div>
         </ScrollAnimation>

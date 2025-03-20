@@ -27,7 +27,7 @@ const Footer = () => {
         <div className="w-full grid grid-cols-2 md:grid-cols-2 md:pl-20 md:pr-40">
           {/* Menu */}
           <div>
-            <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Menu</h3>
+            {/* <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Menu</h3> */}
             <ul className="space-y-2">
               <li><a href="/" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Home</a></li>
               <li><a href="about" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">About</a></li>
@@ -39,7 +39,7 @@ const Footer = () => {
 
           {/* Utilities */}
           <div>
-            <h3 className="text-lg text-[var(--text-color-plain)] font-medium mb-3 text-[10px] md:text-sm">Utilities</h3>
+            {/* <h3 className="text-lg text-[var(--text-color-plain)] font-medium mb-3 text-[10px] md:text-sm">Utilities</h3> */}
             <ul className="space-y-2">
               {/* <li><a href="#" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Styleguide</a></li> */}
 
@@ -99,7 +99,11 @@ const Footer = () => {
         
         {/* Copyright */}
         <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-          © 2024 remDi. All rights reserved.
+          © 2024 RemNutri Health Private Limited 
+        </div>
+
+        <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
+          © 2024 RemNutri Health Private Limited 
         </div>
 
        
