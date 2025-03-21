@@ -151,41 +151,6 @@ const ServiceCard = ({ icon, title, description, onClick }: {
   );
 };
 
-const Modal = ({ title, description, onClose, icon, children }: { 
-  title: string; 
-  description: string; 
-  onClose: () => void; 
-  icon?: React.ReactNode;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 backdrop-blur-sm pointer-events-none"></div>
-      <div className="bg-[var(--background-color-plain)] p-8 rounded-lg w-[90%] max-w-4xl h-[525px] overflow-auto shadow-lg relative z-10">
-        <button className="absolute top-4 right-5 text-[var(--text-color-dark)] text-3xl" onClick={onClose}>
-          &times;
-        </button>
-        <div className="flex items-center gap-2 mb-6">
-          {icon && <div className="text-[var(--text-color-dark)] text-3xl">{icon}</div>}
-          <h2 className="text-[28px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
-            {title}
-          </h2>
-        </div>
-        <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[18px] leading-relaxed">
-          {description.split("\n").map((line: string, index: number) => (
-            <span key={index}>
-              {line}
-              <br />
-            </span>
-          ))}
-        </p>
-        {children}
-      </div>
-    </div>
-  );
-};
-
-
 
 
 const ServicesGrid = () => {
@@ -219,7 +184,7 @@ const ServicesGrid = () => {
   ];
   
   return (
-    <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat pb-28 px-4">
+    <div className="w-full bg-cover bg-center bg-no-repeat pb-28 px-4">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center ">
         {services.map((service, index) => (
           <ServiceCard
