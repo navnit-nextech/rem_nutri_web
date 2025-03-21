@@ -15,7 +15,7 @@ import ScrollAnimation from "./components/ScrollAnimation";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* <HeroSection /> */}
+      <HeroSection />
 
       <TherapeuticExcellence />
       <ScrollAnimation longFade>

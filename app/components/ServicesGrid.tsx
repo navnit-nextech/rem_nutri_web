@@ -184,7 +184,7 @@ const ServicesGrid = () => {
   ];
   
   return (
-    <div className="w-full bg-cover bg-center bg-no-repeat pb-28 px-4">
+    <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat pb-28 px-4">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center ">
         {services.map((service, index) => (
           <ServiceCard

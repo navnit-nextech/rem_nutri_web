@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <div
       className="relative w-full min-h-screen pt-32 flex items-center justify-center 
-       bg-cover bg-center bg-no-repeat px-4 md:px-0"
+      bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
     >
       <div className="max-w-7xl w-full relative">
         <div
@@ -58,7 +58,7 @@ const HeroSection = () => {
               />
             </div>
           </ScrollAnimation> */}
-          <AlternativeAnimation/>
+          {/* <AlternativeAnimation/> */}
         </div>
 
         
