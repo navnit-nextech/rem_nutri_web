@@ -1,18 +1,28 @@
-import React from "react";
+"use client";
+
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import ScrollAnimation from "./ScrollAnimation";
-import AlternativeAnimation from "./HerosPopup";
+import Image from "next/image";
+
+// Lazy load the animation component
+const AlternativeAnimation = lazy(() => import("./HerosPopup"));
 
 const HeroSection = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div
-      className="relative w-full min-h-screen pt-32 flex items-center justify-center 
+      className="relative w-full min-h-screen pt-20 md:pt-32 flex items-center justify-center 
       bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
     >
       <div className="max-w-7xl w-full relative">
         <div
           className="relative bg-[var(--background-color-dark)] w-[95%] mx-auto flex flex-col lg:flex-row items-center justify-between overflow-hidden 
-  sm:rounded-[0px_24px_0px_24px] rounded-3xl min-h-[422px] lg:min-h-[475px]"
-
+                     sm:rounded-[0px_24px_0px_24px] rounded-3xl min-h-[422px] lg:min-h-[475px]"
         >
           {/* Content */}
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 md:p-7 lg:p-9">
@@ -36,32 +46,19 @@ const HeroSection = () => {
                   href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 "
+                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 transition-opacity"
                 >
                   Know Yourself
                 </a>
-                {/* <button className="w-full md:w-auto border-2 border-[var(--background-color-light)] text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md">
-                  Contact us
-                    </button> */}
               </div>
             </ScrollAnimation>
-
           </div>
 
-          {/* Mobile Image */}
-          {/* <ScrollAnimation delay={0.3}>
-            <div className="mt-3 lg:hidden w-[100%] ">
-              <img
-                src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Physiotherapist helping a client with mobility training"
-                className="w-full h-[500px] object-cover sm:rounded-2xl shadow-lg"
-              />
-            </div>
-          </ScrollAnimation> */}
-          {/* <AlternativeAnimation/> */}
+          {/* Lazy load the animation component */}
+          <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
+            {isClient && <AlternativeAnimation />}
+          </Suspense>
         </div>
-
-        
 
         {/* Desktop Image */}
         {/* <ScrollAnimation delay={0.3} onlyFade>

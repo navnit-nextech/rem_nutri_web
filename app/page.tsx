@@ -22,7 +22,7 @@ const Index = () => {
         <ServicesGrid />
       </ScrollAnimation>
       <Testimonials />
-      {/* <WhyFizeo /> */}
+      <WhyFizeo />
       {/* <FizeoApproach /> */}
       <BlogSection />
       <GetInTouch />
