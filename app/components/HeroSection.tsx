@@ -9,24 +9,9 @@ const AlternativeAnimation = lazy(() => import("./HerosPopup"));
 
 const HeroSection = () => {
   const [isClient, setIsClient] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    
-    // Check if we're on a mobile device
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    // Initial check
-    checkMobile();
-    
-    // Set up listener for window resize
-    window.addEventListener('resize', checkMobile);
-    
-    // Clean up
-    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
@@ -42,14 +27,14 @@ const HeroSection = () => {
           {/* Content */}
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 md:p-7 lg:p-9">
             <ScrollAnimation>
-              <h1 className="text-[28px] md:text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
+              <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
                 Remission through{" "} <span className="hidden md:block"></span>
                 <span className="text-[var(--text-color-light)] ">Nutrition</span>
               </h1>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.2}>
-              <p className="mt-4 lg:mt-6 text-[16px] md:text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
+              <p className="mt-4 lg:mt-6 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
                 Discover the power of nutrition and education to achieve your health goals.
               </p>
             </ScrollAnimation>
@@ -61,7 +46,7 @@ const HeroSection = () => {
                   href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[14px] md:text-[16px] text-black font-semibold py-3 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 transition-opacity"
+                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 transition-opacity"
                 >
                   Know Yourself
                 </a>
@@ -69,32 +54,10 @@ const HeroSection = () => {
             </ScrollAnimation>
           </div>
 
-          {/* Only render the animation component on desktop */}
-          {isClient && !isMobile ? (
-            <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
-              <AlternativeAnimation />
-            </Suspense>
-          ) : (
-            /* Mobile fallback - simple static image */
-            <div className="relative w-full h-[396px] overflow-hidden rounded-2xl">
-              <Image
-                src="/images/rem_nutri_hero_Section.webp"
-                alt="Wellness background"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40"></div>
-              <div className="absolute bottom-7 left-1/2 transform -translate-x-1/2
-                        w-22 h-22 rounded-full bg-primary/80 backdrop-blur-md
-                        flex items-center justify-center shadow-xl border-2 border-white/30 z-20">
-                <p className="text-white text-center text-sm font-bold">
-                  Key Benefits
-                </p>
-              </div>
-            </div>
-          )}
+          {/* Lazy load the animation component */}
+          <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
+            {isClient && <AlternativeAnimation />}
+          </Suspense>
         </div>
 
         {/* Desktop Image */}
