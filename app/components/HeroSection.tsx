@@ -27,14 +27,14 @@ const HeroSection = () => {
           {/* Content */}
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 md:p-7 lg:p-9">
             <ScrollAnimation>
-              <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
+              <h1 className="text-[28px] md:text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
                 Remission through{" "} <span className="hidden md:block"></span>
                 <span className="text-[var(--text-color-light)] ">Nutrition</span>
               </h1>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.2}>
-              <p className="mt-4 lg:mt-6 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
+              <p className="mt-4 lg:mt-6 text-[16px] md:text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
                 Discover the power of nutrition and education to achieve your health goals.
               </p>
             </ScrollAnimation>
@@ -46,7 +46,7 @@ const HeroSection = () => {
                   href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 transition-opacity"
+                  className="w-full md:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[14px] md:text-[16px] text-black font-semibold py-3 md:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 transition-opacity"
                 >
                   Know Yourself
                 </a>

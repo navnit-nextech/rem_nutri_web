@@ -46,8 +46,8 @@ export default function AlternativeAnimation() {
     
     // Determine if mobile based on actual container dimensions rather than window
     const isMobile = dimensions.width < 768;
-    const baseDistance = isMobile ? 23 : 30;
-    const increment = isMobile ? 13 : 17;
+    const baseDistance = isMobile ? 20 : 30;
+    const increment = isMobile ? 10 : 17;
     
     const distance = baseDistance + (index % 3) * increment;
 
@@ -56,19 +56,19 @@ export default function AlternativeAnimation() {
     let y = Math.sin((angle * Math.PI) / 180) * distance * 5;
 
     // Bounds for horizontal and vertical spread
-    const maxOffsetX = isMobile ? 20 : 28;
-    const maxOffsetY = isMobile ? 198 : 264;
+    const maxOffsetX = isMobile ? 18 : 28;
+    const maxOffsetY = isMobile ? 180 : 264;
     
     // Clamp the values
     x = Math.max(Math.min(x, maxOffsetX), -maxOffsetX);
     y = Math.max(Math.min(y, maxOffsetY), -maxOffsetY);
 
     // Adjust vertical position
-    const upwardBias = isMobile ? -66 : -99;
+    const upwardBias = isMobile ? -60 : -99;
     y += upwardBias;
 
     // Avoid bottom area
-    const bottomSafeZone = isMobile ? 99 : 132;
+    const bottomSafeZone = isMobile ? 90 : 132;
     if (y > bottomSafeZone) {
         y = bottomSafeZone;
     }
