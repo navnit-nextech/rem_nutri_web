@@ -1,4 +1,3 @@
-
 "use client"
 
 
@@ -8,6 +7,7 @@ import React from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 
 // Custom Home Icon using Tailwind CSS
@@ -101,27 +101,62 @@ const ServiceCard = ({ icon, title, description, onClick }: {
     <div
       className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[500px] flex flex-col gap-4  
                  border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 overflow-hidden cursor-pointer
-                 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out"
+                 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out relative group"
       onClick={onClick}
     >
-      <div className="flex items-center gap-2 text-[var(--text-color-dark)] ">
-        {icon}
+      <div className="flex items-center gap-2 text-[var(--text-color-dark)]">
+        <div className="transform transition-transform duration-500 group-hover:rotate-12">
+          {icon}
+        </div>
         <h3 className="text-[24px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif]">
           {title}
         </h3>
       </div>
-      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed">
+      
+      {/* Main content */}
+      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed mb-8">
         {description}
       </p>
+      
+      {/* Blurred effect at the bottom with explore more text */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[var(--background-color-plain)] to-transparent flex items-end justify-center pb-5">
+        <div className="flex items-center gap-2 text-[var(--text-color-dark)]/80 group-hover:text-[var(--text-color-dark)] transition-colors duration-300">
+          <span className="text-[15px] font-medium font-['DM_Sans', 'sans-serif'] relative overflow-hidden">
+            Explore more
+            <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+          </span>
+          
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
+      
+      {/* Hover animation effect - subtle glow */}
+      <div className="absolute inset-0 rounded-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+           style={{
+             boxShadow: "0 0 40px rgba(235, 229, 218, 0.3) inset",
+           }}>
+      </div>
+      
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[var(--text-color-dark)]/5 rounded-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
   );
 };
 
-const Modal = ({ title, description, onClose, icon }: { 
+const Modal = ({ title, description, onClose, icon, children }: { 
   title: string; 
   description: string; 
   onClose: () => void; 
-  icon?: React.ReactNode; 
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
 }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -144,6 +179,7 @@ const Modal = ({ title, description, onClose, icon }: {
             </span>
           ))}
         </p>
+        {children}
       </div>
     </div>
   );
@@ -153,72 +189,35 @@ const Modal = ({ title, description, onClose, icon }: {
 
 
 const ServicesGrid = () => {
-  const [selectedService, setSelectedService] = useState<{
-    icon: React.JSX.Element;
-    title: string;
-    description: string;
-    details: string; // ✅ Add this
-  } | null>(null);
-  
+  const router = useRouter();
   
   const services = [
     {
       icon: <CustomHomeIcon />,
       title: "RemDi 2",
       description: "Type 2 and Pre Diabetes Reversal Programme. RemDi utilises the power of nutrition to help individuals achieve remission and get their lives back on track.",
-      details: `Living with a chronic health condition can significantly affect everything from daily routines to long-term goals. Yet, the journey with these conditions doesn't have to be one of constant struggle. 
-      Type 2 Diabetes is a chronic condition where the body becomes resistant to insulin or doesn't produce enough insulin, leading to elevated blood sugar levels. This can cause long-term damage to organs and tissues, including the heart, kidneys, and nerves. 
-
-      RemDi utilises the power of nutrition to help individuals achieve remission and get their lives back on track. Achieve diabetes reversal or remission & reduce or even eliminate your dependence on medications. 
-
-* Initial assessments
-* Personalised, one-to-one consultations with specialist dietitian and doctor 
-* 12-week online education program covering topics like blood glucose management, healthy eating, exercise, monthly review sessions, and more 
-* Delicious and convenient meal delivery with ingredients curated to help manage your disorder. Choice of opting to receive recipes that you can prepare yourself to ease your symptoms `,
+      path: "/programs/remdi2"
     },
     {
       icon: <Customsports />,
       title: "Rem Bliss",
-      description: "Women’s Health Programme tackling PCOS/PCOD and Menopause. The programme utilises the power of nutrition and education to manage menopause & PCOS symptoms.",
-      details: `PCOS and menopause are conditions affecting women's hormonal balance. PCOS involves insulin resistance and elevated androgens, leading to metabolic issues like obesity and irregular periods. Menopause, marked by decreased estrogen, brings hot flashes and bone density loss, increasing risks of heart disease and osteoporosis.  
-
-      The programme utilises the power of nutrition and education to manage menopause & PCOS symptoms, lose weight, improve your hormonal balance, and boost your overall health. 
-
-      * Personalised, one-to-one consultations with specialist dietitian and doctor 
-      * 12 week online education program covering topics like what is PCOS and menopause, how to manage your symptoms and improve quality of life, healthy eating and lifestyle modifications 
-      * A choice of meal plans that you can prepare for yourself or delicious and convenient meal delivery plans to support hormonal balance and improving gut health 
-      * Stress management techniques `,
+      description: "Women's Health Programme tackling PCOS/PCOD and Menopause. The programme utilises the power of nutrition and education to manage menopause & PCOS symptoms.",
+      path: "/programs/rembliss"
     },
     {
       icon: <CustomDiamondIcon />,
       title: "Rem Meta",
       description: "Tackling Metabolic issues such as High Blood Pressure, Cardiac Risk, Fatty Liver and more. This program focuses on identifying the root cause of your metabolic disorder and developing a personalised plan to manage it.",
-      details: `Tackling Metabolic Disorders such as High Blood Pressure, Fatty Liver, Cardiac Risk and more 
-      Metabolic disorders are conditions that disrupt normal metabolic processes in the body, leading to an imbalance of chemicals and enzymes necessary for energy production. Examples include high blood pressure, fatty liver disease and more.  
-
-      This program focuses on identifying the root cause of your metabolic disorder and developing a personalised plan to manage it.  
-  
-      * Personalised, one-to-one consultations with a specialist dietitian and doctor 
-      * 12 week online education program covering topics like what is fatty liver, high blood pressure, how to reduce risks of complications, guidance on nutrition and lifestyle changes etc. 
-      * Manage your gut health  
-      * Meal plans to prepare on your own or have delicious balanced meals delivered to your doorstep with ingredients curated to help manage your disorder 
-      * Optimise your metabolism and gut health and improve your overall health `,
+      path: "/programs/remmeta"
     },
     {
       icon: <CustomHexagon />,
       title: "Rem Fit",
       description: "To achieve intense weight loss @4-5kg/month or simply stay fit. Learn healthy habits and achieve your weight loss goals with our sustainable program, going beyond just calorie counting!",
-      details: `Learn healthy habits and achieve your weight loss goals with our sustainable program, going beyond just calorie counting! 
-
-      * Personalised, one-to-one consultations with a specialist dietitian 
-      * Online education modules on healthy eating, balanced diet, and goal setting 
-      * Delicious and balanced meals loaded with nutrients, curated by specialist dietitians and experienced chefs, conveniently delivered to your doorstep. Choice of opting to receive recipes that you can prepare yourself to ease your symptoms 
-      * Support from our team of experts to help you stay motivated to achieve your goals, whether you are aiming for intense weight loss or simply staying fit `,
+      path: "/programs/remfit"
     },
   ];
   
-  
-
   return (
     <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat pb-28 px-4">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center ">
@@ -228,7 +227,7 @@ const ServicesGrid = () => {
             icon={service.icon}
             title={service.title}
             description={service.description}
-            onClick={() => setSelectedService(service)}
+            onClick={() => router.push(service.path)}
           />
         ))}
       </div>
@@ -240,17 +239,8 @@ const ServicesGrid = () => {
           </Button>
         </Link>
       </div> */}
-  
-      {selectedService && (
-        <Modal
-          title={selectedService.title}
-          description={selectedService.details}  // Changed to 'description'
-          onClose={() => setSelectedService(null)}
-        />
-      )}
     </div>
   );
-  
 };
 
 export default ServicesGrid;

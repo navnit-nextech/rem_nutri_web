@@ -136,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({
               stiffness: 300,
               duration: 0.5,
             }}
-            className="fixed inset-0 bg-[var(--background-color-plain)] z-40 md:hidden overflow-hidden shadow-lg"
+            className="fixed inset-0 bg-[var(--background-color-plain)] z-25 md:hidden overflow-hidden shadow-lg"
             style={{
               borderBottomLeftRadius: "20px",
               borderBottomRightRadius: "20px",

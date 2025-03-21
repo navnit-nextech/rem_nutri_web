@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import ScrollAnimation from "../../ScrollAnimation";
+import ScrollAnimation from "../../components/ScrollAnimation";
 import Image from "next/image";
 
 const DecorativeCircle = () => (
@@ -20,31 +20,31 @@ const DecorativeStar = () => (
 const programSteps = [
   {
     number: "01",
-    title: "Initial Assessments",
-    subtitle: "Comprehensive evaluation for personalized care",
-    description: "Begin your journey with a thorough assessment of your current health status. Our expert team evaluates your condition, medical history, and lifestyle factors to create a baseline for your personalized program.",
+    title: "Personalised Consultations",
+    subtitle: "One-on-one expert guidance",
+    description: "Regular personalised, one-to-one consultations with a specialist dietitian ensure you receive focused attention and expert guidance throughout your weight loss journey.",
   },
   {
     number: "02",
-    title: "Personalised Consultations",
-    subtitle: "One-on-one expert guidance",
-    description: "Regular one-to-one consultations with our specialist dietitian and doctor ensure you receive focused attention and expert guidance throughout your journey to better health.",
+    title: "Education Modules",
+    subtitle: "Building knowledge for sustainable results",
+    description: "Access comprehensive online education modules on healthy eating, balanced diet, and goal setting to help you develop lifelong healthy habits that go beyond just calorie counting.",
   },
   {
     number: "03",
-    title: "12-Week Education Program",
-    subtitle: "Structured learning for lasting change",
-    description: "Engage in our comprehensive online education program covering essential topics including blood glucose management, healthy eating principles, exercise routines, and participate in monthly review sessions for continuous progress.",
+    title: "Meal Solutions",
+    subtitle: "Delicious and nutritious options",
+    description: "Enjoy delicious and balanced meals loaded with nutrients, curated by specialist dietitians and experienced chefs, conveniently delivered to your doorstep. Alternatively, receive recipes that you can prepare yourself.",
   },
   {
     number: "04",
-    title: "Meal Solutions",
-    subtitle: "Practical nutrition support",
-    description: "Access delicious and convenient meal delivery services with ingredients specifically curated to help manage your condition, or receive detailed recipes for self-preparation that align with your health goals.",
+    title: "Expert Support",
+    subtitle: "Motivation to reach your goals",
+    description: "Receive ongoing support from our team of experts to help you stay motivated to achieve your goals, whether you are aiming for intense weight loss or simply staying fit.",
   },
 ];
 
-const RemDi2Page = () => {
+const RemFitPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -139,7 +139,7 @@ const RemDi2Page = () => {
                     transition={{ duration: 0.6 }}
                     className="inline-flex items-center gap-3 bg-[var(--text-color-light)]/10 rounded-full px-4 py-2.5 mb-6 md:mb-8"
                   >
-                    <span className="text-[var(--text-color-light)] text-sm md:text-base">Type 2 Diabetes Program</span>
+                    <span className="text-[var(--text-color-light)] text-sm md:text-base">Weight Loss Education Program</span>
                   </motion.div>
 
                   {/* Title */}
@@ -149,7 +149,7 @@ const RemDi2Page = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-[48px] lg:text-[64px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] leading-tight mb-6"
                   >
-                    RemDi <span className="text-[var(--text-color-light)]">2</span>
+                    Rem<span className="text-[var(--text-color-light)]">Fit</span>
                   </motion.h1>
 
                   {/* Description */}
@@ -159,7 +159,7 @@ const RemDi2Page = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="text-xl lg:text-2xl text-[var(--text-color-plain)]/80 font-['DM_Sans', 'sans-serif'] leading-relaxed mb-8 max-w-2xl"
                   >
-                    Living with a chronic health condition can significantly affect everything from daily routines to long-term goals. Yet, the journey with these conditions doesn't have to be one of constant struggle.
+                    Learn healthy habits and achieve your weight loss goals with our sustainable program, going beyond just calorie counting!
                   </motion.p>
 
                   {/* Quick Stats */}
@@ -171,7 +171,7 @@ const RemDi2Page = () => {
                   >
                     {[
                       { number: "90%", label: "Success Rate" },
-                      { number: "12", label: "Week Program" },
+                      { number: "100%", label: "Personalized" },
                       { number: "24/7", label: "Expert Support" }
                     ].map((stat, index) => (
                       <div key={index} className="text-center">
@@ -221,7 +221,7 @@ const RemDi2Page = () => {
                   <div className="relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
                     <Image
                       src="/images/rem_nutri_hero_Section.webp"
-                      alt="RemDi 2 Program"
+                      alt="RemFit Program"
                       fill
                       className="object-cover"
                       priority
@@ -276,16 +276,16 @@ const RemDi2Page = () => {
           <ScrollAnimation>
             <div className="text-center mb-16">
               <h2 className="text-[40px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)] mb-4">
-                About Type 2 Diabetes
+                About Weight Management
               </h2>
               <div className="w-16 h-[2px] bg-[var(--text-color-light)] mx-auto"></div>
             </div>
           </ScrollAnimation>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Understanding Type 2 Diabetes */}
+            {/* Understanding Weight Management */}
             <ScrollAnimation>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-[320px] flex flex-col">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -295,24 +295,26 @@ const RemDi2Page = () => {
                     </svg>
                   </div>
                   <h3 className="text-[24px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
-                    Understanding the Condition
+                    Understanding Weight Management
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif']">
-                  Type 2 Diabetes is a chronic condition where the body becomes resistant to insulin or doesn't produce enough insulin, leading to elevated blood sugar levels. This can cause long-term damage to organs and tissues, including the heart, kidneys, and nerves.
+                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow overflow-y-auto pr-2">
+                  Weight management is about more than just dieting or exercise. It requires a holistic approach that includes healthy eating habits, physical activity, and behavioral changes that can be maintained over time for sustainable results.
                 </p>
-                <div className="mt-6 flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Affects blood sugar levels and multiple organs</span>
+                <div className="mt-auto pt-4">
+                  <div className="flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Beyond calorie counting to sustainable lifestyle changes</span>
+                  </div>
                 </div>
               </div>
             </ScrollAnimation>
 
-            {/* The RemDi Solution */}
+            {/* The RemFit Solution */}
             <ScrollAnimation delay={0.2}>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-[320px] flex flex-col">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,17 +323,19 @@ const RemDi2Page = () => {
                     </svg>
                   </div>
                   <h3 className="text-[24px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
-                    The RemDi Solution
+                    The RemFit Solution
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif']">
-                  RemDi utilises the power of nutrition to help individuals achieve remission and get their lives back on track. Achieve diabetes reversal or remission & reduce or even eliminate your dependence on medications.
+                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow overflow-y-auto pr-2">
+                  Our program combines personalized nutrition, education, and ongoing support to help you achieve your weight loss goals. We focus on teaching healthy habits that can be maintained for life, whether you're aiming for significant weight loss or simply staying fit.
                 </p>
-                <div className="mt-6 flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Focus on natural healing and full remission</span>
+                <div className="mt-auto pt-4">
+                  <div className="flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Personalized approach for sustainable results</span>
+                  </div>
                 </div>
               </div>
             </ScrollAnimation>
@@ -347,11 +351,11 @@ const RemDi2Page = () => {
               <ScrollAnimation>
                 <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
                   <span className="text-[var(--text-color-light)]">Program Features</span> for
-                  your journey to wellness.
+                  your weight loss journey.
                 </h2>
                 <p className="text-lg mb-8 text-[var(--text-color-plain)]/80">
                   Our comprehensive program combines expert guidance, education, and practical solutions
-                  to help you achieve lasting health improvements and manage Type 2 Diabetes effectively.
+                  to help you achieve lasting weight loss and develop healthy habits for life.
                 </p>
                 <div>
                   <a
@@ -367,10 +371,10 @@ const RemDi2Page = () => {
                     <div className="rounded-2xl overflow-hidden relative z-10">
                       <Image
                         src="/images/rem_nutri_hero_Section.webp"
-                        alt="RemDi 2 Program Features"
+                        alt="RemFit Program Features"
                         width={500}
                         height={300}
-                        className="w-full h-[350px] object-cover"
+                        className="w-full h-[650px] object-cover rounded-xl"
                       />
                     </div>
                   </div>
@@ -463,7 +467,7 @@ const RemDi2Page = () => {
                   transition={{ duration: 0.6 }}
                   className="text-[40px] md:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] mb-6"
                 >
-                  Transform Your Health <span className="text-[var(--text-color-light)]">Today</span>
+                  Start Your Fitness <span className="text-[var(--text-color-light)]">Journey</span>
                 </motion.h2>
 
                 <motion.p 
@@ -472,7 +476,7 @@ const RemDi2Page = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-[var(--text-color-plain)]/70 text-lg mb-8"
                 >
-                  Take the first step towards a healthier future with our expert guidance.
+                  Take the first step toward a healthier lifestyle with our expert guidance.
                 </motion.p>
 
                 <motion.div
@@ -501,4 +505,4 @@ const RemDi2Page = () => {
   );
 };
 
-export default RemDi2Page;
+export default RemFitPage;

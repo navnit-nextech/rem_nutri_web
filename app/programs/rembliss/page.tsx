@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import ScrollAnimation from "../../ScrollAnimation";
+import ScrollAnimation from "../../components/ScrollAnimation";
 import Image from "next/image";
 
 const DecorativeCircle = () => (
@@ -20,29 +20,30 @@ const DecorativeStar = () => (
 const programSteps = [
   {
     number: "01",
-    title: "Initial Assessment",
-    subtitle: "Comprehensive hormonal evaluation",
-    description: "Begin with a thorough assessment of your hormonal health, symptoms, and lifestyle factors. Our expert team evaluates your condition and medical history to create a personalized treatment approach for your PCOS or menopausal journey.",
+    title: "Personalised Consultations",
+    subtitle: "One-on-one expert guidance",
+    description: "Regular personalised, one-to-one consultations with our specialist dietitian and doctor ensure you receive focused attention and expert guidance throughout your journey to better hormonal health.",
   },
   {
     number: "02",
-    title: "Expert Consultations",
-    subtitle: "One-on-one specialist guidance",
-    description: "Regular personalized consultations with our specialist dietitian and doctor ensure you receive focused attention and expert guidance throughout your wellness journey.",
+    title: "12-Week Education Program",
+    subtitle: "Comprehensive learning for lasting change",
+    description: "Engage in our 12-week online education program covering essential topics like what is PCOS and menopause, how to manage your symptoms and improve quality of life, healthy eating and lifestyle modifications.",
   },
   {
     number: "03",
-    title: "12-Week Education Program",
-    subtitle: "Comprehensive learning journey",
-    description: "Engage in our detailed online education program covering essential topics including PCOS and menopause management, symptom control, lifestyle modifications, and healthy eating principles for hormonal balance.",
+    title: "Meal Solutions",
+    subtitle: "Practical nutrition support",
+    description: "Access a choice of meal plans that you can prepare for yourself or delicious and convenient meal delivery plans specifically designed to support hormonal balance and improve gut health.",
   },
   {
     number: "04",
-    title: "Nutrition & Wellness Support",
-    subtitle: "Holistic health solutions",
-    description: "Access tailored meal plans and stress management techniques, with options for self-preparation or convenient meal delivery services, all designed to support hormonal balance and improve gut health.",
+    title: "Stress Management",
+    subtitle: "Holistic approach to wellness",
+    description: "Learn effective stress management techniques as part of our comprehensive approach, helping you better manage hormonal symptoms and improve your overall quality of life.",
   },
 ];
+
 
 const RemBlissPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -117,9 +118,9 @@ const RemBlissPage = () => {
   return (
     <div className="w-full overflow-hidden">
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-[var(--background-color-dark)] pt-28 md:pt-20" ref={heroRef}>
+      <div className="relative min-h-screen bg-[url('/images/rem_nutri_hero_Section.webp')] bg-cover bg-center bg-no-repeat pt-28 md:pt-20" ref={heroRef}>
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 bg-[url('/images/rem_bliss_hero_Section.webp')] bg-cover bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-[url('/images/rem_nutri_hero_Section.webp')] bg-cover bg-center bg-no-repeat">
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--background-color-dark)]/95 via-[var(--background-color-dark)]/90 to-[var(--background-color-dark)]"></div>
         </div>
 
@@ -159,7 +160,7 @@ const RemBlissPage = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="text-xl lg:text-2xl text-[var(--text-color-plain)]/80 font-['DM_Sans', 'sans-serif'] leading-relaxed mb-8 max-w-2xl"
                   >
-                    Take control of your hormonal health with our comprehensive program designed to help you manage PCOS and menopausal symptoms naturally and effectively.
+                    PCOS and menopause are conditions affecting women's hormonal balance. Our program helps you take control of symptoms and improve your quality of life through proven nutrition and lifestyle approaches.
                   </motion.p>
 
                   {/* Quick Stats */}
@@ -170,8 +171,8 @@ const RemBlissPage = () => {
                     className="grid grid-cols-3 gap-6 mb-12"
                   >
                     {[
+                      { number: "90%", label: "Success Rate" },
                       { number: "12", label: "Week Program" },
-                      { number: "100%", label: "Personalized Care" },
                       { number: "24/7", label: "Expert Support" }
                     ].map((stat, index) => (
                       <div key={index} className="text-center">
@@ -220,7 +221,7 @@ const RemBlissPage = () => {
                   {/* Main Image */}
                   <div className="relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/rem_bliss_hero_Section.webp"
+                      src="/images/rem_nutri_hero_Section.webp"
                       alt="RemBliss Program"
                       fill
                       className="object-cover"
@@ -276,7 +277,7 @@ const RemBlissPage = () => {
           <ScrollAnimation>
             <div className="text-center mb-16">
               <h2 className="text-[40px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)] mb-4">
-                Understanding PCOS & Menopause
+                About PCOS & Menopause
               </h2>
               <div className="w-16 h-[2px] bg-[var(--text-color-light)] mx-auto"></div>
             </div>
@@ -285,7 +286,7 @@ const RemBlissPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Understanding PCOS & Menopause */}
             <ScrollAnimation>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-[350px] flex flex-col">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -298,15 +299,23 @@ const RemBlissPage = () => {
                     Understanding the Conditions
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif']">
-                  PCOS and menopause are conditions affecting women's hormonal balance. PCOS involves insulin resistance and elevated androgens, leading to metabolic issues. Menopause, marked by decreased estrogen, brings physical changes and health considerations.
+                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow overflow-y-auto pr-2">
+                  PCOS and menopause are conditions affecting women's hormonal balance. PCOS involves insulin resistance and elevated androgens, leading to metabolic issues like obesity and irregular periods. Menopause, marked by decreased estrogen, brings hot flashes and bone density loss, increasing risks of heart disease and osteoporosis.
                 </p>
+                <div className="mt-auto pt-4">
+                  <div className="flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Affects hormonal balance and multiple body systems</span>
+                  </div>
+                </div>
               </div>
             </ScrollAnimation>
 
             {/* The RemBliss Solution */}
             <ScrollAnimation delay={0.2}>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-[350px] flex flex-col">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -318,9 +327,17 @@ const RemBlissPage = () => {
                     The RemBliss Solution
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif']">
-                  Our programme utilizes the power of nutrition and education to manage menopause & PCOS symptoms, helping you lose weight, improve hormonal balance, and boost overall health through natural methods.
+                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow overflow-y-auto pr-2">
+                  The programme utilises the power of nutrition and education to manage menopause & PCOS symptoms, lose weight, improve hormonal balance, and boost overall health. Our approach combines personalized nutrition plans with stress management techniques to address symptoms like hot flashes, irregular periods, and mood swings.
                 </p>
+                <div className="mt-auto pt-4">
+                  <div className="flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Focus on natural healing and symptom management</span>
+                  </div>
+                </div>
               </div>
             </ScrollAnimation>
           </div>
@@ -335,11 +352,11 @@ const RemBlissPage = () => {
               <ScrollAnimation>
                 <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
                   <span className="text-[var(--text-color-light)]">Program Features</span> for
-                  your wellness journey
+                  your journey to wellness.
                 </h2>
                 <p className="text-lg mb-8 text-[var(--text-color-plain)]/80">
                   Our comprehensive program combines expert guidance, education, and practical solutions
-                  to help you achieve lasting improvements in hormonal health and overall well-being.
+                  to help you achieve lasting health improvements and manage hormonal health effectively.
                 </p>
                 <div>
                   <a
@@ -353,12 +370,10 @@ const RemBlissPage = () => {
                   <div className="relative mt-12">
                     <div className="absolute -bottom-3 -right-3 w-full h-full bg-[var(--text-color-light)]/20 rounded-2xl"></div>
                     <div className="rounded-2xl overflow-hidden relative z-10">
-                      <Image
-                        src="/images/rem_bliss_hero_Section.webp"
-                        alt="RemBliss Program Features"
-                        width={500}
-                        height={300}
-                        className="w-full h-[350px] object-cover"
+                      <img 
+                        src="/images/rem_nutri_hero_Section.webp" 
+                        alt="RemBliss Program Features" 
+                        className="w-full h-[650px] object-cover rounded-xl"
                       />
                     </div>
                   </div>
@@ -460,7 +475,7 @@ const RemBlissPage = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-[var(--text-color-plain)]/70 text-lg mb-8"
                 >
-                  Take the first step towards a healthier future with our expert guidance.
+                  Take the first step towards hormonal balance with our expert guidance.
                 </motion.p>
 
                 <motion.div
