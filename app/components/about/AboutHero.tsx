@@ -103,19 +103,7 @@ const AboutHero = () => {
                 </div>
 
                 {/* Navigation Dots */}
-                <div className="flex justify-center lg:justify-start items-center gap-2 mt-6">
-                  {storyContent.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveStory(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        activeStory === index
-                          ? 'bg-[var(--text-color-light)] w-4'
-                          : 'bg-[var(--text-color-plain)]/30'
-                      }`}
-                    />
-                  ))}
-                </div>
+                
               </motion.div>
             </div>
           </div>

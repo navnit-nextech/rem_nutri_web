@@ -42,40 +42,40 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="flex items-center space-x-9">
               <Link
                 href="/about"
-                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
                   pathname === "/about" 
-                    ? "text-[var(--text-color-light)] font-medium" 
-                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    : ""
                 }`}
               >
                 About
               </Link>
               <Link
                 href="/services"
-                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
                   pathname === "/services" 
-                    ? "text-[var(--text-color-light)] font-medium" 
-                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    : ""
                 }`}
               >
                 Services
               </Link>
               <Link
                 href="/blog"
-                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
                   pathname === "/blog" 
-                    ? "text-[var(--text-color-light)] font-medium" 
-                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    : ""
                 }`}
               >
                 Blog
               </Link>
               <Link
                 href="/contact"
-                className={`text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors ${
+                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
                   pathname === "/contact" 
-                    ? "text-[var(--text-color-light)] font-medium" 
-                    : "text-[var(--text-color-dark)] hover:text-fizeo-dark-green"
+                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    : ""
                 }`}
               >
                 Contact
@@ -181,10 +181,10 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/about"
-                  className={`text-[24px] font-normal ${
+                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
                     pathname === "/about" 
-                      ? "text-[var(--text-color-light)] font-medium" 
-                      : "text-[var(--text-color-dark)]"
+                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -206,10 +206,10 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/services"
-                  className={`text-[24px] font-normal ${
+                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
                     pathname === "/services" 
-                      ? "text-[var(--text-color-light)] font-medium" 
-                      : "text-[var(--text-color-dark)]"
+                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -230,10 +230,10 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/blog"
-                  className={`text-[24px] font-normal ${
+                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
                     pathname === "/blog" 
-                      ? "text-[var(--text-color-light)] font-medium" 
-                      : "text-[var(--text-color-dark)]"
+                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -254,10 +254,10 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/contact"
-                  className={`text-[24px] font-normal ${
+                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
                     pathname === "/contact" 
-                      ? "text-[var(--text-color-light)] font-medium" 
-                      : "text-[var(--text-color-dark)]"
+                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >

@@ -4,9 +4,7 @@
 
 
 import React from "react";
-import { Button } from "../components/ui/button";
-import Link from "next/link";
-import { useState } from "react";
+
 import { useRouter } from 'next/navigation';
 
 
@@ -197,13 +195,7 @@ const ServicesGrid = () => {
         ))}
       </div>
   
-      {/* <div className="md:px-[41%] mt-[5%]">
-        <Link href="/contact">
-          <Button className="bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] hover:bg-[rgb(111,233,132)] text-[var(--text-color-dark)] !font-bold rounded-md w-full px-6 py-6">
-            FIND THE RIGHT PROGRAMME
-          </Button>
-        </Link>
-      </div> */}
+      
     </div>
   );
 };

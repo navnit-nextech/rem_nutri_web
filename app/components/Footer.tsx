@@ -6,14 +6,14 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full  bg-[var(--background-color-dark)] text-white py-22 text-[14px]">
-      <div className="max-w-6xl mx-auto px-4 flex  flex-col items-start -md:pl-5 md:flex-row md:justify-between ">
+    <footer className="w-full  bg-[var(--background-color-dark)] text-white pt-10 pb-15 md:py-22 text-[14px]">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col items-start -md:pl-5 md:flex-row md:justify-between ">
 
-        <div className="max-w-6xl mx-auto px-4 flex flex-col items-start md:flex-row md:justify-between">
+        <div className="max-w-6xl mx-auto md:px-4 flex flex-col items-start md:flex-row md:justify-between">
 
           {/* First Row: Logo */}
           <Link href="/" className="">
-            <div className="w-40 h-40 rounded-xl  ">
+            <div className="md:w-40 md:h-40 rounded-xl  h-20 w-50">
               {/* SVG Logo */}
               <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" className="" />
 
@@ -94,30 +94,25 @@ const Footer = () => {
 
       <div className=" pr-0 md:pt-6 px-[10%] flex flex-col w=full items-start text-left md:flex-row md:justify-between md:w-[90%] ">
 
-        <div className='flex md:flex-row md:justify-between  md:w-[60%]'>
+        <div className="flex flex-col items-center md:flex-row md:justify-between mb-5 md:w-[60%]">
+          {/* Copyright */}
+          <div className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
+            © 2024 RemNutri Health Private Limited
+          </div>
 
-        
-        {/* Copyright */}
-        <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-          © 2024 RemNutri Health Private Limited 
+          <div className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px] mt-2 md:mt-0">
+            Designed and Developed by&nbsp;
+            <a href="https://www.nextechz.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+              Nextech
+            </a>
+          </div>
         </div>
 
-        <div className="mb-4 text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
-  Designed and Developed by by &nbsp;
-  <a href="https://www.nextechz.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">
-    Nextech
-  </a>
-</div>
 
 
-       
-
-        </div>
-
-        
 
 
-        
+
 
         {/* Social Icons */}
         <div className="flex space-x-4">

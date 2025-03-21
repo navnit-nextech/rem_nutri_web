@@ -21,12 +21,11 @@ const TherapeuticExcellence = () => {
           </svg>
         </div>
 
-        <ScrollAnimation>
           <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-7 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
           Say good-bye to health conditions that hold you back!  
           </h2>
           
-        </ScrollAnimation>
+     
 
         
 
@@ -54,11 +53,15 @@ const TherapeuticExcellence = () => {
           </p>
         </ScrollAnimation> */}
 
+
+
         <Link href="/contact">
           <Button className="bg-[var(--background-color-light)]  hover:opacity-80 font-['DM_Sans', 'sans-serif'] text-[16px] text-[var(--text-color-dark)]  !font-bold rounded-md px-6 py-6 cursor-pointer">
           FIND THE RIGHT PROGRAMME
           </Button>
         </Link>
+
+      
       </div>
     </div>
   );

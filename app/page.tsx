@@ -18,9 +18,9 @@ const Index = () => {
       <HeroSection />
 
       <TherapeuticExcellence />
-      <ScrollAnimation longFade>
+      
         <ServicesGrid />
-      </ScrollAnimation>
+      
       <Testimonials />
       <WhyFizeo />
       {/* <FizeoApproach /> */}

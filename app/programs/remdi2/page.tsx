@@ -186,17 +186,17 @@ const RemDi2Page = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="flex flex-col sm:flex-row gap-4"
+                    className="flex flex-row gap-2 sm:gap-4 justify-center"
                   >
                     <a
                       href="#learn-more"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300"
+                      className="inline-flex items-center justify-center px-3 sm:px-6 md:px-8 py-3 sm:py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 text-sm sm:text-sm md:text-base whitespace-nowrap"
                     >
                       Start Your Journey
                     </a>
                     <a
                       href="#contact"
-                      className="inline-flex items-center justify-center px-8 py-4 border border-[var(--text-color-plain)]/20 text-[var(--text-color-plain)] font-semibold rounded-xl hover:bg-[var(--text-color-plain)]/10 transition-all duration-300"
+                      className="inline-flex items-center justify-center px-3 sm:px-6 md:px-8 py-3 sm:py-4 border border-[var(--text-color-plain)]/20 text-[var(--text-color-plain)] font-semibold rounded-xl hover:bg-[var(--text-color-plain)]/10 transition-all duration-300 text-sm sm:text-sm md:text-base whitespace-nowrap"
                     >
                       Book Consultation
                     </a>
@@ -479,15 +479,15 @@ const RemDi2Page = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                  className="flex flex-row gap-2 sm:gap-4 justify-center items-center"
                 >
                   <motion.a
                     href="/contact"
                     whileHover={{ scale: 1.02 }}
-                    className="group inline-flex items-center justify-center px-8 py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 min-w-[200px]"
+                    className="group inline-flex items-center justify-center px-3 sm:px-6 md:px-8 py-3 sm:py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 text-sm sm:text-sm md:text-base whitespace-nowrap min-w-[140px] sm:min-w-[200px]"
                   >
                     Book Consultation
-                    <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </motion.a>
