@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
 import fs from 'fs';
 import path from 'path';
-import { GoogleAuth } from 'google-auth-library';
-import { sheets_v4, google } from 'googleapis';
+
+// Google Sheets setup
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
+const SHEET_NAME = 'ContactSubmissions';
 
 // Fallback local storage setup
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -18,48 +22,42 @@ if (!fs.existsSync(CONTACTS_FILE)) {
   fs.writeFileSync(CONTACTS_FILE, JSON.stringify([], null, 2));
 }
 
-// Google Sheets setup
-const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
-const SHEET_NAME = 'ContactSubmissions';
-
 // Get Google Sheets client
 const getGoogleSheetClient = async () => {
   try {
-    // Check for required environment variables
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    let privateKey = process.env.GOOGLE_PRIVATE_KEY;
-    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
-    
-    if (!clientEmail || !privateKey || !spreadsheetId) {
-      throw new Error('Missing required Google Sheets configuration');
+    // Validate required env vars
+    if (!process.env.GOOGLE_CLIENT_EMAIL || 
+        !process.env.GOOGLE_PRIVATE_KEY ||
+        !process.env.GOOGLE_SHEET_ID) {
+      throw new Error('Missing Google Sheets credentials');
     }
     
-    // Handle different private key formats
-    // If the key contains literal \n (not actual newlines), replace them
-    if (privateKey.includes('\\n') && !privateKey.includes('\n')) {
-      privateKey = privateKey.replace(/\\n/g, '\n');
-      console.log('Replaced escaped newlines in private key');
-    }
+    // Make sure private key is formatted correctly
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY.includes('\\n') 
+      ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
+      : process.env.GOOGLE_PRIVATE_KEY;
     
-    console.log(`Creating Google Sheets client with: 
-      - Email: ${clientEmail}
-      - Sheet ID: ${spreadsheetId}
-      - Private key format seems correct: ${privateKey.includes('\n')}`);
+    console.log('Creating Google Sheets client...');
+    console.log(`Client email: ${process.env.GOOGLE_CLIENT_EMAIL}`);
+    console.log(`Sheet ID: ${process.env.GOOGLE_SHEET_ID}`);
+    console.log(`Private key format seems correct: ${privateKey.includes('-----BEGIN PRIVATE KEY-----')}`);
     
-    // Create a JWT client using GoogleAuth
-    const auth = new GoogleAuth({
+    // Create JWT client
+    const auth = new google.auth.GoogleAuth({
       credentials: {
-        client_email: clientEmail,
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
         private_key: privateKey,
       },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      scopes: SCOPES,
     });
-    
-    // Create Google Sheets client
-    return google.sheets({ version: 'v4', auth });
+
+    const client = await auth.getClient();
+    // Use type assertion to handle type mismatch
+    return google.sheets({ version: 'v4', auth: client as any });
   } catch (error) {
     console.error('Error creating Google Sheets client:', error);
-    throw error;
+    console.error('Details:', JSON.stringify(error, null, 2));
+    throw new Error('Failed to create Google Sheets client');
   }
 };
 
@@ -252,12 +250,12 @@ export async function POST(req: Request) {
               <p><strong>Service:</strong> ${service}</p>
               <p><strong>Message:</strong> ${message}</p>
             </div>
-            <p>If you have any urgent questions, please contact us directly at <a href="tel:123456789" style="color: #004d40; text-decoration: none;">123456789</a></p>
+            <p>If you have any urgent questions, please contact us directly at <a href="tel:8450 9087" style="color: #004d40; text-decoration: none;">8450 9087</a></p>
             <p>Best regards,<br>The RemNutri Team</p>
             <hr style="border: 1px solid #eeeeee; margin: 20px 0;">
             <p style="font-size: 12px; color: #777777;">
               RemNutri Health Private Limited<br>
-              <a href="https://rem-nutri-web.vercel.app/" style="color: #004d40; text-decoration: none;">https://rem-nutri-web.vercel.app/</a>
+              <a href="https://www.remnutri.com" style="color: #004d40; text-decoration: none;">www.remnutri.com</a>
             </p>
           </div>
         `,

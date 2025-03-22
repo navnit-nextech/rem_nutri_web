@@ -73,9 +73,8 @@ const getGoogleSheetClient = async () => {
     });
 
     const client = await auth.getClient();
-    const sheets = google.sheets({ version: 'v4', auth: client });
-    
-    return sheets;
+    // Use type assertion to handle type mismatch
+    return google.sheets({ version: 'v4', auth: client as any });
   } catch (error) {
     console.error('Error creating Google Sheets client:', error);
     console.error('Details:', JSON.stringify(error, null, 2));
