@@ -1,10 +1,68 @@
-
-
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import Link from "next/link";
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({
+    type: null,
+    message: ''
+  });
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!email || !email.includes('@')) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please enter a valid email address'
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thanks for subscribing!'
+        });
+        setEmail('');
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.message || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="w-full  bg-[var(--background-color-dark)] text-white pt-10 pb-15 md:py-22 text-[14px]">
       <div className="max-w-6xl mx-auto px-4 flex flex-col items-start -md:pl-5 md:flex-row md:justify-between ">
@@ -12,13 +70,11 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto md:px-4 flex flex-col items-start md:flex-row md:justify-between">
 
           {/* First Row: Logo */}
-          <Link href="/" className="">
+          <Link href="/">
             <div className="md:w-40 md:h-40 rounded-xl  h-20 w-50">
               {/* SVG Logo */}
               <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" className="" />
-
             </div>
-
           </Link>
 
         </div>
@@ -29,11 +85,11 @@ const Footer = () => {
           <div>
             {/* <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Menu</h3> */}
             <ul className="space-y-2">
-              <li><a href="/" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Home</a></li>
-              <li><a href="about" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">About</a></li>
-              <li><a href="services" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm ">Services</a></li>
-              <li><a href="blog" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm ">Blog</a></li>
-              <li><a href="contact" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Contact</a></li>
+              <li><Link href="/" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Home</Link></li>
+              <li><Link href="/about" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">About</Link></li>
+              <li><Link href="/services" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Services</Link></li>
+              <li><Link href="/blog" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Blog</Link></li>
+              <li><Link href="/contact" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Contact</Link></li>
             </ul>
           </div>
 
@@ -42,17 +98,8 @@ const Footer = () => {
             {/* <h3 className="text-lg text-[var(--text-color-plain)] font-medium mb-3 text-[10px] md:text-sm">Utilities</h3> */}
             <ul className="space-y-2">
               {/* <li><a href="#" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Styleguide</a></li> */}
-
-              {/* <li>
-              <Link
-                href="/contact"
-                className="className= text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm"
-              >
-                Contact
-              </Link>
-              </li> */}
-              <li><Link href="privacy" className="  text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Privacy Policy</Link></li>
-              <li><a href="testinomials" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Testinomials</a></li>
+              <li><Link href="/privacy" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Privacy Policy</Link></li>
+              <li><Link href="/testinomials" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Testinomials</Link></li>
               {/* <li><a href="#" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Feedback</a></li> */}
             </ul>
           </div>
@@ -64,24 +111,38 @@ const Footer = () => {
           <p className="mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Join our newsletter to stay up to date on features and releases.</p>
 
           {/* Input & Button Container */}
-          <div className="flex flex-col w-full md:flex-row md:items-center">
+          <form onSubmit={handleSubmit} className="flex flex-col w-full md:flex-row md:items-center">
             {/* Input Field */}
             <input
               type="email"
               placeholder="name@email.com"
               className="w-full text-black bg-[var(--background-color-plain3)] border-none outline-none p-3 rounded-md mb-2 md:mb-0 md:flex-1"
+              value={email}
+              onChange={handleEmailChange}
+              disabled={isSubmitting}
             />
 
             {/* Subscribe Button */}
-            <button className="bg-[var(--background-color-light)] text-black font-medium px-4 py-3 rounded-md md:w-auto md:ml-3 text-[10px] md:text-sm">
-              Subscribe
+            <button 
+              type="submit"
+              disabled={isSubmitting}
+              className={`bg-[var(--background-color-light)] text-black font-medium px-4 py-3 rounded-md md:w-auto md:ml-3 text-[10px] md:text-sm transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[var(--background-color-light)]/90'}`}
+            >
+              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </button>
-          </div>
+          </form>
+
+          {/* Status Message */}
+          {submitStatus.type && (
+            <p className={`mt-2 text-[10px] md:text-sm ${submitStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+              {submitStatus.message}
+            </p>
+          )}
 
           {/* Privacy Policy Text */}
           <p className="text-sm text-[var(--text-color-plain)]/80 mt-3 text-[10px] md:text-[12px]">
             By subscribing you agree to our{' '}
-            <a href="#" className="underline hover:text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] transition-colors text-[10px] md:text-[12px] ">Privacy Policy</a>{' '}
+            <Link href="/privacy" className="underline hover:text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] transition-colors text-[10px] md:text-[12px] ">Privacy Policy</Link>{' '}
             and provide consent to receive updates from our company.
           </p>
         </div>
@@ -108,25 +169,18 @@ const Footer = () => {
           </div>
         </div>
 
-
-
-
-
-
-
         {/* Social Icons */}
         <div className="flex space-x-4">
-          <a href="#" className="hover:text-[var(--text-color-light)] transition-colors">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-color-light)] transition-colors">
             <Facebook size={20} />
           </a>
-          <a href="#" className="hover:text-[var(--text-color-light)] transition-colors">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-color-light)] transition-colors">
             <Instagram size={20} />
-
           </a>
-          <a href="#" className="hover:text-[var(--text-color-light)] transition-colors">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-color-light)] transition-colors">
             <Twitter size={20} />
           </a>
-          <a href="#" className="hover: transition-colors">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-color-light)] transition-colors">
             <Linkedin size={20} />
           </a>
         </div>

@@ -34,3 +34,35 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# RemNutri Health Website
+
+## Newsletter Subscription Feature
+
+The website includes a newsletter subscription feature in the footer that:
+1. Collects email addresses from users
+2. Stores them in a Google Sheet (with a local JSON fallback)
+3. Sends confirmation emails to subscribers
+
+### Setup Instructions
+
+For detailed setup instructions, see the [Newsletter Setup Guide](./docs/newsletter-setup-guide.md).
+
+### Environment Variables
+
+The newsletter feature requires the following environment variables in `.env.local`:
+
+```
+# Google Sheets API Configuration
+GOOGLE_SHEET_ID=your_spreadsheet_id_here
+GOOGLE_CLIENT_EMAIL=your_service_account_email@example.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour_private_key_here\n-----END PRIVATE KEY-----\n"
+
+# Email Configuration
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_app_password_here
+```
+
+### Fallback Mechanism
+
+If Google Sheets integration is not configured, emails will be saved locally to `data/subscribers.json`.

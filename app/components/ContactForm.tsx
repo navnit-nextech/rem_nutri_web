@@ -1,4 +1,3 @@
-
 "use client"
 
 
@@ -96,10 +95,69 @@ const Custtwit = () => (
 
 
 const ContactForm = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    service: '',
+    message: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitStatus, setSubmitStatus] = React.useState<{
+    success?: boolean;
+    message?: string;
+  } | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted');
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus({
+          success: true,
+          message: data.message || 'Thank you for your message! We will get back to you soon.'
+        });
+        // Reset form on success
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({
+          success: false,
+          message: data.message || 'Failed to submit the form. Please try again.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        success: false,
+        message: 'An error occurred. Please try again later.'
+      });
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -197,6 +255,8 @@ const ContactForm = () => {
                   </Label>
                   <Input
                     id="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
                     required
                     className="bg-white border border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)] focus-visible:border-[0.5px] text-black"
                   />
@@ -208,6 +268,8 @@ const ContactForm = () => {
                   </Label>
                   <Input
                     id="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     required
                     className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)] focus-visible:border-[0.5px] text-black"
                   />
@@ -220,6 +282,8 @@ const ContactForm = () => {
                   <Input
                     id="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black"
                   />
@@ -231,6 +295,8 @@ const ContactForm = () => {
                   </Label>
                   <Input
                     id="service"
+                    value={formData.service}
+                    onChange={handleChange}
                     required
                     className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black"
                   />
@@ -238,26 +304,32 @@ const ContactForm = () => {
 
                 <div>
                   <Label htmlFor="message" className="font-['DM_Sans', 'sans-serif'] text-[16px] text-[var(--text-color-dark)]">
-                    Message
+                    Message*
                   </Label>
-                  <Input
+                  <Textarea
                     id="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     required
-                    className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black"
+                    className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black min-h-[100px]"
                   />
                 </div>
               </div>
 
+              {submitStatus && (
+                <div className={`p-3 rounded-md ${submitStatus.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <Button
                 type="submit"
-                className="w-full bg-[var(--background-color-light)] text-[var(--text-color-dark)] font-bold py-3 text-base"
+                disabled={isSubmitting}
+                className="w-full bg-[var(--background-color-light)] text-[var(--text-color-dark)] font-bold py-3 text-base 
+                hover:bg-[var(--background-color-dark)] hover:text-white transition-colors duration-300"
               >
-                Submit
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </Button>
-
-              <span className="text-[var(--text-color-dark)] text-[30px] font-['DM_Sans', 'sans-serif']">We look forward to hearing from you!</span>
-
-             
             </form>
           </div>
 
