@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 
 const CustomHomeIcon = () => (
   <svg
@@ -21,7 +23,7 @@ const Customsports = () => (
 );
 
 const CustomDiamondIcon = () => (
-  <div style={{ display: "contents" }}>
+  <div className="icon-container">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
@@ -35,7 +37,7 @@ const CustomDiamondIcon = () => (
 );
 
 const CustomHexagon = () => (
-  <div style={{ display: "contents" }}>
+  <div className="icon-container">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
@@ -49,7 +51,7 @@ const CustomHexagon = () => (
 );
 
 const Customwellness = () => (
-  <div style={{ display: "contents" }}>
+  <div className="icon-container">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
@@ -63,16 +65,23 @@ const Customwellness = () => (
 );
 
 const Customworkplace = () => (
-  <div style={{ display: "contents" }}>
+  <div className="icon-container">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
-      className="w-6 h-6 text-[#043A22] fill-current"
+      className="w-8 h-8 text-[#043A22] fill-current"
     >
       <g color="rgb(28, 51, 50)">
         <path d="M 112 152 a 8 8 0 0 0 -8 8 v 28.69 L 75.72 160.4 A 39.71 39.71 0 0 1 64 132.12 V 95 a 32 32 0 1 0 -16 0 v 37.13 a 55.67 55.67 0 0 0 16.4 39.6 L 92.69 200 H 64 a 8 8 0 0 0 0 16 h 48 a 8 8 0 0 0 8 -8 V 160 A 8 8 0 0 0 112 152 Z M 40 64 A 16 16 0 1 1 56 80 A 16 16 0 0 1 40 64 Z m 168 97 V 123.88 a 55.67 55.67 0 0 0 -16.4 -39.6 L 163.31 56 H 192 a 8 8 0 0 0 0 -16 H 144 a 8 8 0 0 0 -8 8 V 96 a 8 8 0 0 0 16 0 V 67.31 L 180.28 95.6 A 39.71 39.71 0 0 1 192 123.88 V 161 a 32 32 0 1 0 16 0 Z m -8 47 a 16 16 0 1 1 16 -16 A 16 16 0 0 1 200 208 Z"></path>
       </g>
     </svg>
+  </div>
+);
+
+// Decorative divider for visual appeal
+const Divider = () => (
+  <div className="flex items-center justify-center my-10">
+    <div className="w-40 h-[1px] bg-[#EBE5DA]"></div>
   </div>
 );
 
@@ -83,6 +92,7 @@ const ServiceCard = ({
   quote,
   features,
   ctaText,
+  delay = 0
 }: {
   icon: React.ReactNode;
   title: string;
@@ -90,18 +100,53 @@ const ServiceCard = ({
   quote?: { text: string; author: string };
   features?: string[];
   ctaText?: string;
+  delay?: number;
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              if (cardRef.current) {
+                cardRef.current.classList.add('fade-in-slide');
+              }
+            }, delay);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, [delay]);
+
   return (
-    <div className="px-10 py-12 w-full md:w-[480px] lg:w-[580px] flex flex-col gap-7 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 min-h-[600px] hover:shadow-lg transition-shadow">
+    <div 
+      ref={cardRef}
+      className="service-card px-10 py-12 w-full md:w-[480px] lg:w-[580px] flex flex-col gap-7 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] min-h-[600px] hover:shadow-lg transition-all duration-500 ease-in-out relative overflow-hidden hover:border-[var(--text-color-light)]/40"
+    >
       <div className="flex items-center gap-3 text-[var(--text-color-dark)]">
-        {icon}
-        <h3 className="text-[28px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] font-bold">
+        <div className="icon-wrapper">
+          {icon}
+        </div>
+        <h3 className="text-[28px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] font-bold leading-tight transition-colors duration-300 group-hover:text-[var(--text-color-light)]">
           {title}
         </h3>
       </div>
 
       {quote && (
-        <div className="border-l-4 border-[var(--text-color-light)] pl-6 my-3 italic">
+        <div className="border-l-4 border-[var(--text-color-light)] pl-6 my-5 italic transition-all duration-300 hover:border-l-[6px]">
           <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-lg mb-2 font-medium">
             "{quote.text}"
           </p>
@@ -116,7 +161,7 @@ const ServiceCard = ({
       {features && (
         <ul className="space-y-4 flex-grow">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-3">
+            <li key={index} className="flex items-start gap-3 hover:translate-x-1 transition-transform duration-300">
               <span className="text-[var(--text-color-light)] mt-1 text-lg">•</span>
               <p className="text-[var(--text-color-dark)]/90 font-['DM_Sans', 'sans-serif'] text-[16px] font-medium">
                 {feature}
@@ -127,10 +172,66 @@ const ServiceCard = ({
       )}
 
       {ctaText && (
-        <button className="mt-auto w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-6 rounded-lg hover:bg-[var(--background-color-dark)]/90 transition-all hover:transform hover:scale-[1.02]">
+        <button className="mt-auto w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-md active:translate-y-0.5 hover:bg-[var(--background-color-dark)]/90">
           {ctaText}
         </button>
       )}
+    </div>
+  );
+};
+
+const HealthServiceBox = ({ 
+  icon, 
+  title,
+  delay = 0 
+}: { 
+  icon: React.ReactNode; 
+  title: string;
+  delay?: number;
+}) => {
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              if (boxRef.current) {
+                boxRef.current.classList.add('fade-in-up');
+              }
+            }, delay);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (boxRef.current) {
+      observer.observe(boxRef.current);
+    }
+
+    return () => {
+      if (boxRef.current) {
+        observer.unobserve(boxRef.current);
+      }
+    };
+  }, [delay]);
+
+  return (
+    <div 
+      ref={boxRef}
+      className="health-box opacity-0 bg-gradient-to-br from-[var(--background-color-plain)] to-[#f8f6f2] p-10 rounded-2xl border border-[#EBE5DA] shadow-sm hover:shadow-lg transition-all duration-500 ease-in-out group hover:border-[var(--text-color-light)]/40 hover:translate-y-[-5px]"
+    >
+      <div className="flex justify-center mb-6">
+        <div className="p-4 rounded-full border border-[#EBE5DA] bg-[var(--background-color-plain)] transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:border-[var(--text-color-light)]/40">
+          {icon}
+        </div>
+      </div>
+      <h3 className="text-center font-['Libre_Baskerville',serif] text-xl text-[var(--text-color-dark)] mb-3 font-semibold group-hover:text-[var(--text-color-light)] transition-colors duration-300">
+        {title}
+      </h3>
+      <div className="w-0 h-0.5 bg-[var(--text-color-light)] mx-auto mb-4 opacity-80 transition-all duration-500 group-hover:w-24"></div>
     </div>
   );
 };
@@ -171,10 +272,105 @@ const services = [
 ];
 
 const ServicesHero = () => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const consultationRef = useRef<HTMLDivElement>(null);
+  const healthSectionRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes fadeInSlide {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      .fade-in-up {
+        animation: fadeInUp 0.8s forwards ease-out;
+      }
+      
+      .fade-in-slide {
+        animation: fadeInSlide 0.8s forwards ease-out;
+      }
+      
+      .icon-container {
+        display: contents;
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .icon-container:hover svg {
+        transform: scale(1.1);
+      }
+      
+      .service-card:hover .icon-wrapper {
+        transform: rotate(5deg);
+      }
+      
+      .icon-wrapper {
+        transition: transform 0.3s ease-in-out;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Observers for animations
+    const observers = [
+      { ref: titleRef, className: 'fade-in-up' },
+      { ref: consultationRef, className: 'fade-in-up' },
+      { ref: healthSectionRef, className: 'fade-in-up' }
+    ].map(({ ref, className }) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add(className);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+
+      return { observer, ref };
+    });
+
+    return () => {
+      observers.forEach(({ observer, ref }) => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+      document.head.removeChild(style);
+    };
+  }, []);
+
   return (
-    <div className="pt-20">
-      <div className="bg-[var(--background-color-dark)] sm:p-20 sm:py-32 sm:pb-52 py-20 pb-36">
-        <h1 className="font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-[var(--text-color-plain)] text-center max-w-3xl mx-auto font-bold">
+    <div className="pt-20 overflow-hidden">
+      <div className="bg-[var(--background-color-dark)] sm:p-20 sm:py-32 sm:pb-52 py-20 pb-36 relative">
+        
+        <h1 
+          ref={titleRef}
+          className="opacity-0 font-['Libre_Baskerville',serif] text-3xl sm:text-6xl text-[var(--text-color-plain)] text-center max-w-3xl mx-auto font-bold relative z-10"
+        >
           Supporting <span className="text-[var(--text-color-light)]">Your Health</span> Journey
         </h1>
       </div>
@@ -182,21 +378,45 @@ const ServicesHero = () => {
       <div className="bg-[var(--background-color-plain2)]">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <ServiceCard key={index} {...service} delay={index * 200} />
           ))}
         </div>
 
-        <div className="max-w-2xl mx-auto text-center -mt-4 pb-20 px-4">
-          <div className="bg-[var(--background-color-plain)] py-8 px-6 rounded-2xl border border-[#EBE5DA] shadow-sm">
-            <h2 className="font-['Libre_Baskerville',serif] text-2xl text-[var(--text-color-dark)] mb-4 font-bold">
+        <div className="max-w-2xl mx-auto text-center -mt-4 pb-16 px-4">
+          <Divider />
+          <div 
+            ref={consultationRef}
+            className="opacity-0 bg-[var(--background-color-plain)] py-10 px-8 rounded-2xl border border-[#EBE5DA] shadow-sm relative overflow-hidden hover:shadow-xl hover:border-[var(--text-color-light)]/30 transition-all duration-500"
+          >
+            <h2 className="font-['Libre_Baskerville',serif] text-2xl text-[var(--text-color-dark)] mb-4 font-bold relative z-10 transition-transform duration-300 hover:scale-[1.02]">
               Still struggling to understand which programme will help manage your health concern?
             </h2>
-            <p className="text-[var(--text-color-dark)]/90 mb-8 text-lg font-medium">
+            <p className="text-[var(--text-color-dark)]/90 mb-8 text-lg font-medium relative z-10 transition-all duration-300 hover:text-[var(--text-color-dark)]">
               Let's talk and find the perfect solution for you.
             </p>
-            <button className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-10 rounded-lg hover:bg-[var(--background-color-dark)]/90 transition-all hover:transform hover:scale-[1.02]">
+            <button className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:shadow-md active:translate-y-0.5 relative z-10 hover:bg-[var(--background-color-dark)]/90 hover:scale-105">
               Book Now
             </button>
+          </div>
+        </div>
+        
+        {/* Health Services Section */}
+        <div className="max-w-7xl mx-auto py-16 px-4 pb-32">
+          <h2 
+            ref={healthSectionRef}
+            className="opacity-0 font-['Libre_Baskerville',serif] text-3xl md:text-4xl text-[var(--text-color-dark)] text-center mb-4 font-bold"
+          >
+            WE PROVIDE FOR <span className="text-[var(--text-color-light)]">YOUR HEALTH</span>
+          </h2>
+          
+          <p className="text-center text-[var(--text-color-dark)]/80 max-w-2xl mx-auto mb-12 text-lg font-['DM_Sans', 'sans-serif']">
+            Our comprehensive services are designed to support your health journey at every step
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <HealthServiceBox icon={<CustomHexagon />} title="Remission & Reversal Programmes" delay={100} />
+            <HealthServiceBox icon={<Customwellness />} title="Meal Delivery" delay={300} />
+            <HealthServiceBox icon={<Customworkplace />} title="Corporate Services" delay={500} />
           </div>
         </div>
       </div>
