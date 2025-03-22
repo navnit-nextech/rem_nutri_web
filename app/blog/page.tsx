@@ -19,7 +19,7 @@ export default async function Blog() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar theme="dark"/>
 
       {/* Hero Section */}
       <div className="bg-[var(--background-color-dark)] py-40  md:py-50 text-left md:text-center relative px-6 md:px-0">

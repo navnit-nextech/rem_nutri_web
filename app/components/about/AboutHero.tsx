@@ -6,26 +6,27 @@ import ScrollAnimation from "../ScrollAnimation";
 
 // Image data for galleries
 const imageCol1 = [
-  "/images/about/11.avif",
-  "/images/about/12.avif",
-  "/images/about/13.avif",
-  "/images/about/11.avif",
-  "/images/about/12.avif",
-  "/images/about/13.avif",
-  "/images/about/11.avif",
-  "/images/about/12.avif",
-  "/images/about/13.avif",
+  "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664640733870-15cb6a5b6ee6?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664640733870-15cb6a5b6ee6?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664640733870-15cb6a5b6ee6?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 ];
+
 const imageCol2 = [
-  "/images/about/21.avif",
-  "/images/about/22.avif",
-  "/images/about/23.avif",
-  "/images/about/21.avif",
-  "/images/about/22.avif",
-  "/images/about/23.avif",
-  "/images/about/21.avif",
-  "/images/about/22.avif",
-  "/images/about/23.avif",
+  "https://plus.unsplash.com/premium_photo-1675237626334-5cf9d9d8b30c?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664551734602-49640bd82eba?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+ "https://plus.unsplash.com/premium_photo-1675237626334-5cf9d9d8b30c?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664551734602-49640bd82eba?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+ "https://plus.unsplash.com/premium_photo-1675237626334-5cf9d9d8b30c?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664551734602-49640bd82eba?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 ];
 
 const AboutHero = () => {
@@ -54,7 +55,7 @@ const AboutHero = () => {
       <div className="w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-6 sm:pt-10 pb-10 sm:pb-20 relative overflow-hidden min-h-[100dvh] pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Content Section */}
-          <div className="flex-1 text-center lg:text-left mt-16 sm:mt-24 lg:mt-48">
+          <div className="flex-1 text-center lg:text-left mt-12 sm:mt-20 lg:mt-36">
             <h1 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] text-2xl sm:text-3xl md:text-[40px] mb-4 sm:mb-6 px-2 sm:px-0">
               OUR{" "}
               <span className="text-[var(--text-color-light)]">STORY</span>
@@ -109,12 +110,12 @@ const AboutHero = () => {
           </div>
 
           {/* Image Galleries */}
-          <div className="flex-1 sm:mt-10 relative">
-            <div className="w-full h-16 sm:h-20 relative -bottom-16 sm:-bottom-20 z-10 bg-gradient-to-b from-[#024027] to-[#02402700]"></div>
+          <div className="flex-1 sm:mt-6 lg:mt-20 relative">
+            <div className="w-full h-16 sm:h-20 relative -bottom-16 sm:-bottom-20 z-10 bg-gradient-to-b from-[var(--background-color-dark)] to-[var(--background-color-dark)]/0"></div>
             <div className="absolute max-sm:hidden top-10 sm:top-40 right-[35%] transform -translate-x-1/2 sm:-right-20 w-16 sm:w-20 h-16 sm:h-20 z-10 scale-110 sm:scale-125">
               <HeroSvg2 />
             </div>
-            <div className="flex gap-3 sm:gap-4 h-[600px] sm:h-[700px] lg:h-[800px] overflow-hidden">
+            <div className="flex gap-3 sm:gap-4 h-[500px] sm:h-[600px] lg:h-[800px] overflow-hidden">
               {/* Left Gallery - Scrolling Down */}
               <motion.div
                 className="flex-1"
@@ -122,14 +123,14 @@ const AboutHero = () => {
                 animate={{ y: "0%" }}
                 transition={{
                   repeat: Infinity,
-                  duration: 20,
+                  duration: 40,
                   ease: "linear",
                 }}
               >
                 {imageCol1.map((src, index) => (
                   <div
                     key={`left-${index}`}
-                    className="w-full h-[350px] sm:h-[400px] lg:h-[450px] bg-[#EBE5DA] rounded-lg my-3"
+                    className="w-full h-[300px] sm:h-[350px] lg:h-[400px] bg-[#EBE5DA] rounded-lg my-3"
                     style={{
                       backgroundImage: `url(${src})`,
                       backgroundSize: "cover",
@@ -146,14 +147,14 @@ const AboutHero = () => {
                 animate={{ y: "-100%" }}
                 transition={{
                   repeat: Infinity,
-                  duration: 20,
+                  duration: 40,
                   ease: "linear",
                 }}
               >
                 {imageCol2.map((src, index) => (
                   <div
                     key={`right-${index}`}
-                    className="w-full h-[350px] sm:h-[400px] lg:h-[450px] bg-[#EBE5DA] rounded-lg mt-3"
+                    className="w-full h-[300px] sm:h-[350px] lg:h-[400px] bg-[#EBE5DA] rounded-lg mt-3"
                     style={{
                       backgroundImage: `url(${src})`,
                       backgroundSize: "cover",
@@ -166,7 +167,7 @@ const AboutHero = () => {
             <div className="absolute bottom-10 sm:bottom-40 left-1/2 transform -translate-x-1/2 sm:left-0 w-16 sm:w-20 h-16 sm:h-20 z-20 scale-110 sm:scale-125 rotate-[75deg]">
               <HeroSvg1 />
             </div>
-            <div className="w-full h-16 sm:h-20 relative -top-16 sm:-top-20 z-10 bg-gradient-to-t from-[#024027] to-[#02402700]"></div>
+            <div className="w-full h-16 sm:h-20 relative -top-16 sm:-top-20 z-10 bg-gradient-to-t from-[var(--background-color-dark)] to-[var(--background-color-dark)]/0"></div>
           </div>
         </div>
       </div>

@@ -14,7 +14,9 @@ import ScrollAnimation from "./components/ScrollAnimation";
 
 const Index = () => {
   return (
+
     <div className="min-h-screen">
+      <Navbar />
       <HeroSection />
 
       <TherapeuticExcellence />

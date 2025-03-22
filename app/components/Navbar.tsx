@@ -6,15 +6,56 @@ import { Button } from "../components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
+// Theme interface for defining different navbar themes
+interface NavbarTheme {
+  background: string;
+  textColor: string;
+  buttonBg: string;
+  buttonText: string;
+  borderColor: string;
+  hamburgerColor: string;
+  hasBorder: boolean;
+}
+
+// Available themes
+const themes: Record<string, NavbarTheme> = {
+  light: {
+    background: "bg-[var(--background-color-plain)]",
+    textColor: "text-[var(--text-color-dark)]",
+    buttonBg: "bg-[var(--background-color-dark)]",
+    buttonText: "text-[var(--text-color-plain)]",
+    borderColor: "border-[#dedede]",
+    hamburgerColor: "bg-[#024027]",
+    hasBorder: true
+  },
+  dark: {
+    background: "bg-[var(--background-color-dark)]",
+    textColor: "text-white",
+    buttonBg: "bg-[var(--background-color-light)]",
+    buttonText: "text-[var(--text-color-dark)]",
+    borderColor: "border-[#3c5951]",
+    hamburgerColor: "bg-white",
+    hasBorder: false
+  }
+};
+
 interface NavbarProps {
-  bgColor?: string; // Optional prop for background color
+  theme?: string; // Theme name: 'light' or 'dark'
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-  bgColor = "bg-[rgb(244,241,235)]",
+  theme = "light", // Default to light theme
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  
+  // Get the current theme settings
+  const currentTheme = themes[theme] || themes.light;
+
+  // Helper function to get the underline color class based on theme
+  const getUnderlineClass = () => {
+    return theme === 'dark' ? 'after:bg-white' : 'after:bg-[var(--text-color-dark)]';
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -22,29 +63,26 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="fixed bg-[var(--background-color-plain)]  h-[12.5%] left-0 w-full z-50  border-b border-[#dedede] py-6 px-6"
+      <nav 
+        className={`fixed ${currentTheme.background} h-[12.5%] left-0 w-full z-50 ${currentTheme.hasBorder ? `border-b ${currentTheme.borderColor}` : ''} py-6 px-6`}
       >
-        <div className="max-w-7xl w-full h-full mx-auto flex  items-center justify-between sm:px-8">
+        <div className="max-w-7xl w-full h-full mx-auto flex items-center justify-between sm:px-8">
           {/* Logo */}
-
           <Link href="/" className="">
             <div className="w-40 h-40 -pr-15 rounded-xl pt-16 pr-5">
               {/* SVG Logo */}
               <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" />
-
             </div>
-
           </Link>
-
 
           {/* Navigation Links & Button - Desktop */}
           <div className="hidden md:flex items-center space-x-15">
             <div className="flex items-center space-x-9">
               <Link
                 href="/about"
-                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
+                className={`${currentTheme.textColor} text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:opacity-80 ${
                   pathname === "/about" 
-                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                     : ""
                 }`}
               >
@@ -52,9 +90,9 @@ const Navbar: React.FC<NavbarProps> = ({
               </Link>
               <Link
                 href="/services"
-                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
+                className={`${currentTheme.textColor} text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:opacity-80 ${
                   pathname === "/services" 
-                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                     : ""
                 }`}
               >
@@ -62,9 +100,9 @@ const Navbar: React.FC<NavbarProps> = ({
               </Link>
               <Link
                 href="/blog"
-                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
+                className={`${currentTheme.textColor} text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:opacity-80 ${
                   pathname === "/blog" 
-                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                     : ""
                 }`}
               >
@@ -72,9 +110,9 @@ const Navbar: React.FC<NavbarProps> = ({
               </Link>
               <Link
                 href="/contact"
-                className={`text-[var(--text-color-dark)] text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:text-fizeo-dark-green ${
+                className={`${currentTheme.textColor} text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:opacity-80 ${
                   pathname === "/contact" 
-                    ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                    ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                     : ""
                 }`}
               >
@@ -82,13 +120,12 @@ const Navbar: React.FC<NavbarProps> = ({
               </Link>
             </div>
             <Button
-              className="bg-[var(--background-color-dark)] hover:opacity-80 text-[var(--text-color-plain)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md cursor-pointer"
+              className={`${currentTheme.buttonBg} hover:opacity-80 ${currentTheme.buttonText} text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md cursor-pointer`}
             >
               <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
                 Book an appointment
               </a>
             </Button>
-
           </div>
 
           {/* Hamburger Menu Button - Mobile */}
@@ -102,20 +139,20 @@ const Navbar: React.FC<NavbarProps> = ({
                 initial={{ rotate: 0, y: 0 }}
                 animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.6, 0.05, 0.01, 0.9] }}
-                className="absolute w-8 h-0.5 bg-[#024027] transform"
+                className={`absolute w-8 h-0.5 ${currentTheme.hamburgerColor} transform`}
               ></motion.span>
               <motion.span
                 initial={{ opacity: 1 }}
                 animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                className="absolute w-8 h-0.5 bg-[#024027] transform"
+                className={`absolute w-8 h-0.5 ${currentTheme.hamburgerColor} transform`}
                 style={{ top: "8px" }}
               ></motion.span>
               <motion.span
                 initial={{ rotate: 0, y: 8 }}
                 animate={isOpen ? { rotate: -45, y: 8 } : { rotate: 0, y: 16 }}
                 transition={{ duration: 0.3, ease: [0.6, 0.05, 0.01, 0.9] }}
-                className="absolute w-8 h-0.5 bg-[#024027] transform"
+                className={`absolute w-8 h-0.5 ${currentTheme.hamburgerColor} transform`}
               ></motion.span>
             </div>
           </button>
@@ -136,7 +173,7 @@ const Navbar: React.FC<NavbarProps> = ({
               stiffness: 300,
               duration: 0.5,
             }}
-            className="fixed inset-0 bg-[var(--background-color-plain)] z-25 md:hidden overflow-hidden shadow-lg"
+            className={`fixed inset-0 ${currentTheme.background} z-25 md:hidden overflow-hidden shadow-lg`}
             style={{
               borderBottomLeftRadius: "20px",
               borderBottomRightRadius: "20px",
@@ -181,16 +218,15 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/about"
-                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
+                  className={`${currentTheme.textColor} text-[24px] font-normal ${
                     pathname === "/about" 
-                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                       : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
                   About
                 </Link>
-
               </motion.div>
 
               <motion.div
@@ -206,9 +242,9 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/services"
-                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
+                  className={`${currentTheme.textColor} text-[24px] font-normal ${
                     pathname === "/services" 
-                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                       : ""
                   }`}
                   onClick={() => setIsOpen(false)}
@@ -230,9 +266,9 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/blog"
-                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
+                  className={`${currentTheme.textColor} text-[24px] font-normal ${
                     pathname === "/blog" 
-                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                       : ""
                   }`}
                   onClick={() => setIsOpen(false)}
@@ -254,9 +290,9 @@ const Navbar: React.FC<NavbarProps> = ({
               >
                 <Link
                   href="/contact"
-                  className={`text-[var(--text-color-dark)] text-[24px] font-normal ${
+                  className={`${currentTheme.textColor} text-[24px] font-normal ${
                     pathname === "/contact" 
-                      ? "relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] after:bg-[var(--text-color-dark)]" 
+                      ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
                       : ""
                   }`}
                   onClick={() => setIsOpen(false)}
@@ -281,20 +317,14 @@ const Navbar: React.FC<NavbarProps> = ({
                   exit: { y: 20, opacity: 0 },
                 }}
               >
-
-
                 <Button
-                  className="bg-[var(--background-color-light)] hover:opacity-80 text-[var(--text-color-dark)] text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md mt-8 w-full"
+                  className={`${currentTheme.buttonBg} hover:opacity-80 ${currentTheme.buttonText} text-[16px] font-semibold px-[24px] py-[24px] rounded-lg shadow-md mt-8 w-full`}
                   asChild
                 >
                   <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
                     Book an appointment
                   </a>
                 </Button>
-
-
-
-
               </motion.div>
             </motion.div>
           </motion.div>

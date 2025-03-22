@@ -273,8 +273,6 @@ const services = [
 
 const ServicesHero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const consultationRef = useRef<HTMLDivElement>(null);
-  const healthSectionRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     // Add CSS animations
@@ -330,35 +328,25 @@ const ServicesHero = () => {
     document.head.appendChild(style);
 
     // Observers for animations
-    const observers = [
-      { ref: titleRef, className: 'fade-in-up' },
-      { ref: consultationRef, className: 'fade-in-up' },
-      { ref: healthSectionRef, className: 'fade-in-up' }
-    ].map(({ ref, className }) => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add(className);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-
-      return { observer, ref };
-    });
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
 
     return () => {
-      observers.forEach(({ observer, ref }) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
       document.head.removeChild(style);
     };
   }, []);
@@ -376,48 +364,10 @@ const ServicesHero = () => {
       </div>
       
       <div className="bg-[var(--background-color-plain2)]">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24 pb-20">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} delay={index * 200} />
           ))}
-        </div>
-
-        <div className="max-w-2xl mx-auto text-center -mt-4 pb-16 px-4">
-          <Divider />
-          <div 
-            ref={consultationRef}
-            className="opacity-0 bg-[var(--background-color-plain)] py-10 px-8 rounded-2xl border border-[#EBE5DA] shadow-sm relative overflow-hidden hover:shadow-xl hover:border-[var(--text-color-light)]/30 transition-all duration-500"
-          >
-            <h2 className="font-['Libre_Baskerville',serif] text-2xl text-[var(--text-color-dark)] mb-4 font-bold relative z-10 transition-transform duration-300 hover:scale-[1.02]">
-              Still struggling to understand which programme will help manage your health concern?
-            </h2>
-            <p className="text-[var(--text-color-dark)]/90 mb-8 text-lg font-medium relative z-10 transition-all duration-300 hover:text-[var(--text-color-dark)]">
-              Let's talk and find the perfect solution for you.
-            </p>
-            <button className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:shadow-md active:translate-y-0.5 relative z-10 hover:bg-[var(--background-color-dark)]/90 hover:scale-105">
-              Book Now
-            </button>
-          </div>
-        </div>
-        
-        {/* Health Services Section */}
-        <div className="max-w-7xl mx-auto py-16 px-4 pb-32">
-          <h2 
-            ref={healthSectionRef}
-            className="opacity-0 font-['Libre_Baskerville',serif] text-3xl md:text-4xl text-[var(--text-color-dark)] text-center mb-4 font-bold"
-          >
-            WE PROVIDE FOR <span className="text-[var(--text-color-light)]">YOUR HEALTH</span>
-          </h2>
-          
-          <p className="text-center text-[var(--text-color-dark)]/80 max-w-2xl mx-auto mb-12 text-lg font-['DM_Sans', 'sans-serif']">
-            Our comprehensive services are designed to support your health journey at every step
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <HealthServiceBox icon={<CustomHexagon />} title="Remission & Reversal Programmes" delay={100} />
-            <HealthServiceBox icon={<Customwellness />} title="Meal Delivery" delay={300} />
-            <HealthServiceBox icon={<Customworkplace />} title="Corporate Services" delay={500} />
-          </div>
         </div>
       </div>
     </div>

@@ -112,12 +112,13 @@ const AboutStats = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
+                  className="h-full"
                 >
-                  <div className="relative group">
+                  <div className="relative group h-full">
                     <div className="absolute -top-2 -left-2 w-12 h-12 text-[var(--text-color-light)]/20">
                       <PillarIcon />
                     </div>
-                    <div className="bg-[var(--background-color-light)]/5 rounded-xl p-8 border border-[var(--text-color-light)]/10">
+                    <div className="bg-[var(--background-color-light)]/5 rounded-xl p-8 border border-[var(--text-color-light)]/10 h-full flex flex-col">
                       <div className="flex items-center gap-4 mb-4">
                         <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[var(--text-color-light)]/10 text-[var(--text-color-light)] font-['Libre_Baskerville',serif]">
                           {index + 1}
