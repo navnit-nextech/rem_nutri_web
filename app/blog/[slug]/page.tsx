@@ -1,18 +1,10 @@
-
-
-
-
 import { client } from '../../../sanity/lib/client'
 import { PortableText } from '@portabletext/react'
 
 import Image from "next/image";
-import Navbar from "../../components/Navbar";
-
+import NavbarWrapper from "../../components/NavbarWrapper";
 
 import Footer from "../../components/Footer";
-
-
-
 
 import Link from "next/link";
 
@@ -50,10 +42,6 @@ type BlogPostProps = {
   params: { slug: string };
 };
 
-
-
-
-
 export default async function BlogPost({ params, }: { params: Promise<{ slug: string }>; }) {
 
   const { slug } = await params;
@@ -80,14 +68,13 @@ export default async function BlogPost({ params, }: { params: Promise<{ slug: st
   }
 `, { slug });
 
-
   if (!post) {
     return <p style={{ color: 'black' }}>Blog post not found!</p>
   }
 
   return (
     <div>
-      <Navbar />
+      <NavbarWrapper />
 
       <header className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)]  pt-40 md:pt-[13%] pb-[5%] px-[8%] min-h-[100vh] relative">
         <div className="max-w-7xl mx-auto">

@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Image from "next/image";
+import Navbar from "../../components/Navbar";
 
 const DecorativeCircle = () => (
   <div className="absolute w-24 h-24 md:w-32 md:h-32 rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center">
@@ -122,6 +123,7 @@ const RemMetaPage = () => {
 
   return (
     <div className="w-full overflow-hidden">
+      <Navbar />
       {/* Hero Section */}
       <div className="relative min-h-screen bg-[var(--background-color-dark)] pt-28 md:pt-20" ref={heroRef}>
         {/* Background Image with Overlay */}
