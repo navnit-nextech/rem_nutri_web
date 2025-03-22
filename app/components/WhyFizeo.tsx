@@ -132,7 +132,7 @@ const WhyFizeo = () => {
 
   return (
     <>
-      <div className="w-full bg-[url('https://framerusercontent.com/images/o58voyKMKfklvmDAsffE229zIwE.png')] bg-cover bg-center bg-no-repeat relative">
+      <div className="w-full bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative">
       <div className="absolute max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[42%] md:left-[48%] -top-5 md:-top-12 transition-transform duration-300 rotate-45">
 
           <Topdecorative />
