@@ -199,42 +199,6 @@ const ServicesHero = () => {
             </button>
           </div>
         </div>
-        
-        {/* WE PROVIDE FOR YOUR HEALTH Section */}
-        <div className="max-w-7xl mx-auto py-16 px-4 md:px-6">
-          <h2 className="font-['Libre_Baskerville',serif] text-3xl sm:text-4xl text-[var(--text-color-dark)] text-center mb-12 font-bold">
-            WE PROVIDE FOR YOUR <span className="text-[var(--text-color-light)]">HEALTH</span>
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Box 1 */}
-            <div className="flex flex-col items-center text-center bg-gradient-to-br from-[var(--background-color-light)]/10 to-[var(--background-color-plain)] p-8 rounded-2xl border border-[var(--background-color-light)]/20 hover:border-[var(--background-color-light)]/40 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-2">
-              <div className="w-16 h-16 bg-[var(--background-color-light)]/20 rounded-xl flex items-center justify-center mb-6">
-                <CustomHexagon />
-              </div>
-              <h3 className="text-xl text-[var(--text-color-dark)] font-bold mb-3">Remission & Reversal Programmes</h3>
-              <div className="w-16 h-1 bg-[var(--background-color-light)] rounded-full mb-2"></div>
-            </div>
-            
-            {/* Box 2 */}
-            <div className="flex flex-col items-center text-center bg-gradient-to-br from-[var(--background-color-light)]/10 to-[var(--background-color-plain)] p-8 rounded-2xl border border-[var(--background-color-light)]/20 hover:border-[var(--background-color-light)]/40 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-2">
-              <div className="w-16 h-16 bg-[var(--background-color-light)]/20 rounded-xl flex items-center justify-center mb-6">
-                <Customwellness />
-              </div>
-              <h3 className="text-xl text-[var(--text-color-dark)] font-bold mb-3">Meal Delivery</h3>
-              <div className="w-16 h-1 bg-[var(--background-color-light)] rounded-full mb-2"></div>
-            </div>
-            
-            {/* Box 3 */}
-            <div className="flex flex-col items-center text-center bg-gradient-to-br from-[var(--background-color-light)]/10 to-[var(--background-color-plain)] p-8 rounded-2xl border border-[var(--background-color-light)]/20 hover:border-[var(--background-color-light)]/40 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-2">
-              <div className="w-16 h-16 bg-[var(--background-color-light)]/20 rounded-xl flex items-center justify-center mb-6">
-                <Customworkplace />
-              </div>
-              <h3 className="text-xl text-[var(--text-color-dark)] font-bold mb-3">Corporate Services</h3>
-              <div className="w-16 h-1 bg-[var(--background-color-light)] rounded-full mb-2"></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
