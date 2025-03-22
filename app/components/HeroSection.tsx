@@ -16,7 +16,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className="relative w-full min-h-screen pt-20 md:pt-32 flex items-center justify-center 
+      className="relative w-full min-h-screen pt-36 sm:pt-36 md:pt-32 flex items-center justify-center 
       bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
     >
       <div className="max-w-7xl w-full relative">
@@ -25,7 +25,7 @@ const HeroSection = () => {
                      sm:rounded-[0px_24px_0px_24px] rounded-3xl min-h-[422px] lg:min-h-[475px]"
         >
           {/* Content */}
-          <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 md:p-7 lg:p-9">
+          <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 pt-10 sm:pt-8 md:p-7 lg:p-9">
             <ScrollAnimation>
               <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
                 Remission through{" "} <span className="hidden md:block"></span>
@@ -73,7 +73,7 @@ const HeroSection = () => {
 
         {/* Circle decoration */}
         <ScrollAnimation delay={0.6} onlyFade>
-          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-25 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 ">
+          <div className="absolute top-10 right-9 translate-x-7 w-25 md:w-30 h-25 md:h-30 flex items-center justify-center max-sm:top-[43%] max-sm:right-6 z-20">
             <div className="w-full h-full rounded-full border-[10px] md:border-[15px] border-[#A6C6B2] flex items-center justify-center ">
               <div className="w-3/4 h-3/4 rounded-full flex items-center justify-center border-[10px] md:border-[15px] border-[#F4C6A5] "></div>
             </div>
@@ -82,7 +82,7 @@ const HeroSection = () => {
 
         {/* Star decoration */}
         <ScrollAnimation delay={0.6}>
-          <div className="absolute z-10 bottom-[-60px] sm:left-[55%] left-[50%] transform -translate-x-1/2 rotate-12 scale-75 md:scale-100">
+          <div className="absolute z-30 bottom-[-60px] sm:left-[55%] left-[50%] transform -translate-x-1/2 rotate-12 scale-75 md:scale-100">
             <svg
               width="120"
               height="120"

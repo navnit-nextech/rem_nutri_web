@@ -1,7 +1,7 @@
 
 "use client"
 
-
+import Navbar from "../components/Navbar";
 
 import ContactForm from "../components/ContactForm";
 
@@ -14,7 +14,8 @@ const Contact= () => {
 
     <div>
 
-      
+
+      <Navbar theme="light"/>
 
       <ContactForm/>
       

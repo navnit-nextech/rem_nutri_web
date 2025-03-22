@@ -1,10 +1,9 @@
 import Image from "next/image";
-import Navbar from "../components/Navbar";
 import GetInTouch from "../components/GetInTouch";
-
 import Link from "next/link";
 import { client } from "../../sanity/lib/client";
 import ScrollAnimation from "../components/ScrollAnimation";
+import NavbarWrapper from "../components/NavbarWrapper";
 
 export default async function Blog() {
   const blogPosts = await client.fetch(`
@@ -18,16 +17,16 @@ export default async function Blog() {
   `);
 
   return (
-    <div>
-      <Navbar theme="dark"/>
-
+    <>
+      <NavbarWrapper />
+      
       {/* Hero Section */}
-      <div className="bg-[var(--background-color-dark)] py-40  md:py-50 text-left md:text-center relative px-6 md:px-0">
-      <ScrollAnimation>
-        <h1 className="text-[40px] md:text-[56px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] leading-tight">
-          Physio pulse to unleash the <br />
-          <span className="text-[var(--text-color-light)]">power of movement</span>
-        </h1>
+      <div className="bg-[var(--background-color-dark)] py-40 md:py-50 text-left md:text-center relative px-6 md:px-0">
+        <ScrollAnimation>
+          <h1 className="text-[40px] md:text-[56px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] leading-tight">
+            Physio pulse to unleash the <br />
+            <span className="text-[var(--text-color-light)]">power of movement</span>
+          </h1>
         </ScrollAnimation>
       </div>
 
@@ -62,7 +61,6 @@ export default async function Blog() {
       </div>
 
       <GetInTouch />
-
-    </div>
+    </>
   );
 }

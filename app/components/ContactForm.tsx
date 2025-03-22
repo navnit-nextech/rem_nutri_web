@@ -164,7 +164,7 @@ const ContactForm = () => {
   
   
   
-  <div className="w-full bg-[var(--background-color-plain1)] py-30 md:py-50 ">
+  <div className="w-full bg-[var(--background-color-plain1)] py-16 sm:py-20 md:py-30 md:py-50 ">
 
     
       <div className="max-w-7xl mx-auto px-4 md:px-8 z=10">
@@ -172,7 +172,7 @@ const ContactForm = () => {
           {/* Left column with text and contact info */}
           <div className="space-y-12">
             {/* Heading and intro text */}
-            <div className="space-y-6">
+            <div className="space-y-6 pt-15 md:pt-0">
               <h2 className="text-[26px] md:text-[40px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">Ready to Take Control of Your Health? </h2>
               <p className="text-[20px] font-['DM_Sans', 'sans-serif'] text-[var(--text-color-dark)] leading-relaxed">
               At RemDi, we're here to support you on <span className="hidden md:block"></span> your journey to a healthier you. Contact <span className="hidden md:block"></span>us today to discuss your health goals and learn <span className="hidden md:block"></span>how our programs can help you achieve them. 
@@ -244,7 +244,7 @@ const ContactForm = () => {
 
 
           {/* Right column with form */}
-          <div className="border border-[#ebe5da] bg-[var(--background-color-plain)] px-16 py-45 md:py-35 rounded-2xl relative mr-2 md:-ml-8">
+          <div className="border border-[#ebe5da] bg-[var(--background-color-plain)] px-6 sm:px-10 md:px-16 py-8 sm:py-12 md:py-35 rounded-2xl relative mr-2 md:-ml-8">
 
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -258,7 +258,7 @@ const ContactForm = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="bg-white border border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)] focus-visible:border-[0.5px] text-black"
+                    className="bg-white border border-transparent thin-focus text-black"
                   />
                 </div>
 
@@ -271,7 +271,7 @@ const ContactForm = () => {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)] focus-visible:border-[0.5px] text-black"
+                    className="bg-white border-transparent thin-focus text-black"
                   />
                 </div>
 
@@ -285,7 +285,7 @@ const ContactForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black"
+                    className="bg-white border-transparent thin-focus text-black"
                   />
                 </div>
 
@@ -298,7 +298,7 @@ const ContactForm = () => {
                     value={formData.service}
                     onChange={handleChange}
                     required
-                    className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black"
+                    className="bg-white border-transparent thin-focus text-black"
                   />
                 </div>
 
@@ -311,7 +311,7 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="bg-white border-transparent focus-visible:ring-0 focus-visible:border-[var(--text-color-dark)]focus-visible:border-[0.5px] text-black min-h-[100px]"
+                    className="bg-white border-transparent thin-focus text-black min-h-[100px]"
                   />
                 </div>
               </div>
