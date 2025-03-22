@@ -182,8 +182,8 @@ const ServicesGrid = () => {
   ];
   
   return (
-    <div className="w-full bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 px-4">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center ">
+    <div className="w-full bg-[var(--background-color-plain)] md:bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 px-4 transition-all duration-300">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center">
         {services.map((service, index) => (
           <ServiceCard
             key={index}
@@ -194,8 +194,6 @@ const ServicesGrid = () => {
           />
         ))}
       </div>
-  
-      
     </div>
   );
 };
