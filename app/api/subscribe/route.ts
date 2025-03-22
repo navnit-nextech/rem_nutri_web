@@ -3,23 +3,25 @@ import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import fs from 'fs';
 import path from 'path';
+import { getGoogleSheetsClient } from '@/app/utils/googleSheets';
 
 // Google Sheets setup
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
 const SHEET_NAME = 'Subscribers';
 
-// Fallback local storage setup
+// Fallback local storage setup - only enabled in development
 const DATA_DIR = path.join(process.cwd(), 'data');
 const SUBSCRIBERS_FILE = path.join(DATA_DIR, 'subscribers.json');
 
-// Initialize local storage if needed
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+// Initialize local storage if needed (only in development)
+if (process.env.NODE_ENV !== 'production') {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
 
-if (!fs.existsSync(SUBSCRIBERS_FILE)) {
-  fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify([], null, 2));
+  if (!fs.existsSync(SUBSCRIBERS_FILE)) {
+    fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify([], null, 2));
+  }
 }
 
 // Function to store email locally
@@ -40,45 +42,6 @@ const storeEmailLocally = async (email: string, timestamp: string) => {
   } catch (error) {
     console.error('Error storing email locally:', error);
     return false;
-  }
-};
-
-const getGoogleSheetClient = async () => {
-  try {
-    // Validate required env vars
-    if (!process.env.GOOGLE_CLIENT_EMAIL || 
-        !process.env.GOOGLE_PRIVATE_KEY ||
-        !process.env.GOOGLE_SHEET_ID) {
-      throw new Error('Missing Google Sheets credentials');
-    }
-    
-    // Make sure private key is formatted correctly
-    // This ensures we handle both \n escaped and actual newline formats
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY.includes('\\n') 
-      ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
-      : process.env.GOOGLE_PRIVATE_KEY;
-    
-    console.log('Creating Google Sheets client...');
-    console.log(`Client email: ${process.env.GOOGLE_CLIENT_EMAIL}`);
-    console.log(`Sheet ID: ${process.env.GOOGLE_SHEET_ID}`);
-    console.log(`Private key format seems correct: ${privateKey.includes('-----BEGIN PRIVATE KEY-----') && privateKey.includes('-----END PRIVATE KEY-----')}`);
-    
-    // Create JWT client
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: privateKey,
-      },
-      scopes: SCOPES,
-    });
-
-    const client = await auth.getClient();
-    // Use type assertion to handle type mismatch
-    return google.sheets({ version: 'v4', auth: client as any });
-  } catch (error) {
-    console.error('Error creating Google Sheets client:', error);
-    console.error('Details:', JSON.stringify(error, null, 2));
-    throw new Error('Failed to create Google Sheets client');
   }
 };
 
@@ -122,7 +85,7 @@ export async function POST(req: Request) {
     
     // 1. Try to store in Google Sheet
     try {
-      const sheets = await getGoogleSheetClient();
+      const sheets = await getGoogleSheetsClient();
       
       // First, get the existing sheets in the spreadsheet
       const spreadsheet = await sheets.spreadsheets.get({

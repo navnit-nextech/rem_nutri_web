@@ -1,71 +1,33 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { google } from 'googleapis';
 import fs from 'fs';
 import path from 'path';
+import { getGoogleSheetsClient } from '@/app/utils/googleSheets';
 
 // Google Sheets setup
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
 const SHEET_NAME = 'ContactSubmissions';
 
-// Fallback local storage setup
+// Fallback local storage setup - only enabled in development
 const DATA_DIR = path.join(process.cwd(), 'data');
 const CONTACTS_FILE = path.join(DATA_DIR, 'contacts.json');
 
-// Initialize local storage if needed
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-
-if (!fs.existsSync(CONTACTS_FILE)) {
-  fs.writeFileSync(CONTACTS_FILE, JSON.stringify([], null, 2));
-}
-
-// Get Google Sheets client
-const getGoogleSheetClient = async () => {
-  try {
-    // Validate required env vars
-    if (!process.env.GOOGLE_CLIENT_EMAIL || 
-        !process.env.GOOGLE_PRIVATE_KEY ||
-        !process.env.GOOGLE_SHEET_ID) {
-      throw new Error('Missing Google Sheets credentials');
-    }
-    
-    // Make sure private key is formatted correctly
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY.includes('\\n') 
-      ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
-      : process.env.GOOGLE_PRIVATE_KEY;
-    
-    console.log('Creating Google Sheets client...');
-    console.log(`Client email: ${process.env.GOOGLE_CLIENT_EMAIL}`);
-    console.log(`Sheet ID: ${process.env.GOOGLE_SHEET_ID}`);
-    console.log(`Private key format seems correct: ${privateKey.includes('-----BEGIN PRIVATE KEY-----')}`);
-    
-    // Create JWT client
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: privateKey,
-      },
-      scopes: SCOPES,
-    });
-
-    const client = await auth.getClient();
-    // Use type assertion to handle type mismatch
-    return google.sheets({ version: 'v4', auth: client as any });
-  } catch (error) {
-    console.error('Error creating Google Sheets client:', error);
-    console.error('Details:', JSON.stringify(error, null, 2));
-    throw new Error('Failed to create Google Sheets client');
+// Initialize local storage if needed (only in development)
+if (process.env.NODE_ENV !== 'production') {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
   }
-};
+
+  if (!fs.existsSync(CONTACTS_FILE)) {
+    fs.writeFileSync(CONTACTS_FILE, JSON.stringify([], null, 2));
+  }
+}
 
 // Function to store contact information in Google Sheets
 const storeContactInGoogleSheets = async (contactData: any, timestamp: string) => {
   try {
     const { firstName, lastName, email, service, message } = contactData;
-    const sheets = await getGoogleSheetClient();
+    const sheets = await getGoogleSheetsClient();
     
     // First, get the existing sheets in the spreadsheet
     const spreadsheet = await sheets.spreadsheets.get({
