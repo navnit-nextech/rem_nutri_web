@@ -131,10 +131,12 @@ const ServicesProcess = () => {
                 guiding you towards a healthier, pain-free life.
               </p>
               <div>
-                <a
-                  href="#book-appointment"
-                  className="inline-block bg-[var(--background-color-light)] hover:bg-green-500 text-[var(--text-color-dark)] font-medium py-3 px-6 rounded-md transition-colors"
-                >
+              <a
+  href="https://calendly.com/"
+  className="inline-block bg-[var(--background-color-light)] hover:opacity-50 font-bold text-[var(--text-color-dark)] py-3 px-6 rounded-md transition-colors"
+>
+  
+
                   Book an appointment
                 </a>
               </div>
