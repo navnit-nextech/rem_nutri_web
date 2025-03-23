@@ -190,14 +190,16 @@ const RemDi2Page = () => {
                     className="flex flex-row gap-2 sm:gap-4 justify-center"
                   >
                     <a
-                      href="#learn-more"
+                      href="/contact"
                       className="inline-flex items-center justify-center px-3 sm:px-6 md:px-8 py-3 sm:py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 text-sm sm:text-sm md:text-base whitespace-nowrap"
                     >
                       Start Your Journey
                     </a>
                     <a
-                      href="#contact"
-                      className="inline-flex items-center justify-center px-3 sm:px-6 md:px-8 py-3 sm:py-4 border border-[var(--text-color-plain)]/20 text-[var(--text-color-plain)] font-semibold rounded-xl hover:bg-[var(--text-color-plain)]/10 transition-all duration-300 text-sm sm:text-sm md:text-base whitespace-nowrap"
+                      href="https://calendly.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-8 py-4 border border-[var(--text-color-plain)]/20 text-[var(--text-color-plain)] font-semibold rounded-xl hover:bg-[var(--text-color-plain)]/10 transition-all duration-300"
                     >
                       Book Consultation
                     </a>
@@ -356,7 +358,7 @@ const RemDi2Page = () => {
                 </p>
                 <div>
                   <a
-                    href="#contact"
+                    href="/contact"
                     className="inline-block bg-[var(--text-color-light)] text-black font-medium py-3 px-6 rounded-xl transition-colors hover:opacity-90"
                   >
                     Start Your Journey
@@ -483,9 +485,11 @@ const RemDi2Page = () => {
                   className="flex flex-row gap-2 sm:gap-4 justify-center items-center"
                 >
                   <motion.a
-                    href="/contact"
+                    href="https://calendly.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}
-                    className="group inline-flex items-center justify-center px-3 sm:px-6 md:px-8 py-3 sm:py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 text-sm sm:text-sm md:text-base whitespace-nowrap min-w-[140px] sm:min-w-[200px]"
+                    className="group inline-flex items-center justify-center px-8 py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 min-w-[200px]"
                   >
                     Book Consultation
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

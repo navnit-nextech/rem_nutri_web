@@ -45,7 +45,7 @@ const BlogSection = async () => {
             <Link href="/blog">
               <Button
                 variant="default"
-                className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[#043A22]/90 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-5"
+                className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:bg-[var(--background-color-dark)]/80 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-5"
               >
                 View blog
               </Button>

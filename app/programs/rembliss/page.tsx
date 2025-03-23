@@ -192,13 +192,15 @@ const RemBlissPage = () => {
                     className="flex flex-col sm:flex-row gap-4"
                   >
                     <a
-                      href="#learn-more"
+                      href="/contact"
                       className="inline-flex items-center justify-center px-8 py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300"
                     >
                       Start Your Journey
                     </a>
                     <a
-                      href="#contact"
+                      href="https://calendly.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center justify-center px-8 py-4 border border-[var(--text-color-plain)]/20 text-[var(--text-color-plain)] font-semibold rounded-xl hover:bg-[var(--text-color-plain)]/10 transition-all duration-300"
                     >
                       Book Consultation
@@ -362,7 +364,7 @@ const RemBlissPage = () => {
                 </p>
                 <div>
                   <a
-                    href="#contact"
+                    href="/contact"
                     className="inline-block bg-[var(--text-color-light)] text-black font-medium py-3 px-6 rounded-xl transition-colors hover:opacity-90"
                   >
                     Start Your Journey
@@ -487,7 +489,9 @@ const RemBlissPage = () => {
                   className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 >
                   <motion.a
-                    href="/contact"
+                    href="https://calendly.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}
                     className="group inline-flex items-center justify-center px-8 py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 min-w-[200px]"
                   >
