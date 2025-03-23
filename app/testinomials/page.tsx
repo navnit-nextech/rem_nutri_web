@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollAnimation from "../components/ScrollAnimation";
+import Navbar from "../components/Navbar";
 
 const testimonials = [
   {
@@ -125,19 +126,10 @@ const Testimonials = () => {
 
   return (
     <>
+    <Navbar/>
+
       <div className="w-full bg-[var(--background-color-dark)] py-24 sm:py-44 relative">
-        <div className="absolute sm:top-[-4.2%] -top-12 left-[50%] transform -translate-x-1/2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 56 56"
-            className="w-20 h-28 scale-75 md:w-24 md:h-36 md:scale-100"
-          >
-            <path
-              d="M 28.023 0 C 12.63 0 0.152 12.513 0.152 27.949 L 28.023 55.898 L 55.893 27.949 C 55.893 12.513 43.415 0 28.023 0 Z"
-              fill="rgb(143, 194, 170)"
-            />
-          </svg>
-        </div>
+        
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <ScrollAnimation>
             <div className="text-center mb-20">

@@ -375,7 +375,7 @@ const RemBlissPage = () => {
                     <div className="absolute -bottom-3 -right-3 w-full h-full bg-[var(--text-color-light)]/20 rounded-2xl"></div>
                     <div className="rounded-2xl overflow-hidden relative z-10">
                       <img 
-                        src="/images/rem_nutri_hero_Section.webp" 
+                        src="https://images.unsplash.com/photo-1501959915551-4e8d30928317?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                         alt="RemBliss Program Features" 
                         className="w-full h-[650px] object-cover rounded-xl"
                       />

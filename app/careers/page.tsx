@@ -308,19 +308,20 @@ const CareersPage = () => {
               Be part of a team revolutionizing personalized nutrition and health solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-5 justify-center">
-              <Button
-                className="bg-[var(--background-color-light)] hover:bg-[var(--background-color-light)]/90 text-[var(--text-color-dark)] px-8 py-3 rounded-lg text-lg font-medium shadow-lg shadow-[var(--background-color-dark)]/20 transition-all hover:translate-y-[-2px]"
-                asChild
-              >
-                <a href="#openings">View Openings</a>
-              </Button>
-              <Button
-                className="bg-white hover:bg-white/90 text-[var(--background-color-dark)] px-8 py-3 rounded-lg text-lg font-medium border border-white/10 backdrop-blur-sm shadow-lg transition-all hover:translate-y-[-2px]"
-                asChild
-              >
-                <a href="#apply">Apply Now</a>
-              </Button>
-            </div>
+  <Button
+    className="bg-[var(--background-color-light)] hover:bg-[var(--background-color-light)]/90 text-[var(--text-color-dark)] w-full sm:w-[200px] px-8 py-3 rounded-lg text-lg font-medium shadow-lg shadow-[var(--background-color-dark)]/20 transition-all hover:translate-y-[-2px] text-[18px]"
+    asChild
+  >
+    <a href="#openings">View Openings</a>
+  </Button>
+  <Button
+    className="bg-white hover:bg-white/90 text-[var(--background-color-dark)] w-full sm:w-[200px] px-8 py-3 rounded-lg text-lg font-medium border border-white/10 backdrop-blur-sm shadow-lg transition-all hover:translate-y-[-2px] text-[18px]"
+    asChild
+  >
+    <a href="#apply">Apply Now</a>
+  </Button>
+</div>
+
           </motion.div>
         </div>
 
