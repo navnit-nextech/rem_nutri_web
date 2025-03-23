@@ -85,11 +85,11 @@ const Footer = () => {
           <div>
             {/* <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Menu</h3> */}
             <ul className="space-y-2">
-              <li><Link href="/" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Home</Link></li>
-              <li><Link href="/about" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">About</Link></li>
-              <li><Link href="/services" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Services</Link></li>
-              <li><Link href="/blog" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Blog</Link></li>
-              <li><Link href="/contact" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Contact</Link></li>
+              <li><Link href="/" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Home</Link></li>
+              <li><Link href="/about" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">About</Link></li>
+              <li><Link href="/services" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Services</Link></li>
+              <li><Link href="/blog" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Blog</Link></li>
+              <li><Link href="/contact" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Contact</Link></li>
             </ul>
           </div>
 
@@ -98,8 +98,8 @@ const Footer = () => {
             {/* <h3 className="text-lg text-[var(--text-color-plain)] font-medium mb-3 text-[10px] md:text-sm">Utilities</h3> */}
             <ul className="space-y-2">
               {/* <li><a href="#" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Styleguide</a></li> */}
-              <li><Link href="/privacy" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Privacy Policy</Link></li>
-              <li><Link href="/testinomials" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Testinomials</Link></li>
+              <li><Link href="/privacy" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Privacy Policy</Link></li>
+              <li><Link href="/testinomials" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Testinomials</Link></li>
               {/* <li><a href="#" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Feedback</a></li> */}
             </ul>
           </div>
@@ -107,8 +107,8 @@ const Footer = () => {
 
         {/* Third Row: Subscribe */}
         <div className="w-full md:w-[140%] mt-6 md:mt-0">
-          <h3 className="font-medium text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm mb-3">Subscribe</h3>
-          <p className="mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Join our newsletter to stay up to date on features and releases.</p>
+          <h3 className="font-medium text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm mb-3">Subscribe</h3>
+          <p className="mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[13px] md:text-sm">Join our newsletter to stay up to date on features and releases.</p>
 
           {/* Input & Button Container */}
           <form onSubmit={handleSubmit} className="flex flex-col w-full md:flex-row md:items-center">
@@ -126,7 +126,7 @@ const Footer = () => {
             <button 
               type="submit"
               disabled={isSubmitting}
-              className={`bg-[var(--background-color-light)] text-black font-medium px-4 py-3 rounded-md md:w-auto md:ml-3 text-[10px] md:text-sm transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[var(--background-color-light)]/90'}`}
+              className={`bg-[var(--background-color-light)] text-black font-medium px-4 py-3 rounded-md md:w-auto md:ml-3 text-[15px] md:text-[15px] font-semibold transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[var(--background-color-light)]/90'}`}
             >
               {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </button>
@@ -134,15 +134,15 @@ const Footer = () => {
 
           {/* Status Message */}
           {submitStatus.type && (
-            <p className={`mt-2 text-[10px] md:text-sm ${submitStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+            <p className={`mt-2 text-[13px] md:text-sm ${submitStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
               {submitStatus.message}
             </p>
           )}
 
           {/* Privacy Policy Text */}
-          <p className="text-sm text-[var(--text-color-plain)]/80 mt-3 text-[10px] md:text-[12px]">
+          <p className="text-sm text-[var(--text-color-plain)]/80 mt-3 text-[13px] md:text-[14px]">
             By subscribing you agree to our{' '}
-            <Link href="/privacy" className="underline hover:text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] transition-colors text-[10px] md:text-[12px] ">Privacy Policy</Link>{' '}
+            <Link href="/privacy" className="underline hover:text-[var(--text-color-light)] font-['DM_Sans', 'sans-serif'] transition-colors text-[13px] md:text-[14px] ">Privacy Policy</Link>{' '}
             and provide consent to receive updates from our company.
           </p>
         </div>
@@ -157,11 +157,11 @@ const Footer = () => {
 
         <div className="flex flex-col items-center md:flex-row md:justify-between mb-5 md:w-[60%]">
           {/* Copyright */}
-          <div className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px]">
+          <div className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-[14px]">
             © 2024 RemNutri Health Private Limited
           </div>
 
-          <div className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-[14px] mt-2 md:mt-0">
+          <div className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-[14px] mt-2 md:mt-0">
             Designed and Developed by&nbsp;
             <a href="https://www.nextechz.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">
               Nextech
