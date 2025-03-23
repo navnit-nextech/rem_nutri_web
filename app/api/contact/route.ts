@@ -217,7 +217,7 @@ export async function POST(req: Request) {
             <hr style="border: 1px solid #eeeeee; margin: 20px 0;">
             <p style="font-size: 12px; color: #777777;">
               RemNutri Health Private Limited<br>
-              <a href="https://www.remnutri.com" style="color: #004d40; text-decoration: none;">www.remnutri.com</a>
+              <a href="https://rem-nutri-web.vercel.app/" style="color: #004d40; text-decoration: none;">www.remnutri.com</a>
             </p>
           </div>
         `,
