@@ -1,6 +1,7 @@
-import { google } from 'googleapis';
+import { drive } from '@googleapis/drive';
 import path from 'path';
 import fs from 'fs';
+import { GoogleAuth } from 'google-auth-library';
 
 // Initialize a cache for the auth client to avoid recreating it for every request
 let driveClient: any = null;
@@ -30,16 +31,13 @@ export const getGoogleDriveClient = async () => {
         project_id: process.env.GOOGLE_PROJECT_ID || 'remnutri'
       };
       
-      const auth = new google.auth.GoogleAuth({
+      const auth = new GoogleAuth({
         credentials,
         scopes: ['https://www.googleapis.com/auth/drive'],
       });
       
-      console.log('Auth client created, getting authorized client...');
-      const authClient = await auth.getClient();
-      console.log('Auth client obtained successfully');
-      
-      driveClient = google.drive({ version: 'v3', auth: authClient });
+      // Create Drive client
+      driveClient = drive({ version: 'v3', auth });
       console.log('Drive client created successfully');
       
       // Test the client with a simple call
@@ -58,24 +56,22 @@ export const getGoogleDriveClient = async () => {
     else if (process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON) {
       const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
       
-      const auth = new google.auth.GoogleAuth({
+      const auth = new GoogleAuth({
         credentials,
         scopes: ['https://www.googleapis.com/auth/drive'],
       });
       
-      const authClient = await auth.getClient();
-      driveClient = google.drive({ version: 'v3', auth: authClient });
+      driveClient = drive({ version: 'v3', auth });
       return driveClient;
     }
     // Alternative: Check if we're using a service account file path
     else if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-      const auth = new google.auth.GoogleAuth({
+      const auth = new GoogleAuth({
         keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
         scopes: ['https://www.googleapis.com/auth/drive'],
       });
       
-      const authClient = await auth.getClient();
-      driveClient = google.drive({ version: 'v3', auth: authClient });
+      driveClient = drive({ version: 'v3', auth });
       return driveClient;
     } 
     // Fallback to other options
@@ -84,9 +80,9 @@ export const getGoogleDriveClient = async () => {
       
       if (process.env.GOOGLE_API_KEY) {
         // Using API key (limited to public data only)
-        driveClient = google.drive({
+        driveClient = drive({
           version: 'v3',
-          auth: process.env.GOOGLE_API_KEY,
+          auth: process.env.GOOGLE_API_KEY
         });
         return driveClient;
       } else if (
@@ -95,7 +91,8 @@ export const getGoogleDriveClient = async () => {
         process.env.GOOGLE_REFRESH_TOKEN
       ) {
         // Using OAuth2 with refresh token
-        const oauth2Client = new google.auth.OAuth2(
+        const { OAuth2Client } = await import('google-auth-library');
+        const oauth2Client = new OAuth2Client(
           process.env.GOOGLE_CLIENT_ID,
           process.env.GOOGLE_CLIENT_SECRET,
           'http://localhost:3000/oauth2callback'
@@ -105,10 +102,7 @@ export const getGoogleDriveClient = async () => {
           refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
         });
         
-        driveClient = google.drive({
-          version: 'v3',
-          auth: oauth2Client,
-        });
+        driveClient = drive({ version: 'v3', auth: oauth2Client });
         return driveClient;
       } else {
         throw new Error('No valid Google Drive authentication method available');

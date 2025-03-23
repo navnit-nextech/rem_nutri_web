@@ -206,10 +206,10 @@ export async function POST(req: NextRequest) {
             requestBody: {
               role: 'writer',
               type: 'user',
-              emailAddress: USER_EMAIL,
-              sendNotificationEmail: true,
-              emailMessage: 'All resume applications are organized in this folder.'
-            }
+              emailAddress: USER_EMAIL
+            },
+            emailMessage: 'All resume applications are organized in this folder.',
+            sendNotificationEmail: true
           });
           console.log('Main folder shared with', USER_EMAIL);
         } catch (shareError) {
