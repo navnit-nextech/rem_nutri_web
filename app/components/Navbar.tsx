@@ -109,6 +109,16 @@ const Navbar: React.FC<NavbarProps> = ({
                 Blog
               </Link>
               <Link
+                href="/careers"
+                className={`${currentTheme.textColor} text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:opacity-80 ${
+                  pathname === "/careers" 
+                    ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
+                    : ""
+                }`}
+              >
+                Careers
+              </Link>
+              <Link
                 href="/contact"
                 className={`${currentTheme.textColor} text-[16px] font-['DM_Sans', 'sans-serif'] font-normal transition-colors hover:opacity-80 ${
                   pathname === "/contact" 
@@ -274,6 +284,30 @@ const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => setIsOpen(false)}
                 >
                   Blog
+                </Link>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  hidden: { y: 40, opacity: 0 },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: { type: "spring", stiffness: 300, damping: 24 },
+                  },
+                  exit: { y: 20, opacity: 0 },
+                }}
+              >
+                <Link
+                  href="/careers"
+                  className={`${currentTheme.textColor} text-[24px] font-normal ${
+                    pathname === "/careers" 
+                      ? `relative after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:w-full after:h-[2px] ${getUnderlineClass()}`
+                      : ""
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Careers
                 </Link>
               </motion.div>
 

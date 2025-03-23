@@ -63,3 +63,8 @@ body {
   ring: 0 !important;
   ring-offset: 0 !important;
 }
+
+/* Shaped divider for careers page */
+.clip-slant-top {
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 100%);
+}

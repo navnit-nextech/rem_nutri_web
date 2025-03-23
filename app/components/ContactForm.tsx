@@ -117,9 +117,23 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus(null);
+    // Initial message - Form sent
+    setSubmitStatus({
+      success: true,
+      message: 'Message sent! Processing your request...'
+    });
     
     try {
+      // Show processing message after a delay
+      setTimeout(() => {
+        if (isSubmitting) {
+          setSubmitStatus({
+            success: true,
+            message: 'Processing on server... This may take a moment.'
+          });
+        }
+      }, 2000);
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -131,6 +145,7 @@ const ContactForm = () => {
       const data = await response.json();
       
       if (response.ok) {
+        // Final success message
         setSubmitStatus({
           success: true,
           message: data.message || 'Thank you for your message! We will get back to you soon.'
@@ -154,7 +169,6 @@ const ContactForm = () => {
         success: false,
         message: 'An error occurred. Please try again later.'
       });
-      console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -245,7 +259,7 @@ const ContactForm = () => {
 
           {/* Right column with form */}
           <div className="border border-[#ebe5da] bg-[var(--background-color-plain)] px-6 sm:px-10 md:px-16 py-8 sm:py-12 md:py-35 rounded-2xl relative mr-2 md:-ml-8">
-
+            <p className="text-[var(--text-color-dark)] text-[18px] md:text-[20px] font-['DM_Sans', 'sans-serif'] mb-6">We look forward to hearing from you!</p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">

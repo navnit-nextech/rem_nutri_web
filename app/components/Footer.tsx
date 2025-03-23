@@ -28,9 +28,23 @@ const Footer = () => {
     }
 
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: '' });
+    // Initial message - Subscription sent
+    setSubmitStatus({ 
+      type: 'success', 
+      message: 'Subscribing...' 
+    });
 
     try {
+      // Show processing message after a delay
+      setTimeout(() => {
+        if (isSubmitting) {
+          setSubmitStatus({
+            type: 'success',
+            message: 'Processing your subscription...'
+          });
+        }
+      }, 1500);
+      
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
@@ -42,6 +56,7 @@ const Footer = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // Final success message
         setSubmitStatus({
           type: 'success',
           message: 'Thanks for subscribing!'
@@ -50,13 +65,13 @@ const Footer = () => {
       } else {
         setSubmitStatus({
           type: 'error',
-          message: data.message || 'Something went wrong. Please try again.'
+          message: data.message || 'Failed to subscribe. Please try again.'
         });
       }
     } catch (error) {
       setSubmitStatus({
         type: 'error',
-        message: 'Network error. Please try again.'
+        message: 'An error occurred. Please try again later.'
       });
     } finally {
       setIsSubmitting(false);
