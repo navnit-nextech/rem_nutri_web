@@ -114,7 +114,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {/* <li><a href="#" className=" text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Styleguide</a></li> */}
               <li><Link href="/privacy" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Privacy Policy</Link></li>
-              <li><Link href="/testinomials" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Testinomials</Link></li>
+              <li><Link href="/testinomials" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[13px] md:text-sm">Testimonial</Link></li>
               {/* <li><a href="#" className="text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] text-[10px] md:text-sm">Feedback</a></li> */}
             </ul>
           </div>
