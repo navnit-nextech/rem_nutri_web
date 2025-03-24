@@ -26,12 +26,12 @@ const HeroSection = () => {
         >
           {/* Content */}
           <div className="relative z-10 w-full lg:w-[55%] text-center lg:text-left p-5 pt-10 sm:pt-8 md:p-7 lg:p-9">
-            {/* <ScrollAnimation>
+            <ScrollAnimation>
               <h1 className="text-[36px] lg:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
                 Remission through{" "} <span className="hidden md:block"></span>
                 <span className="text-[var(--text-color-light)] ">Nutrition</span>
               </h1>
-            </ScrollAnimation> */}
+            </ScrollAnimation>
 
             <ScrollAnimation delay={0.2}>
               <p className="mt-4 lg:mt-6 text-[18px] lg:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] lg:px-0">
@@ -55,9 +55,9 @@ const HeroSection = () => {
           </div>
 
           {/* Lazy load the animation component */}
-          {/* <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
+          <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
             {isClient && <AlternativeAnimation />}
-          </Suspense> */}
+          </Suspense>
         </div>
 
         {/* Desktop Image */}
