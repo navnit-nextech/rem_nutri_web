@@ -55,9 +55,9 @@ const HeroSection = () => {
           </div>
 
           {/* Lazy load the animation component */}
-          <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
+          {/* <Suspense fallback={<div className="w-full h-full bg-gray-200 animate-pulse"></div>}>
             {isClient && <AlternativeAnimation />}
-          </Suspense>
+          </Suspense> */}
         </div>
 
         {/* Desktop Image */}
