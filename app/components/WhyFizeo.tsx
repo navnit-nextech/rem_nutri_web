@@ -133,7 +133,7 @@ const WhyFizeo = () => {
   return (
     <>
       <div className="w-full bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative">
-      <div className="absolute max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[42%] md:left-[48%] -top-5 md:-top-12 transition-transform duration-300 rotate-45">
+        <div className="absolute max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[42%] md:left-[48%] -top-5 md:-top-12 transition-transform duration-300 rotate-45">
 
           <Topdecorative />
         </div>
@@ -149,19 +149,19 @@ const WhyFizeo = () => {
 
               <ScrollAnimation delay={0.2}>
                 <p className="text-[var(--text-color-dark)] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
-                RemDi focuses on sustainable health transformation by combining expert-led programmes with practical lifestyle changes. It offers personalized care, holistic wellness strategies, and structured meal plans to support recovery <span className="hidden md:block"></span>and long-term well-being. 
-                  
-                  
+                  RemDi focuses on sustainable health transformation by combining expert-led programmes with practical lifestyle changes. It offers personalized care, holistic wellness strategies, and structured meal plans to support recovery <span className="hidden md:block"></span>and long-term well-being.
+
+
                 </p>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.4}>
-  <Link href="/about" >
-    <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:opacity-80 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-6 cursor-pointer">
-      About Us
-    </Button>
-  </Link>
-</ScrollAnimation>
+                <Link href="/about" >
+                  <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:opacity-80 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-6 cursor-pointer">
+                    About Us
+                  </Button>
+                </Link>
+              </ScrollAnimation>
 
               <ScrollAnimation delay={0.6}>
                 <div className="relative mt-12">
