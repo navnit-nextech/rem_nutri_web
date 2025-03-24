@@ -132,7 +132,7 @@ const Testimonials = () => {
         
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <ScrollAnimation>
-            <div className="text-center mb-20">
+            <div className="text-center mt-15 mb-20">
               <h2 className="text-[var(--text-color-plain)] font-['Libre_Baskerville',serif] text-4xl sm:text-[48px] mb-6">
                 Real stories, {" "}
                 <span className="text-[var(--text-color-light)]">real transformations</span>

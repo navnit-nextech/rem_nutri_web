@@ -7,9 +7,9 @@ const PrivacyPolicy = () => {
 
       <Navbar/>
     
-    <div className="px-[8%] py-[12%] bg-[var(--background-color-plain)] mx-auto text-black">
+    <div className="px-[8%] py-[35%] md:py-[12%] bg-[var(--background-color-plain)] mx-auto text-black">
       
-      <h1 className="font-['Libre_Baskerville',serif] text-[#000000] mb-16 text-[40px]">Privacy Policy</h1>
+      <h1 className="font-['Libre_Baskerville',serif] text-[#000000] mb-5 md:mb-16 text-[40px]">Privacy Policy</h1>
       <p className="mb-4  text-[16px] text-[#000000] font-['DM_Sans', 'sans-serif']">
         This Privacy Policy outlines how Business Name ("we," "our," or "us") collects, uses, protects, and discloses the
         personal information of visitors ("users," "you," or "your") to www.website.com (the "Website"). Please read this
