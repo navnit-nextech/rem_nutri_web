@@ -140,11 +140,9 @@ const ServiceQueries = () => {
             <p className="text-[var(--text-color-dark)]/90 mb-8 text-lg font-medium relative z-10 transition-all duration-300 hover:text-[var(--text-color-dark)]">
               Let's talk and find the perfect solution for you.
             </p>
-            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
-  <button className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:shadow-md active:translate-y-0.5 relative z-10 hover:bg-[var(--background-color-dark)]/90 hover:scale-105">
-    Book Now
-  </button>
-</a>
+            <button className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:shadow-md active:translate-y-0.5 relative z-10 hover:bg-[var(--background-color-dark)]/90 hover:scale-105">
+              Book Now
+            </button>
           </div>
         </div>
       </div>
