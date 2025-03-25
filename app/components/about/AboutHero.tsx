@@ -43,31 +43,31 @@ const AboutHero = () => {
       content: "While Hithasri pursued her career as Chief Dietitian at NIIMS, Hyderabad, India, Sri pursued her career as Clinical Lead for Nutrition & Dietetics in the United Kingdom at Rotherham NHS Foundation Trust. Sri's illustrious career spans over 30 years across India and the UK, complemented by her Master's in Diabetes care from York University. Hithasri gained expertise working at the World famous Nizams Institute of Medical Sciences.",
       highlight: "Decades of combined expertise"
     },
-    {
-      title: "The Vision",
-      content: "With RemDi, Sri and Hithasri aspire to empower countless Indians to take control of their chronic illnesses and reclaim their lives. This pioneering endeavour is a culmination of their unwavering dedication, expertise, and passion for making a meaningful difference in the lives of others.",
-      highlight: "Food is the best medicine"
-    }
+    // {
+    //   title: "The Vision",
+    //   content: "With RemDi, Sri and Hithasri aspire to empower countless Indians to take control of their chronic illnesses and reclaim their lives. This pioneering endeavour is a culmination of their unwavering dedication, expertise, and passion for making a meaningful difference in the lives of others.",
+    //   highlight: "Food is the best medicine"
+    // }
   ];
 
   return (
     <ScrollAnimation onlyFade>
       <div className="w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pt-6 sm:pt-10 pb-10 sm:pb-20 relative overflow-hidden min-h-[100dvh] pt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row gap-4 sm:gap-8 lg:gap-12">
           {/* Content Section */}
-          <div className="flex-1 text-center lg:text-left mt-12 sm:mt-20 lg:mt-36">
-            <h1 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] text-2xl sm:text-3xl md:text-[40px] mb-4 sm:mb-6 px-2 sm:px-0">
+          <div className="flex-1 text-center lg:text-left mt-4 sm:mt-20 lg:mt-36">
+            <h1 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] text-2xl sm:text-3xl md:text-[40px] mb-3 sm:mb-6 px-2 sm:px-0">
               OUR{" "}
               <span className="text-[var(--text-color-light)]">STORY</span>
             </h1>
 
             {/* Story Navigation */}
-            <div className="flex justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex justify-center lg:justify-start gap-4 mb-4 sm:mb-8">
               {storyContent.map((section, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveStory(index)}
-                  className={`relative px-4 py-2 transition-all ${
+                  className={`relative px-4 py-2 transition-all cursor-pointer ${
                     activeStory === index
                       ? 'text-[var(--text-color-light)]'
                       : 'text-[var(--text-color-plain)]/70 hover:text-[var(--text-color-plain)]'
@@ -92,9 +92,9 @@ const AboutHero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8"
+                className="max-w-2xl mx-auto lg:mx-0 mb-4 sm:mb-8"
               >
-                <div className="bg-[var(--background-color-light)]/5 rounded-xl p-6 mb-6">
+                <div className="bg-[var(--background-color-light)]/5 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
                   <p className="text-[var(--text-color-light)] text-lg mb-2 font-['Libre_Baskerville',serif]">
                     {storyContent[activeStory].highlight}
                   </p>
@@ -110,12 +110,12 @@ const AboutHero = () => {
           </div>
 
           {/* Image Galleries */}
-          <div className="flex-1 sm:mt-6 lg:mt-20 relative">
-            <div className="w-full h-16 sm:h-20 relative -bottom-16 sm:-bottom-20 z-10 bg-gradient-to-b from-[var(--background-color-dark)] to-[var(--background-color-dark)]/0"></div>
+          <div className="flex-1 md:mt-12 lg:mt-20 relative">
+            <div className="w-full h-12 sm:h-20 relative -bottom-12 sm:-bottom-20 z-10 bg-gradient-to-b from-[var(--background-color-dark)] to-[var(--background-color-dark)]/0"></div>
             <div className="absolute max-sm:hidden top-10 sm:top-40 right-[35%] transform -translate-x-1/2 sm:-right-20 w-16 sm:w-20 h-16 sm:h-20 z-10 scale-110 sm:scale-125">
               <HeroSvg2 />
             </div>
-            <div className="flex gap-3 sm:gap-4 h-[500px] sm:h-[600px] lg:h-[800px] overflow-hidden">
+            <div className="flex gap-3 sm:gap-4 h-[400px] sm:h-[600px] lg:h-[800px] overflow-hidden">
               {/* Left Gallery - Scrolling Down */}
               <motion.div
                 className="flex-1"

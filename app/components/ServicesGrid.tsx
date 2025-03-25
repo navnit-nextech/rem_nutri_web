@@ -7,6 +7,10 @@ import React from "react";
 
 import { useRouter } from 'next/navigation';
 
+import ScrollAnimation from "./ScrollAnimation"
+
+
+
 
 // Custom Home Icon using Tailwind CSS
 const CustomHomeIcon = () => (
@@ -98,9 +102,9 @@ const ServiceCard = ({ icon, title, description, onClick }: {
   return (
     <div
       className="px-8 py-10 w-full sm:w-[300px] md:w-[320px] lg:w-[500px] flex flex-col gap-4  
-                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 overflow-hidden cursor-pointer
+                 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] opacity-100 overflow-hidden 
                  shadow-md hover:shadow-xl transition-all duration-300 ease-in-out relative group"
-      onClick={onClick}
+      
     >
       <div className="flex items-center gap-2 text-[var(--text-color-dark)]">
         <div className="transform transition-transform duration-500 group-hover:rotate-12">
@@ -112,14 +116,15 @@ const ServiceCard = ({ icon, title, description, onClick }: {
       </div>
       
       {/* Main content */}
-      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed mb-8">
-        {description}
-      </p>
+      <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] leading-relaxed mb-8 text-center">
+  {description}
+</p>
+
       
       {/* Blurred effect at the bottom with explore more text */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[var(--background-color-plain)] to-transparent flex items-end justify-center pb-5">
         <div className="flex items-center gap-2 text-[var(--text-color-dark)]/80 group-hover:text-[var(--text-color-dark)] transition-colors duration-300">
-          <span className="text-[15px] font-medium font-['DM_Sans', 'sans-serif'] relative overflow-hidden">
+          <span className="text-[15px] font-medium font-['DM_Sans', 'sans-serif'] relative overflow-hidden cursor-pointer" onClick={onClick}>
             Explore more
             <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
           </span>
@@ -182,7 +187,7 @@ const ServicesGrid = () => {
   ];
   
   return (
-    <div className="w-full bg-[var(--background-color-plain)] md:bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat pb-28 px-4 transition-all duration-300">
+    <div className="w-full bg-[var(--background-color-plain2)]  bg-cover bg-center bg-no-repeat pb-15 md:pb-28 px-4 transition-all duration-300">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 justify-items-center">
         {services.map((service, index) => (
           <ServiceCard

@@ -16,7 +16,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className="relative w-full min-h-screen pt-36 sm:pt-36 md:pt-32 flex items-center justify-center 
+      className="relative w-full min-h-screen pt-36  pb-15 md:pt-42 md:pb-20  flex items-center justify-center 
       bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
     >
       <div className="max-w-7xl w-full relative">

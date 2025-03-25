@@ -124,20 +124,18 @@ const ServicesProcess = () => {
             <ScrollAnimation>
               <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
                 {" "}
-                <span className="text-[var(--text-color-light)]">WHY CHOOSE  </span>US 
+                <span className="text-[var(--text-color-light)]">WHY CHOOSE  </span>US
               </h2>
               <p className="text-lg mb-8">
                 We focus on personalized care and evidence-based techniques,
                 guiding you towards a healthier, pain-free life.
               </p>
               <div>
-              <a
-  href="https://calendly.com/"
-  className="inline-block bg-[var(--background-color-light)] hover:opacity-50 font-bold text-[var(--text-color-dark)] py-3 px-6 rounded-md transition-colors"
->
-  
-
-                  Book an appointment
+                <a
+                  href="https://calendly.com/"
+                  className="inline-block bg-[var(--background-color-light)] hover:opacity-50 font-bold text-[var(--text-color-dark)] py-3 px-6 rounded-md transition-colors"
+                >
+                Book an appointment
                 </a>
               </div>
               <ScrollAnimation delay={0.6}>

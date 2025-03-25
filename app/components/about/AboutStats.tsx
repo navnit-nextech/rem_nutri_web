@@ -60,7 +60,7 @@ const AboutStats = () => {
       <div className="w-full bg-[var(--background-color-plain)] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           {/* Vision & Mission */}
-          <div className="mb-24">
+          <div className="mb-12 md:mb-24">
             <div className="text-center mb-16">
               <h2 className="font-['Libre_Baskerville',serif] text-[var(--text-color-dark)] text-3xl sm:text-4xl mb-6">
                 Our Foundation
@@ -78,13 +78,13 @@ const AboutStats = () => {
                   transition={{ delay: index * 0.2 }}
                 >
                   <div className="bg-[var(--background-color-dark)] rounded-2xl p-8 h-full relative overflow-hidden group">
-                    <div className="absolute top-4 right-4 w-12 h-12 text-[var(--text-color-light)]/20">
+                    <div className="absolute top-4 right-4 w-12 h-12 text-[var(--text-color-light)]">
                       <StatIcon />
                     </div>
-                    <h3 className="font-['Libre_Baskerville',serif] text-[var(--text-color-light)] text-2xl mb-4">
+                    <h3 className="font-['Libre_Baskerville',serif] text-[var(--text-color-light)]  text-2xl mb-4">
                       Our {stat.title}
                     </h3>
-                    <p className="text-[var(--text-color-plain)]/80 leading-relaxed">
+                    <p className="text-[var(--text-color-plain)]/80 text-center leading-relaxed">
                       {stat.description}
                     </p>
                   </div>
@@ -115,7 +115,7 @@ const AboutStats = () => {
                   className="h-full"
                 >
                   <div className="relative group h-full">
-                    <div className="absolute -top-2 -left-2 w-12 h-12 text-[var(--text-color-light)]/20">
+                    <div className="absolute -top-2 -left-2 w-12 h-12 text-[var(--text-color-light)]">
                       <PillarIcon />
                     </div>
                     <div className="bg-[var(--background-color-light)]/5 rounded-xl p-8 border border-[var(--text-color-light)]/10 h-full flex flex-col">
@@ -127,7 +127,7 @@ const AboutStats = () => {
                           {pillar.title}
                         </h3>
                       </div>
-                      <p className="text-[var(--text-color-plain)]/80 leading-relaxed">
+                      <p className="text-[var(--text-color-plain)]/80 text-center leading-relaxed">
                         {pillar.description}
                       </p>
                     </div>

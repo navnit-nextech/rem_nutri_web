@@ -2,9 +2,14 @@ import React from "react";
 import Image from "next/image";
 import ScrollAnimation from "../ScrollAnimation";
 
+
+
+
 const AboutImageGrid = () => {
   return (
-    <div className="bg-[var(--background-color-plain2)] text-[var(--text-color-dark)] py-16 px-4 md:px-8">
+    <div className="bg-[var(--background-color-plain2)] text-[var(--text-color-dark)] py-10 md:py-16 px-4 md:px-8">
+      
+      
       <div className="max-w-6xl mx-auto">
         <ScrollAnimation>
           <div className="sm:my-20">
@@ -22,7 +27,7 @@ const AboutImageGrid = () => {
           <div className="flex-1 w-full md:w-auto">
             <ScrollAnimation delay={0.2}>
               <div className="flex flex-col gap-6">
-                {[ 
+                {[
                   "https://plus.unsplash.com/premium_photo-1709560427703-f1d6336971ca?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                   "https://images.unsplash.com/photo-1621919472462-6db865a003e4?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                   "https://images.unsplash.com/photo-1629121958394-3be95d8c057c?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -44,7 +49,7 @@ const AboutImageGrid = () => {
           <div className="flex-1 w-full md:w-auto">
             <ScrollAnimation delay={0.4}>
               <div className="flex flex-col gap-6 max-sm:hidden">
-                {[ 
+                {[
                   "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                   "https://images.unsplash.com/photo-1567740034541-1ff8b618a370?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                   "/images/about/stats.avif"

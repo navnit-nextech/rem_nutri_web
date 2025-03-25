@@ -22,7 +22,7 @@ const FeatureCard = ({
             {title}
           </h3>
         </div>
-        <p className="text-[var(--text-color-dark)] text-[16px] font-light leading-relaxed mt-4">
+        <p className="text-[var(--text-color-dark)] text-[16px] font-light leading-relaxed mt-4 text-center">
           {description}
         </p>
       </div>
@@ -34,7 +34,7 @@ const Topdecorative = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
-    className="fill-[#8FC2AA] w-full h-full  md:w-30 md:h-30"
+    className="fill-[#8FC2AA] w-full h-full md:w-30 md:h-30"
   >
     <path d="M 48.292 12.972 L 35.025 0.157 L 21.758 12.972 L 0.186 25.348 L 10.29 45.126 L 13.433 65.918 L 35.025 63.539 L 56.617 65.918 L 59.76 45.126 L 69.864 25.348 Z"></path>
   </svg>
@@ -132,23 +132,23 @@ const WhyFizeo = () => {
 
   return (
     <>
-      <div className="w-full bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative">
+      <div className="w-full bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative ">
         <div className="absolute max-sm:w-[70px] max-sm:h-[70px] w-[100px] left-[42%] md:left-[48%] -top-5 md:-top-12 transition-transform duration-300 rotate-45">
 
           <Topdecorative />
         </div>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 ">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 pt-5 pb-20 md:py-20 ">
           <div className="relative flex flex-col lg:flex-row gap-16">
             {/* Left content section */}
-            <div className="w-full lg:w-1/2 pt-10">
+            <div className="w-full lg:w-1/2 pt-8 md:pt-10">
               <ScrollAnimation>
-                <h2 className="text-[var(--text-color-dark)] text-3xl  font-['Libre_Baskerville',serif] text-[40px] mb-9">
+                <h2 className="text-[var(--text-color-dark)] text-3xl font-['Libre_Baskerville',serif] text-[40px] mb-5 md:mb-9">
                   Why RemDi?
                 </h2>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.2}>
-                <p className="text-[var(--text-color-dark)] text-[20px] mb-8 font-['DM_Sans', 'sans-serif']">
+                <p className="text-[var(--text-color-dark)] text-[20px]  mb-5 md:mb-8 font-['DM_Sans', 'sans-serif']">
                   RemDi focuses on sustainable health transformation by combining expert-led programmes with practical lifestyle changes. It offers personalized care, holistic wellness strategies, and structured meal plans to support recovery <span className="hidden md:block"></span>and long-term well-being.
 
 
@@ -164,7 +164,7 @@ const WhyFizeo = () => {
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.6}>
-                <div className="relative mt-12">
+                <div className="relative mt-8 md:mt-12">
                   {/* Shadow Effects */}
                   <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#8FC2AA] rounded-2xl"></div>
 
@@ -173,7 +173,7 @@ const WhyFizeo = () => {
                     <img
                       src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
-                      className="w-full h-240 object-cover"
+                      className=" w-full h-100 md:w-full md:h-240 object-cover"
                     />
                   </div>
                 </div>
@@ -181,7 +181,7 @@ const WhyFizeo = () => {
             </div>
 
             {/* Right features section */}
-            <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col mt-10 justify-center gap-y-6">
+            <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col md:mt-10 justify-center gap-y-6">
               {features.map((feature, index) => (
                 <ScrollAnimation key={index} delay={0.2 * (index + 1)}>
                   <FeatureCard

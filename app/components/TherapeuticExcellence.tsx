@@ -5,7 +5,7 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const TherapeuticExcellence = () => {
   return (
-    <div className="w-full py-10 bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full py-10 bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative">
 
       <div className="max-w-7xl mx-auto px-6 md:px-20 flex flex-col items-center text-center relative">
         {/* Positioned SVG */}
@@ -16,7 +16,7 @@ const TherapeuticExcellence = () => {
           >
             <path
               d="M 44.177 0 L 0.147 0 L 0.147 44.25 L 14.823 59 L 14.823 14.75 L 58.853 14.75 Z M 58.853 48.695 L 58.853 29.5 L 39.754 29.5 Z M 29.5 59 L 48.351 59 L 29.5 40.055 Z"
-              fill="rgb(242, 225, 211)"
+              fill="rgb(166, 198, 178)"
             />
           </svg>
         </div>
@@ -24,7 +24,7 @@ const TherapeuticExcellence = () => {
 
         <ScrollAnimation>
 
-          <h2 className="text-[var(--text-color-dark)] text-xl sm:text-[40px]  mb-7 max-w-2xl mt-[15%] font-['Libre_Baskerville',serif]">
+          <h2 className="text-[var(--text-color-dark)] text-[26px] md:text-[40px]   max-w-2xl mb-[5%] mt-[4%] md:mt-[10%]  font-['Libre_Baskerville',serif]">
           Say good-bye to health conditions that hold you back!  
           </h2>
           </ScrollAnimation>
