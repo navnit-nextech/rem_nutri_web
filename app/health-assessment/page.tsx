@@ -412,7 +412,7 @@ const HealthAssessment = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[var(--background-color-dark)] to-[color-mix(in_srgb,var(--background-color-dark),var(--accent-color)_10%)] pt-20 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-[var(--background-color-dark)] to-[color-mix(in_srgb,var(--background-color-dark),var(--accent-color)_5%)] pt-20 pb-20">
       <div className="max-w-3xl mx-auto px-6">
         <ScrollAnimation>
           <div className="text-center mb-12">
@@ -426,7 +426,7 @@ const HealthAssessment = () => {
         </ScrollAnimation>
 
         <ScrollAnimation delay={0.2}>
-          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
+          <div className="bg-[var(--background-color-dark)]/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
             {currentStep < formSteps.length && (
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-2">
@@ -473,7 +473,7 @@ const HealthAssessment = () => {
                   <h2 className="text-2xl font-bold text-[var(--text-color-plain)] mb-4">
                     Your Personalized Program
                   </h2>
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/10">
+                  <div className="bg-[var(--background-color-dark)]/80 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/10">
                     <h3 className="text-xl font-semibold text-[var(--accent-color)] mb-2">
                       {programs.find((p) => p.id === recommendedProgram)?.name}
                     </h3>
