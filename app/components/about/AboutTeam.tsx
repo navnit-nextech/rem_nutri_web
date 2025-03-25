@@ -83,7 +83,7 @@ const AboutTeam = () => {
           <div className="md:hidden relative">
             <ScrollAnimation key={teamMembers[currentIndex].id} delay={0.1}>
               <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden">
-                <div className="relative h-[300px] w-full">
+                <div className="relative h-[400px] w-full">
                   <Image
                     src={teamMembers[currentIndex].image}
                     alt={teamMembers[currentIndex].name}
