@@ -549,27 +549,63 @@ const HealthAssessment = () => {
             </label>
             {field.type === "select" ? (
               <div className={`grid gap-4 ${
-                field.name === "weightGoal" || field.name === "activityLevel"
-                  ? "grid-cols-2 md:grid-cols-3"
-                  : "grid-cols-3"
+                field.name === "gender"
+                  ? "grid-cols-3"
+                  : "grid-cols-2"
               }`}>
-                {field.options.map((option) => (
-                  <motion.button
-                    key={option.value}
-                    type="button"
-                    onClick={() => setFormData({ ...formData, [field.name]: option.value })}
-                    className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
-                      formData[field.name] === option.value
-                        ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
-                        : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="text-2xl mb-2">{option.icon}</div>
-                    <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
-                  </motion.button>
-                ))}
+                {field.name === "gender" ? (
+                  field.options.map((option) => (
+                    <motion.button
+                      key={option.value}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, [field.name]: option.value })}
+                      className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
+                        formData[field.name] === option.value
+                          ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                          : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="text-2xl mb-2">{option.icon}</div>
+                      <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                    </motion.button>
+                  ))
+                ) : (
+                  <>
+                    {field.options.slice(0, 2).map((option) => (
+                      <motion.button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, [field.name]: option.value })}
+                        className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
+                          formData[field.name] === option.value
+                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                            : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className="text-2xl mb-2">{option.icon}</div>
+                        <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                      </motion.button>
+                    ))}
+                    <motion.button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, [field.name]: field.options[2].value })}
+                      className={`col-span-2 p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
+                        formData[field.name] === field.options[2].value
+                          ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                          : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="text-2xl mb-2">{field.options[2].icon}</div>
+                      <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{field.options[2].label}</div>
+                    </motion.button>
+                  </>
+                )}
               </div>
             ) : field.type === "multiselect" ? (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
