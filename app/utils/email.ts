@@ -1,55 +1,53 @@
 import { google } from 'googleapis';
-import { getGoogleDriveClient } from './googleDrive';
+import { OAuth2Client } from 'google-auth-library';
 
 interface EmailOptions {
   to: string;
   subject: string;
   text: string;
-  html?: string;
 }
 
-export const sendEmail = async ({ to, subject, text, html }: EmailOptions) => {
-  try {
-    const drive = await getGoogleDriveClient();
-    const auth = drive.context._options.auth;
-    
-    // Create email in base64 format
-    const emailContent = [
-      'Content-Type: text/html; charset=utf-8',
-      'MIME-Version: 1.0',
-      `To: ${to}`,
-      `From: "Rem Nutri" <${process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL}>`,
-      `Subject: ${subject}`,
-      '',
-      html || text,
-    ].join('\r\n');
+const oauth2Client = new OAuth2Client(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
+);
 
-    const encodedEmail = Buffer.from(emailContent)
+// Set credentials
+oauth2Client.setCredentials({
+  refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+});
+
+export async function sendEmail({ to, subject, text }: EmailOptions) {
+  try {
+    const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+
+    // Create email in base64 format
+    const email = [
+      'Content-Type: text/plain; charset="UTF-8"\n',
+      'MIME-Version: 1.0\n',
+      `To: ${to}\n`,
+      `Subject: ${subject}\n\n`,
+      text,
+    ].join('');
+
+    const encodedEmail = Buffer.from(email)
       .toString('base64')
       .replace(/\+/g, '-')
       .replace(/\//g, '_')
       .replace(/=+$/, '');
 
-    const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${auth.credentials.access_token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    const res = await gmail.users.messages.send({
+      userId: 'me',
+      requestBody: {
         raw: encodedEmail,
-      }),
+      },
     });
 
-    if (!response.ok) {
-      throw new Error(`Failed to send email: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    console.log('Email sent successfully:', data.id);
-    return true;
+    console.log('Email sent successfully:', res.data);
+    return res.data;
   } catch (error) {
     console.error('Error sending email:', error);
     throw error;
   }
-}; 
+} 

@@ -1,11 +1,74 @@
 import { NextResponse } from "next/server";
 import { getGoogleSheetsClient } from "@/app/utils/googleSheets";
-import { sendEmail } from "@/app/utils/email";
+import nodemailer from 'nodemailer';
+
+
+const SHEET_NAME = "Health Assessments";
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    console.log("Creating Google Sheets client...");
     const sheets = await getGoogleSheetsClient();
+    const data = await request.json();
+
+    // First, get the spreadsheet to check if our sheet exists
+    const spreadsheet = await sheets.spreadsheets.get({
+      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+    });
+
+    // Check if our sheet exists
+    const sheetExists = spreadsheet.data.sheets?.some(
+      (sheet) => sheet.properties?.title === SHEET_NAME
+    );
+
+    if (!sheetExists) {
+      // Create new sheet if it doesn't exist
+      await sheets.spreadsheets.batchUpdate({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        requestBody: {
+          requests: [
+            {
+              addSheet: {
+                properties: {
+                  title: SHEET_NAME,
+                },
+              },
+            },
+          ],
+        },
+      });
+
+      // Add headers to the new sheet
+      const headers = [
+        "Timestamp",
+        "Name",
+        "Email",
+        "Phone",
+        "Age",
+        "Gender",
+        "Weight (kg)",
+        "Height (cm)",
+        "BMI",
+        "Health Conditions",
+        "Blood Sugar Level",
+        "Weight Goal",
+        "Activity Level",
+        "Current Diet",
+        "Lifestyle Factors",
+        "Allergies",
+        "Medications",
+        "Recommended Program",
+      ];
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: `${SHEET_NAME}!A1:R1`,
+        valueInputOption: "USER_ENTERED",
+        requestBody: {
+          values: [headers],
+        },
+      });
+    }
 
     // Format the data for Google Sheets
     const rowData = [
@@ -18,47 +81,97 @@ export async function POST(request: Request) {
       data.weight,
       data.height,
       data.bmi?.toFixed(1) || "",
-      data.conditions.join(", "),
-      data.otherCondition,
-      data.goals,
+      data.healthConditions.join(", "),
+      data.bloodSugar,
+      data.weightGoal,
+      data.activityLevel,
       data.currentDiet,
-      data.allergies,
-      data.medications,
-      data.recommendedProgram,
+      data.lifestyleFactors.join(", "),
+      data.allergies || "",
+      data.medications || "",
+      data.recommendedProgram.join(", "),
     ];
 
     // Append data to Google Sheets
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Health Assessments!A:P",
+      range: `${SHEET_NAME}!A:R`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [rowData],
       },
     });
 
-    // Send email notification
-    const emailContent = `
-      Dear ${data.name},
+    // 5. Send notification emails
+    console.log('Step 5: Sending notification emails');
+    let emailSuccess = false;
 
-      Thank you for completing your health assessment. Based on your responses, we recommend our ${data.recommendedProgram} program.
-
-      Your Health Assessment Summary:
-      - BMI: ${data.bmi?.toFixed(1) || "Not calculated"}
-      - Health Conditions: ${data.conditions.join(", ")}${data.otherCondition ? `, ${data.otherCondition}` : ""}
-      - Recommended Program: ${data.recommendedProgram}
-
-      We'll be in touch shortly to discuss your personalized program in detail.
-
-      Best regards,
-      Rem Nutri Team
-    `;
-
-    await sendEmail({
-      to: data.email,
-      subject: "Your Health Assessment Results - Rem Nutri",
-      text: emailContent,
-    });
+    try {
+      // Check if email is configured
+      if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD || 
+          process.env.EMAIL_USER === 'your_actual_email@gmail.com' || 
+          process.env.EMAIL_PASSWORD === 'your_16_character_app_password') {
+        console.log('Email not configured - skipping');
+      } else {
+        // Create email transporter
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD,
+          },
+        });
+        
+        // Send admin notification
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          to: process.env.EMAIL_USER, // Send to admin
+          subject: 'New Health Assessment Submission',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333333;">
+              <h1 style="color: #004d40;">New Health Assessment Submission</h1>
+              <p><strong>Name:</strong> ${data.name}</p>
+              <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+              <p><strong>Program:</strong> ${data.recommendedProgram.join(', ')}</p>
+              <p><strong>BMI:</strong> ${data.bmi?.toFixed(1) || 'Not provided'}</p>
+              <p><strong>Health Conditions:</strong> ${data.healthConditions.join(', ')}</p>
+              <p><strong>Lifestyle Factors:</strong> ${data.lifestyleFactors.join(', ')}</p>
+              <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
+            </div>
+          `,
+        });
+        console.log('Admin notification email sent');
+        
+        // Send confirmation to user
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          to: data.email,
+          subject: 'Your Health Assessment has been received - RemNutri',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333333;">
+              <h1 style="color: #004d40;">Thank You for Your Health Assessment!</h1>
+              <p>Hello ${data.name},</p>
+              <p>Thank you for completing your health assessment with RemNutri. We have received your submission and our team will review it shortly.</p>
+              <p>Based on your assessment, we recommend the <strong>${data.recommendedProgram.join(', ')}</strong> program for you.</p>
+              <p>Our team will contact you within 24-48 hours to discuss your personalized health plan and next steps.</p>
+              <p>Best regards,<br>The RemNutri Team</p>
+              <hr style="border: 1px solid #eeeeee; margin: 20px 0;">
+              <p style="font-size: 12px; color: #777777;">
+                RemNutri Health Private Limited<br>
+                <a href="https://rem-nutri-web.vercel.app/" style="color: #004d40; text-decoration: none;">www.remnutri.com</a>
+              </p>
+            </div>
+          `,
+        });
+        console.log('User confirmation email sent');
+        
+        emailSuccess = true;
+      }
+    } catch (emailError) {
+      console.error('Email sending error:', emailError);
+      // Continue processing - email failure isn't critical
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
