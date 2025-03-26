@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getGoogleSheetsClient } from "@/app/utils/googleSheets";
 import nodemailer from 'nodemailer';
+import { google } from "googleapis";
+import { generateEmailContent } from "./email-template";
 
 
 const SHEET_NAME = "Health Assessments";
@@ -173,9 +175,31 @@ export async function POST(request: Request) {
       // Continue processing - email failure isn't critical
     }
 
+    // Create a transporter using SMTP
+    const smtpTransporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: true,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    // Generate the email content
+    const emailContent = generateEmailContent(data);
+
+    // Send email with the report
+    await smtpTransporter.sendMail({
+      from: process.env.SMTP_FROM,
+      to: data.email,
+      subject: "Your Health Assessment Report - Rem Nutri",
+      html: emailContent,
+    });
+
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error processing health assessment:", error);
+    console.error("Error in health assessment submission:", error);
     return NextResponse.json(
       { error: "Failed to process health assessment" },
       { status: 500 }

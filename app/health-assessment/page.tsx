@@ -318,6 +318,18 @@ const HealthAssessment = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [missingField, setMissingField] = useState<string | null>(null);
+
+  // Add useEffect for auto-dismissing validation error
+  useEffect(() => {
+    if (validationError) {
+      const timer = setTimeout(() => {
+        setValidationError(null);
+      }, 3000); // Auto dismiss after 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [validationError]);
 
   const calculateBMI = () => {
     if (formData.weight && formData.height) {
@@ -390,10 +402,12 @@ const HealthAssessment = () => {
     for (const field of requiredFields) {
       if (!formData[field.name as keyof typeof formData]) {
         setValidationError(`Please fill in ${field.label}`);
+        setMissingField(field.label);
         return false;
       }
     }
 
+    setMissingField(null);
     return true;
   };
 
@@ -410,6 +424,15 @@ const HealthAssessment = () => {
 
     // Show the report immediately
     setCurrentStep(formSteps.length);
+    
+    // Scroll to top of the screen
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
 
     // Handle data submission in the background
     const submitData = async () => {
@@ -481,6 +504,15 @@ const HealthAssessment = () => {
   const nextStep = () => {
     if (currentStep < formSteps.length - 1) {
       setCurrentStep(currentStep + 1);
+      // Scroll to top of the screen
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      // Additional scroll to ensure it reaches the top
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
     } else {
       handleSubmit(new Event('submit') as any);
     }
@@ -489,6 +521,15 @@ const HealthAssessment = () => {
   const prevStep = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+      // Scroll to top of the screen
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      // Additional scroll to ensure it reaches the top
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
     }
   };
 
@@ -651,7 +692,7 @@ const HealthAssessment = () => {
                 placeholder={field.placeholder}
                 required={field.name !== "allergies" && field.name !== "medications"}
                 min={["age", "weight", "height"].includes(field.name) ? "0" : undefined}
-                className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)]"
+                className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)] [&:-webkit-autofill]:bg-white/5 [&:-webkit-autofill]:text-[var(--text-color-plain)] [&:-webkit-autofill]:border-white/10 [&:-webkit-autofill]:shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset] [&:-webkit-autofill]:!bg-white/5 [&:-webkit-autofill]:!text-[var(--text-color-plain)] [&:-webkit-autofill]:!border-white/10 [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset] [&:-webkit-autofill]:!appearance-none [&:-webkit-autofill]:!background-color:rgba(255,255,255,0.05)"
               />
             )}
           </motion.div>
@@ -740,16 +781,16 @@ const HealthAssessment = () => {
 
               {validationError && (
                 <motion.div
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2"
+                  exit={{ opacity: 0, y: 20 }}
+                  className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2 w-[90%] max-w-[500px]"
                 >
-                  <AlertCircle className="w-5 h-5" />
-                  <span>{validationError}</span>
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <span className="flex-grow text-center">{validationError}</span>
                   <button
                     onClick={() => setValidationError(null)}
-                    className="ml-4 hover:text-white/80"
+                    className="ml-4 hover:text-white/80 flex-shrink-0"
                   >
                     ×
                   </button>
@@ -772,24 +813,25 @@ const HealthAssessment = () => {
                         initial={{ scale: 0, rotate: -180 }}
                         animate={{ scale: 1, rotate: 0 }}
                         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                        className="absolute -top-8 left-1/2 transform -translate-x-1/2"
+                        className="absolute -top-2 sm:-top-4 left-1/2 transform -translate-x-1/2"
                       >
-                        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] flex items-center justify-center shadow-lg">
-                          <CheckCircle2 className="w-12 h-12 text-white" />
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] flex items-center justify-center shadow-lg">
+                          <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                         </div>
                       </motion.div>
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="pt-20"
+                        className="pt-18 sm:pt-14"
                       >
-                        <h2 className="text-3xl font-bold text-[var(--text-color-plain)] mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),white_50%)]">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--accent-color)]  text-[25px] mb-3 ">
                           Your Health Assessment Report
                         </h2>
-                        <p className="text-[var(--text-color-light)] max-w-2xl mx-auto">
+                        <p className="text-[var(--text-color-light)] max-w-2xl mx-auto mb-3">
                           Based on your responses, we've analyzed your health profile and prepared personalized recommendations
                         </p>
+                        
                       </motion.div>
                     </div>
 
@@ -976,7 +1018,14 @@ const HealthAssessment = () => {
                                 <motion.button
                                   whileHover={{ scale: 1.05 }}
                                   whileTap={{ scale: 0.95 }}
-                                  onClick={() => router.push(`/programs/${programId}`)}
+                                  onClick={() => {
+                                    let routeId = programId;
+                                    if (programId === "rem-di-2") routeId = "remdi2";
+                                    else if (programId === "rem-bliss") routeId = "rembliss";
+                                    else if (programId === "rem-fit") routeId = "remfit";
+                                    else if (programId === "rem-meta") routeId = "remmeta";
+                                    router.push(`/programs/${routeId}`);
+                                  }}
                                   className="bg-gradient-to-r from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] text-white py-2 px-6 rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
                                 >
                                   <TrendingUp className="w-4 h-4" />
@@ -1022,7 +1071,9 @@ const HealthAssessment = () => {
                       </>
                     ) : (
                       <>
-                        <span>{currentStep === formSteps.length - 1 ? "Submit" : "Next"}</span>
+                        <span>
+                          {currentStep === formSteps.length - 1 ? "Submit" : "Next"}
+                        </span>
                         <ArrowRight className="w-5 h-5" />
                       </>
                     )}
