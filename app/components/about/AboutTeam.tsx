@@ -66,16 +66,20 @@ const AboutTeam = () => {
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? '100%' : '-100%',
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       x: '0%',
-      opacity: 1
+      opacity: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 40, mass: 1.2 },
+        opacity: { duration: 0.5, ease: "easeInOut" }
+      }
     },
-    exit: (direction) => ({
-      x: direction < 0 ? '-100%' : '100%',
-      opacity: 0
-    })
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.2, ease: "easeOut" }
+    }
   };
 
   return (
@@ -100,8 +104,29 @@ const AboutTeam = () => {
         <div className="md:pb-16">
           {/* Mobile Card View */}
           <div className="md:hidden relative h-[550px]">
-            <div className="h-[500px] relative">
-              <AnimatePresence initial={false} custom={direction}>
+            <div className="h-[500px] relative overflow-hidden">
+              {/* Fixed navigation layer */}
+              <div className="absolute inset-0 z-10 flex justify-between items-center px-4 pointer-events-none">
+                <button
+                  onClick={prevCard}
+                  className="p-2 rounded-full bg-[var(--background-color-dark)]/20 backdrop-blur-sm text-white hover:bg-[var(--background-color-dark)]/30 transition-colors pointer-events-auto"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                </button>
+                <button
+                  onClick={nextCard}
+                  className="p-2 rounded-full bg-[var(--background-color-dark)]/20 backdrop-blur-sm text-white hover:bg-[var(--background-color-dark)]/30 transition-colors pointer-events-auto"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Card content with animation */}
+              <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={currentIndex}
                   custom={direction}
@@ -109,11 +134,11 @@ const AboutTeam = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 }
-                  }}
                   className="absolute inset-0"
+                  style={{ 
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden'
+                  }}
                 >
                   <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full">
                     <div className="relative h-[400px] w-full">
@@ -123,25 +148,6 @@ const AboutTeam = () => {
                         fill
                         className="object-top object-cover"
                       />
-                      {/* Navigation Arrows */}
-                      <div className="absolute inset-0 flex justify-between items-center px-4">
-                        <button
-                          onClick={prevCard}
-                          className="p-2 rounded-full bg-[var(--background-color-dark)]/20 backdrop-blur-sm text-white hover:bg-[var(--background-color-dark)]/30 transition-colors"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M15 18l-6-6 6-6"/>
-                          </svg>
-                        </button>
-                        <button
-                          onClick={nextCard}
-                          className="p-2 rounded-full bg-[var(--background-color-dark)]/20 backdrop-blur-sm text-white hover:bg-[var(--background-color-dark)]/30 transition-colors"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M9 18l6-6-6-6"/>
-                          </svg>
-                        </button>
-                      </div>
                     </div>
                     <div className="p-6">
                       <div className="flex items-center justify-between">
