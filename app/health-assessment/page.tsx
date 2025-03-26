@@ -652,7 +652,7 @@ const HealthAssessment = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[var(--background-color-dark)] to-[color-mix(in_srgb,var(--background-color-dark),var(--accent-color)_5%)]">
       <Navbar />
-      <div className="pt-32 pb-20">
+      <div className="pt-45 pb-20">
         <div className="max-w-3xl mx-auto px-6">
           <ScrollAnimation>
             <div className="text-center mb-12">
