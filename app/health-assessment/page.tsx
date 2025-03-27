@@ -122,13 +122,13 @@ const formSteps = [
         name: "healthConditions",
         label: "Do you have any of these conditions?",
         options: [
-          { value: "diabetes", label: "Diabetes/Pre-Diabetes", icon: "🩺" },
-          { value: "pcos", label: "PCOS/PCOD", icon: "🌸" },
-          { value: "menopause", label: "Menopause", icon: "🌺" },
-          { value: "hypertension", label: "High Blood Pressure", icon: "❤️" },
-          { value: "cardiac", label: "Cardiac Issues", icon: "💓" },
-          { value: "fattyLiver", label: "Fatty Liver", icon: "🫁" },
-          { value: "thyroid", label: "Thyroid Issues", icon: "⚕️" },
+          { value: "Diabetes", label: "Diabetes/Pre-Diabetes", icon: "🩺" },
+          { value: "PCOS/PCOD", label: "PCOS/PCOD", icon: "🌸" },
+          { value: "Menopause", label: "Menopause", icon: "🌺" },
+          { value: "High Blood Pressure", label: "High Blood Pressure", icon: "❤️" },
+          { value: "Cardiac Issues", label: "Cardiac Issues", icon: "💓" },
+          { value: "Fatty Liver", label: "Fatty Liver", icon: "🫁" },
+          { value: "Thyroid Issues", label: "Thyroid Issues", icon: "⚕️" },
         ],
         required: true,
       },
@@ -193,10 +193,10 @@ const formSteps = [
         name: "lifestyleFactors",
         label: "Lifestyle Factors",
         options: [
-          { value: "stress", label: "High Stress", icon: "😰" },
-          { value: "sleep", label: "Poor Sleep", icon: "😴" },
-          { value: "meals", label: "Irregular Meals", icon: "⏰" },
-          { value: "food", label: "Processed Food", icon: "🍔" },
+          { value: "High Stress", label: "High Stress", icon: "😰" },
+          { value: "Poor Sleep", label: "Poor Sleep", icon: "😴" },
+          { value: "Irregular Meals", label: "Irregular Meals", icon: "⏰" },
+          { value: "Processed Food", label: "Processed Food", icon: "🍔" },
         ],
         required: true,
       },
@@ -222,7 +222,7 @@ const formSteps = [
   },
 ];
 
-type LifestyleFactor = 'stress' | 'sleep' | 'irregular' | 'processed';
+type LifestyleFactor = 'stress' | 'sleep' | 'meal' | 'processed food';
 
 const HealthAssessment = () => {
   const router = useRouter();
