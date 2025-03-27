@@ -183,7 +183,7 @@ export const generateEmailContent = (data: any) => {
   ` : ''}
 
   <div class="footer">
-    <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
+    <p><strong>Submitted at:</strong> ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
     <p>For more information about our programs, visit <a href="https://rem-nutri-web.vercel.app/programs" style="color: #2c5282; text-decoration: none;">rem-nutri-web.vercel.app/programs</a></p>
   </div>
 </body>

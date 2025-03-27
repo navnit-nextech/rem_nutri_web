@@ -71,11 +71,13 @@ export async function POST(request: Request) {
         },
       });
     }
+    
 
     // Format the data for Google Sheets
     const rowData = [
       
-      new Date().toLocaleString(),
+      new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+    
       data.name,
       data.email,
       data.phone,
@@ -140,7 +142,8 @@ export async function POST(request: Request) {
               <p><strong>BMI:</strong> ${data.bmi?.toFixed(1) || 'Not provided'}</p>
               <p><strong>Health Conditions:</strong> ${data.healthConditions.join(', ')}</p>
               <p><strong>Lifestyle Factors:</strong> ${data.lifestyleFactors.join(', ')}</p>
-              <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
+              <p><strong>Submitted at:</strong> ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+            }</p>
             </div>
           `,
         });
