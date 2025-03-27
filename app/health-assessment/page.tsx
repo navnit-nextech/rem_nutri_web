@@ -195,8 +195,8 @@ const formSteps = [
         options: [
           { value: "highstress", label: "High Stress", icon: "😰" },
           { value: "Poor Sleep", label: "Poor Sleep", icon: "😴" },
-          { value: "Irregular Meals", label: "Irregular Meals", icon: "⏰" },
-          { value: "Processed Food", label: "Processed Food", icon: "🍔" },
+          { value: "Meals", label: "Irregular Meals", icon: "⏰" },
+          { value: "Processed", label: "Processed Food", icon: "🍔" },
         ],
         required: true,
       },
