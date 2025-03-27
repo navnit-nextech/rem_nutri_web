@@ -452,7 +452,20 @@ const HealthAssessment = () => {
         const now = new Date();
         const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
         const istDate = new Date(now.getTime() + istOffset);
-        const timestamp = istDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        
+        // Format the date in IST with proper formatting
+        const options: Intl.DateTimeFormatOptions = { 
+          timeZone: 'Asia/Kolkata',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        };
+        
+        const timestamp = istDate.toLocaleString('en-IN', options);
 
         const response = await fetch("/api/health-assessment", {
           method: "POST",
@@ -464,6 +477,7 @@ const HealthAssessment = () => {
             bmi: calculateBMI(),
             recommendedProgram: program,
             timestamp: timestamp,
+            timezone: 'Asia/Kolkata' // Add timezone information
           }),
         });
 

@@ -110,7 +110,8 @@ export const generateEmailContent = (data: any) => {
 </head>
 <body>
   <div class="header">
-    <img src="https://remnutri.com/logo.png" alt="Rem Nutri Logo" class="logo">
+  
+
     <h1>Your Health Assessment Report</h1>
     <p>Thank you for completing your health assessment. Here's your personalized report.</p>
   </div>
@@ -182,7 +183,7 @@ export const generateEmailContent = (data: any) => {
   ` : ''}
 
   <div class="footer">
-    <p>This report was generated on ${data.timestamp}</p>
+    <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
     <p>For more information about our programs, visit <a href="https://rem-nutri-web.vercel.app/programs" style="color: #2c5282; text-decoration: none;">rem-nutri-web.vercel.app/programs</a></p>
   </div>
 </body>

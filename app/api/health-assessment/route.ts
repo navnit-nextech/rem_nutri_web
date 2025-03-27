@@ -74,7 +74,8 @@ export async function POST(request: Request) {
 
     // Format the data for Google Sheets
     const rowData = [
-      new Date().toISOString(),
+      
+      new Date().toLocaleString(),
       data.name,
       data.email,
       data.phone,
