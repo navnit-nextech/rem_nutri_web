@@ -145,28 +145,17 @@ export async function POST(request: Request) {
         });
         console.log('Admin notification email sent');
         
-        // Send confirmation to user
+        // Generate the email content using the template
+        const emailContent = generateEmailContent(data);
+
+        // Send detailed report to user
         await transporter.sendMail({
           from: process.env.EMAIL_USER,
           to: data.email,
-          subject: 'Your Health Assessment has been received - RemNutri',
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333333;">
-              <h1 style="color: #004d40;">Thank You for Your Health Assessment!</h1>
-              <p>Hello ${data.name},</p>
-              <p>Thank you for completing your health assessment with RemNutri. We have received your submission and our team will review it shortly.</p>
-              <p>Based on your assessment, we recommend the <strong>${data.recommendedProgram.join(', ')}</strong> program for you.</p>
-              <p>Our team will contact you within 24-48 hours to discuss your personalized health plan and next steps.</p>
-              <p>Best regards,<br>The RemNutri Team</p>
-              <hr style="border: 1px solid #eeeeee; margin: 20px 0;">
-              <p style="font-size: 12px; color: #777777;">
-                RemNutri Health Private Limited<br>
-                <a href="https://rem-nutri-web.vercel.app/" style="color: #004d40; text-decoration: none;">www.remnutri.com</a>
-              </p>
-            </div>
-          `,
+          subject: "Your Health Assessment Report - Rem Nutri",
+          html: emailContent,
         });
-        console.log('User confirmation email sent');
+        console.log('User report email sent');
         
         emailSuccess = true;
       }
@@ -174,28 +163,6 @@ export async function POST(request: Request) {
       console.error('Email sending error:', emailError);
       // Continue processing - email failure isn't critical
     }
-
-    // Create a transporter using SMTP
-    const smtpTransporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    // Generate the email content
-    const emailContent = generateEmailContent(data);
-
-    // Send email with the report
-    await smtpTransporter.sendMail({
-      from: process.env.SMTP_FROM,
-      to: data.email,
-      subject: "Your Health Assessment Report - Rem Nutri",
-      html: emailContent,
-    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

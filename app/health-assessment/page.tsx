@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollAnimation from "@/app/components/ScrollAnimation";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ArrowLeft, CheckCircle2, Activity, Heart, Scale, Brain, Clock, Target, TrendingUp, AlertCircle, Loader2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, Activity, Heart, Scale, Brain, Clock, Target, TrendingUp, AlertCircle, Loader2, Mail } from "lucide-react";
 import Navbar from "@/app/components/Navbar";
 
 
@@ -22,8 +22,8 @@ const programs = [
     name: "RemDi 2",
     description: "Type 2 and Pre Diabetes Reversal Programme",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto">
-        <path d="M11.15 15.18L9.72999 13.77L11.15 12.35L12.56 13.77L13.97 12.35L12.56 10.94L13.97 9.53L15.39 10.94L16.8 9.53L13.97 6.7L6.89999 13.77L9.72999 16.6L11.15 15.18ZM3.07999 19L6.19999 15.89L4.07999 13.77L13.97 3.87L16.1 6L17.5 4.58L16.1 3.16L17.5 1.75L21.75 6L20.34 7.4L18.92 6L17.5 7.4L19.63 9.53L9.72999 19.42L7.60999 17.3L3.07999 21.84V19Z" fill="currentColor"/>
+      <svg width="30" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto">
+        <path d="M11.15 15.18L9.72999 13.77L11.15 12.35L12.56 13.77L13.97 12.35L12.56 10.94L13.97 9.53L15.39 10.94L16.8 9.53L13.97 6.7L6.89999 13.77L9.72999 16.6L11.15 15.18ZM3.07999 19L6.19999 15.89L4.07999 13.77L13.97 3.87L16.1 6L17.5 4.58L16.1 3.16L17.5 1.75L21.75 6L20.34 7.4L18.92 6L17.5 7.4L19.63 9.53L9.72999 19.42L7.60999 17.3L3.07999 21.84V19Z" fill="currentColor" />
       </svg>
     )
   },
@@ -36,13 +36,13 @@ const programs = [
   {
     id: "rem-meta",
     name: "Rem Meta",
-    description: "Tackling Metabolic issues such as High Blood Pressure, Cardiac Risk, Fatty Liver and more",
+    description: "Tackling Metabolic issues such as High Blood Pressure",
     icon: "❤️"
   },
   {
     id: "rem-fit",
     name: "Rem Fit",
-    description: "To achieve intense weight loss @4-5kg/month or simply stay fit",
+    description: "Program to achieve intense weight loss @4-5kg/month or simply stay fit",
     icon: "⚖️"
   }
 ];
@@ -376,10 +376,10 @@ const HealthAssessment = () => {
     }
 
     // Check for Rem Meta (Metabolic Issues)
-    if (conditions.includes('hypertension') || 
-        conditions.includes('cardiac') || 
-        conditions.includes('fattyLiver') || 
-        conditions.includes('thyroid')) {
+    if (conditions.includes('hypertension') ||
+      conditions.includes('cardiac') ||
+      conditions.includes('fattyLiver') ||
+      conditions.includes('thyroid')) {
       recommendedPrograms.push('rem-meta');
     }
 
@@ -424,7 +424,7 @@ const HealthAssessment = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -435,7 +435,7 @@ const HealthAssessment = () => {
 
     // Show the report immediately
     setCurrentStep(formSteps.length);
-    
+
     // Scroll to top of the screen
     window.scrollTo({
       top: 0,
@@ -472,7 +472,6 @@ const HealthAssessment = () => {
         }
       } catch (error) {
         console.error("Error submitting form:", error);
-        setValidationError("There was an issue saving your data. Your report is still available.");
       } finally {
         setIsSubmitting(false);
       }
@@ -493,11 +492,11 @@ const HealthAssessment = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
     const value = e.target.value;
     let error = "";
-    
+
     if (["age", "weight", "height"].includes(fieldName)) {
       error = validateNumberInput(value, fieldName);
     }
-    
+
     if (!error) {
       setFormData({ ...formData, [fieldName]: value });
     }
@@ -550,7 +549,7 @@ const HealthAssessment = () => {
 
   const renderFormStep = () => {
     const step = formSteps[currentStep];
-    
+
     // Filter health conditions based on gender
     const filteredFields = step.fields.map(field => {
       if (field.name === 'healthConditions') {
@@ -568,7 +567,7 @@ const HealthAssessment = () => {
       }
       return field;
     });
-    
+
     return (
       <motion.div
         key={currentStep}
@@ -600,22 +599,20 @@ const HealthAssessment = () => {
               )}
             </label>
             {field.type === "select" ? (
-              <div className={`grid gap-4 ${
-                field.name === "gender"
+              <div className={`grid gap-4 ${field.name === "gender"
                   ? "grid-cols-3"
                   : "grid-cols-2"
-              }`}>
+                }`}>
                 {field.name === "gender" ? (
                   field.options.map((option) => (
                     <motion.button
                       key={option.value}
                       type="button"
                       onClick={() => setFormData({ ...formData, [field.name]: option.value })}
-                      className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
-                        formData[field.name] === option.value
+                      className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === option.value
                           ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
                           : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                      }`}
+                        }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -630,11 +627,10 @@ const HealthAssessment = () => {
                         key={option.value}
                         type="button"
                         onClick={() => setFormData({ ...formData, [field.name]: option.value })}
-                        className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
-                          formData[field.name] === option.value
+                        className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === option.value
                             ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
                             : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                        }`}
+                          }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -645,11 +641,10 @@ const HealthAssessment = () => {
                     <motion.button
                       type="button"
                       onClick={() => setFormData({ ...formData, [field.name]: field.options[2].value })}
-                      className={`col-span-2 p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
-                        formData[field.name] === field.options[2].value
+                      className={`col-span-2 p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === field.options[2].value
                           ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
                           : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                      }`}
+                        }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -672,11 +667,10 @@ const HealthAssessment = () => {
                         : [...currentValue, option.value];
                       setFormData({ ...formData, [field.name]: newValue });
                     }}
-                    className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
-                      (formData[field.name] || []).includes(option.value)
+                    className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
                         ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
                         : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                    }`}
+                      }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -735,7 +729,7 @@ const HealthAssessment = () => {
     setRecommendedProgram([]);
     setValidationError(null);
     setIsSubmitting(false);
-    
+
     // Clear localStorage when starting a new assessment
     if (typeof window !== 'undefined') {
       localStorage.removeItem('healthAssessmentData');
@@ -789,7 +783,7 @@ const HealthAssessment = () => {
                       className="h-full bg-green-400"
                       initial={{ width: 0 }}
                       animate={{ width: `${calculateProgress()}%` }}
-                      transition={{ 
+                      transition={{
                         duration: 0.5,
                         ease: "easeInOut"
                       }}
@@ -834,23 +828,30 @@ const HealthAssessment = () => {
                         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                         className="absolute -top-2 sm:-top-4 left-1/2 transform -translate-x-1/2"
                       >
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] flex items-center justify-center shadow-lg">
-                          <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] flex items-center justify-center shadow-lg relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                          <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white relative z-10" />
+                          <div className="absolute inset-0 bg-[var(--accent-color)] opacity-20 animate-ping"></div>
                         </div>
                       </motion.div>
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="pt-18 sm:pt-14"
+                        className="pt-12 sm:pt-14"
                       >
-                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--accent-color)]  text-[25px] mb-3 ">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--accent-color)] mt-8 mb-3 ">
                           Your Health Assessment Report
                         </h2>
                         <p className="text-[var(--text-color-light)] max-w-2xl mx-auto mb-3">
                           Based on your responses, we've analyzed your health profile and prepared personalized recommendations
                         </p>
-                        
+
+                        <p className="text-[var(--accent-color)] text-sm flex items-start justify-center gap-2">
+                          <Mail className="w-4 h-4 mt-[2px]" />
+                          A detailed report has been sent to your email address
+                        </p>
+
                       </motion.div>
                     </div>
 
@@ -861,51 +862,53 @@ const HealthAssessment = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                       >
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
-                            <Scale className="w-6 h-6 text-[var(--accent-color)]" />
-                          </div>
-                          <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">BMI Analysis</h3>
-                        </div>
-                        <div className="text-center mb-6">
-                          <div className="relative inline-block">
-                            <div className="text-5xl font-bold text-[var(--accent-color)] mb-2">
-                              {bmi?.toFixed(1)}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-3 mb-6">
+                            <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                              <Scale className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
                             </div>
-                            <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
+                            <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">BMI Analysis</h3>
                           </div>
-                          <div className="text-lg text-[var(--text-color-light)]">
-                            {bmi && (
-                              <span className={`${
-                                bmi < 18.5 ? "text-yellow-400" :
-                                bmi < 25 ? "text-green-400" :
-                                bmi < 30 ? "text-orange-400" :
-                                "text-red-400"
-                              }`}>
-                                {bmi < 18.5 ? "Underweight" :
-                                 bmi < 25 ? "Normal Weight" :
-                                 bmi < 30 ? "Overweight" :
-                                 "Obese"}
-                              </span>
-                            )}
+                          <div className="text-center mb-6">
+                            <div className="relative inline-block">
+                              <div className="text-5xl font-bold text-[var(--accent-color)] mb-2">
+                                {bmi?.toFixed(1)}
+                              </div>
+                              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
+                            </div>
+                            <div className="text-lg text-[var(--text-color-light)]">
+                              {bmi && (
+                                <span className={`${bmi < 18.5 ? "text-yellow-400" :
+                                    bmi < 25 ? "text-green-400" :
+                                      bmi < 30 ? "text-orange-400" :
+                                        "text-red-400"
+                                  }`}>
+                                  {bmi < 18.5 ? "Underweight" :
+                                    bmi < 25 ? "Normal Weight" :
+                                      bmi < 30 ? "Overweight" :
+                                        "Obese"}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-                          <motion.div
-                            className={`h-full ${
-                              bmi && (
-                                bmi < 18.5 ? "bg-yellow-400" :
-                                bmi < 25 ? "bg-green-400" :
-                                bmi < 30 ? "bg-orange-400" :
-                                "bg-red-400"
-                              )
-                            }`}
-                            initial={{ width: 0 }}
-                            animate={{ width: `${Math.min(100, (bmi || 0) * 2)}%` }}
-                            transition={{ duration: 1.5, ease: "easeOut" }}
-                          />
+                          <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                            <motion.div
+                              className={`h-full ${bmi && (
+                                  bmi < 18.5 ? "bg-yellow-400" :
+                                    bmi < 25 ? "bg-green-400" :
+                                      bmi < 30 ? "bg-orange-400" :
+                                        "bg-red-400"
+                                )
+                                }`}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${Math.min(100, (bmi || 0) * 2)}%` }}
+                              transition={{ duration: 1.5, ease: "easeOut" }}
+                            />
+                          </div>
                         </div>
                       </motion.div>
 
@@ -914,27 +917,32 @@ const HealthAssessment = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 }}
-                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                       >
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
-                            <Activity className="w-6 h-6 text-[var(--accent-color)]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-3 mb-6">
+                            <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                              <Activity className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                            </div>
+                            <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Health Conditions</h3>
                           </div>
-                          <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Health Conditions</h3>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          {formData.healthConditions.map((condition, index) => (
-                            <motion.div
-                              key={condition}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.7 + index * 0.1 }}
-                              className="flex items-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
-                            >
-                              <AlertCircle className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
-                              <span className="text-[var(--text-color-light)] text-sm break-words">{condition}</span>
-                            </motion.div>
-                          ))}
+                          <div className="grid grid-cols-2 gap-4">
+                            {formData.healthConditions.map((condition, index) => (
+                              <motion.div
+                                key={condition}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.7 + index * 0.1 }}
+                                className="flex items-center gap-2 py-3 px-1 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
+                              >
+                                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <AlertCircle className="w-4 h-4 text-black flex-shrink-0 relative z-10" />
+                                <span className="text-black text-sm break-words relative z-10">{condition}</span>
+                              </motion.div>
+                            ))}
+                          </div>
                         </div>
                       </motion.div>
 
@@ -943,27 +951,32 @@ const HealthAssessment = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.7 }}
-                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                       >
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
-                            <Brain className="w-6 h-6 text-[var(--accent-color)]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-3 mb-6">
+                            <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                              <Brain className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                            </div>
+                            <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Lifestyle Factors</h3>
                           </div>
-                          <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Lifestyle Factors</h3>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          {formData.lifestyleFactors.map((factor, index) => (
-                            <motion.div
-                              key={factor}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.8 + index * 0.1 }}
-                              className="flex items-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
-                            >
-                              <Clock className="w-4 h-4 text-[var(--accent-color)]" />
-                              <span className="text-[var(--text-color-light)]">{factor}</span>
-                            </motion.div>
-                          ))}
+                          <div className="grid grid-cols-2 gap-4">
+                            {formData.lifestyleFactors.map((factor, index) => (
+                              <motion.div
+                                key={factor}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.8 + index * 0.1 }}
+                                className="flex items-center gap-2 p-3 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
+                              >
+                                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <Clock className="w-4 h-4 text-black relative z-10" />
+                                <span className="text-black relative z-10">{factor}</span>
+                              </motion.div>
+                            ))}
+                          </div>
                         </div>
                       </motion.div>
 
@@ -972,163 +985,31 @@ const HealthAssessment = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.8 }}
-                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                       >
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
-                            <Heart className="w-6 h-6 text-[var(--accent-color)]" />
-                          </div>
-                          <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Activity Level</h3>
-                        </div>
-                        <div className="text-center">
-                          <div className="relative inline-block">
-                            <div className="text-3xl font-bold text-[var(--accent-color)] mb-2">
-                              {formData.activityLevel.charAt(0).toUpperCase() + formData.activityLevel.slice(1)}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-3 mb-6">
+                            <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                              <Heart className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
                             </div>
-                            <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
+                            <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Activity Level</h3>
                           </div>
-                          <div className="text-[var(--text-color-light)]">
-                            Current Activity Status
+                          <div className="text-center">
+                            <div className="relative inline-block">
+                              <div className="text-3xl font-bold text-[var(--accent-color)] mb-2">
+                                {formData.activityLevel.charAt(0).toUpperCase() + formData.activityLevel.slice(1)}
+                              </div>
+                              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
+                            </div>
+                            <div className="text-[var(--text-color-light)]">
+                              Current Activity Status
+                            </div>
                           </div>
                         </div>
                       </motion.div>
                     </div>
-
-                    {/* Personalized Feedback Section */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.9 }}
-                      className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
-                    >
-                      <div className="text-center mb-8">
-                        <div className="flex items-center justify-center gap-3 mb-4">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
-                            <Brain className="w-6 h-6 text-[var(--accent-color)]" />
-                          </div>
-                          <h3 className="text-2xl font-semibold text-[var(--text-color-plain)]">
-                            Personalized Health Insights
-                          </h3>
-                        </div>
-                        <p className="text-[var(--text-color-light)] max-w-2xl mx-auto">
-                          Here's what we've learned about your health profile and our recommendations
-                        </p>
-                      </div>
-
-                      <motion.button
-                        onClick={() => setShowInsights(!showInsights)}
-                        className="w-full flex items-center justify-center gap-2 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <span className="text-[var(--text-color-plain)] font-medium">
-                          {showInsights ? 'Hide Insights' : 'Show Insights'}
-                        </span>
-                        <motion.div
-                          animate={{ rotate: showInsights ? 90 : 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <ArrowRight className="w-5 h-5 text-[var(--accent-color)]" />
-                        </motion.div>
-                      </motion.button>
-
-                      <AnimatePresence>
-                        {showInsights && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="space-y-6 mt-6"
-                          >
-                            {/* BMI Feedback */}
-                            {bmi && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1 }}
-                                className="bg-white/5 rounded-xl p-6"
-                              >
-                                <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Weight Management</h4>
-                                <p className="text-[var(--text-color-light)]">
-                                  {bmi < 18.5 
-                                    ? "Your BMI indicates you're underweight. We recommend focusing on healthy weight gain through proper nutrition and strength training."
-                                    : bmi < 25
-                                    ? "Your BMI is within the normal range. Focus on maintaining this healthy weight through balanced nutrition and regular exercise."
-                                    : bmi < 30
-                                    ? "Your BMI indicates you're overweight. We recommend a structured weight management program focusing on sustainable lifestyle changes."
-                                    : "Your BMI indicates obesity. We recommend an intensive weight management program with medical supervision and structured lifestyle modifications."}
-                                </p>
-                              </motion.div>
-                            )}
-
-                            {/* Health Conditions Feedback */}
-                            {formData.healthConditions.length > 0 && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.1 }}
-                                className="bg-white/5 rounded-xl p-6"
-                              >
-                                <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Health Conditions</h4>
-                                <p className="text-[var(--text-color-light)]">
-                                  {formData.healthConditions.includes('diabetes') 
-                                    ? "Your diabetes condition requires specialized care and monitoring. We recommend a comprehensive diabetes management program."
-                                    : formData.healthConditions.includes('pcos')
-                                    ? "PCOS requires a holistic approach focusing on hormonal balance, nutrition, and lifestyle modifications."
-                                    : formData.healthConditions.includes('hypertension')
-                                    ? "High blood pressure needs careful management through diet, exercise, and stress reduction techniques."
-                                    : "Your health conditions require specialized attention and monitoring. We'll tailor our recommendations accordingly."}
-                                </p>
-                              </motion.div>
-                            )}
-
-                            {/* Lifestyle Factors Feedback */}
-                            {formData.lifestyleFactors.length > 0 && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.2 }}
-                                className="bg-white/5 rounded-xl p-6"
-                              >
-                                <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Lifestyle Improvements</h4>
-                                <ul className="space-y-2 text-[var(--text-color-light)]">
-                                  {formData.lifestyleFactors.includes('stress') && (
-                                    <li>• High stress levels can impact your overall health. We recommend stress management techniques and mindfulness practices.</li>
-                                  )}
-                                  {formData.lifestyleFactors.includes('sleep') && (
-                                    <li>• Poor sleep quality affects your health. We'll provide guidance on improving sleep hygiene and patterns.</li>
-                                  )}
-                                  {formData.lifestyleFactors.includes('irregular') && (
-                                    <li>• Irregular meal timing can affect your metabolism. We'll help you establish a consistent eating schedule.</li>
-                                  )}
-                                  {formData.lifestyleFactors.includes('processed') && (
-                                    <li>• High processed food intake can impact your health. We'll guide you toward whole, nutritious food choices.</li>
-                                  )}
-                                </ul>
-                              </motion.div>
-                            )}
-
-                            {/* Activity Level Feedback */}
-                            <motion.div
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 1.3 }}
-                              className="bg-white/5 rounded-xl p-6"
-                            >
-                              <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Physical Activity</h4>
-                              <p className="text-[var(--text-color-light)]">
-                                {formData.activityLevel === 'sedentary'
-                                  ? "Your sedentary lifestyle needs improvement. We'll help you gradually increase your activity levels safely."
-                                  : formData.activityLevel === 'moderate'
-                                  ? "Your moderate activity level is good, but we can help you optimize your exercise routine for better results."
-                                  : "Your active lifestyle is excellent! We'll help you maintain and enhance your fitness level."}
-                              </p>
-                            </motion.div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
 
                     {/* Recommended Programs Card */}
                     <motion.div
@@ -1139,53 +1020,59 @@ const HealthAssessment = () => {
                     >
                       <div className="text-center mb-8">
                         <div className="flex items-center justify-center gap-3 mb-4">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
-                            <Target className="w-6 h-6 text-[var(--accent-color)]" />
+                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                            <Target className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
                           </div>
                           <h3 className="text-2xl font-semibold text-[var(--text-color-plain)]">
                             Recommended Programs
                           </h3>
                         </div>
                         <p className="text-[var(--text-color-light)] max-w-2xl mx-auto">
-                          Based on your health profile, we recommend the following programs:
+                          Based on your health profile, we recommend these personalized programs
                         </p>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {recommendedProgram.map((programId, index) => {
-                          const program = programs.find((p) => p.id === programId);
+                          const program = programs.find(p => p.id === programId);
+                          if (!program) return null;
+
                           return (
                             <motion.div
                               key={programId}
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 1 + index * 0.1 }}
-                              className="bg-gradient-to-br from-[var(--background-color-dark)]/60 to-[var(--background-color-dark)]/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-[var(--accent-color)]/30 transition-all duration-300"
+                              className="bg-gradient-to-br from-[var(--background-color-dark)]/60 to-[var(--background-color-dark)]/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-[var(--accent-color)]/30 transition-all duration-300 relative overflow-hidden group"
                             >
-                              <div className="text-center">
-                                <div className="text-3xl mb-4">{program?.icon}</div>
-                                <h4 className="text-xl font-semibold text-[var(--text-color-plain)] mb-3">
-                                  {program?.name}
-                                </h4>
-                                <p className="text-sm text-[var(--text-color-light)] mb-6">
-                                  {program?.description}
-                                </p>
-                                <motion.button
-                                  whileHover={{ scale: 1.05 }}
-                                  whileTap={{ scale: 0.95 }}
-                                  onClick={() => {
-                                    let routeId = programId;
-                                    if (programId === "rem-di-2") routeId = "remdi2";
-                                    else if (programId === "rem-bliss") routeId = "rembliss";
-                                    else if (programId === "rem-fit") routeId = "remfit";
-                                    else if (programId === "rem-meta") routeId = "remmeta";
-                                    router.push(`/programs/${routeId}`);
-                                  }}
-                                  className="bg-gradient-to-r from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] text-white py-2 px-6 rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
-                                >
-                                  <TrendingUp className="w-4 h-4" />
-                                  Learn More
-                                </motion.button>
+                              <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                              <div className="relative z-10">
+                                <div className="text-center">
+                                  <div className="text-3xl mb-4">{program.icon}</div>
+                                  <h4 className="text-xl font-semibold text-[var(--text-color-plain)] mb-3">
+                                    {program.name}
+                                  </h4>
+                                  <p className="text-sm text-[var(--text-color-light)] mb-6">
+                                    {program.description}
+                                  </p>
+                                  <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => {
+                                      let routeId = programId;
+                                      if (programId === "rem-di-2") routeId = "remdi2";
+                                      else if (programId === "rem-bliss") routeId = "rembliss";
+                                      else if (programId === "rem-fit") routeId = "remfit";
+                                      else if (programId === "rem-meta") routeId = "remmeta";
+                                      router.push(`/programs/${routeId}`);
+                                    }}
+                                    className="bg-[var(--background-color-light)] text-black py-2 px-6 rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
+                                  >
+                                    <TrendingUp className="w-4 h-4" />
+                                    Learn More
+                                  </motion.button>
+                                </div>
                               </div>
                             </motion.div>
                           );
@@ -1200,11 +1087,10 @@ const HealthAssessment = () => {
                 <div className="flex justify-between mt-8 pt-8 border-t border-white/10">
                   <button
                     onClick={prevStep}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-colors cursor-pointer ${
-                      currentStep === 0
+                    className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-colors cursor-pointer ${currentStep === 0
                         ? "opacity-50 cursor-not-allowed"
                         : "hover:bg-white/5"
-                    }`}
+                      }`}
                     disabled={currentStep === 0}
                   >
                     <ArrowLeft className="w-5 h-5" />
@@ -1213,11 +1099,10 @@ const HealthAssessment = () => {
                   <button
                     onClick={nextStep}
                     disabled={isSubmitting}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--accent-color)] text-white transition-colors cursor-pointer ${
-                      isSubmitting 
-                        ? "opacity-50 cursor-not-allowed" 
+                    className={`flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--accent-color)] text-white transition-colors cursor-pointer ${isSubmitting
+                        ? "opacity-50 cursor-not-allowed"
                         : "hover:bg-white/5"
-                    }`}
+                      }`}
                   >
                     {isSubmitting ? (
                       <>

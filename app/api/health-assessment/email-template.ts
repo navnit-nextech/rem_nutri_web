@@ -1,3 +1,9 @@
+
+
+
+
+
+
 export const generateEmailContent = (data: any) => {
   const bmi = data.bmi?.toFixed(1);
   const bmiCategory = bmi ? (
@@ -9,15 +15,35 @@ export const generateEmailContent = (data: any) => {
 
   const healthConditions = data.healthConditions?.join(", ") || "None reported";
   const lifestyleFactors = data.lifestyleFactors?.join(", ") || "None reported";
+  
+  // Map program IDs to their full names and route IDs
+  const programMap = {
+    "rem-di-2": {
+      name: "RemDi 2 - Type 2 and Pre Diabetes Reversal Programme",
+      route: "remdi2"
+    },
+    "rem-bliss": {
+      name: "Rem Bliss - Women's Health Programme",
+      route: "rembliss"
+    },
+    "rem-meta": {
+      name: "Rem Meta - Metabolic Health Programme",
+      route: "remmeta"
+    },
+    "rem-fit": {
+      name: "Rem Fit - Weight Management Programme",
+      route: "remfit"
+    }
+  };
+
+  // Generate program links
   const recommendedPrograms = data.recommendedProgram?.map((programId: string) => {
-    const program = {
-      "rem-di-2": "RemDi 2 - Type 2 and Pre Diabetes Reversal Programme",
-      "rem-bliss": "Rem Bliss - Women's Health Programme",
-      "rem-meta": "Rem Meta - Metabolic Health Programme",
-      "rem-fit": "Rem Fit - Weight Management Programme"
-    }[programId];
-    return program || programId;
-  }).join("\n• ") || "None recommended";
+    const program = programMap[programId as keyof typeof programMap];
+    if (program) {
+      return `<li><a href="https://rem-nutri-web.vercel.app/programs/${program.route}" style="color: #2c5282; text-decoration: none;">• ${program.name}</a></li>`;
+    }
+    return `<li>• ${programId}</li>`;
+  }).join("") || "<li>None recommended</li>";
 
   return `
 <!DOCTYPE html>
@@ -68,6 +94,9 @@ export const generateEmailContent = (data: any) => {
       padding: 10px;
       background-color: #e6f0ff;
       border-radius: 5px;
+    }
+    .programs a:hover {
+      text-decoration: underline !important;
     }
     .footer {
       text-align: center;
@@ -134,7 +163,7 @@ export const generateEmailContent = (data: any) => {
   <div class="section">
     <div class="section-title">Recommended Programs</div>
     <ul class="programs">
-      ${recommendedPrograms.split("\n").map(program => `<li>• ${program}</li>`).join("")}
+      ${recommendedPrograms}
     </ul>
   </div>
 
@@ -154,7 +183,7 @@ export const generateEmailContent = (data: any) => {
 
   <div class="footer">
     <p>This report was generated on ${data.timestamp}</p>
-    <p>For more information about our programs, visit <a href="https://remnutri.com/programs">remnutri.com/programs</a></p>
+    <p>For more information about our programs, visit <a href="https://rem-nutri-web.vercel.app/programs" style="color: #2c5282; text-decoration: none;">rem-nutri-web.vercel.app/programs</a></p>
   </div>
 </body>
 </html>
