@@ -21,7 +21,11 @@ const programs = [
     id: "rem-di-2",
     name: "RemDi 2",
     description: "Type 2 and Pre Diabetes Reversal Programme",
-    icon: "🩺"
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto">
+        <path d="M11.15 15.18L9.72999 13.77L11.15 12.35L12.56 13.77L13.97 12.35L12.56 10.94L13.97 9.53L15.39 10.94L16.8 9.53L13.97 6.7L6.89999 13.77L9.72999 16.6L11.15 15.18ZM3.07999 19L6.19999 15.89L4.07999 13.77L13.97 3.87L16.1 6L17.5 4.58L16.1 3.16L17.5 1.75L21.75 6L20.34 7.4L18.92 6L17.5 7.4L19.63 9.53L9.72999 19.42L7.60999 17.3L3.07999 21.84V19Z" fill="currentColor"/>
+      </svg>
+    )
   },
   {
     id: "rem-bliss",
@@ -222,6 +226,7 @@ type LifestyleFactor = 'stress' | 'sleep' | 'irregular' | 'processed';
 
 const HealthAssessment = () => {
   const router = useRouter();
+  const [showInsights, setShowInsights] = useState(false);
   const [formData, setFormData] = useState(() => {
     // Try to get saved form data from localStorage
     if (typeof window !== 'undefined') {
@@ -276,6 +281,24 @@ const HealthAssessment = () => {
     return [];
   });
 
+  // Check if we have a completed assessment when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem('healthAssessmentData');
+      const savedStep = localStorage.getItem('healthAssessmentStep');
+      const savedBMI = localStorage.getItem('healthAssessmentBMI');
+      const savedPrograms = localStorage.getItem('healthAssessmentPrograms');
+
+      // If we have all the necessary data for a report, show it
+      if (savedData && savedStep && savedBMI && savedPrograms) {
+        const parsedData = JSON.parse(savedData);
+        if (parsedData.name && parsedData.email) { // Check if we have at least some form data
+          setCurrentStep(formSteps.length); // Show the report
+        }
+      }
+    }
+  }, []);
+
   // Save form data to localStorage whenever it changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -303,18 +326,6 @@ const HealthAssessment = () => {
       localStorage.setItem('healthAssessmentPrograms', JSON.stringify(recommendedProgram));
     }
   }, [recommendedProgram]);
-
-  // Clear localStorage when component unmounts
-  useEffect(() => {
-    return () => {
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('healthAssessmentData');
-        localStorage.removeItem('healthAssessmentStep');
-        localStorage.removeItem('healthAssessmentBMI');
-        localStorage.removeItem('healthAssessmentPrograms');
-      }
-    };
-  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -724,6 +735,14 @@ const HealthAssessment = () => {
     setRecommendedProgram([]);
     setValidationError(null);
     setIsSubmitting(false);
+    
+    // Clear localStorage when starting a new assessment
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('healthAssessmentData');
+      localStorage.removeItem('healthAssessmentStep');
+      localStorage.removeItem('healthAssessmentBMI');
+      localStorage.removeItem('healthAssessmentPrograms');
+    }
   };
 
   return (
@@ -912,8 +931,8 @@ const HealthAssessment = () => {
                               transition={{ delay: 0.7 + index * 0.1 }}
                               className="flex items-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
                             >
-                              <AlertCircle className="w-4 h-4 text-[var(--accent-color)]" />
-                              <span className="text-[var(--text-color-light)]">{condition}</span>
+                              <AlertCircle className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
+                              <span className="text-[var(--text-color-light)] text-sm break-words">{condition}</span>
                             </motion.div>
                           ))}
                         </div>
@@ -974,6 +993,142 @@ const HealthAssessment = () => {
                         </div>
                       </motion.div>
                     </div>
+
+                    {/* Personalized Feedback Section */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.9 }}
+                      className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                    >
+                      <div className="text-center mb-8">
+                        <div className="flex items-center justify-center gap-3 mb-4">
+                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10">
+                            <Brain className="w-6 h-6 text-[var(--accent-color)]" />
+                          </div>
+                          <h3 className="text-2xl font-semibold text-[var(--text-color-plain)]">
+                            Personalized Health Insights
+                          </h3>
+                        </div>
+                        <p className="text-[var(--text-color-light)] max-w-2xl mx-auto">
+                          Here's what we've learned about your health profile and our recommendations
+                        </p>
+                      </div>
+
+                      <motion.button
+                        onClick={() => setShowInsights(!showInsights)}
+                        className="w-full flex items-center justify-center gap-2 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="text-[var(--text-color-plain)] font-medium">
+                          {showInsights ? 'Hide Insights' : 'Show Insights'}
+                        </span>
+                        <motion.div
+                          animate={{ rotate: showInsights ? 90 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ArrowRight className="w-5 h-5 text-[var(--accent-color)]" />
+                        </motion.div>
+                      </motion.button>
+
+                      <AnimatePresence>
+                        {showInsights && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="space-y-6 mt-6"
+                          >
+                            {/* BMI Feedback */}
+                            {bmi && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1 }}
+                                className="bg-white/5 rounded-xl p-6"
+                              >
+                                <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Weight Management</h4>
+                                <p className="text-[var(--text-color-light)]">
+                                  {bmi < 18.5 
+                                    ? "Your BMI indicates you're underweight. We recommend focusing on healthy weight gain through proper nutrition and strength training."
+                                    : bmi < 25
+                                    ? "Your BMI is within the normal range. Focus on maintaining this healthy weight through balanced nutrition and regular exercise."
+                                    : bmi < 30
+                                    ? "Your BMI indicates you're overweight. We recommend a structured weight management program focusing on sustainable lifestyle changes."
+                                    : "Your BMI indicates obesity. We recommend an intensive weight management program with medical supervision and structured lifestyle modifications."}
+                                </p>
+                              </motion.div>
+                            )}
+
+                            {/* Health Conditions Feedback */}
+                            {formData.healthConditions.length > 0 && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.1 }}
+                                className="bg-white/5 rounded-xl p-6"
+                              >
+                                <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Health Conditions</h4>
+                                <p className="text-[var(--text-color-light)]">
+                                  {formData.healthConditions.includes('diabetes') 
+                                    ? "Your diabetes condition requires specialized care and monitoring. We recommend a comprehensive diabetes management program."
+                                    : formData.healthConditions.includes('pcos')
+                                    ? "PCOS requires a holistic approach focusing on hormonal balance, nutrition, and lifestyle modifications."
+                                    : formData.healthConditions.includes('hypertension')
+                                    ? "High blood pressure needs careful management through diet, exercise, and stress reduction techniques."
+                                    : "Your health conditions require specialized attention and monitoring. We'll tailor our recommendations accordingly."}
+                                </p>
+                              </motion.div>
+                            )}
+
+                            {/* Lifestyle Factors Feedback */}
+                            {formData.lifestyleFactors.length > 0 && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.2 }}
+                                className="bg-white/5 rounded-xl p-6"
+                              >
+                                <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Lifestyle Improvements</h4>
+                                <ul className="space-y-2 text-[var(--text-color-light)]">
+                                  {formData.lifestyleFactors.includes('stress') && (
+                                    <li>• High stress levels can impact your overall health. We recommend stress management techniques and mindfulness practices.</li>
+                                  )}
+                                  {formData.lifestyleFactors.includes('sleep') && (
+                                    <li>• Poor sleep quality affects your health. We'll provide guidance on improving sleep hygiene and patterns.</li>
+                                  )}
+                                  {formData.lifestyleFactors.includes('irregular') && (
+                                    <li>• Irregular meal timing can affect your metabolism. We'll help you establish a consistent eating schedule.</li>
+                                  )}
+                                  {formData.lifestyleFactors.includes('processed') && (
+                                    <li>• High processed food intake can impact your health. We'll guide you toward whole, nutritious food choices.</li>
+                                  )}
+                                </ul>
+                              </motion.div>
+                            )}
+
+                            {/* Activity Level Feedback */}
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 1.3 }}
+                              className="bg-white/5 rounded-xl p-6"
+                            >
+                              <h4 className="text-lg font-semibold text-[var(--text-color-plain)] mb-3">Physical Activity</h4>
+                              <p className="text-[var(--text-color-light)]">
+                                {formData.activityLevel === 'sedentary'
+                                  ? "Your sedentary lifestyle needs improvement. We'll help you gradually increase your activity levels safely."
+                                  : formData.activityLevel === 'moderate'
+                                  ? "Your moderate activity level is good, but we can help you optimize your exercise routine for better results."
+                                  : "Your active lifestyle is excellent! We'll help you maintain and enhance your fitness level."}
+                              </p>
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
 
                     {/* Recommended Programs Card */}
                     <motion.div
