@@ -251,13 +251,13 @@ const CareersPage = () => {
   const internships = [
     {
       title: "Nutrition Research Assistant",
-      type: "3-month Internship",
+      type: "3-month",
       location: "Remote",
       description: "Assist our research team in gathering and analyzing data for nutrition studies and client outcomes."
     },
     {
-      title: "Digital Marketing Assistent Intern",
-      type: "6-month Internship",
+      title: "Marketing Assistent Intern",
+      type: "6-month",
       location: "Remote",
       description: "Help promote our nutrition programs through digital marketing strategies and social media campaigns."
     }
@@ -680,7 +680,7 @@ const CareersPage = () => {
             <Button 
               type="submit"
               disabled={isSubmitting}
-              className="bg-[var(--background-color-light)] hover:bg-[var(--primary-color)] text-[var(--text-color-dark)] font-semibold py-3 px-8 rounded-lg w-full transition-all duration-300 shadow-lg shadow-[var(--background-color-light)]/10 hover:shadow-[var(--primary-color)]/20 disabled:opacity-70"
+              className="bg-[var(--background-color-light)]  text-[var(--text-color-dark)] cursor-pointer font-semibold py-3 px-8 rounded-lg w-full transition-all duration-300 shadow-lg shadow-[var(--background-color-light)]/10 hover:shadow-[var(--primary-color)]/20 disabled:opacity-70"
             >
               {isSubmitting ? 'Processing...' : 'Submit Application'}
             </Button>
