@@ -5,7 +5,7 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const TherapeuticExcellence = () => {
   return (
-    <div className="w-full py-10 bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full pt-5 pb-2 md:pt-10 md:pb-5 bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative">
 
       <div className="max-w-7xl mx-auto px-6 md:px-20 flex flex-col items-center text-center relative">
         {/* Positioned SVG */}
@@ -58,7 +58,7 @@ const TherapeuticExcellence = () => {
         </ScrollAnimation> */}
 
 
-        <ScrollAnimation>
+        {/* <ScrollAnimation>
 
 
 
@@ -68,7 +68,7 @@ const TherapeuticExcellence = () => {
           </Button>
         </Link>
 
-        </ScrollAnimation>
+        </ScrollAnimation> */}
 
       
       </div>

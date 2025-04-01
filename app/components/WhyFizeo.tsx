@@ -1,3 +1,7 @@
+"use client"
+
+
+
 import React from "react";
 import { Heart, Target, Leaf, User } from "lucide-react";
 import { Button } from "../components/ui/button";
@@ -8,23 +12,76 @@ const FeatureCard = ({
   icon,
   title,
   description,
+  isExpanded,
+  onToggle,
+  index,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
+  isExpanded: boolean;
+  onToggle: (index: number) => void;
+  index: number;
 }) => {
+  // Get first 100 characters for preview
+  const previewText = description.slice(0, 100) + "...";
+
   return (
-    <div className="bg-[var(--background-color-plain)] sm:w-[575px] sm:h-[220px] border border-[#ebe5da] p-8 rounded-2xl flex flex-col justify-between">
+    <div className="bg-[var(--background-color-plain)] sm:w-[575px] sm:h-[220px] border border-[#ebe5da] p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-3">
           <span className="text-[var(--text-color-dark)] text-[22px]">{icon}</span>
-          <h3 className="text-[var(--text-color-dark)] text-[22px] font-bold font-['Libre_Baskerville']">
+          <h3 className="text-[var(--text-color-dark)] text-[20px] sm:text-[22px] font-bold font-['Libre_Baskerville']">
             {title}
           </h3>
         </div>
-        <p className="text-[var(--text-color-dark)] text-[16px] font-light leading-relaxed mt-4 text-center">
-          {description}
-        </p>
+        <div className="mt-4">
+          {/* Mobile view with expand/collapse */}
+          <div className="sm:hidden">
+            <p className={`text-[var(--text-color-dark)] text-[15px] font-light leading-relaxed transition-all duration-300 ${isExpanded ? 'line-clamp-none' : 'line-clamp-2'}`}>
+              {isExpanded ? description : previewText}
+            </p>
+            <div className="flex justify-center mt-4">
+              <button 
+                onClick={() => onToggle(index)}
+                className="group relative flex items-center gap-2 text-[var(--text-color-dark)] hover:text-[var(--text-color-dark)] 
+                         transition-all duration-300 animate-bounce-subtle"
+              >
+                {/* Content wrapper */}
+                <div className="relative z-10 flex items-center gap-2">
+                  <span className="text-[15px] font-medium tracking-wide relative">
+                    {isExpanded ? 'Show less' : 'Read more'}
+                    {/* Animated underline */}
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 
+                                  transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 
+                                  origin-left"></span>
+                    {/* Mobile permanent underline */}
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 
+                                  md:hidden"></span>
+                  </span>
+                  <svg 
+                    className={`w-5 h-5 transform transition-all duration-500 ${isExpanded ? 'rotate-180' : ''} 
+                             group-hover:translate-x-1 animate-bounce-subtle`}
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+
+                {/* Subtle hover effect */}
+                <div className="absolute -inset-2 rounded-full bg-[var(--text-color-dark)]/5 opacity-0 
+                              group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+            </div>
+          </div>
+          
+          {/* Desktop view */}
+          <p className="hidden sm:block text-[var(--text-color-dark)] text-[16px] font-light leading-relaxed text-center">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -88,6 +145,8 @@ const Customcommunity = () => (
 
 
 const WhyFizeo = () => {
+  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(null);
+  
   const features = [
     {
       icon: <Customcare />,
@@ -127,6 +186,10 @@ const WhyFizeo = () => {
     }
   ];
 
+  const handleToggle = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <>
       <div className="w-full bg-[var(--background-color-plain2)] bg-cover bg-center bg-no-repeat relative ">
@@ -154,8 +217,31 @@ const WhyFizeo = () => {
 
               <ScrollAnimation delay={0.4}>
                 <Link href="/about" >
-                  <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold text-xl hover:opacity-80 text-[var(--text-color-plain)] rounded text-[16px] px-6 py-6 cursor-pointer">
-                    About Us
+                  <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold 
+                           text-[var(--text-color-plain)] rounded-lg px-8 py-7 cursor-pointer
+                           w-full sm:w-auto min-w-[280px] md:min-w-[320px]
+                           text-[22px] sm:text-[18px] md:text-[20px]
+                           shadow-lg hover:shadow-xl
+                           transform hover:-translate-y-1
+                           transition-all duration-300
+                           border-2 border-[var(--background-color-dark)]
+                           hover:bg-[var(--text-color-plain)]
+                           hover:text-[var(--background-color-dark)]
+                           relative overflow-hidden
+                           group">
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      About Us
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        className="h-6 w-6 sm:h-5 sm:w-5 transform group-hover:translate-x-1 transition-transform duration-300" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[var(--background-color-dark)] to-[var(--background-color-dark)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </Button>
                 </Link>
               </ScrollAnimation>
@@ -185,6 +271,9 @@ const WhyFizeo = () => {
                     icon={feature.icon}
                     title={feature.title}
                     description={feature.description}
+                    isExpanded={expandedIndex === index}
+                    onToggle={handleToggle}
+                    index={index}
                   />
                 </ScrollAnimation>
               ))}

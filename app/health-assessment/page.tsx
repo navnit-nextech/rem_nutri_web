@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollAnimation from "@/app/components/ScrollAnimation";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ArrowLeft, CheckCircle2, Activity, Heart, Scale, Brain, Clock, Target, TrendingUp, AlertCircle, Loader2, Mail } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, Activity, Heart, Scale, Brain, Clock, Target, TrendingUp, AlertCircle, Loader2, Mail, RefreshCw } from "lucide-react";
 import Navbar from "@/app/components/Navbar";
+import BMIGauge from "@/app/components/BMIGauge";
 
 
 const healthConditions = [
@@ -107,7 +108,7 @@ const formSteps = [
       {
         type: "number",
         name: "height",
-        label: "Height (cm)",
+        label: "Height",
         placeholder: "Enter your height in cm",
         required: true,
       },
@@ -227,6 +228,13 @@ type LifestyleFactor = 'stress' | 'sleep' | 'meal' | 'processed food';
 const HealthAssessment = () => {
   const router = useRouter();
   const [showInsights, setShowInsights] = useState(false);
+  const [showBmiResult, setShowBmiResult] = useState(false);
+  const [continueFullAssessment, setContinueFullAssessment] = useState(false);
+  const [initialStepsCompleted, setInitialStepsCompleted] = useState(false);
+  const [heightUnit, setHeightUnit] = useState<'cm' | 'ft'>('ft');
+  const [feet, setFeet] = useState<string>('');
+  const [inches, setInches] = useState<string>('');
+  
   const [formData, setFormData] = useState(() => {
     // Try to get saved form data from localStorage
     if (typeof window !== 'undefined') {
@@ -398,7 +406,7 @@ const HealthAssessment = () => {
     return recommendedPrograms;
   };
 
-  const validateForm = () => {
+  const validateInitialSteps = () => {
     const requiredFields = [
       { name: "name", label: "Full Name" },
       { name: "email", label: "Email Address" },
@@ -407,6 +415,22 @@ const HealthAssessment = () => {
       { name: "gender", label: "Gender" },
       { name: "weight", label: "Weight" },
       { name: "height", label: "Height" },
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field.name as keyof typeof formData]) {
+        setValidationError(`Please fill in ${field.label}`);
+        setMissingField(field.label);
+        return false;
+      }
+    }
+
+    setMissingField(null);
+    return true;
+  };
+
+  const validateForm = () => {
+    const requiredFields = [
       { name: "bloodSugar", label: "Blood Sugar Level" },
     ];
 
@@ -420,6 +444,37 @@ const HealthAssessment = () => {
 
     setMissingField(null);
     return true;
+  };
+
+  const handleInitialSubmit = () => {
+    if (!validateInitialSteps()) {
+      return;
+    }
+    
+    calculateBMI();
+    setShowBmiResult(true);
+    setInitialStepsCompleted(true);
+    
+    // Scroll to top of the screen
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  };
+
+  const startFullAssessment = () => {
+    setContinueFullAssessment(true);
+    setCurrentStep(2); // Start from health screening
+    setShowBmiResult(false);
+    
+    // Scroll to top of the screen
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -516,6 +571,49 @@ const HealthAssessment = () => {
     }
   };
 
+  // Convert feet/inches to cm
+  useEffect(() => {
+    if (heightUnit === 'ft' && feet && inches) {
+      const feetValue = parseFloat(feet);
+      const inchesValue = parseFloat(inches);
+      
+      if (!isNaN(feetValue) && !isNaN(inchesValue)) {
+        const heightInCm = Math.round((feetValue * 30.48) + (inchesValue * 2.54));
+        setFormData(prev => ({ ...prev, height: heightInCm.toString() }));
+      }
+    }
+  }, [heightUnit, feet, inches]);
+
+  // Toggle height unit
+  const toggleHeightUnit = () => {
+    if (heightUnit === 'ft') {
+      // Convert from feet/inches to cm
+      if (feet && inches) {
+        const feetValue = parseFloat(feet);
+        const inchesValue = parseFloat(inches);
+        if (!isNaN(feetValue) && !isNaN(inchesValue)) {
+          const heightInCm = Math.round((feetValue * 30.48) + (inchesValue * 2.54));
+          setFormData(prev => ({ ...prev, height: heightInCm.toString() }));
+        }
+      }
+      setHeightUnit('cm');
+    } else {
+      // Convert from cm to feet/inches
+      if (formData.height) {
+        const heightInCm = parseFloat(formData.height);
+        if (!isNaN(heightInCm)) {
+          const totalInches = heightInCm / 2.54;
+          const feetValue = Math.floor(totalInches / 12);
+          const inchesValue = Math.round(totalInches % 12);
+          
+          setFeet(feetValue.toString());
+          setInches(inchesValue.toString());
+        }
+      }
+      setHeightUnit('ft');
+    }
+  };
+
   const handleConditionToggle = (condition: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -526,20 +624,27 @@ const HealthAssessment = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < formSteps.length - 1) {
+    if (currentStep < 1) {
+      // For the first two steps (personal info and physical details)
+      if (currentStep === 1) {
+        handleInitialSubmit();
+        return;
+      }
       setCurrentStep(currentStep + 1);
-      // Scroll to top of the screen
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      // Additional scroll to ensure it reaches the top
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 100);
+    } else if (currentStep < formSteps.length - 1 && continueFullAssessment) {
+      setCurrentStep(currentStep + 1);
     } else {
       handleSubmit(new Event('submit') as any);
     }
+    
+    // Scroll to top of the screen
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   };
 
   const prevStep = () => {
@@ -702,6 +807,86 @@ const HealthAssessment = () => {
                 className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)]"
                 rows={4}
               />
+            ) : field.name === "height" ? (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-[var(--text-color-light)]">Unit:</span>
+                  <div className="flex items-center gap-2 bg-white/5 rounded-lg p-1">
+                    <button 
+                      type="button"
+                      onClick={() => heightUnit !== 'ft' && toggleHeightUnit()}
+                      className={`px-3 py-1.5 rounded-md cursor-pointer text-sm ${heightUnit === 'ft' 
+                        ? 'bg-white/5 text-white font-medium' 
+                        : 'text-white '}`}
+                    >
+                      Feet/Inches
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={() => heightUnit !== 'cm' && toggleHeightUnit()}
+                      className={`px-3 py-1.5 rounded-md cursor-pointer text-sm ${heightUnit === 'cm' 
+                        ? 'bg-white/5 text-white font-medium' 
+                        : 'text-white '}`}
+                    >
+                      Centimeters
+                    </button>
+                  </div>
+                </div>
+                
+                {heightUnit === 'ft' ? (
+                  <div className="flex gap-2">
+                    <div className="w-1/2">
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={feet}
+                          onChange={(e) => setFeet(e.target.value)}
+                          placeholder="Feet"
+                          min="0"
+                          className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)]"
+                        />
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--text-color-light)]">ft</span>
+                      </div>
+                    </div>
+                    <div className="w-1/2">
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={inches}
+                          onChange={(e) => setInches(e.target.value)}
+                          placeholder="Inches"
+                          min="0"
+                          max="11"
+                          className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)]"
+                        />
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--text-color-light)]">in</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <input
+                    type="number"
+                    name="height"
+                    value={formData.height || ""}
+                    onChange={(e) => handleInputChange(e, field.name)}
+                    placeholder="Enter your height in cm"
+                    min="0"
+                    className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)]"
+                  />
+                )}
+                
+                {heightUnit === 'cm' && formData.height && (
+                  <p className="text-xs text-[var(--text-color-light)] italic mt-1">
+                    {Math.floor(parseInt(formData.height) / 30.48)}'{Math.round((parseInt(formData.height) / 2.54) % 12)}"
+                  </p>
+                )}
+                
+                {heightUnit === 'ft' && feet && inches && (
+                  <p className="text-xs text-[var(--text-color-light)] italic mt-1">
+                    {formData.height} cm
+                  </p>
+                )}
+              </div>
             ) : (
               <input
                 type={field.type}
@@ -710,7 +895,7 @@ const HealthAssessment = () => {
                 onChange={(e) => handleInputChange(e, field.name)}
                 placeholder={field.placeholder}
                 required={field.name !== "allergies" && field.name !== "medications"}
-                min={["age", "weight", "height"].includes(field.name) ? "0" : undefined}
+                min={["age", "weight"].includes(field.name) ? "0" : undefined}
                 className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)] [&:-webkit-autofill]:bg-white/5 [&:-webkit-autofill]:text-[var(--text-color-plain)] [&:-webkit-autofill]:border-white/10 [&:-webkit-autofill]:shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset] [&:-webkit-autofill]:!bg-white/5 [&:-webkit-autofill]:!text-[var(--text-color-plain)] [&:-webkit-autofill]:!border-white/10 [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset] [&:-webkit-autofill]:!appearance-none [&:-webkit-autofill]:!background-color:rgba(255,255,255,0.05)"
               />
             )}
@@ -743,6 +928,12 @@ const HealthAssessment = () => {
     setRecommendedProgram([]);
     setValidationError(null);
     setIsSubmitting(false);
+    setShowBmiResult(false);
+    setContinueFullAssessment(false);
+    setInitialStepsCompleted(false);
+    setHeightUnit('ft');
+    setFeet('');
+    setInches('');
 
     // Clear localStorage when starting a new assessment
     if (typeof window !== 'undefined') {
@@ -768,13 +959,15 @@ const HealthAssessment = () => {
               </p>
               {currentStep === formSteps.length && (
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={resetForm}
-                  className="bg-white/5 backdrop-blur-sm text-[var(--text-color-plain)] py-2 px-4 rounded-xl border border-white/10 hover:bg-white/10 transition-colors flex items-center gap-2 mx-auto"
+                  className="bg-gradient-to-r from-[#A67BFF] to-[#BE9AFF] text-white py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-medium flex items-center gap-3 mx-auto relative overflow-hidden group"
                 >
-                  <Activity className="w-4 h-4" />
-                  Start New Assessment
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#BE9AFF] to-[#A67BFF] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#BE9AFF]/20 to-[#A67BFF]/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <Activity className="w-5 h-5 relative z-10" />
+                  <span className="relative z-10">Start New Assessment</span>
                 </motion.button>
               )}
             </div>
@@ -782,21 +975,27 @@ const HealthAssessment = () => {
 
           <ScrollAnimation delay={0.2}>
             <div className="bg-[var(--background-color-dark)]/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
-              {currentStep < formSteps.length && (
+              {!showBmiResult && currentStep < formSteps.length && (
                 <div className="mb-8">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[var(--text-color-light)] text-sm">
-                      Step {currentStep + 1} of {formSteps.length}
+                      Step {currentStep + 1} of {continueFullAssessment ? formSteps.length : 2}
                     </span>
                     <span className="text-[var(--text-color-light)] text-sm">
-                      {Math.round(calculateProgress())}% Complete
+                      {continueFullAssessment 
+                        ? Math.round(calculateProgress()) + "% Complete" 
+                        : Math.round(((currentStep + 1) / 2) * 100) + "% Complete"}
                     </span>
                   </div>
                   <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
                     <motion.div
                       className="h-full bg-green-400"
                       initial={{ width: 0 }}
-                      animate={{ width: `${calculateProgress()}%` }}
+                      animate={{ 
+                        width: continueFullAssessment 
+                          ? `${calculateProgress()}%` 
+                          : `${((currentStep + 1) / 2) * 100}%`
+                      }}
                       transition={{
                         duration: 0.5,
                         ease: "easeInOut"
@@ -825,7 +1024,97 @@ const HealthAssessment = () => {
               )}
 
               <AnimatePresence mode="wait">
-                {currentStep < formSteps.length ? (
+                {showBmiResult ? (
+                  // BMI Result Section
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="space-y-8"
+                  >
+                    <div className="text-center relative">
+                      <motion.div
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                        className="absolute -top-2 sm:-top-4 left-1/2 transform -translate-x-1/2"
+                      >
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[var(--accent-color)] to-[color-mix(in_srgb,var(--accent-color),black_20%)] flex items-center justify-center shadow-lg relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                          <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white relative z-10" />
+                          <div className="absolute inset-0 bg-[var(--accent-color)] opacity-20 animate-ping"></div>
+                        </div>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="pt-12 sm:pt-14"
+                      >
+                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--accent-color)] mt-8 mb-3">
+                          Your BMI Results
+                        </h2>
+                        <p className="text-[var(--text-color-light)] max-w-2xl mx-auto mb-6">
+                          Based on your height and weight, we've calculated your Body Mass Index (BMI)
+                        </p>
+                      </motion.div>
+                    </div>
+
+                    {/* BMI Card */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group mx-auto max-w-lg"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="relative z-10">
+                        <div className="flex items-center gap-3 mb-6 justify-center">
+                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+                            <Scale className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                          </div>
+                          <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Your BMI</h3>
+                        </div>
+                        
+                        <BMIGauge bmi={bmi} height={formData.height} />
+                        
+                        <div className="text-center text-[var(--text-color-light)] mb-8">
+                          <p>BMI is one indicator of health, but it's not the complete picture.</p>
+                          <p>Let's continue to understand your unique health needs better.</p>
+                        </div>
+                        
+                        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 mb-8">
+                          <p className="text-[var(--text-color-plain)] mb-4 text-center">
+                            <span className="text-[var(--accent-color)] font-bold">Your data is secure with us.</span> We follow strict privacy protocols to protect your personal information.
+                          </p>
+                        </div>
+                        
+                        <div className="flex flex-col sm:flex-row justify-center gap-4">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={resetForm}
+                            className="bg-white/5 backdrop-blur-sm text-[var(--text-color-plain)] py-3 px-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:shadow-md order-2 sm:order-1"
+                          >
+                            <span>Start Over</span>
+                          </motion.button>
+                          <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={startFullAssessment}
+                            className="bg-gradient-to-r from-[#A67BFF] to-[#BE9AFF] text-white py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 animate-bounce-subtle relative overflow-hidden group cursor-pointer order-1 sm:order-2"
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#BE9AFF] to-[#A67BFF] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute -inset-1 bg-gradient-to-r from-[#BE9AFF]/20 to-[#A67BFF]/20 rounded-xl blur-xl animate-pulse"></div>
+                            <span className="text-lg font-medium relative z-10">Continue with Health Assessment</span>
+                            <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                          </motion.button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                ) : currentStep < formSteps.length ? (
                   renderFormStep()
                 ) : (
                   <motion.div
@@ -887,41 +1176,8 @@ const HealthAssessment = () => {
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">BMI Analysis</h3>
                           </div>
-                          <div className="text-center mb-6">
-                            <div className="relative inline-block">
-                              <div className="text-5xl font-bold text-[var(--accent-color)] mb-2">
-                                {bmi?.toFixed(1)}
-                              </div>
-                              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
-                            </div>
-                            <div className="text-lg text-[var(--text-color-light)]">
-                              {bmi && (
-                                <span className={`${bmi < 18.5 ? "text-yellow-400" :
-                                    bmi < 25 ? "text-green-400" :
-                                      bmi < 30 ? "text-orange-400" :
-                                        "text-red-400"
-                                  }`}>
-                                  {bmi < 18.5 ? "Underweight" :
-                                    bmi < 25 ? "Normal Weight" :
-                                      bmi < 30 ? "Overweight" :
-                                        "Obese"}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-                            <motion.div
-                              className={`h-full ${bmi && (
-                                  bmi < 18.5 ? "bg-yellow-400" :
-                                    bmi < 25 ? "bg-green-400" :
-                                      bmi < 30 ? "bg-orange-400" :
-                                        "bg-red-400"
-                                )
-                                }`}
-                              initial={{ width: 0 }}
-                              animate={{ width: `${Math.min(100, (bmi || 0) * 2)}%` }}
-                              transition={{ duration: 1.5, ease: "easeOut" }}
-                            />
+                          <div className="relative z-10">
+                            <BMIGauge bmi={bmi} height={formData.height} />
                           </div>
                         </div>
                       </motion.div>
@@ -931,7 +1187,7 @@ const HealthAssessment = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 }}
-                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative z-10">
@@ -942,18 +1198,19 @@ const HealthAssessment = () => {
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Health Conditions</h3>
                           </div>
-                          <div className="grid grid-cols-2 gap-4">
+                          {/* Health Conditions Grid - Mobile Responsive */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {formData.healthConditions.map((condition, index) => (
                               <motion.div
                                 key={condition}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.7 + index * 0.1 }}
-                                className="flex items-center gap-2 py-3 px-1 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
+                                className="flex items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
                               >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <AlertCircle className="w-4 h-4 text-black flex-shrink-0 relative z-10" />
-                                <span className="text-black text-sm break-words relative z-10">{condition}</span>
+                                <span className="text-black text-sm overflow-hidden overflow-ellipsis whitespace-nowrap relative z-10 max-w-[calc(100%-24px)]">{condition}</span>
                               </motion.div>
                             ))}
                           </div>
@@ -965,7 +1222,7 @@ const HealthAssessment = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.7 }}
-                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+                        className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative z-10">
@@ -976,18 +1233,19 @@ const HealthAssessment = () => {
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Lifestyle Factors</h3>
                           </div>
-                          <div className="grid grid-cols-2 gap-4">
+                          {/* Lifestyle Factors Grid - Mobile Responsive */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {formData.lifestyleFactors.map((factor, index) => (
                               <motion.div
                                 key={factor}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.8 + index * 0.1 }}
-                                className="flex items-center gap-2 p-3 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
+                                className="flex items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
                               >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <Clock className="w-4 h-4 text-black relative z-10" />
-                                <span className="text-black relative z-10">{factor}</span>
+                                <Clock className="w-4 h-4 text-black flex-shrink-0 relative z-10" />
+                                <span className="text-black text-sm overflow-hidden overflow-ellipsis whitespace-nowrap relative z-10 max-w-[calc(100%-24px)]">{factor}</span>
                               </motion.div>
                             ))}
                           </div>
@@ -1030,24 +1288,24 @@ const HealthAssessment = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.9 }}
-                      className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                      className="bg-gradient-to-br from-[var(--background-color-dark)]/80 to-[var(--background-color-dark)]/40 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
                     >
-                      <div className="text-center mb-8">
-                        <div className="flex items-center justify-center gap-3 mb-4">
+                      <div className="text-center mb-6 sm:mb-8">
+                        <div className="flex items-center justify-center gap-3 mb-3 sm:mb-4">
                           <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
                             <Target className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
                           </div>
-                          <h3 className="text-2xl font-semibold text-[var(--text-color-plain)]">
+                          <h3 className="text-xl sm:text-2xl font-semibold text-[var(--text-color-plain)]">
                             Recommended Programs
                           </h3>
                         </div>
-                        <p className="text-[var(--text-color-light)] max-w-2xl mx-auto">
+                        <p className="text-sm sm:text-base text-[var(--text-color-light)] max-w-2xl mx-auto">
                           Based on your health profile, we recommend these personalized programs
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {recommendedProgram.map((programId, index) => {
                           const program = programs.find(p => p.id === programId);
                           if (!program) return null;
@@ -1097,13 +1355,13 @@ const HealthAssessment = () => {
                 )}
               </AnimatePresence>
 
-              {currentStep < formSteps.length && (
+              {!showBmiResult && currentStep < formSteps.length && (
                 <div className="flex justify-between mt-8 pt-8 border-t border-white/10">
                   <button
                     onClick={prevStep}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-colors cursor-pointer ${currentStep === 0
+                    className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 cursor-pointer ${currentStep === 0
                         ? "opacity-50 cursor-not-allowed"
-                        : "hover:bg-white/5"
+                        : "hover:bg-white/10 hover:shadow-md"
                       }`}
                     disabled={currentStep === 0}
                   >
@@ -1111,12 +1369,9 @@ const HealthAssessment = () => {
                     <span>Previous</span>
                   </button>
                   <button
-                    onClick={nextStep}
+                    onClick={currentStep === 1 ? handleInitialSubmit : nextStep}
                     disabled={isSubmitting}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--accent-color)] text-white transition-colors cursor-pointer ${isSubmitting
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:bg-white/5"
-                      }`}
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl text-white bg-[var(--accent-color)] transition-all duration-300 hover:bg-white/10 hover:shadow-md cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
@@ -1126,7 +1381,8 @@ const HealthAssessment = () => {
                     ) : (
                       <>
                         <span>
-                          {currentStep === formSteps.length - 1 ? "Submit" : "Next"}
+                          {currentStep === 1 ? "Calculate BMI" : 
+                            currentStep === formSteps.length - 1 ? "Submit" : "Next"}
                         </span>
                         <ArrowRight className="w-5 h-5" />
                       </>

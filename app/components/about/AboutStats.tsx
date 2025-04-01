@@ -66,10 +66,10 @@ const AboutStats = () => {
                 Our Foundation
               </h2>
               <div className="w-20 h-1 bg-[var(--text-color-light)] mx-auto"></div>
-            </div>
+      </div>
 
             <div className="grid md:grid-cols-2 gap-12">
-              {stats.map((stat, index) => (
+                {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ const AboutStats = () => {
             <div className="grid md:grid-cols-3 gap-8">
               {pillars.map((pillar, index) => (
                 <motion.div
-                  key={index}
+                    key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -133,8 +133,8 @@ const AboutStats = () => {
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
+                ))}
+              </div>
           </div>
         </div>
       </div>

@@ -191,7 +191,7 @@ const Navbar: React.FC<NavbarProps> = ({
             }}
           >
             <motion.div
-              className="flex flex-col h-full space-y-8 pt-32 px-6 font-['Libre_Baskerville',serif] text-2xl"
+              className="flex flex-col h-full space-y-8 pt-32 px-6 font-['DM_Sans', 'sans-serif'] text-2xl"
               initial="hidden"
               animate="visible"
               exit="exit"

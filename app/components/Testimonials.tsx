@@ -7,18 +7,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import ScrollAnimation from "./ScrollAnimation";
 
 const testimonials = [
-  {
-    text: "With the help of Rem Nutri's team, I've been able to manage my blood sugar levels naturally and even reduce my medication!",
-    name: "Sarah Jones",
-    image:
-      "https://framerusercontent.com/images/F8FpD28VlKZcge0xDGDslltN6k.jpg?scale-down-to=2048",
-  },
+
+  
   {
     text: "The personalised meal plan and stress management techniques  by Rem Nutri helped me regulate my hormones and lose weight. Now, I feel more in control of my body and my health than ever before.",
     name: "Priya Sharma",
     image:
       "https://images.unsplash.com/photo-1631005436794-ccaa79de61ba?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aW5kaWFuJTIwd29tYW58ZW58MHx8MHx8fDA%3D",
   },
+  {
+    text: "With the help of Rem Nutri's team, I've been able to manage my blood sugar levels naturally and even reduce my medication!",
+    name: "Sarah Jones",
+    image:
+      "https://framerusercontent.com/images/F8FpD28VlKZcge0xDGDslltN6k.jpg?scale-down-to=2048",
+  }
   // {
   //   text: "As someone with a neurological condition, finding the right physiotherapy was crucial. Fizeo exceeded my expectations. Their neuro-rehabilitation expertise and compassionate care have significantly improved my mobility and overall well-being. Highly recommended for anyone seeking top-notch physio services!",
   //   name: "Melanie ]",
