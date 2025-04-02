@@ -213,9 +213,9 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
           {/* Tablet and desktop view */}
           <div className="hidden sm:block">
             <span className="absolute bottom-2 left-[15%] transform -translate-x-1/2 text-xs md:text-sm font-semibold text-yellow-400 rotate-[-20deg]">Underweight</span>
-            <span className="absolute bottom-8 left-[38.5%] transform -translate-x-1/2 text-xs md:text-sm font-semibold text-green-400">Normal</span>
+            <span className="absolute bottom-10 left-[38.5%] transform -translate-x-1/2 text-xs md:text-sm font-semibold text-green-400">Normal</span>
             <span className="absolute bottom-2 left-[62%] transform -translate-x-1/2 text-xs md:text-sm font-semibold text-orange-400 rotate-[15deg]">Overweight</span>
-            <span className="absolute bottom-2 left-[85%] transform -translate-x-1/2 text-xs md:text-sm font-semibold text-red-400 rotate-[30deg]">Obese</span>
+            <span className="absolute bottom-0 left-[90%] transform -translate-x-1/2 text-xs md:text-sm font-semibold text-red-400 rotate-[30deg]">Obese</span>
           </div>
         </div>
         
