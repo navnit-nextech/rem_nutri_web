@@ -1206,11 +1206,11 @@ const HealthAssessment = () => {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.7 + index * 0.1 }}
-                                className="flex items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
+                                className="flex items-start sm:items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group sm:min-h-[64px]"
                               >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <AlertCircle className="w-4 h-4 text-black flex-shrink-0 relative z-10" />
-                                <span className="text-black text-sm overflow-hidden overflow-ellipsis whitespace-nowrap relative z-10 max-w-[calc(100%-24px)]">{condition}</span>
+                                
+                                <span className="text-black text-sm relative z-10 max-w-[calc(100%-24px)] whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal sm:text-wrap sm:overflow-visible sm:py-1">{condition}</span>
                               </motion.div>
                             ))}
                           </div>
@@ -1241,11 +1241,11 @@ const HealthAssessment = () => {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.8 + index * 0.1 }}
-                                className="flex items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group"
+                                className="flex items-start sm:items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group min-h-[48px] sm:min-h-[64px]"
                               >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <Clock className="w-4 h-4 text-black flex-shrink-0 relative z-10" />
-                                <span className="text-black text-sm overflow-hidden overflow-ellipsis whitespace-nowrap relative z-10 max-w-[calc(100%-24px)]">{factor}</span>
+                                <Clock className="w-4 h-4 text-black flex-shrink-0 relative z-10 mt-[2px] sm:mt-0" />
+                                <span className="text-black text-sm relative z-10 max-w-[calc(100%-24px)] whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal sm:text-wrap sm:overflow-visible sm:py-1">{factor}</span>
                               </motion.div>
                             ))}
                           </div>
