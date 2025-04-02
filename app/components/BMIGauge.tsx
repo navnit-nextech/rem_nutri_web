@@ -127,7 +127,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
       {/* Speedometer Container - Responsive sizing */}
       <div className="relative w-full max-w-md aspect-[2/1] mb-6 md:mb-4">
         {/* Semicircle Background */}
-        <div className="absolute bottom-0 left-0 w-full h-[50%] overflow-hidden">
+        <div className="absolute bottom-0  left-0 w-full h-[50%] overflow-hidden">
           {/* Gauge Background */}
           <div className="absolute bottom-0 left-0 w-full h-[200%] bg-gradient-to-b from-[rgba(30,20,50,0.5)] to-[rgba(30,20,50,0.2)] rounded-full">
             {/* Horizontal Color Bands */}
@@ -192,10 +192,10 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         </div>
         
         {/* BMI Values/Markers - Made responsive for mobile */}
-        <div className="absolute bottom-0 left-0 w-full">
+        <div className="absolute bottom-[1%]  left-0 w-full">
           <span className="absolute bottom-1 left-[10%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">16</span>
           <span className="absolute bottom-1 left-[27.5%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">18.5</span>
-          <span className="absolute bottom-1 left-[50%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">25</span>
+          <span className="absolute bottom-1 left-[50%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white z-200">25</span>
           <span className="absolute bottom-1 left-[72.5%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">30</span>
           <span className="absolute bottom-1 left-[90%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">40</span>
         </div>
@@ -204,10 +204,10 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         <div className="absolute bottom-[55%] left-0 w-full">
           {/* Mobile view - alternating top/bottom pattern with smaller text */}
           <div className="sm:hidden">
-            <span className="absolute -bottom-1 left-[15%] transform -translate-x-1/2 text-[10px] font-semibold text-yellow-400 rotate-[-10deg]">Underweight</span>
-            <span className="absolute bottom-14 left-[38.5%] transform -translate-x-1/2 text-[10px] font-semibold text-green-400">Normal</span>
-            <span className="absolute -bottom-1 left-[62%] transform -translate-x-1/2 text-[10px] font-semibold text-orange-400 rotate-[10deg]">Overweight</span>
-            <span className="absolute bottom-14 left-[85%] transform -translate-x-1/2 text-[10px] font-semibold text-red-400 rotate-[10deg]">Obese</span>
+            <span className="absolute -bottom-1 left-[10%] transform -translate-x-1/2 text-[10px] font-semibold text-yellow-400 rotate-[-10deg]">Underweight</span>
+            <span className="absolute bottom-5 left-[38.5%] transform -translate-x-1/2 text-[10px] font-semibold text-green-400">Normal</span>
+            <span className="absolute -bottom-1 left-[62%] transform -translate-x-1/2 text-[10px] font-semibold text-orange-400 rotate-[5deg]">Overweight</span>
+            <span className="absolute bottom-0 left-[90%] transform -translate-x-1/2 text-[10px] font-semibold text-red-400 rotate-[10deg]">Obese</span>
           </div>
           
           {/* Tablet and desktop view */}
