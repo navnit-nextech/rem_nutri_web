@@ -24,7 +24,7 @@ const BlogSection = async () => {
   `);
 
   return (
-    <div className="w-full py-16 bg-[var(--background-color-plain)] bg-cover bg-center bg-no-repeat relative">
+    <div className="w-full pt-16  md:py-16 bg-[var(--background-color-plain)] bg-cover bg-center bg-no-repeat relative">
       <div className="absolute top-2 md:-top-0 left-[50%] w-27 h-27 transform -translate-x-1/2 -translate-y-1/2">
         <svg viewBox="0 0 79 88" id="svg10114666377" className="w-22 h-22 md:w-30 md:h-26">
           <path

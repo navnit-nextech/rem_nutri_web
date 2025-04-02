@@ -45,23 +45,19 @@ const FeatureCard = ({
               <button 
                 onClick={() => onToggle(index)}
                 className="group relative flex items-center gap-2 text-[var(--text-color-dark)] hover:text-[var(--text-color-dark)] 
-                         transition-all duration-300 animate-bounce-subtle"
+                         transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Content wrapper */}
-                <div className="relative z-10 flex items-center gap-2">
-                  <span className="text-[15px] font-medium tracking-wide relative">
+                {/* Content wrapper - with single animation container */}
+                <div className="relative z-10 flex items-center gap-2 animate-[bounce_2s_ease-in-out_infinite]">
+                  <span className="text-[15px] font-medium tracking-wide relative inline-block">
                     {isExpanded ? 'Show less' : 'Read more'}
                     {/* Animated underline */}
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 
-                                  transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 
-                                  origin-left"></span>
-                    {/* Mobile permanent underline */}
                     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 
                                   md:hidden"></span>
                   </span>
                   <svg 
                     className={`w-5 h-5 transform transition-all duration-500 ${isExpanded ? 'rotate-180' : ''} 
-                             group-hover:translate-x-1 animate-bounce-subtle`}
+                             group-hover:translate-x-1 inline-block`}
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
@@ -70,9 +66,7 @@ const FeatureCard = ({
                   </svg>
                 </div>
 
-                {/* Subtle hover effect */}
-                <div className="absolute -inset-2 rounded-full bg-[var(--text-color-dark)]/5 opacity-0 
-                              group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* No hover background effect */}
               </button>
             </div>
           </div>
@@ -225,8 +219,7 @@ const WhyFizeo = () => {
                            transform hover:-translate-y-1
                            transition-all duration-300
                            border-2 border-[var(--background-color-dark)]
-                           hover:bg-[var(--text-color-plain)]
-                           hover:text-[var(--background-color-dark)]
+                           
                            relative overflow-hidden
                            group">
                     <span className="relative z-10 flex items-center justify-center gap-2">
@@ -264,7 +257,7 @@ const WhyFizeo = () => {
             </div>
 
             {/* Right features section */}
-            <div className="w-full lg:w-1/2 min-h-fit pb-10 flex flex-col md:mt-10 justify-start gap-y-4 sm:gap-y-6 px-0 overflow-visible">
+            <div className="w-full lg:w-1/2 min-h-fit pb-0 md:pb-10 flex flex-col md:mt-10 justify-start gap-y-6 sm:gap-y-8 px-0 overflow-visible">
               {features.map((feature, index) => (
                 <ScrollAnimation key={index} delay={0.2 * (index + 1)}>
                   <FeatureCard
