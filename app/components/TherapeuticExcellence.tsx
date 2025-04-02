@@ -9,7 +9,7 @@ const TherapeuticExcellence = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-20 flex flex-col items-center text-center relative">
         {/* Positioned SVG */}
-        <div className="relative md:absolute top-2 left-2 md:top-[8%] md:left-[10%] hidden sm:block">
+        <div className="relative md:absolute top-2 left-2 md:top-[8%] md:left-[10%] hidden sm:block lg:block md:hidden">
           <svg
             viewBox="0 0 59 59"
             className="w-24 h-24 scale-75 md:w-32 md:h-32 md:scale-100 rotate-180"

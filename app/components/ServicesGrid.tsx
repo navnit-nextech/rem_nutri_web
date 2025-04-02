@@ -110,7 +110,7 @@ const ServiceCard = ({ icon, title, description, onClick }: {
 
   return (
     <div
-      className="relative w-full sm:w-[360px] md:w-[420px] lg:w-[600px] flex flex-col md:flex-row
+      className="relative w-full h-full flex flex-col md:flex-row
                  border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[20px] overflow-hidden 
                  shadow-md hover:shadow-xl transition-all duration-500 ease-in-out group"
     >
@@ -120,41 +120,42 @@ const ServiceCard = ({ icon, title, description, onClick }: {
       <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-[var(--text-color-dark)]/20 rounded-bl-[20px] z-20" />
       <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-[var(--text-color-dark)]/20 rounded-br-[20px] z-20" />
 
-      {/* Background Image Container with Parallax Effect - Reduced height for mobile */}
-      <div className="relative w-full md:w-1/2 h-[180px] md:h-full overflow-hidden">
+      {/* Background Image Container - Returning to original height but ensuring proper display */}
+      <div className="relative w-full md:w-1/2 h-[180px] sm:h-[180px] md:h-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/10 z-10" />
         <img 
           src={getBackgroundImage(title)}
           alt={title}
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+          style={{ objectPosition: 'center' }}
         />
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-5 bg-[url('/pattern.png')] mix-blend-overlay" />
       </div>
 
-      {/* Content Container - Reduced padding for mobile */}
-      <div className="relative w-full md:w-1/2 p-4 md:p-10 flex flex-col gap-3 md:gap-6">
-        {/* Icon and Title with enhanced styling - More compact for mobile */}
+      {/* Content Container - Returning to original height and padding */}
+      <div className="relative w-full md:w-1/2 p-4 sm:p-4 md:p-8 lg:p-10 flex flex-col gap-3 md:gap-5 lg:gap-6">
+        {/* Icon and Title */}
         <div className="flex items-center gap-3 md:gap-4 text-[var(--text-color-dark)]">
           <div className="transform transition-all duration-500 group-hover:rotate-12 group-hover:scale-110">
             {modifiedIcon}
-    </div>
-          <h3 className="text-[24px] md:text-[32px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] relative">
+          </div>
+          <h3 className="text-[24px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] relative">
             {title}
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--text-color-dark)] group-hover:w-full transition-all duration-500"></span>
           </h3>
         </div>
         
-        {/* Main content with enhanced typography - Smaller text and reduced margins for mobile */}
-        <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] md:text-[18px] leading-relaxed mb-4 md:mb-8 relative">
+        {/* Main content - Returning to original spacing */}
+        <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] sm:text-[16px] md:text-[17px] lg:text-[18px] leading-relaxed mb-4 md:mb-6 lg:mb-8 relative">
           {description}
-          <span className="absolute -bottom-2 md:-bottom-3 left-0 w-12 md:w-16 h-[1px] bg-[var(--text-color-dark)]/20"></span>
+          <span className="absolute -bottom-2 md:-bottom-3 left-0 w-12 md:w-14 lg:w-16 h-[1px] bg-[var(--text-color-dark)]/20"></span>
         </p>
 
-        {/* Explore more link with enhanced animation */}
+        {/* Explore more link - Original positioning */}
         <div className="mt-auto flex justify-center md:justify-start">
           <div className="flex items-center gap-2 md:gap-3 text-[var(--text-color-dark)]/80 group-hover:text-[var(--text-color-dark)] transition-colors duration-300">
-            <span className="text-[15px] md:text-[17px] font-medium font-['DM_Sans', 'sans-serif'] relative overflow-hidden cursor-pointer" onClick={onClick}>
+            <span className="text-[15px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium font-['DM_Sans', 'sans-serif'] relative overflow-hidden cursor-pointer" onClick={onClick}>
               Explore more
               {/* Mobile underline */}
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 md:hidden"></span>
@@ -164,7 +165,7 @@ const ServiceCard = ({ icon, title, description, onClick }: {
             
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5 md:h-6 md:w-6 transform group-hover:translate-x-2 transition-transform duration-500" 
+              className="h-5 w-5 md:h-5 md:w-5 lg:h-6 lg:w-6 transform group-hover:translate-x-2 transition-transform duration-500" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
@@ -223,36 +224,38 @@ const ServicesGrid = () => {
   ];
 
   return (
-    <div className="w-full bg-[var(--background-color-plain2)] cursor-pointer bg-cover bg-center bg-no-repeat py-16 pt-3 md:pt-0 md:pb-16 px-4 transition-all duration-300">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 justify-items-center">
+    <div className="w-full bg-[var(--background-color-plain2)] cursor-pointer bg-cover bg-center bg-no-repeat py-16 pt-3 md:pt-0 md:pb-16 px-3 sm:px-4 transition-all duration-300">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 justify-items-center">
         {services.map((service, index) => (
-          <ServiceCard
-            key={index}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-            onClick={() => router.push(service.path)}
-          />
+          <div key={index} className="w-full max-w-[410px] sm:max-w-[410px] md:max-w-[500px] lg:max-w-[600px]">
+            <ServiceCard
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              onClick={() => router.push(service.path)}
+            />
+          </div>
         ))}
       </div>
   
       <ScrollAnimation>
-        <div className="flex justify-center mt-10 md:mt-10">
+        <div className="flex justify-center mt-8 sm:mt-9 md:mt-10">
           <Link href="/health-assessment">
             <Button className="bg-[var(--background-color-light)] hover:opacity-80 font-['DM_Sans', 'sans-serif'] 
-                           text-[18px] text-[var(--text-color-dark)] !font-bold rounded-md px-10 py-7 
-                           cursor-pointer w-full sm:w-auto min-w-[300px] md:min-w-[360px] 
-                           shadow-md hover:shadow-lg transition-all duration-300">
+                          text-[16px] sm:text-[17px] md:text-[18px] text-[var(--text-color-dark)] !font-bold rounded-md 
+                          px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7
+                          cursor-pointer w-full sm:w-auto min-w-[250px] sm:min-w-[280px] md:min-w-[300px] lg:min-w-[360px] 
+                          shadow-md hover:shadow-lg transition-all duration-300">
             FIND THE RIGHT PROGRAMME
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-6 w-6 ml-2 transform group-hover:translate-x-2 transition-transform duration-500" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-5 w-5 sm:h-5 sm:w-5 md:h-6 md:w-6 ml-2 transform group-hover:translate-x-2 transition-transform duration-500" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
           </Button>
         </Link>
         </div>

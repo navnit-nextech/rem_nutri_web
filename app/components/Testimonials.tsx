@@ -109,7 +109,7 @@ const Testimonials = () => {
         <ScrollAnimation delay={0.2}>
           <div className="max-w-full mx-auto mb-12 relative flex justify-center">
             <div className="rounded-2xl overflow-hidden w-[900px]">
-              <div className="relative w-full  bg-red ">
+              <div className="relative w-full h-[200px] sm:h-[500px] rounded-2xl border-none">
                 {/* Right and Bottom Borders */}
 
                 {/* Embedded YouTube Video */}
@@ -126,7 +126,7 @@ const Testimonials = () => {
                 ></iframe>
               </div>
 
-              <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[995px] z-20 hidden sm:block">
+              <div className="relative md:absolute top-2 left-2 md:top-[25%] md:left-[83%] z-20 hidden lg:block">
                 <div className="w-32 h-32 bg-fizeo-peach rounded-full flex items-center justify-center">
                   <svg
                     width="240"
@@ -227,13 +227,13 @@ const Testimonials = () => {
 
             <button
               onClick={handlePrev}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition md:-left-20 hidden md:block"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition md:left-2 lg:left-4 xl:-left-[8%] hidden md:block"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition md:-right-20 hidden md:block"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#043A22]/50 rounded-full p-3 hover:bg-[#043A22]/70 transition md:right-2 lg:right-4 xl:-right-[8%] hidden md:block"
             >
               <ChevronRight className="w-6 h-6 text-white" />
             </button>

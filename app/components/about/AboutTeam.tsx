@@ -11,46 +11,46 @@ const AboutTeam = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Zoe Williams",
-      role: "Founder & Principal Physiotherapist",
+      name: "MRS SRIDEVI.K",
+      role: "FOUNDER",
       image: "/images/about/team/1.avif",
       linkedin: "https://linkedin.com",
     },
     {
       id: 2,
-      name: "Marcus Turner",
-      role: "Physiotherapist",
+      name: "HITHASRI REDDY.M",
+      role: "CO-FOUNDER",
       image: "/images/about/team/2.avif",
       linkedin: "https://linkedin.com",
     },
     {
       id: 3,
-      name: "Ava Rodriguez",
-      role: "Physiotherapist",
+      name: "BHAGIRATH.M",
+      role: "CO-FOUNDER",
       image: "/images/about/team/3.avif",
       linkedin: "https://linkedin.com",
     },
-    // {
-    //   id: 1,
-    //   name: "Zoe Williams",
-    //   role: "Founder & Principal Physiotherapist",
-    //   image: "/images/about/team/4.avif",
-    //   linkedin: "https://linkedin.com",
-    // },
-    // {
-    //   id: 2,
-    //   name: "Marcus Turner",
-    //   role: "Physiotherapist",
-    //   image: "/images/about/team/5.webp",
-    //   linkedin: "https://linkedin.com",
-    // },
-    // {
-    //   id: 3,
-    //   name: "Ava Rodriguez",
-    //   role: "Physiotherapist",
-    //   image: "/images/about/team/6.webp",
-    //   linkedin: "https://linkedin.com",
-    // },
+    {
+      id: 4,
+      name: "J. A. CHOWDARY",
+      role: "MENTOR",
+      image: "/images/about/team/4.avif",
+      linkedin: "https://linkedin.com",
+    },
+    {
+      id: 2,
+      name: "ARUN",
+      role: "HEAD CHEF",
+      image: "/images/about/team/5.webp",
+      linkedin: "https://linkedin.com",
+    },
+    {
+      id: 3,
+      name: "ASHOK",
+      role: "HEAD CHEF",
+      image: "/images/about/team/6.webp",
+      linkedin: "https://linkedin.com",
+    },
   ];
 
   const nextCard = () => {
@@ -104,7 +104,7 @@ const AboutTeam = () => {
         <div className="md:pb-16">
           {/* Mobile Card View */}
           <div className="md:hidden relative h-[550px]">
-            <div className="h-[500px] relative overflow-hidden">
+            <div className="h-[510px] relative overflow-hidden">
               {/* Fixed navigation layer */}
               <div className="absolute inset-0 z-10 flex justify-between items-center px-4 pointer-events-none">
                 <button

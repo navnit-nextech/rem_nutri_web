@@ -1325,7 +1325,7 @@ const HealthAssessment = () => {
                                   <h4 className="text-xl font-semibold text-[var(--text-color-plain)] mb-3">
                                     {program.name}
                                   </h4>
-                                  <p className="text-sm text-[var(--text-color-light)] mb-6">
+                                  <p className="text-sm text-[var(--text-color-light)] mb-6 line-clamp-2 sm:line-clamp-none">
                                     {program.description}
                                   </p>
                                   <motion.button

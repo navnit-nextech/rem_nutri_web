@@ -34,7 +34,7 @@ const programSteps = [
     number: "03",
     title: "12-Week Education Program",
     subtitle: "Structured learning for lasting change",
-    description: "Engage in our comprehensive online education program covering essential topics including blood glucose management, healthy eating principles, exercise routines, and participate in monthly review sessions for continuous progress.",
+    description: "Join our comprehensive online group sessions covering key topics like diabetes, its complications, healthy eating, portion sizes and much more. In the 12 weeks, gain the knowledge to reverse your diabetes, reduce medication, and boost your health—all while connecting with others on the same journey!",
   },
   {
     number: "04",
@@ -118,17 +118,17 @@ const RemDi2Page = () => {
     <div className="w-full overflow-hidden">
       <Navbar />
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-[var(--background-color-dark)] pt-28 md:pt-20" ref={heroRef}>
+      <div className="relative min-h-screen bg-[var(--background-color-dark)] pt-28 sm:pt-20" ref={heroRef}>
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 bg-[url('/images/rem_nutri_hero_Section.webp')] bg-cover bg-center bg-no-repeat">
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--background-color-dark)]/95 via-[var(--background-color-dark)]/90 to-[var(--background-color-dark)]"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-120px)] md:min-h-[calc(100vh-80px)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-120px)] sm:min-h-[calc(100vh-80px)]">
             {/* Left Content */}
             <motion.div 
-              className="lg:col-span-7 relative z-10 pt-4 md:pt-0"
+              className="lg:col-span-7 relative z-10 pt-4 sm:pt-0"
               style={{ opacity, y }}
             >
               <ScrollAnimation>
@@ -138,9 +138,9 @@ const RemDi2Page = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="inline-flex items-center gap-3 bg-[var(--text-color-light)]/10 rounded-full px-4 py-2.5 mb-6 md:mb-8"
+                    className="inline-flex items-center gap-3 bg-[var(--text-color-light)]/10 rounded-full px-4 py-2.5 mb-6 sm:mb-8"
                   >
-                    <span className="text-[var(--text-color-light)] text-sm md:text-base">Type 2 Diabetes Program</span>
+                    <span className="text-[var(--text-color-light)] text-sm sm:text-base">Type 2 Diabetes Program</span>
                   </motion.div>
 
                   {/* Title */}
@@ -160,7 +160,16 @@ const RemDi2Page = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="text-xl lg:text-2xl text-[var(--text-color-plain)]/80 font-['DM_Sans', 'sans-serif'] leading-relaxed mb-8 max-w-2xl"
                   >
-                    Living with a chronic health condition can significantly affect everything from daily routines to long-term goals. Yet, the journey with these conditions doesn't have to be one of constant struggle.
+                    Health conditions such as Diabetes can significantly affect everything from daily routines to long-term goals. Yet, the journey with these conditions doesn't have to be one of constant struggle.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="text-xl lg:text-2xl text-[var(--text-color-plain)]/80 font-['DM_Sans', 'sans-serif'] leading-relaxed mb-8 max-w-2xl"
+                  >
+                    Research shows an 80% chance of reversing Type 2 or Pre-Diabetes without medication. The key? Losing 15kg (or 15% of your body weight) in 12 weeks. RemDi 2 is here to help you do just that!
                   </motion.p>
 
                   {/* Quick Stats */}
@@ -171,9 +180,9 @@ const RemDi2Page = () => {
                     className="grid grid-cols-3 gap-6 mb-12"
                   >
                     {[
-                      { number: "90%", label: "Success Rate" },
+                      { number: "86%", label: "Success Rate" },
                       { number: "12", label: "Week Program" },
-                      { number: "24/7", label: "Expert Support" }
+                      { number: "7/7", label: "Expert Support" }
                     ].map((stat, index) => (
                       <div key={index} className="text-center">
                         <div className="text-[var(--text-color-light)] text-3xl font-bold mb-1">{stat.number}</div>
@@ -259,7 +268,7 @@ const RemDi2Page = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           >
             <div className="text-[var(--text-color-plain)]/60 text-sm">Scroll to explore</div>
             <motion.div
@@ -275,7 +284,7 @@ const RemDi2Page = () => {
 
       {/* About Section */}
       <div className="bg-[var(--background-color-plain)] py-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation>
             <div className="text-center mb-16">
               <h2 className="text-[40px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)] mb-4">
@@ -453,9 +462,9 @@ const RemDi2Page = () => {
 
       {/* Call to Action */}
       <div className="bg-[var(--background-color-plain2)] py-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation>
-            <div className="relative bg-[var(--background-color-dark)] rounded-2xl p-10 md:p-16 text-center overflow-hidden">
+            <div className="relative bg-[var(--background-color-dark)] rounded-2xl p-10 sm:p-16 text-center overflow-hidden">
               {/* Subtle Gradient Border */}
               <div className="absolute inset-0 border border-[var(--text-color-light)]/10 rounded-2xl"></div>
               
@@ -464,7 +473,7 @@ const RemDi2Page = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="text-[40px] md:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] mb-6"
+                  className="text-[40px] sm:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] mb-6"
                 >
                   Transform Your Health <span className="text-[var(--text-color-light)]">Today</span>
                 </motion.h2>

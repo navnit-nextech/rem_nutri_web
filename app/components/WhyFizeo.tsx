@@ -27,18 +27,18 @@ const FeatureCard = ({
   const previewText = description.slice(0, 100) + "...";
 
   return (
-    <div className="bg-[var(--background-color-plain)] sm:w-[575px] sm:h-[220px] border border-[#ebe5da] p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+    <div className="bg-[var(--background-color-plain)] w-full max-w-[575px] min-h-fit sm:min-h-[220px] border border-[#ebe5da] p-4 sm:p-6 md:p-8 rounded-2xl flex flex-col justify-between overflow-visible sm:overflow-hidden">
       <div>
         <div className="flex items-center gap-3">
-          <span className="text-[var(--text-color-dark)] text-[22px]">{icon}</span>
-          <h3 className="text-[var(--text-color-dark)] text-[20px] sm:text-[22px] font-bold font-['Libre_Baskerville']">
+          <span className="text-[var(--text-color-dark)] text-[22px] flex-shrink-0">{icon}</span>
+          <h3 className="text-[var(--text-color-dark)] text-[18px] sm:text-[20px] md:text-[22px] font-bold font-['Libre_Baskerville'] break-words">
             {title}
           </h3>
         </div>
         <div className="mt-4">
           {/* Mobile view with expand/collapse */}
           <div className="sm:hidden">
-            <p className={`text-[var(--text-color-dark)] text-[15px] font-light leading-relaxed transition-all duration-300 ${isExpanded ? 'line-clamp-none' : 'line-clamp-2'}`}>
+            <p className={`text-[var(--text-color-dark)] text-[14px] sm:text-[15px] font-light leading-relaxed transition-all duration-300 ${isExpanded ? 'line-clamp-none pb-2' : 'line-clamp-2'} break-words`}>
               {isExpanded ? description : previewText}
             </p>
             <div className="flex justify-center mt-4">
@@ -78,7 +78,7 @@ const FeatureCard = ({
           </div>
           
           {/* Desktop view */}
-          <p className="hidden sm:block text-[var(--text-color-dark)] text-[16px] font-light leading-relaxed text-center">
+          <p className="hidden sm:block text-[var(--text-color-dark)] text-[15px] md:text-[16px] font-light leading-relaxed text-center break-words">
             {description}
           </p>
         </div>
@@ -174,7 +174,7 @@ const WhyFizeo = () => {
     },
     {
       icon: <Custompositive />,
-      title: "Convenient and Delicious Meal Delivery",
+      title: "Convenient and Delicious Meal Delievery",
       description:
         "Relish in our meal plans that are designed to help your body heal, manage hormonal balance and improve gut health. Choose between desi and contemporary cuisine, select meal frequencies that suit you for a convenient delivery right to your doorstep. ",
     },
@@ -197,10 +197,10 @@ const WhyFizeo = () => {
 
           <Topdecorative />
         </div>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 pt-5 pb-20 md:py-20 ">
-          <div className="relative flex flex-col lg:flex-row gap-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pt-5 pb-20 md:py-20 overflow-hidden">
+          <div className="relative flex flex-col lg:flex-row gap-8 lg:gap-16">
             {/* Left content section */}
-            <div className="w-full lg:w-1/2 pt-8 md:pt-10">
+            <div className="w-full lg:w-1/2 pt-8 md:pt-10 overflow-hidden">
               <ScrollAnimation>
                 <h2 className="text-[var(--text-color-dark)] text-3xl font-['Libre_Baskerville',serif] text-[40px] mb-5 md:mb-9">
                   Why RemDi?
@@ -218,9 +218,9 @@ const WhyFizeo = () => {
               <ScrollAnimation delay={0.4}>
                 <Link href="/about" >
                   <Button className="bg-[var(--background-color-dark)] font-['DM_Sans','sans-serif'] font-semibold 
-                           text-[var(--text-color-plain)] rounded-lg px-8 py-7 cursor-pointer
-                           w-full sm:w-auto min-w-[280px] md:min-w-[320px]
-                           text-[22px] sm:text-[18px] md:text-[20px]
+                           text-[var(--text-color-plain)] rounded-lg px-4 sm:px-8 py-6 sm:py-7 cursor-pointer
+                           w-full sm:w-auto max-w-full sm:min-w-[280px] md:min-w-[320px]
+                           text-[18px] sm:text-[18px] md:text-[20px]
                            shadow-lg hover:shadow-xl
                            transform hover:-translate-y-1
                            transition-all duration-300
@@ -248,15 +248,15 @@ const WhyFizeo = () => {
 
               <ScrollAnimation delay={0.6}>
                 <div className="relative mt-8 md:mt-12">
-                  {/* Shadow Effects */}
-                  <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#8FC2AA] rounded-2xl"></div>
+                  {/* Shadow Effects - Enhanced for visibility on bottom and right */}
+                  
 
                   {/* Image */}
-                  <div className="rounded-2xl overflow-hidden relative z-10">
+                  <div className="rounded-2xl overflow-hidden relative z-10 ">
                     <img
                       src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
-                      className=" w-full h-100 md:w-full md:h-240 object-cover"
+                      className="w-full h-100 md:w-full md:h-240 object-cover"
                     />
                   </div>
                 </div>
@@ -264,7 +264,7 @@ const WhyFizeo = () => {
             </div>
 
             {/* Right features section */}
-            <div className="w-full lg:w-1/2 min-h-[900px] flex flex-col md:mt-10 justify-center gap-y-6">
+            <div className="w-full lg:w-1/2 min-h-fit pb-10 flex flex-col md:mt-10 justify-start gap-y-4 sm:gap-y-6 px-0 overflow-visible">
               {features.map((feature, index) => (
                 <ScrollAnimation key={index} delay={0.2 * (index + 1)}>
                   <FeatureCard
