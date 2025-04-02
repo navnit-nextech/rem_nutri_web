@@ -288,7 +288,7 @@ const RemFitPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Understanding Weight Management */}
             <ScrollAnimation>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-[320px] flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02]">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-auto min-h-fit lg:h-[320px] flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -301,7 +301,7 @@ const RemFitPage = () => {
                     Understanding Weight Management
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow overflow-y-auto pr-2">
+                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow pr-2">
                   Weight management is about more than just dieting or exercise. It requires a holistic approach that includes healthy eating habits, physical activity, and behavioral changes that can be maintained over time for sustainable results.
                 </p>
                 <div className="mt-auto pt-4">
@@ -317,7 +317,7 @@ const RemFitPage = () => {
 
             {/* The RemFit Solution */}
             <ScrollAnimation delay={0.2}>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-[320px] flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02]">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 h-auto min-h-fit lg:h-[320px] flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -329,9 +329,12 @@ const RemFitPage = () => {
                     The RemFit Solution
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow overflow-y-auto pr-2">
+                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow pr-2">
                   Our program combines personalized nutrition, education, and ongoing support to help you achieve your weight loss goals. We focus on teaching healthy habits that can be maintained for life, whether you're aiming for significant weight loss or simply staying fit.
                 </p>
+
+                
+
                 <div className="mt-auto pt-4">
                   <div className="flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

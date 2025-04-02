@@ -31,26 +31,29 @@ export default async function Blog() {
       </div>
 
       {/* Blog Posts Grid */}
-      <div className="relative -mt-25 max-w-8xl mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 px-6 lg:px-30 mb-20 md:mb-40">
+      <div className="relative -mt-20 sm:-mt-25 max-w-7xl mx-auto grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 md:grid-cols-2 px-4 sm:px-6 lg:px-10 mb-16 sm:mb-20 md:mb-40">
+        <div className="md:col-span-2 mb-0 md:mb-4">
+          <div className="w-full h-0.5 bg-transparent"></div>
+        </div>
         {blogPosts.map((post: any, index: number) => (
           <ScrollAnimation key={index} delay={index * 0.2}>
             <Link href={`/blog/${post.slug}`} passHref>
-              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden w-full max-w-[600px] mx-auto md:h-145 cursor-pointer">
-                <div className="h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden">
+              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden w-full max-w-[600px] mx-auto h-auto cursor-pointer flex flex-col shadow-md">
+                <div className="h-[280px] overflow-hidden flex-shrink-0">
                   <Image
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-300 hover:rotate-3 hover:scale-110"
-                    width={600}
-                    height={350}
+                    width={800}
+                    height={500}
                     priority
                   />
                 </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-xl md:text-2xl leading-snug font-semibold">
+                <div className="p-5 flex-grow overflow-visible">
+                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-xl leading-tight font-semibold break-words">
                     {post.title}
                   </h3>
-                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-sm md:text-base mt-4">
+                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-sm mt-3 break-words">
                     {post.description}
                   </p>
                 </div>

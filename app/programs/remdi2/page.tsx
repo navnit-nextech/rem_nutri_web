@@ -160,17 +160,17 @@ const RemDi2Page = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="text-xl lg:text-2xl text-[var(--text-color-plain)]/80 font-['DM_Sans', 'sans-serif'] leading-relaxed mb-8 max-w-2xl"
                   >
-                    Health conditions such as Diabetes can significantly affect everything from daily routines to long-term goals. Yet, the journey with these conditions doesn't have to be one of constant struggle.
+                    Research shows an 80% chance of reversing Type 2 or Pre-Diabetes without medication. The key? Losing 15kg (or 15% of your body weight) in 12 weeks. RemDi 2 is here to help you do just that!
                   </motion.p>
 
-                  <motion.p
+                  {/* <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
                     className="text-xl lg:text-2xl text-[var(--text-color-plain)]/80 font-['DM_Sans', 'sans-serif'] leading-relaxed mb-8 max-w-2xl"
                   >
                     Research shows an 80% chance of reversing Type 2 or Pre-Diabetes without medication. The key? Losing 15kg (or 15% of your body weight) in 12 weeks. RemDi 2 is here to help you do just that!
-                  </motion.p>
+                  </motion.p> */}
 
                   {/* Quick Stats */}
                   <motion.div
