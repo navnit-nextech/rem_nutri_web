@@ -13,14 +13,14 @@ const AboutTeam = () => {
       id: 1,
       name: "MRS SRIDEVI.K",
       role: "FOUNDER",
-      image: "/images/about/team/1.avif",
+      image: "/images/team_1.jpeg",
       linkedin: "https://linkedin.com",
     },
     {
       id: 2,
       name: "HITHASRI REDDY.M",
       role: "CO-FOUNDER",
-      image: "/images/about/team/2.avif",
+      image: "/images/team_2.jpeg",
       linkedin: "https://linkedin.com",
     },
     {
@@ -209,7 +209,7 @@ const AboutTeam = () => {
                     src={member.image}
                     alt={member.name}
                     fill
-                    className="object-top object-cover"
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-6">
