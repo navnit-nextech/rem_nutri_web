@@ -139,7 +139,7 @@ const ServiceCard = ({ icon, title, description, onClick }: {
         <div className="flex items-center gap-3 md:gap-4 text-[var(--text-color-dark)]">
           <div className="transform transition-all duration-500 group-hover:rotate-12 group-hover:scale-110">
             {modifiedIcon}
-          </div>
+    </div>
           <h3 className="text-[24px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] relative">
             {title}
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--text-color-dark)] group-hover:w-full transition-all duration-500"></span>
@@ -228,12 +228,12 @@ const ServicesGrid = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 justify-items-center">
         {services.map((service, index) => (
           <div key={index} className="w-full max-w-[410px] sm:max-w-[410px] md:max-w-[500px] lg:max-w-[600px]">
-            <ServiceCard
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
+          <ServiceCard
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
               onClick={() => router.push(service.path)}
-            />
+          />
           </div>
         ))}
       </div>

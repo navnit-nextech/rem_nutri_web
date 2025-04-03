@@ -130,6 +130,7 @@ const formSteps = [
           { value: "cardiac", label: "Cardiac Issues", icon: "💓" },
           { value: "fattyLiver", label: "Fatty Liver", icon: "🫁" },
           { value: "thyroid", label: "Thyroid Issues", icon: "⚕️" },
+          { value: "none", label: "None of the above", icon: "✅" },
         ],
         required: true,
       },
@@ -198,6 +199,7 @@ const formSteps = [
           { value: "Poor Sleep", label: "Poor Sleep", icon: "😴" },
           { value: "Meals", label: "Irregular Meals", icon: "⏰" },
           { value: "Processed", label: "Processed Food", icon: "🍔" },
+          { value: "none", label: "None of the above", icon: "✅" },
         ],
         required: true,
       },
@@ -781,10 +783,23 @@ const HealthAssessment = () => {
                     type="button"
                     onClick={() => {
                       const currentValue = formData[field.name] || [];
-                      const newValue = currentValue.includes(option.value)
-                        ? currentValue.filter((v) => v !== option.value)
-                        : [...currentValue, option.value];
-                      setFormData({ ...formData, [field.name]: newValue });
+                      
+                      // Handle the "None" option special case
+                      if (option.value === "none") {
+                        // If "None" is clicked and not already selected, clear all other selections
+                        if (!currentValue.includes("none")) {
+                          setFormData({ ...formData, [field.name]: ["none"] });
+                        } else {
+                          // If "None" is already selected and clicked again, deselect it
+                          setFormData({ ...formData, [field.name]: [] });
+                        }
+                      } else {
+                        // If any other option is clicked
+                        const newValue = currentValue.includes(option.value)
+                          ? currentValue.filter((v) => v !== option.value)
+                          : [...currentValue.filter(v => v !== "none"), option.value];
+                        setFormData({ ...formData, [field.name]: newValue });
+                      }
                     }}
                     className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
                         ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"

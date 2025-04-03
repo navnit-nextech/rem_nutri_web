@@ -9,11 +9,12 @@ interface BMIGaugeProps {
 }
 
 const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
-  const [needleRotation, setNeedleRotation] = useState(-90);
-  const [needleLength, setNeedleLength] = useState("48%");
+  const [needleRotation, setNeedleRotation] = useState(0);
+  const [needleLength, setNeedleLength] = useState("0%");
   const [needleColor, setNeedleColor] = useState("bg-white");
   const [needleGlow, setNeedleGlow] = useState("shadow-[0_0_5px_rgba(255,255,255,0.5)]");
   const [tipPulse, setTipPulse] = useState(false);
+  const [animationComplete, setAnimationComplete] = useState(false);
   
   useEffect(() => {
     if (bmi !== null) {
@@ -223,7 +224,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         <motion.div 
           className={`absolute bottom-0 left-1/2 w-[2.5px] rounded-t-full origin-bottom z-10 ${needleColor} ${needleGlow}`}
           style={{ height: needleLength }}
-          initial={{ rotate: -90, width: "2px" }}
+          initial={{ rotate: 0, height: "0%", width: "2px" }}
           animate={{ 
             rotate: needleRotation,
             height: needleLength,
@@ -231,27 +232,37 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
           }}
           transition={{ 
             type: "spring", 
-            stiffness: 60, 
-            damping: 12
+            stiffness: 45, 
+            damping: 15,
+            duration: 1.5,
+            delay: 0.5
           }}
         >
           <motion.div 
             className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full ${getTipColor()}`}
+            initial={{ opacity: 0, scale: 0 }}
             animate={tipPulse ? {
               boxShadow: [
                 '0 0 5px rgba(255, 255, 255, 0.7)',
                 '0 0 15px rgba(255, 255, 255, 0.9)',
                 '0 0 5px rgba(255, 255, 255, 0.7)'
               ],
-              scale: [1, 1.2, 1]
+              scale: [1, 1.2, 1],
+              opacity: 1
             } : {
-              boxShadow: needleGlow
+              boxShadow: needleGlow,
+              scale: 1,
+              opacity: 1
             }}
             transition={tipPulse ? {
               duration: 1.5,
               repeat: Infinity,
-              repeatType: "loop"
-            } : {}}
+              repeatType: "loop",
+              delay: 0.5
+            } : {
+              delay: 0.5,
+              duration: 1
+            }}
           />
         </motion.div>
         
@@ -264,7 +275,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         className="text-center mb-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 1.8, duration: 0.5 }}
       >
         <div className="text-5xl font-bold text-[var(--accent-color)] mb-1">
           {bmi?.toFixed(1)}
@@ -280,7 +291,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         className="w-full text-sm bg-white/5 rounded-xl p-4 mb-4"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 2.1, duration: 0.5 }}
       >
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center">
