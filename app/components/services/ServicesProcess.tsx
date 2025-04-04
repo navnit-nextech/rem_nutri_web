@@ -225,7 +225,7 @@ const ServicesProcess = () => {
           </motion.div>
         </div>
       </div>
-      <div className="py-16"></div>
+      <div className="py-0 md:py-16"></div>
     </section>
   );
 };

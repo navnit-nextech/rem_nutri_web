@@ -364,7 +364,7 @@ const ServicesHero = () => {
       </div>
       
       <div className="bg-[var(--background-color-plain2)]">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24 pb-20">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24 pb-0 md:pb-20">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} delay={index * 200} />
           ))}

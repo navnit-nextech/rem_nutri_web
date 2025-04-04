@@ -11,7 +11,7 @@ import {
 
 // Decorative divider for visual appeal
 const Divider = () => (
-  <div className="flex items-center justify-center my-10">
+  <div className="flex items-center justify-center my-5 md:my-10">
     <div className="w-40 h-[1px] bg-[#EBE5DA]"></div>
   </div>
 );
@@ -108,9 +108,9 @@ const ServiceQueries = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[var(--background-color-plain)] bg-cover bg-center bg-no-repeat py-[10%]">
+    <div className="w-full bg-[var(--background-color-plain)] bg-cover bg-center bg-no-repeat pt-[10%] pb-[5%]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <h2 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-4xl md:text-5xl md:text-[56px] text-center mb-16">
+        <h2 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-4xl md:text-5xl md:text-[56px] text-center mb-5 md:mb-16">
           Unraveling your<br />health queries
         </h2>
         
@@ -128,7 +128,7 @@ const ServiceQueries = () => {
         </Accordion>
 
         {/* Consultation CTA */}
-        <div className="max-w-2xl mx-auto text-center mt-20">
+        <div className="max-w-2xl mx-auto text-center mt-10 md:mt-20 mb-10 ">
           <Divider />
           <div 
             ref={consultationRef}

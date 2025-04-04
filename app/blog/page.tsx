@@ -64,7 +64,8 @@ export default async function Blog() {
                         day: 'numeric'
                       })}
                     </span>
-                    <span className="text-blue-500 font-medium text-sm md:text-base inline-flex items-center group transition-all duration-300 py-1 px-2 rounded-md hover:bg-[var(--accent-color)]/10">
+                    <span className="text-blue-500 font-medium text-sm md:text-base inline-flex items-center group transition-all duration-300 py-1 px-2 rounded-md hover:bg-[var(--accent-color)]/10 hover:underline cursor-pointer">
+
                       Read More
                       <svg 
                         className="w-4 h-4 ml-1 transition-all duration-300 ease-in-out transform group-hover:translate-x-1.5 group-hover:scale-110"

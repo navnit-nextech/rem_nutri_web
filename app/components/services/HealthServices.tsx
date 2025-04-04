@@ -158,8 +158,8 @@ const HealthServices = () => {
   }, []);
 
   return (
-    <div className="bg-[var(--background-color-plain2)] py-20">
-      <div className="max-w-7xl mx-auto py-16 px-4 pb-32">
+    <div className="bg-[var(--background-color-plain2)] py-2 md:py-20">
+      <div className="max-w-7xl mx-auto py-16 px-4 pb-8 md:pb-32">
         <h2 
           ref={healthSectionRef}
           className="opacity-0 font-['Libre_Baskerville',serif] text-3xl md:text-4xl text-[var(--text-color-dark)] text-center mb-4 font-bold"

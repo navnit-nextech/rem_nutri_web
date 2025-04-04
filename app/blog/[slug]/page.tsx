@@ -259,7 +259,7 @@ export default async function BlogPost({ params, }: { params: Promise<{ slug: st
                   </div>
 
                   <div className="p-12">
-                    <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px] mb-3">
+                    <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-[20px] mb-3 leading-tight font-semibold">
                       {post_.title}
                     </h3>
                     <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-[16px] text-base">
