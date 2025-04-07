@@ -1,11 +1,10 @@
 import Image from "next/image";
-import GetInTouch from "../components/GetInTouch";
-import Link from "next/link";
-import { client } from "../../sanity/lib/client";
-import ScrollAnimation from "../components/ScrollAnimation";
-import NavbarWrapper from "../components/NavbarWrapper";
-
-export default async function Blog() {
+ import GetInTouch from "../components/GetInTouch";
+ import Link from "next/link";
+ import { client } from "../../sanity/lib/client";
+ import ScrollAnimation from "../components/ScrollAnimation";
+ import NavbarWrapper from "../components/NavbarWrapper";
+ export default async function Blog() {
   const blogPosts = await client.fetch(`
     *[_type == "post"] | order(publishedAt desc){
       title,
@@ -19,7 +18,7 @@ export default async function Blog() {
   return (
     <>
       <NavbarWrapper />
-      
+
       {/* Hero Section */}
       <div className="bg-[var(--background-color-dark)] py-40 md:py-50 text-left md:text-center relative px-6 md:px-0">
         <ScrollAnimation>
@@ -31,15 +30,16 @@ export default async function Blog() {
       </div>
 
       {/* Blog Posts Grid */}
-      <div className="relative -mt-30 sm:-mt-32 md:-mt-40 max-w-7xl mx-auto grid gap-8 sm:gap-10 md:gap-12 lg:gap-16 grid-cols-1 md:grid-cols-2 px-4 sm:px-6 lg:px-10 mb-16 sm:mb-20 md:mb-40" style={{ gridAutoRows: '550px', gridTemplateRows: 'repeat(auto-fill, 550px)' }}>
+      <div className="relative -mt-30 sm:-mt-32 md:-mt-40 max-w-7xl mx-auto grid gap-6 sm:gap-8 md:gap-10 lg:gap-12 grid-cols-1 md:grid-cols-2 px-4 sm:px-6 lg:px-10 mb-16 sm:mb-20 md:mb-40">
         <div className="md:col-span-2 mb-0 md:mb-4">
           <div className="w-full h-0.5 bg-transparent"></div>
         </div>
+
         {blogPosts.map((post: any, index: number) => (
           <ScrollAnimation key={index} delay={index * 0.2}>
             <Link href={`/blog/${post.slug}`} passHref>
-              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden w-full max-w-[600px] lg:max-w-none mx-auto cursor-pointer flex flex-col shadow-md hover:shadow-xl transition-all duration-300" style={{ height: '550px', maxHeight: '650px' }}>
-                <div className="h-[240px] md:h-[280px] lg:h-[320px] overflow-hidden flex-shrink-0">
+              <div className="bg-[var(--background-color-plain3)] rounded-2xl overflow-hidden w-full max-w-[600px] lg:max-w-none mx-auto h-auto cursor-pointer flex flex-col shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="h-[280px] md:h-[320px] lg:h-[380px] overflow-hidden flex-shrink-0">
                   <Image
                     src={post.image}
                     alt={post.title}
@@ -47,35 +47,38 @@ export default async function Blog() {
                     width={1200}
                     height={700}
                     priority
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                   />
                 </div>
-                <div className="p-4 md:p-5 lg:p-6 flex flex-col flex-grow">
-                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-xl md:text-2xl lg:text-2xl leading-tight font-semibold line-clamp-2 mb-2 md:mb-3">
+                <div className="p-5 md:p-6 lg:p-8 flex-grow overflow-visible">
+                  <h3 className="text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] text-xl md:text-2xl lg:text-2xl leading-tight font-semibold break-words">
                     {post.title}
                   </h3>
-                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-sm md:text-base lg:text-base overflow-hidden line-clamp-3 md:line-clamp-4">
+                  <p className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif'] text-sm md:text-base lg:text-base mt-3 lg:mt-4 break-words">
                     {post.description}
                   </p>
-                  <div className="flex justify-between items-center mt-auto">
+                  <div className="flex justify-between items-center mt-4 lg:mt-6">
                     <span className="text-[var(--text-color-dark)]/70 text-xs md:text-sm">
-                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
+                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
                       })}
                     </span>
-                    <span className="text-[var(--accent-color)] font-medium text-sm md:text-base inline-flex items-center group transition-all duration-300 py-1 px-2 rounded-md hover:bg-[var(--accent-color)]/10 hover:underline cursor-pointer">
-
+                    <span className="text-blue-500 font-medium text-sm md:text-base inline-flex items-center group transition-all duration-300 py-1 px-2 rounded-md hover:bg-[var(--accent-color)]/10 hover:underline cursor-pointer">
                       Read More
-                      <svg 
+                      <svg
                         className="w-4 h-4 ml-1 transition-all duration-300 ease-in-out transform group-hover:translate-x-1.5 group-hover:scale-110"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24" 
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
                       </svg>
                     </span>
                   </div>
