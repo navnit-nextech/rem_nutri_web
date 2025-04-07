@@ -7,43 +7,47 @@ import ServicesProcess from "../components/services/ServicesProcess";
 import ServiceQueries from "../components/services/ServiceQueries";
 import GetInTouch from "../components/GetInTouch";
 import HealthServices from "../components/services/HealthServices";
+import WhyFizeo from "../components/WhyFizeo";
+import NavbarWrapper from "../components/NavbarWrapper";
 
 const Page = () => {
-  const [navTheme, setNavTheme] = useState("dark");
-  const processRef = useRef<HTMLDivElement>(null);
+  // const [navTheme, setNavTheme] = useState("dark");
+  // const processRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (processRef.current) {
-        const processBottom = processRef.current.getBoundingClientRect().bottom;
-        // When the process section is about to leave the viewport
-        if (processBottom <= 100) { // Using 100px threshold
-          setNavTheme("light");
-        } else {
-          setNavTheme("dark");
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (processRef.current) {
+  //       const processBottom = processRef.current.getBoundingClientRect().bottom;
+  //       // When the process section is about to leave the viewport
+  //       if (processBottom <= 100) { // Using 100px threshold
+  //         setNavTheme("light");
+  //       } else {
+  //         setNavTheme("dark");
+  //       }
+  //     }
+  //   };
 
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
+  //   // Add scroll event listener
+  //   window.addEventListener("scroll", handleScroll);
     
-    // Initial check
-    handleScroll();
+  //   // Initial check
+  //   handleScroll();
     
-    // Cleanup
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   // Cleanup
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div>
-      <Navbar theme={navTheme}/>
+      <NavbarWrapper/>
+      
       <ServicesHero />
-      <div ref={processRef}>
+      {/* <div ref={processRef}>
         <ServicesProcess />
-      </div>
+      </div> */}
+      <WhyFizeo />
       <HealthServices />
       <ServiceQueries/>
       <GetInTouch />

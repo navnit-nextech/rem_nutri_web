@@ -6,7 +6,7 @@ const FeatureGrid = () => {
     { title: "Nutritionally Balanced", icon: "🌱" },
     { title: "Deliciously Healthy", icon: "🥗" },
     { title: "Minimally Processed", icon: "🌿" },
-    { title: "100% Plant-Based", icon: "🥬" },
+    { title: "Protein Rich", icon: "🫘" },
     { title: "Created by Experts", icon: "👨‍⚕️" },
     { title: "Holistic Approach", icon: "⭐" },
     { title: "Yoga and Exercise Sessions", icon: "🧘‍♀️" },
@@ -14,14 +14,15 @@ const FeatureGrid = () => {
     { title: "Knowledge and Skills", icon: "📚" },
   ];
 
+
   const bottomFeatures = [
     { title: "130+ Recipes", icon: "🥘" },
-    { title: "Balance Hormones", icon: "⚖️" },
-    { title: "Desi & Contemporary", icon: "🍲" },
-    { title: "Fresh Daily Meals", icon: "🥗" },
+    { title: "Hormonal Balance", icon: "⚖️" },
+    { title: "Desi & Contemporary", icon: "🍛" },
+    { title: "Freshly Prepared Daily", icon: "🥗" },
     { title: "Evidence-Based", icon: "🔬" },
     { title: "Gut Health Focus", icon: "💪" },
-    { title: "1-on-1 Consultations", icon: "👥" },
+    { title: "1:1 Consultations", icon: "👥" },
     { title: "Remission Programs", icon: "🎯" },
     { title: "Supportive Community", icon: "🤝" },
   ];

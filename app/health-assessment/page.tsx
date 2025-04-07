@@ -45,6 +45,18 @@ const programs = [
     name: "Rem Fit",
     description: "Program to achieve intense weight loss @4-5kg/month or simply stay fit",
     icon: "⚖️"
+  },
+  {
+    id: "rem-balance",
+    name: "Rem Balance",
+    description: "Program for maintaining consistent weight through balanced nutrition",
+    icon: "⚖️"
+  },
+  {
+    id: "rem-protein",
+    name: "Rem Protein",
+    description: "Protein-focused nutrition for healthy weight gain and muscle development",
+    icon: "💪"
   }
 ];
 
@@ -115,6 +127,22 @@ const formSteps = [
     ],
   },
   {
+    title: "Health Knowledge",
+    description: "Tell us about your health awareness",
+    fields: [
+      {
+        type: "select",
+        name: "knowsHealthConditions",
+        label: "Do you know if you have any specific health conditions?",
+        options: [
+          { value: "yes", label: "Yes, I am aware of my health conditions", icon: "✅" },
+          { value: "no", label: "No, I'm not sure about my health conditions", icon: "❓" },
+        ],
+        required: true,
+      },
+    ],
+  },
+  {
     title: "Health Screening",
     description: "Let's check your key health indicators",
     fields: [
@@ -159,6 +187,7 @@ const formSteps = [
           { value: "intense", label: "Intense Weight Loss (4-5kg/month)", icon: "⚡" },
           { value: "moderate", label: "Moderate Weight Loss", icon: "⚖️" },
           { value: "maintain", label: "Maintain Weight", icon: "🎯" },
+          { value: "gain", label: "Healthy Weight Gain", icon: "💪" },
         ],
         required: true,
       },
@@ -185,7 +214,6 @@ const formSteps = [
         label: "Current Diet",
         options: [
           { value: "vegetarian", label: "Vegetarian", icon: "🥬" },
-          { value: "vegan", label: "Vegan", icon: "🌱" },
           { value: "nonVegetarian", label: "Non-Vegetarian", icon: "🍖" },
         ],
         required: true,
@@ -199,7 +227,6 @@ const formSteps = [
           { value: "Poor Sleep", label: "Poor Sleep", icon: "😴" },
           { value: "Meals", label: "Irregular Meals", icon: "⏰" },
           { value: "Processed", label: "Processed Food", icon: "🍔" },
-          { value: "none", label: "None of the above", icon: "✅" },
         ],
         required: true,
       },
@@ -253,6 +280,7 @@ const HealthAssessment = () => {
       gender: "",
       weight: "",
       height: "",
+      knowsHealthConditions: "",
       healthConditions: [] as string[],
       bloodSugar: "",
       weightGoal: "",
@@ -371,9 +399,17 @@ const HealthAssessment = () => {
     const bloodSugar = formData.bloodSugar;
     const activityLevel = formData.activityLevel;
     const lifestyleFactors = formData.lifestyleFactors || [];
+    const knowsHealthConditions = formData.knowsHealthConditions;
 
     // Initialize recommended programs array
     const recommendedPrograms: string[] = [];
+
+    // If user doesn't know about health conditions, recommend general programs
+    if (knowsHealthConditions === 'no' || conditions.includes('none') || conditions.length === 0) {
+      recommendedPrograms.push('rem-balance');
+      recommendedPrograms.push('rem-protein');
+      return recommendedPrograms;
+    }
 
     // Check for RemDi 2 (Diabetes)
     if (bloodSugar === 'diabetic' || bloodSugar === 'prediabetic') {
@@ -393,16 +429,47 @@ const HealthAssessment = () => {
       recommendedPrograms.push('rem-meta');
     }
 
-    // Check for Rem Fit (Weight Management)
-    if (bmiValue && bmiValue > 30) {
-      recommendedPrograms.push('rem-fit');
-    } else if (weightGoal === 'intense' || weightGoal === 'moderate') {
-      recommendedPrograms.push('rem-fit');
+    // Check BMI categories for weight management programs
+    if (bmiValue) {
+      if (bmiValue < 18.5) {
+        // Underweight - recommend RemProtein
+        recommendedPrograms.push('rem-protein');
+      } else if (bmiValue >= 18.5 && bmiValue < 25) {
+        // Normal weight - recommend RemBalance and possibly RemProtein
+        recommendedPrograms.push('rem-balance');
+        
+        // If they explicitly want to gain weight, recommend RemProtein
+        if (weightGoal === 'gain') {
+          recommendedPrograms.push('rem-protein');
+        }
+      } else if (bmiValue >= 25) {
+        // Overweight or obese - recommend RemFit
+        recommendedPrograms.push('rem-fit');
+      }
     }
 
-    // If no specific conditions match, recommend Rem Fit for general fitness
+    // Check weight goals regardless of BMI
+    if (weightGoal === 'intense' || weightGoal === 'moderate') {
+      // For weight loss goals
+      if (!recommendedPrograms.includes('rem-fit')) {
+        recommendedPrograms.push('rem-fit');
+      }
+    } else if (weightGoal === 'maintain') {
+      // For weight maintenance goals
+      if (!recommendedPrograms.includes('rem-balance')) {
+        recommendedPrograms.push('rem-balance');
+      }
+    } else if (weightGoal === 'gain') {
+      // For weight gain goals
+      if (!recommendedPrograms.includes('rem-protein')) {
+        recommendedPrograms.push('rem-protein');
+      }
+    }
+
+    // If no specific conditions match, recommend RemBalance and RemProtein as general programs
     if (recommendedPrograms.length === 0) {
-      recommendedPrograms.push('rem-fit');
+      recommendedPrograms.push('rem-balance');
+      recommendedPrograms.push('rem-protein');
     }
 
     return recommendedPrograms;
@@ -432,6 +499,11 @@ const HealthAssessment = () => {
   };
 
   const validateForm = () => {
+    // If the user doesn't know their health conditions, no need to validate health screening fields
+    if (formData.knowsHealthConditions === "no") {
+      return true;
+    }
+    
     const requiredFields = [
       { name: "bloodSugar", label: "Blood Sugar Level" },
     ];
@@ -633,6 +705,15 @@ const HealthAssessment = () => {
         return;
       }
       setCurrentStep(currentStep + 1);
+    } else if (currentStep === 2 && formData.knowsHealthConditions === "no") {
+      // Skip health screening if user doesn't know their health conditions
+      setCurrentStep(4); // Skip to Weight Goals
+      // Set default values for skipped fields
+      setFormData({
+        ...formData,
+        healthConditions: [],
+        bloodSugar: "",
+      });
     } else if (currentStep < formSteps.length - 1 && continueFullAssessment) {
       setCurrentStep(currentStep + 1);
     } else {
@@ -651,7 +732,14 @@ const HealthAssessment = () => {
 
   const prevStep = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
+      // If we're on the Weight Goals page (step 4) and the user doesn't know their health conditions
+      // we need to skip back to the Health Knowledge page (step 2) rather than the Health Screening page (step 3)
+      if (currentStep === 4 && formData.knowsHealthConditions === "no") {
+        setCurrentStep(2);
+      } else {
+        setCurrentStep(currentStep - 1);
+      }
+      
       // Scroll to top of the screen
       window.scrollTo({
         top: 0,
@@ -743,12 +831,12 @@ const HealthAssessment = () => {
                   ))
                 ) : (
                   <>
-                    {field.options.slice(0, 2).map((option) => (
+                    {field.options.map((option, index) => (
                       <motion.button
                         key={option.value}
                         type="button"
                         onClick={() => setFormData({ ...formData, [field.name]: option.value })}
-                        className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === option.value
+                        className={`${index === field.options.length - 1 && field.options.length === 3 ? "col-span-2" : ""} p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === option.value
                             ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
                             : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                           }`}
@@ -759,19 +847,6 @@ const HealthAssessment = () => {
                         <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
                       </motion.button>
                     ))}
-                    <motion.button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, [field.name]: field.options[2].value })}
-                      className={`col-span-2 p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === field.options[2].value
-                          ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
-                          : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                        }`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <div className="text-2xl mb-2">{field.options[2].icon}</div>
-                      <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{field.options[2].label}</div>
-                    </motion.button>
                   </>
                 )}
               </div>
@@ -929,6 +1004,7 @@ const HealthAssessment = () => {
       gender: "",
       weight: "",
       height: "",
+      knowsHealthConditions: "",
       healthConditions: [],
       bloodSugar: "",
       weightGoal: "",
@@ -939,18 +1015,15 @@ const HealthAssessment = () => {
       medications: "",
     });
     setCurrentStep(0);
-    setBmi(null);
-    setRecommendedProgram([]);
-    setValidationError(null);
-    setIsSubmitting(false);
     setShowBmiResult(false);
     setContinueFullAssessment(false);
     setInitialStepsCompleted(false);
-    setHeightUnit('ft');
+    setBmi(null);
+    setRecommendedProgram([]);
     setFeet('');
     setInches('');
-
-    // Clear localStorage when starting a new assessment
+    
+    // Clear localStorage
     if (typeof window !== 'undefined') {
       localStorage.removeItem('healthAssessmentData');
       localStorage.removeItem('healthAssessmentStep');
@@ -1017,6 +1090,15 @@ const HealthAssessment = () => {
                       }}
                     />
                   </div>
+                </div>
+              )}
+
+              {/* Data security message - shown only on the first step */}
+              {currentStep === 0 && !showBmiResult && (
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 mb-8">
+                  <p className="text-[var(--text-color-plain)] text-center">
+                    <span className="text-[var(--accent-color)] font-bold">Your data is secure with us.</span> We follow strict privacy protocols to protect your personal information.
+                  </p>
                 </div>
               )}
 
@@ -1099,16 +1181,10 @@ const HealthAssessment = () => {
                           <p>Let's continue to understand your unique health needs better.</p>
                         </div>
                         
-                        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 mb-8">
-                          <p className="text-[var(--text-color-plain)] mb-4 text-center">
-                            <span className="text-[var(--accent-color)] font-bold">Your data is secure with us.</span> We follow strict privacy protocols to protect your personal information.
-                          </p>
-                        </div>
-                        
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                           <motion.button
                             whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
+                            whileTap={{ scale: 0.95 }}
                             onClick={resetForm}
                             className="bg-white/5 backdrop-blur-sm text-[var(--text-color-plain)] py-3 px-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:shadow-md order-2 sm:order-1"
                           >
@@ -1352,6 +1428,8 @@ const HealthAssessment = () => {
                                       else if (programId === "rem-bliss") routeId = "rembliss";
                                       else if (programId === "rem-fit") routeId = "remfit";
                                       else if (programId === "rem-meta") routeId = "remmeta";
+                                      else if (programId === "rem-balance") routeId = "rembalance";
+                                      else if (programId === "rem-protein") routeId = "remprotein";
                                       router.push(`/programs/${routeId}`);
                                     }}
                                     className="bg-[var(--background-color-light)] text-black py-2 px-6 rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"

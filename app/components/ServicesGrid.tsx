@@ -50,6 +50,18 @@ const Remfit = () => (
 
 );
 
+const RemBalance = () => (
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 20C10.4178 20 8.87104 19.5308 7.55544 18.6518C6.23985 17.7727 5.21447 16.5233 4.60897 15.0615C4.00347 13.5997 3.84504 11.9911 4.15372 10.4393C4.4624 8.88743 5.22433 7.46197 6.34315 6.34315C7.46197 5.22433 8.88743 4.4624 10.4393 4.15372C11.9911 3.84504 13.5997 4.00346 15.0615 4.60896C16.5233 5.21447 17.7727 6.23984 18.6518 7.55544C19.5308 8.87103 20 10.4177 20 12C20 14.1217 19.1572 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20ZM16 11H8C7.73478 11 7.48043 11.1054 7.29289 11.2929C7.10536 11.4804 7 11.7348 7 12C7 12.2652 7.10536 12.5196 7.29289 12.7071C7.48043 12.8946 7.73478 13 8 13H16C16.2652 13 16.5196 12.8946 16.7071 12.7071C16.8946 12.5196 17 12.2652 17 12C17 11.7348 16.8946 11.4804 16.7071 11.2929C16.5196 11.1054 16.2652 11 16 11ZM16 7H8C7.73478 7 7.48043 7.10536 7.29289 7.29289C7.10536 7.48043 7 7.73478 7 8C7 8.26522 7.10536 8.51957 7.29289 8.70711C7.48043 8.89464 7.73478 9 8 9H16C16.2652 9 16.5196 8.89464 16.7071 8.70711C16.8946 8.51957 17 8.26522 17 8C17 7.73478 16.8946 7.48043 16.7071 7.29289C16.5196 7.10536 16.2652 7 16 7ZM16 15H8C7.73478 15 7.48043 15.1054 7.29289 15.2929C7.10536 15.4804 7 15.7348 7 16C7 16.2652 7.10536 16.5196 7.29289 16.7071C7.48043 16.8946 7.73478 17 8 17H16C16.2652 17 16.5196 16.8946 16.7071 16.7071C16.8946 16.5196 17 16.2652 17 16C17 15.7348 16.8946 15.4804 16.7071 15.2929C16.5196 15.1054 16.2652 15 16 15Z" fill="black"/>
+  </svg>
+);
+
+const RemProtein = () => (
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12.76 3.76C13.07 3.45 13.07 2.95 12.76 2.64C12.45 2.33 11.95 2.33 11.64 2.64L7.85 6.43L6.44 5.02C6.13 4.71 5.63 4.71 5.32 5.02C5.01 5.33 5.01 5.83 5.32 6.14L7.44 8.26C7.59 8.41 7.8 8.5 8 8.5C8.2 8.5 8.41 8.41 8.56 8.26L12.76 3.76ZM14.05 8.5H22C22.5523 8.5 23 8.94772 23 9.5C23 10.0523 22.5523 10.5 22 10.5H14.05C13.4977 10.5 13.05 10.0523 13.05 9.5C13.05 8.94772 13.4977 8.5 14.05 8.5ZM2 9.5C2 8.94772 2.44772 8.5 3 8.5H8C8.55228 8.5 9 8.94772 9 9.5C9 10.0523 8.55228 10.5 8 10.5H3C2.44772 10.5 2 10.0523 2 9.5ZM12.76 11.76C13.07 11.45 13.07 10.95 12.76 10.64C12.45 10.33 11.95 10.33 11.64 10.64L7.85 14.43L6.44 13.02C6.13 12.71 5.63 12.71 5.32 13.02C5.01 13.33 5.01 13.83 5.32 14.14L7.44 16.26C7.59 16.41 7.8 16.5 8 16.5C8.2 16.5 8.41 16.41 8.56 16.26L12.76 11.76ZM14.05 16.5H22C22.5523 16.5 23 16.9477 23 17.5C23 18.0523 22.5523 18.5 22 18.5H14.05C13.4977 18.5 13.05 18.0523 13.05 17.5C13.05 16.9477 13.4977 16.5 14.05 16.5ZM2 17.5C2 16.9477 2.44772 16.5 3 16.5H8C8.55228 16.5 9 16.9477 9 17.5C9 18.0523 8.55228 18.5 8 18.5H3C2.44772 18.5 2 18.0523 2 17.5Z" fill="black"/>
+  </svg>
+);
+
 const Customwellness = () => (
   <div style={{ display: "contents" }}>
     <svg
@@ -90,11 +102,15 @@ const ServiceCard = ({ icon, title, description, onClick }: {
       case "RemDi 2":
         return "https://images.unsplash.com/photo-1628619876503-2db74e724757?q=80&w=3010&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       case "Rem Bliss":
-        return "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=2883&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        return "https://images.unsplash.com/photo-1728562870259-8136fa21cc72?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGluZGlhbiUyMGZlbWFsZSUyMGdyb3VwfGVufDB8fDB8fHww";
       case "Rem Meta":
         return "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       case "Rem Fit":
-        return "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        return "https://images.unsplash.com/photo-1659081447286-dc619241c719?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+      case "Rem Balance":
+        return "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+      case "Rem Protein":
+        return "https://images.unsplash.com/photo-1605655293594-92e21b3409bf?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       default:
         return "https://images.unsplash.com/photo-1628619876503-2db74e724757?q=80&w=3010&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     }
@@ -112,7 +128,7 @@ const ServiceCard = ({ icon, title, description, onClick }: {
     <div
       className="relative w-full h-full flex flex-col md:flex-row
                  border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[20px] overflow-hidden 
-                 shadow-md hover:shadow-xl transition-all duration-500 ease-in-out group"
+                 shadow-md hover:shadow-xl transition-all duration-500 ease-in-out group md:h-[350px]"
     >
       {/* Decorative corner elements */}
       <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-[var(--text-color-dark)]/20 rounded-tl-[20px] z-20" />
@@ -140,7 +156,7 @@ const ServiceCard = ({ icon, title, description, onClick }: {
           <div className="transform transition-all duration-500 group-hover:rotate-12 group-hover:scale-110">
             {modifiedIcon}
     </div>
-          <h3 className="text-[24px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] relative">
+          <h3 className="text-[22px] sm:text-[22px] md:text-[24px] lg:text-[27px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] relative min-h-[45px] flex items-center whitespace-normal">
             {title}
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--text-color-dark)] group-hover:w-full transition-all duration-500"></span>
           </h3>
@@ -221,13 +237,25 @@ const ServicesGrid = () => {
       description: "To achieve intense weight loss @4-5kg/month or simply stay fit.",
       path: "/programs/remfit"
     },
+    {
+      icon: <RemBalance />,
+      title: "Rem Balance",
+      description: "Maintain consistent weight through balanced meals and lifestyle.",
+      path: "/programs/rembalance"
+    },
+    {
+      icon: <RemProtein />,
+      title: "Rem Protein",
+      description: "Optimize protein intake for better health, energy, and overall vitality.",
+      path: "/programs/remprotein"
+    },
   ];
 
   return (
     <div className="w-full bg-[var(--background-color-plain2)] cursor-pointer bg-cover bg-center bg-no-repeat py-16 pt-3 md:pt-0 md:pb-16 px-3 sm:px-4 transition-all duration-300">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 justify-items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 justify-items-center">
         {services.map((service, index) => (
-          <div key={index} className="w-full max-w-[410px] sm:max-w-[410px] md:max-w-[500px] lg:max-w-[600px]">
+          <div key={index} className="w-full max-w-[425px] sm:max-w-[425px] md:max-w-[520px] lg:max-w-[620px]">
           <ServiceCard
             icon={service.icon}
             title={service.title}

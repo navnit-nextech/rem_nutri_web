@@ -113,6 +113,20 @@ export const generateEmailContent = (data: any) => {
         description: "A personalized program designed to help you achieve your health goals.",
         route: "remfit",
         color: "#10B981" // Green
+      },
+      "rem-balance": {
+        name: "Rem Balance",
+        fullName: "Weight Maintenance Programme",
+        description: "A personalized program designed to help you maintain consistent weight through balanced nutrition.",
+        route: "rembalance",
+        color: "#FACC15" // Yellow
+      },
+      "rem-protein": {
+        name: "Rem Protein",
+        fullName: "Protein Optimization Programme",
+        description: "A specialized program focused on optimal protein intake for improved nutrition and health outcomes.",
+        route: "remprotein",
+        color: "#F97316" // Orange
       }
     };
 

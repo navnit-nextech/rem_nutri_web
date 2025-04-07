@@ -80,15 +80,15 @@ const GetInTouch = () => {
         </ScrollAnimation>
 
         <ScrollAnimation delay={0.4}>
-        <div className="relative max-w-[1200px] mx-auto flex flex-col lg:block">
-  {/* Image section */}
-  <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden bg-[#faf3e5] bg-opacity-90 flex items-center justify-center">
-    <img
-      src="images/get_in_touch.png"
-      alt="Person exercising"
-      className="w-full h-full object-contain md:pr-[15%]"
-    />
-  </div>
+          <div className="relative max-w-[1200px] mx-auto flex flex-col lg:block">
+            {/* Image section */}
+            <div className="w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden bg-[#faf3e5] bg-opacity-90 flex items-center justify-center">
+              <img
+                src="images/get_in_touch.png"
+                alt="Person exercising"
+                className="w-full h-full object-contain md:pr-[15%]"
+              />
+            </div>
 
             {/* Content section - positioned absolutely to overlap */}
             <div className="relative lg:absolute lg:top-1/2 lg:right-0 lg:transform lg:-translate-y-1/2 w-full lg:w-[42%] p-6 md:p-8 lg:p-10 bg-[var(--background-color-plain)] rounded-2xl -mt-6 lg:mt-0 lg:h-full lg:pt-16">

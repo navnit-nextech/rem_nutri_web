@@ -1,4 +1,5 @@
-import React from "react";
+
+
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import TherapeuticExcellence from "./components/TherapeuticExcellence";
@@ -11,10 +12,14 @@ import BlogSection from "./components/BlogSection";
 import GetInTouch from "./components/GetInTouch";
 import Footer from "./components/Footer";
 import ScrollAnimation from "./components/ScrollAnimation";
+import ServicesProcess from "./components/services/ServicesProcess";
+import React from "react";
+
 
 const Index = () => {
-  return (
+  
 
+  return (
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
@@ -24,12 +29,18 @@ const Index = () => {
       
         <ServicesGrid />
 
+        
+        <ServicesProcess />
+      
+
       
       
-      <Testimonials />
-      <WhyFizeo />
+      
+      {/* <WhyFizeo /> */}
       {/* <FizeoApproach /> */}
+      
       <BlogSection />
+      <Testimonials />
       <GetInTouch />
     </div>
   );

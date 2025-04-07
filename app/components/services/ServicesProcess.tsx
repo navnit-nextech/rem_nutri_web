@@ -148,7 +148,7 @@ const ServicesProcess = () => {
                     <img
                       src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
                       alt="Patient receiving physiotherapy treatment"
-                      className="w-full h-175 object-cover"
+                      className="w-full md:h-175 h-80 object-cover"
                     />
                   </div>
                 </div>

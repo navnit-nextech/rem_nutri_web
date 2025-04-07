@@ -68,3 +68,13 @@ body {
 .clip-slant-top {
   clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 100%);
 }
+
+/* Animation for countdown circle */
+@keyframes countdown {
+  0% {
+    stroke-dashoffset: 113.1; /* 2*PI*18 */
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
