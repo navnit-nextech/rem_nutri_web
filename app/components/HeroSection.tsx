@@ -212,12 +212,12 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        {/* Scroll Indicator - Significantly reduced size for mobile */}
+        {/* Scroll Indicator - Repositioned higher for mobile */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 sm:gap-4"
+          className="absolute bottom-13 sm:bottom-3 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 sm:gap-4"
         >
           <div className="text-[var(--text-color-dark)] text-[14px] sm:text-[20px] font-bold">
             Scroll down
