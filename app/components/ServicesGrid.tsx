@@ -270,19 +270,19 @@ const ServicesGrid = () => {
         <div className="flex justify-center mt-8 sm:mt-9 md:mt-10">
           <Link href="/health-assessment">
             <Button className="bg-[var(--background-color-light)] hover:opacity-80 font-['DM_Sans', 'sans-serif'] 
-                          text-[16px] sm:text-[17px] md:text-[18px] text-[var(--text-color-dark)] !font-bold rounded-md 
-                          px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7
-                          cursor-pointer w-full sm:w-auto min-w-[250px] sm:min-w-[280px] md:min-w-[300px] lg:min-w-[360px] 
+                          text-[20px] sm:text-[17px] md:text-[18px] text-[var(--text-color-dark)] !font-extrabold rounded-md 
+                          px-6 sm:px-8 md:px-10 py-6 sm:py-6 md:py-7
+                          cursor-pointer w-full sm:w-auto min-w-[280px] sm:min-w-[280px] md:min-w-[300px] lg:min-w-[360px] 
                           shadow-md hover:shadow-lg transition-all duration-300">
             FIND THE RIGHT PROGRAMME
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 sm:h-5 sm:w-5 md:h-6 md:w-6 ml-2 transform group-hover:translate-x-2 transition-transform duration-500" 
+                className="h-6 w-6 sm:h-5 sm:w-5 md:h-6 md:w-6 ml-2 transform group-hover:translate-x-2 transition-transform duration-500" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
           </Button>
         </Link>
