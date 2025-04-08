@@ -84,7 +84,7 @@ const HeroSection = () => {
   return (
     <section className="relative">
       <div
-        className="relative w-full min-h-[600px] sm:min-h-screen pt-36 pb-10 sm:pt-42 sm:pb-20 flex items-center justify-center 
+        className="relative w-full min-h-[600px] sm:min-h-screen pt-32 sm:pt-42 pb-10 sm:pb-20 flex items-center justify-center 
         bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 sm:px-0"
       >
         <div className="max-w-7xl w-full relative">
@@ -213,7 +213,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        {/* Scroll Indicator - Repositioned higher for mobile */}
+        {/* Scroll Indicator - Adjusted position */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -221,8 +221,8 @@ const HeroSection = () => {
           className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 sm:gap-4"
         >
           <div className="text-[var(--text-color-dark)] text-[14px] sm:text-[20px] font-bold">
-            Scroll down
-            <span className="hidden sm:inline"> for more</span>
+            <span className="block sm:hidden">Discover Your Path</span>
+            <span className="hidden sm:block">Ready to Transform? Scroll Down</span>
           </div>
           <motion.div
             animate={{ y: [0, 5, 0] }}
