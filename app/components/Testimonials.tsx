@@ -78,7 +78,7 @@ const Testimonials = () => {
 
   return (
     <div className="w-full bg-[var(--background-color-dark)] pt-20 md:pb-25 sm:pt-40 sm:pb-15  relative">
-      <div className=" absolute -sm:top-[4%] -top-16 left-[50%] transform -translate-x-1/2 ">
+      <div className=" absolute -top-[6.5%] md:-top-16 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56 56"
