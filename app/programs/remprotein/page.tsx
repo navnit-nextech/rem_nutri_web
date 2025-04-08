@@ -33,7 +33,7 @@ const programSteps = [
   },
   {
     number: "03",
-    title: "Meal Implementation",
+    title: "Meal Solutions",
     subtitle: "Practical protein-rich options",
     description: "Learn how to prepare delicious, protein-rich meals and snacks that fit your lifestyle and preferences, making it easy to consistently meet your protein needs.",
   },
@@ -41,7 +41,7 @@ const programSteps = [
     number: "04",
     title: "Progress Monitoring",
     subtitle: "Ongoing adjustments and support",
-    description: "Regular assessments of your progress with our nutrition experts who will fine-tune your protein intake and overall nutrition plan to ensure optimal weight gain results.",
+    description: "Regular assessments of your progress with our nutrition experts who will fine-tune your protein intake and overall nutrition plan to ensure optimal gain results.",
   },
 ];
 
@@ -289,23 +289,23 @@ const RemProteinPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Understanding Protein Nutrition */}
             <ScrollAnimation>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02] h-[350px] flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div className="bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[var(--text-color-dark)]/10 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02] min-h-[350px] h-auto flex flex-col">
+                <div className="flex items-center gap-4 mb-4 sm:mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M12 8V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <h3 className="text-[24px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
+                  <h3 className="text-[20px] sm:text-[24px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
                     Understanding Protein Nutrition
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow">
+                <p className="text-[var(--text-color-dark)]/80 text-base sm:text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow">
                   Protein is the building block of life, essential for muscle repair, immune function, and overall health. Our program helps you understand the importance of quality protein sources and optimal timing for maximum benefits.
                 </p>
-                <div className="mt-6 flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
+                <div className="mt-4 sm:mt-6 flex items-center gap-2 text-[var(--text-color-dark)]/60 text-xs sm:text-sm">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -316,22 +316,22 @@ const RemProteinPage = () => {
 
             {/* The Rem Protein Solution */}
             <ScrollAnimation delay={0.2}>
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-[var(--text-color-dark)]/10 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02] h-[350px] flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div className="bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[var(--text-color-dark)]/10 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--text-color-light)]/5 hover:border-[var(--text-color-light)]/20 hover:transform hover:scale-[1.02] min-h-[350px] h-auto flex flex-col">
+                <div className="flex items-center gap-4 mb-4 sm:mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[var(--text-color-light)]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--text-color-dark)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M8.21 13.89L7 23L12 20L17 23L15.79 13.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <h3 className="text-[24px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
+                  <h3 className="text-[20px] sm:text-[24px] font-['Libre_Baskerville',serif] text-[var(--text-color-dark)]">
                     The Rem Protein Solution
                   </h3>
                 </div>
-                <p className="text-[var(--text-color-dark)]/80 text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow">
+                <p className="text-[var(--text-color-dark)]/80 text-base sm:text-lg leading-relaxed font-['DM_Sans', 'sans-serif'] flex-grow">
                   Rem Protein combines scientific principles of protein nutrition with personalized meal planning to optimize your protein intake. Our approach focuses on quality sources, proper timing, and balanced nutrition for optimal health and vitality.
                 </p>
-                <div className="mt-6 flex items-center gap-2 text-[var(--text-color-dark)]/60 text-sm">
+                <div className="mt-4 sm:mt-6 flex items-center gap-2 text-[var(--text-color-dark)]/60 text-xs sm:text-sm">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -345,15 +345,15 @@ const RemProteinPage = () => {
 
       {/* Program Features Section */}
       <section className="bg-[var(--background-color-dark)] py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
               <ScrollAnimation>
-                <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
+                <h2 className="text-4xl sm:text-5xl mb-8 font-['Libre_Baskerville',serif]">
                   <span className="text-[var(--text-color-light)]">Program Features</span> for
                   your protein journey.
                 </h2>
-                <p className="text-lg mb-8 text-[var(--text-color-plain)]/80">
+                <p className="text-base sm:text-lg mb-8 text-[var(--text-color-plain)]/80 pr-4 sm:pr-0">
                   Our comprehensive program combines expert protein nutrition guidance, personalized meal planning, and ongoing support
                   to help you optimize your protein intake for better health and vitality.
                 </p>
@@ -374,7 +374,7 @@ const RemProteinPage = () => {
                         alt="Rem Protein Program Features"
                         width={500}
                         height={300}
-                        className="w-full h-[650px] object-cover"
+                        className="w-full h-[300px] md:h-[650px] object-cover"
                       />
                     </div>
                   </div>
@@ -383,7 +383,7 @@ const RemProteinPage = () => {
             </div>
 
             <motion.div
-              className="lg:col-span-7 relative overflow-hidden sm:pl-20 pl-10"
+              className="lg:col-span-7 relative overflow-hidden sm:pl-20 pl-10 pr-8 sm:pr-0"
               ref={containerRef}
             >
               <div className="space-y-48 relative" ref={contentRef}>
@@ -432,7 +432,7 @@ const RemProteinPage = () => {
                         ease: [0.21, 0.47, 0.32, 0.98],
                       }}
                     >
-                      <div className="pt-4 pl-5">
+                      <div className="pt-4 pl-5 pr-6 sm:pr-0">
                         <div className="mb-2 text-[var(--text-color-light)] text-sm">
                           {step.subtitle}
                         </div>

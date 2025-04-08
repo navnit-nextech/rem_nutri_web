@@ -377,7 +377,7 @@ const RemBlissPage = () => {
                       <img 
                         src="https://images.unsplash.com/photo-1501959915551-4e8d30928317?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                         alt="RemBliss Program Features" 
-                        className="w-full h-[650px] object-cover rounded-xl"
+                        className="w-full h-[300px] md:h-[650px] object-cover rounded-xl"
                       />
                     </div>
                   </div>

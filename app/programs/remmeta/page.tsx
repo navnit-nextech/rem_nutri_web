@@ -380,7 +380,7 @@ const RemMetaPage = () => {
                         alt="RemMeta Program Features"
                         width={500}
                         height={300}
-                        className="w-full h-[650px] object-cover rounded-xl"
+                        className="w-full h-[300px] md:h-[650px] object-cover rounded-xl"
                       />
                     </div>
                   </div>

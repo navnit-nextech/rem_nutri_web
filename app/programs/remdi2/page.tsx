@@ -382,7 +382,7 @@ const RemDi2Page = () => {
                         alt="RemDi 2 Program Features"
                         width={500}
                         height={300}
-                        className="w-full h-[650px] object-cover"
+                        className="w-full h-[300px] md:h-[650px] object-cover"
                       />
                     </div>
                   </div>

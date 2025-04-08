@@ -21,7 +21,7 @@ const DecorativeStar = () => (
 const programSteps = [
   {
     number: "01",
-    title: "Comprehensive Assessment",
+    title: "Complete Assessment",
     subtitle: "Personalized evaluation of your needs",
     description: "Begin with a thorough evaluation of your current health status, eating habits, and lifestyle factors to create a personalized balance plan tailored specifically for you.",
   },
@@ -345,15 +345,15 @@ const RemBalancePage = () => {
 
       {/* Program Features Section */}
       <section className="bg-[var(--background-color-dark)] py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
               <ScrollAnimation>
-                <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
+                <h2 className="text-4xl sm:text-5xl mb-8 font-['Libre_Baskerville',serif]">
                   <span className="text-[var(--text-color-light)]">Program Features</span> for
                   your balanced lifestyle.
                 </h2>
-                <p className="text-lg mb-8 text-[var(--text-color-plain)]/80">
+                <p className="text-base sm:text-lg mb-8 text-[var(--text-color-plain)]/80 pr-4 sm:pr-0">
                   Our comprehensive program combines expert nutrition guidance, sustainable meal planning, and ongoing support
                   to help you maintain your ideal weight without restrictive dieting.
                 </p>
@@ -373,8 +373,8 @@ const RemBalancePage = () => {
                         src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Rem Balance Program Features"
                         width={500}
-                        height={300}
-                        className="w-full h-[650px] object-cover"
+                          height={300}
+                          className="w-full h-[300px] md:h-[650px] object-cover"
                       />
                     </div>
                   </div>
@@ -383,7 +383,7 @@ const RemBalancePage = () => {
             </div>
 
             <motion.div
-              className="lg:col-span-7 relative overflow-hidden sm:pl-20 pl-10"
+              className="lg:col-span-7 relative overflow-hidden sm:pl-20 pl-10 pr-6 sm:pr-0"
               ref={containerRef}
             >
               <div className="space-y-48 relative" ref={contentRef}>
@@ -432,7 +432,7 @@ const RemBalancePage = () => {
                         ease: [0.21, 0.47, 0.32, 0.98],
                       }}
                     >
-                      <div className="pt-4 pl-5">
+                      <div className="pt-4 pl-5 pr-4 sm:pr-0">
                         <div className="mb-2 text-[var(--text-color-light)] text-sm">
                           {step.subtitle}
                         </div>
