@@ -78,7 +78,7 @@ const Testimonials = () => {
 
   return (
     <div className="w-full bg-[var(--background-color-dark)] pt-20 md:pb-25 sm:pt-40 sm:pb-15  relative">
-      <div className=" absolute sm:top-[-4.5%] -top-12 left-[50%] transform -translate-x-1/2 ">
+      <div className=" absolute -sm:top-[4%] -top-16 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56 56"
@@ -106,13 +106,11 @@ const Testimonials = () => {
           </div>
         </ScrollAnimation>
 
-        <ScrollAnimation delay={0.2}>
+        {/* <ScrollAnimation delay={0.2}>
           <div className="max-w-full mx-auto mb-12 relative flex justify-center">
             <div className="rounded-2xl overflow-hidden w-[900px]">
               <div className="relative w-full h-[200px] sm:h-[500px] rounded-2xl border-none">
-                {/* Right and Bottom Borders */}
-
-                {/* Embedded YouTube Video */}
+                
                 
                 <iframe
                   className="relative w-full h-[200px] sm:h-[500px] rounded-2xl border-none"
@@ -145,7 +143,7 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
-        </ScrollAnimation>
+        </ScrollAnimation> */}
 
         <div className="w-full h-[1px] bg-gray-500 mb-20"></div>
 

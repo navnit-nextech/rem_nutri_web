@@ -92,6 +92,8 @@ const ServiceCard = ({
   quote,
   features,
   ctaText,
+  disabled = false,
+  upcomingLabel,
   delay = 0
 }: {
   icon: React.ReactNode;
@@ -100,6 +102,8 @@ const ServiceCard = ({
   quote?: { text: string; author: string };
   features?: string[];
   ctaText?: string;
+  disabled?: boolean;
+  upcomingLabel?: string;
   delay?: number;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -136,13 +140,21 @@ const ServiceCard = ({
       ref={cardRef}
       className="service-card px-10 py-12 w-full md:w-[480px] lg:w-[580px] flex flex-col gap-7 border border-[#EBE5DA] bg-[var(--background-color-plain)] rounded-[16px] min-h-[600px] hover:shadow-lg transition-all duration-500 ease-in-out relative overflow-hidden hover:border-[var(--text-color-light)]/40"
     >
-      <div className="flex items-center gap-3 text-[var(--text-color-dark)]">
-        <div className="icon-wrapper">
-          {icon}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3 text-[var(--text-color-dark)]">
+          <div className="icon-wrapper">
+            {icon}
+          </div>
+          <h3 className="text-[28px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] font-bold leading-tight transition-colors duration-300 group-hover:text-[var(--text-color-light)]">
+            {title}
+          </h3>
         </div>
-        <h3 className="text-[28px] text-[var(--text-color-dark)] font-['Libre_Baskerville',serif] font-bold leading-tight transition-colors duration-300 group-hover:text-[var(--text-color-light)]">
-          {title}
-        </h3>
+        
+        {upcomingLabel && (
+          <div className="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+            {upcomingLabel}
+          </div>
+        )}
       </div>
 
       {quote && (
@@ -172,8 +184,27 @@ const ServiceCard = ({
       )}
 
       {ctaText && (
-        <button className="mt-auto w-full bg-[var(--background-color-dark)] text-[var(--text-color-plain)] font-bold py-4 px-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-md active:translate-y-0.5 hover:bg-[var(--background-color-dark)]/90">
-          {ctaText}
+        <button 
+          disabled={disabled}
+          className={`mt-auto w-full font-bold py-4 px-6 rounded-lg transition-all duration-300 ease-in-out ${
+            disabled 
+              ? 'bg-amber-100 text-amber-700 border-2 border-amber-300 cursor-not-allowed flex items-center justify-center gap-2' 
+              : 'bg-[var(--background-color-dark)] text-[var(--text-color-plain)] hover:shadow-md active:translate-y-0.5 hover:bg-[var(--background-color-dark)]/90'
+          }`}
+        >
+          {disabled && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
+              <line x1="12" y1="2" x2="12" y2="6"></line>
+              <line x1="12" y1="18" x2="12" y2="22"></line>
+              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+              <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+              <line x1="2" y1="12" x2="6" y2="12"></line>
+              <line x1="18" y1="12" x2="22" y2="12"></line>
+              <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+              <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+            </svg>
+          )}
+          {ctaText} {disabled && "- Coming Soon"}
         </button>
       )}
     </div>
@@ -267,7 +298,9 @@ const services = [
       "Advanced fitness tracking devices",
       "Exclusive healthy recipe collections"
     ],
-    ctaText: "Explore Products"
+    ctaText: "Explore Products",
+    disabled: true,
+    upcomingLabel: "Coming Soon"
   }
 ];
 

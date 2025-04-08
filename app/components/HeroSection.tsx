@@ -84,32 +84,33 @@ const HeroSection = () => {
   return (
     <section className="relative">
       <div
-        className="relative w-full min-h-screen pt-28 pb-10 sm:pt-42 sm:pb-20 flex items-center justify-center 
+        className="relative w-full min-h-screen pt-20 pb-10 sm:pt-42 sm:pb-20 flex items-center justify-center 
         bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 sm:px-0"
       >
         <div className="max-w-7xl w-full relative">
           <div
             className="relative bg-[var(--background-color-dark)] w-[95%] mx-auto flex flex-col sm:flex-row items-center justify-between overflow-hidden 
-                       sm:rounded-[0px_24px_0px_24px] rounded-3xl min-h-[420px] sm:min-h-[475px]"
+                       sm:rounded-[0px_24px_0px_24px] rounded-3xl min-h-[480px] sm:min-h-[475px]"
           >
-            {/* Content - Increased height by increasing padding */}
-            <div className="relative z-10 w-full sm:w-[55%] text-center sm:text-left p-6 pt-8 pb-8 sm:p-10">
+            {/* Content - Increased height for mobile view */}
+            <div className="relative z-10 w-full sm:w-[55%] text-center sm:text-left p-6 pt-6 pb-6 sm:p-10">
               <ScrollAnimation>
                 <h1 className="text-[32px] sm:text-[56px] font-normal text-[var(--text-color-plain)] leading-tight font-['Libre_Baskerville',serif]">
-                  Remission through{" "} <span className="hidden sm:block"></span>
-                  <span className="text-[var(--text-color-light)] ">Nutrition</span>
+                  <span className="block sm:inline">Remission</span>{" "}
+                  <span className="block sm:inline">through</span>{" "}
+                  <span className="block text-[var(--text-color-light)] sm:inline">Nutrition</span>
                 </h1>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.2}>
-                <p className="mt-4 sm:mt-6 text-[16px] sm:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] sm:px-0">
+                <p className="mt-2 sm:mt-4 text-[18px] sm:text-[20px] text-[var(--text-color-plain)] font-['DM_Sans', 'sans-serif'] sm:px-0">
                   Discover the power of nutrition and education to achieve your health goals.
                 </p>
               </ScrollAnimation>
 
               {/* Buttons - Added more space above button */}
               <ScrollAnimation delay={0.4}>
-                <div className="mt-6 sm:mt-6 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <a
                     href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
                     target="_blank"
@@ -122,7 +123,7 @@ const HeroSection = () => {
               </ScrollAnimation>
             </div>
 
-            {/* Hero Image with Animation - Kept shorter than desktop for overall balance */}
+            {/* Hero Image with Animation - Increased height for mobile */}
             <div className="relative w-full sm:w-[550px] h-[320px] sm:h-[528px] overflow-hidden rounded-2xl">
               <AnimatePresence initial={false} mode="sync">
                 <motion.div
