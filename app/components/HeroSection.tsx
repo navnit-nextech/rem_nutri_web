@@ -84,7 +84,7 @@ const HeroSection = () => {
   return (
     <section className="relative">
       <div
-        className="relative w-full min-h-screen pt-20 pb-10 sm:pt-42 sm:pb-20 flex items-center justify-center 
+        className="relative w-full min-h-[600px] sm:min-h-screen pt-36 pb-10 sm:pt-42 sm:pb-20 flex items-center justify-center 
         bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 sm:px-0"
       >
         <div className="max-w-7xl w-full relative">
@@ -218,7 +218,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-13 sm:bottom-3 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 sm:gap-4"
+          className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 sm:gap-4"
         >
           <div className="text-[var(--text-color-dark)] text-[14px] sm:text-[20px] font-bold">
             Scroll down
