@@ -84,7 +84,7 @@ const HeroSection = () => {
   return (
     <section className="relative">
       <div
-        className="relative w-full min-h-[600px] sm:min-h-screen pt-33 sm:pt-42 pb-10 sm:pb-20 flex items-center justify-center 
+        className="relative w-full min-h-[600px] sm:min-h-screen pt-34 sm:pt-42 pb-10 sm:pb-20 flex items-center justify-center 
         bg-[url('/images/new_hero_bg.png')] bg-cover bg-center bg-no-repeat px-4 sm:px-0"
       >
         <div className="max-w-7xl w-full relative">
