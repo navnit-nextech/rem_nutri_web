@@ -168,26 +168,31 @@ const ServiceCard = ({ icon, title, description, onClick }: {
           <span className="absolute -bottom-2 md:-bottom-3 left-0 w-12 md:w-14 lg:w-16 h-[1px] bg-[var(--text-color-dark)]/20"></span>
         </p>
 
-        {/* Explore more link - Original positioning */}
+        {/* Explore more link - with bouncing animation */}
         <div className="mt-auto flex justify-center md:justify-start">
-          <div className="flex items-center gap-2 md:gap-3 text-[var(--text-color-dark)]/80 group-hover:text-[var(--text-color-dark)] transition-colors duration-300">
-            <span className="text-[15px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium font-['DM_Sans', 'sans-serif'] relative overflow-hidden cursor-pointer" onClick={onClick}>
-              Explore more
-              {/* Mobile underline */}
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 md:hidden"></span>
-              {/* Desktop animated underline */}
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left hidden md:block"></span>
-            </span>
-            
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5 md:h-5 md:w-5 lg:h-6 lg:w-6 transform group-hover:translate-x-2 transition-transform duration-500" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+          <div 
+            onClick={onClick}
+            className="group relative flex items-center gap-2 text-[var(--text-color-dark)]/80 hover:text-[var(--text-color-dark)] 
+                     transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+          >
+            {/* Content wrapper with animation */}
+            <div className="relative z-10 flex items-center gap-2 animate-[bounce_2s_ease-in-out_infinite]">
+              <span className="text-[15px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium tracking-wide relative inline-block font-['DM_Sans', 'sans-serif']">
+                Explore more
+                {/* Underline for both mobile and desktop */}
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--text-color-dark)]/50"></span>
+              </span>
+              
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-5 w-5 md:h-5 md:w-5 lg:h-6 lg:w-6 transform group-hover:translate-x-1 transition-transform duration-300" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
