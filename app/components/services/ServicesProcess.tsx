@@ -128,7 +128,7 @@ const ServicesProcess = () => {
               </h2>
               <p className="text-lg mb-8">
                 We focus on personalized care and evidence-based techniques,
-                guiding you towards a healthier, pain-free life.
+                guiding you towards a healthier life.
               </p>
               <div>
                 <a
