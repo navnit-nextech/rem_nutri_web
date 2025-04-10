@@ -146,7 +146,7 @@ const ServicesProcess = () => {
                   {/* Image */}
                   <div className="rounded-2xl overflow-hidden relative z-10">
                     <img
-                      src="https://framerusercontent.com/images/Dz29EjSxlyI8KYdSmdBXHIHfi0.jpg?scale-down-to=1024"
+                      src="https://images.unsplash.com/photo-1744116432674-e6ff2b6d9544?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
                       className="w-full md:h-175 h-80 object-cover"
                     />
