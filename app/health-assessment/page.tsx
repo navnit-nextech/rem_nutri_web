@@ -11,7 +11,7 @@ import BMIGauge from "@/app/components/BMIGauge";
 
 const healthConditions = [
   "Pre-Diabetes",
-  "Diabetes",
+  "Diabetes (Type 2)",
   "PCOS/PCOD",
   "Menopause",
   "High Blood Pressure",
@@ -156,7 +156,7 @@ const formSteps = [
         label: "Do you have any of these conditions?",
         options: [
           { value: "prediabetes", label: "Pre-Diabetes", icon: "⚠️" },
-          { value: "diabetes", label: "Diabetes", icon: "🩺" },
+          { value: "diabetes", label: "Diabetes (Type 2)", icon: "🩺" },
           { value: "pcos", label: "PCOS/PCOD", icon: "🌸" },
           { value: "menopause", label: "Menopause", icon: "🌺" },
           { value: "hypertension", label: "High Blood Pressure", icon: "❤️" },

@@ -127,7 +127,7 @@ export const generateEmailContent = (data: any) => {
       "rem-di-2": {
         name: "RemDi 2",
         fullName: "Type 2 and Pre Diabetes Reversal Programme",
-        description: "A personalized program designed to help you achieve remission through nutrition.",
+        description: "A personalized program designed to help you achieve remission from Type 2 Diabetes through nutrition.",
         route: "remdi2",
         color: "#3B82F6" // Blue
       },
@@ -224,6 +224,17 @@ export const generateEmailContent = (data: any) => {
 
     recommendedProgramHtml = programsHtml;
   }
+
+  const timestamp = new Date().toLocaleString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  });
 
   return `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -451,7 +462,7 @@ export const generateEmailContent = (data: any) => {
           <!-- Footer -->
           <tr>
             <td style="background-color: #F3F4F6; padding: 36px; text-align: center;" class="section-padding">
-              <p style="font-family: Arial, sans-serif; color: #6B7280; margin: 0 0 20px 0; font-size: 15px;">Report generated on ${data.timestamp}</p>
+              <p style="font-family: Arial, sans-serif; color: #6B7280; margin: 0 0 20px 0; font-size: 15px;">Report generated on ${timestamp} (IST)</p>
               <a href="https://rem-nutri-web.vercel.app/programs" style="font-family: Arial, sans-serif; display: inline-block; background-color: #4A90E2; color: white; text-decoration: none; padding: 14px 36px; border-radius: 9999px; font-weight: bold; font-size: 16px;">Explore Wellness Programs</a>
             </td>
           </tr>
