@@ -1,43 +1,48 @@
 export const generateEmailContent = (data: any) => {
+  const getBMICategory = (bmi: number): string => {
+    if (bmi < 18.5) return "Underweight";
+    if (bmi < 23) return "Normal Weight";
+    if (bmi < 25) return "Overweight";
+    return "Obese";
+  };
+
+  const getBMICategoryDescription = (bmi: number): string => {
+    if (bmi < 18.5) return "You are in the underweight range. This may indicate insufficient nutrient intake or other health concerns.";
+    if (bmi < 23) return "You are in the healthy weight range for South Asians. This is associated with lower health risks.";
+    if (bmi < 25) return "You are in the overweight range for South Asians. This increases your risk of health problems.";
+    return "You are in the obese range for South Asians. This significantly increases your risk of health problems.";
+  };
+
   const bmi = data.bmi?.toFixed(1);
-  const bmiCategory = bmi ? (
-    bmi < 18.5 ? "Underweight" :
-    bmi < 25 ? "Normal Weight" :
-    bmi < 30 ? "Overweight" :
-    "Obese"
-  ) : "Not calculated";
+  const bmiCategory = bmi ? getBMICategory(parseFloat(bmi)) : "Not calculated";
 
   // Get BMI color
   const getBmiColor = () => {
     if (!bmi) return "#4A90E2";
-    if (bmi < 18.5) return "#EAB308"; // Yellow
-    if (bmi < 25) return "#10B981"; // Green
-    if (bmi < 30) return "#F97316"; // Orange
-    return "#EF4444"; // Red
-  };
-
-  // Get blood sugar color
-  const getBloodSugarColor = () => {
-    if (!data.bloodSugar) return "#4A90E2";
-    const bloodSugar = data.bloodSugar.toLowerCase();
-    if (bloodSugar.includes("normal")) return "#10B981"; // Green
-    if (bloodSugar.includes("pre") || bloodSugar.includes("borderline")) return "#EAB308"; // Yellow
-    return "#EF4444"; // Red
+    const bmiNum = parseFloat(bmi);
+    if (bmiNum < 18.5) return "#EAB308"; // Yellow for Underweight
+    if (bmiNum < 23) return "#10B981"; // Green for Normal
+    if (bmiNum < 25) return "#F97316"; // Orange for Overweight
+    return "#EF4444"; // Red for Obese
   };
 
   // Map for lifestyle factor icons
   const lifestyleIconMap: Record<string, { color: string, path: string }> = {
-    "Poor Sleep": {
-      color: "#EAB308",
+    "High Stress": {
+      color: "#EF4444",
       path: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
     },
-    "Processed Meals": {
-      color: "#EF4444",
-      path: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-    },
-    "High Stress": {
+    "Poor Sleep": {
       color: "#8B5CF6",
-      path: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+      path: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+    },
+    "Irregular Meals": {
+      color: "#F97316",
+      path: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+    },
+    "Processed Food": {
+      color: "#EAB308",
+      path: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
     }
   };
 
@@ -69,7 +74,40 @@ export const generateEmailContent = (data: any) => {
     lifestyleFactorsHtml = `
       <tr>
         <td style="font-family: Arial, sans-serif; color: #6B7280; padding-bottom: 12px;">
-          No specific lifestyle factors identified.
+          No lifestyle factors reported.
+        </td>
+      </tr>
+    `;
+  }
+
+  // Get health conditions HTML
+  let healthConditionsHtml = '';
+  if (data.healthConditions && data.healthConditions.length > 0) {
+    healthConditionsHtml = data.healthConditions.map((condition: string) => {
+      return `
+        <tr>
+          <td style="padding-bottom: 12px;">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="vertical-align: middle; padding-right: 12px;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" style="color: #4A90E2;" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </td>
+                <td style="vertical-align: middle; font-family: Arial, sans-serif; color: #374151;">
+                  ${condition}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  } else {
+    healthConditionsHtml = `
+      <tr>
+        <td style="font-family: Arial, sans-serif; color: #6B7280; padding-bottom: 12px;">
+          No health conditions reported.
         </td>
       </tr>
     `;
@@ -355,18 +393,6 @@ export const generateEmailContent = (data: any) => {
                                     <td style="font-family: Arial, sans-serif; color: #6B7280; font-size: 15px;">BMI</td>
                                     <td align="right">
                                       <span style="font-family: Arial, sans-serif; background-color: ${getBmiColor()}; color: white; padding: 6px 14px; border-radius: 9999px; font-size: 13px;" class="badge-text">${bmi} (${bmiCategory})</span>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                                  <tr>
-                                    <td style="font-family: Arial, sans-serif; color: #6B7280; font-size: 15px;">Blood Sugar</td>
-                                    <td align="right">
-                                      <span style="font-family: Arial, sans-serif; background-color: ${getBloodSugarColor()}; color: white; padding: 6px 14px; border-radius: 9999px; font-size: 13px;" class="badge-text">${data.bloodSugar}</span>
                                     </td>
                                   </tr>
                                 </table>

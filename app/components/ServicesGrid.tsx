@@ -106,11 +106,11 @@ const ServiceCard = ({ icon, title, description, onClick }: {
       case "Rem Meta":
         return "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       case "Rem Fit":
-        return "https://images.unsplash.com/photo-1659081447286-dc619241c719?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        return "https://images.unsplash.com/photo-1659352789776-5aa7027b4bc8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       case "Rem Balance":
-        return "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        return "https://images.unsplash.com/photo-1742281258189-3b933879867a?q=80&w=3135&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       case "Rem Protein":
-        return "https://images.unsplash.com/photo-1605655293594-92e21b3409bf?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        return "https://images.unsplash.com/photo-1493770348161-369560ae357d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       default:
         return "https://images.unsplash.com/photo-1628619876503-2db74e724757?q=80&w=3010&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     }
@@ -239,7 +239,7 @@ const ServicesGrid = () => {
     {
       icon: <Remfit />,
       title: "Rem Fit",
-      description: "To achieve intense weight loss @4-5kg/month or simply stay fit.",
+      description: "To achieve intense weight loss @4-5kg/month.",
       path: "/programs/remfit"
     },
     {

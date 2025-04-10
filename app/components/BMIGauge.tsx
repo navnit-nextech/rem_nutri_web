@@ -25,15 +25,15 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
       if (bmi <= 18.5) {
         // Underweight range (16-18.5): Maps to -90° to -45°
         rotation = -90 + ((bmi - 16) / (18.5 - 16)) * 45;
+      } else if (bmi <= 23) {
+        // Normal range (18.5-23): Maps to -45° to 0°
+        rotation = -45 + ((bmi - 18.5) / (23 - 18.5)) * 45;
       } else if (bmi <= 25) {
-        // Normal range (18.5-25): Maps to -45° to 0°
-        rotation = -45 + ((bmi - 18.5) / (25 - 18.5)) * 45;
-      } else if (bmi <= 30) {
-        // Overweight range (25-30): Maps to 0° to 45°
-        rotation = ((bmi - 25) / (30 - 25)) * 45;
+        // Overweight range (23-25): Maps to 0° to 45°
+        rotation = ((bmi - 23) / (25 - 23)) * 45;
       } else {
-        // Obese range (30-40): Maps to 45° to 90°
-        rotation = 45 + ((bmi - 30) / (40 - 30)) * 45;
+        // Obese range (25-35): Maps to 45° to 90°
+        rotation = 45 + ((bmi - 25) / (35 - 25)) * 45;
       }
       
       // Ensure we stay within bounds
@@ -56,7 +56,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         setNeedleColor("bg-yellow-400");
         setNeedleGlow("shadow-[0_0_8px_rgba(250,204,21,0.7)]");
         setTipPulse(true);
-      } else if (bmi > 35) {
+      } else if (bmi > 30) {
         // Very obese
         setNeedleLength(formattedLength);
         setNeedleColor("bg-red-500");
@@ -68,13 +68,13 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         setNeedleColor("bg-yellow-400");
         setNeedleGlow("shadow-[0_0_5px_rgba(250,204,21,0.5)]");
         setTipPulse(false);
-      } else if (bmi >= 30) {
+      } else if (bmi >= 25) {
         // Obese
         setNeedleLength(formattedLength);
         setNeedleColor("bg-red-400");
         setNeedleGlow("shadow-[0_0_5px_rgba(239,68,68,0.5)]");
         setTipPulse(false);
-      } else if (bmi >= 25) {
+      } else if (bmi >= 23) {
         // Overweight
         setNeedleLength(formattedLength);
         setNeedleColor("bg-orange-400");
@@ -96,7 +96,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
     
     const heightInMeters = parseFloat(height.toString()) / 100;
     const minWeight = (18.5 * heightInMeters * heightInMeters).toFixed(1);
-    const maxWeight = (25 * heightInMeters * heightInMeters).toFixed(1);
+    const maxWeight = (23 * heightInMeters * heightInMeters).toFixed(1);
     
     return `${minWeight} kg - ${maxWeight} kg`;
   };
@@ -116,8 +116,8 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
     if (bmi === null) return { category: "N/A", color: "text-gray-400" };
     
     if (bmi < 18.5) return { category: "Underweight", color: "text-yellow-400" };
-    if (bmi < 25) return { category: "Normal Weight", color: "text-green-400" };
-    if (bmi < 30) return { category: "Overweight", color: "text-orange-400" };
+    if (bmi < 23) return { category: "Normal Weight", color: "text-green-400" };
+    if (bmi < 25) return { category: "Overweight", color: "text-orange-400" };
     return { category: "Obese", color: "text-red-400" };
   };
   
@@ -140,17 +140,17 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent to-yellow-200/10"></div>
                 </div>
                 
-                {/* Normal: 18.5-25 (6.5 units) */}
+                {/* Normal: 18.5-23 (4.5 units) */}
                 <div className="absolute bottom-0 left-[27.5%] w-[22.5%] h-full bg-gradient-to-r from-[#1e4835] via-[#2a6349] to-[#347a5a] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent to-green-200/10"></div>
                 </div>
                 
-                {/* Overweight: 25-30 (5 units) */}
+                {/* Overweight: 23-25 (2 units) */}
                 <div className="absolute bottom-0 left-[50%] w-[22.5%] h-full bg-gradient-to-r from-[#664226] via-[#8a5730] to-[#a66936] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent to-orange-200/10"></div>
                 </div>
                 
-                {/* Obese: 30-40 (10 units) */}
+                {/* Obese: 25-35 (10 units) */}
                 <div className="absolute bottom-0 left-[72.5%] w-[27.5%] h-full bg-gradient-to-r from-[#6b2830] via-[#8a3540] to-[#9e3e4a] rounded-tr-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent to-red-200/10"></div>
                 </div>
@@ -170,9 +170,9 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
               {/* 18.5 divider line */}
               <div className="absolute top-0 left-[27.5%] h-[50%] w-[1px] bg-white/20"></div>
-              {/* 25 divider line */}
+              {/* 23 divider line */}
               <div className="absolute top-0 left-[50%] h-[50%] w-[1px] bg-white/20"></div>
-              {/* 30 divider line */}
+              {/* 25 divider line */}
               <div className="absolute top-0 left-[72.5%] h-[50%] w-[1px] bg-white/20"></div>
             </div>
             
@@ -196,9 +196,9 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         <div className="absolute bottom-[1%]  left-0 w-full">
           <span className="absolute bottom-1 left-[10%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">16</span>
           <span className="absolute bottom-1 left-[27.5%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">18.5</span>
-          <span className="absolute bottom-1 left-[50%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white z-200">25</span>
-          <span className="absolute bottom-1 left-[72.5%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">30</span>
-          <span className="absolute bottom-1 left-[90%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">40</span>
+          <span className="absolute bottom-1 left-[50%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white z-200">23</span>
+          <span className="absolute bottom-1 left-[72.5%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">25</span>
+          <span className="absolute bottom-1 left-[90%] transform -translate-x-1/2 text-xs sm:text-sm md:text-base text-white">35</span>
         </div>
         
         {/* Category Labels - Made responsive for mobile */}
@@ -295,8 +295,8 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
       >
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center">
-            <span className="text-[var(--text-color-light)]">Healthy BMI range:</span>
-            <span className="font-medium text-green-400">18.5 - 25 kg/m²</span>
+            <span className="text-[var(--text-color-light)]">Healthy BMI range (South Asian):</span>
+            <span className="font-medium text-green-400">18.5 - 23 kg/m²</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-[var(--text-color-light)]">Healthy weight for your height:</span>

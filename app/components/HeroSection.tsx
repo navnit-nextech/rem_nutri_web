@@ -12,11 +12,16 @@ const MemoizedFeatureGrid = memo(FeatureGrid);
 const HeroSection = () => {
   const images = [
     "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=1000", // RemDi2 - Brighter healthy meal with berries
-    "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // RemFit - Super vibrant fitness scene
-    "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&q=80&w=1000", // RemMeta - Vibrant fruits and vegetables
-    "https://images.unsplash.com/photo-1562088287-bde35a1ea917?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // RemBliss - Vibrant wellness scene
+    "https://images.unsplash.com/photo-1589778655375-3e622a9fc91c?q=80&w=2931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+
+    "https://images.unsplash.com/photo-1565689157206-0fddef7589a2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+
+    "https://images.unsplash.com/photo-1653656091426-fccb7d212f7a?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // RemBliss - Vibrant wellness scene
+
     "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&q=80&w=1000", // RemBalance - Bright balanced food
     "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&q=80&w=1000", // RemProtein - High-protein foods
+    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Colorful vegetables and healthy ingredients
+    "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  // Vibrant healthy meal prep
   ];
 
   // Use refs to minimize re-renders
@@ -112,9 +117,7 @@ const HeroSection = () => {
               <ScrollAnimation delay={0.4}>
                 <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <a
-                    href="https://www.youtube.com/watch?v=c06dTj0v0sM&ab_channel=AllianceforAgingResearch"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/health-assessment"
                     className="w-full sm:w-auto bg-[var(--background-color-light)] font-['DM_Sans', 'sans-serif'] text-[16px] text-black font-semibold py-4 sm:py-3 px-6 rounded-lg shadow-md text-center hover:opacity-80 transition-opacity"
                   >
                     Start Your Journey

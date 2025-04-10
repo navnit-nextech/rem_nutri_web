@@ -52,7 +52,6 @@ export async function POST(request: Request) {
         "Height (cm)",
         "BMI",
         "Health Conditions",
-        "Blood Sugar Level",
         "Weight Goal",
         "Activity Level",
         "Current Diet",
@@ -64,7 +63,7 @@ export async function POST(request: Request) {
 
       await sheets.spreadsheets.values.update({
         spreadsheetId: process.env.GOOGLE_SHEET_ID,
-        range: `${SHEET_NAME}!A1:R1`,
+        range: `${SHEET_NAME}!A1:Q1`,
         valueInputOption: "USER_ENTERED",
         requestBody: {
           values: [headers],
@@ -75,9 +74,7 @@ export async function POST(request: Request) {
 
     // Format the data for Google Sheets
     const rowData = [
-      
-      new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-    
+      data.timestamp || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       data.name,
       data.email,
       data.phone,
@@ -87,7 +84,6 @@ export async function POST(request: Request) {
       data.height,
       data.bmi?.toFixed(1) || "",
       data.healthConditions.join(", "),
-      data.bloodSugar,
       data.weightGoal,
       data.activityLevel,
       data.currentDiet,
@@ -100,7 +96,7 @@ export async function POST(request: Request) {
     // Append data to Google Sheets
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: `${SHEET_NAME}!A:R`,
+      range: `${SHEET_NAME}!A:Q`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [rowData],

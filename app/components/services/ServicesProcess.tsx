@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import ScrollAnimation from "../ScrollAnimation";
+import Link from "next/link";
 
 interface ProcessStep {
   number: string;
@@ -146,7 +147,7 @@ const ServicesProcess = () => {
                   {/* Image */}
                   <div className="rounded-2xl overflow-hidden relative z-10">
                     <img
-                      src="https://images.unsplash.com/photo-1744116432674-e6ff2b6d9544?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Patient receiving physiotherapy treatment"
                       className="w-full md:h-175 h-80 object-cover"
                     />
@@ -217,6 +218,29 @@ const ServicesProcess = () => {
                       <p className="text-gray-300 text-[var(--text-color-plain)] max-w-2xl">
                         {step.description}
                       </p>
+                      {index === 3 && (
+                        <div className="mt-8">
+                          <Link href="/health-assessment">
+                            <button className="inline-flex items-center gap-2 bg-[var(--background-color-light)] hover:bg-opacity-90 text-[var(--text-color-dark)] font-semibold py-3 px-6 rounded-md transition-all duration-300">
+                              FIND THE RIGHT PROGRAM
+                              <svg
+                                className="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </button>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 </div>

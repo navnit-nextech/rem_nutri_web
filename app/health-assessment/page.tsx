@@ -10,11 +10,15 @@ import BMIGauge from "@/app/components/BMIGauge";
 
 
 const healthConditions = [
+  "Pre-Diabetes",
   "Diabetes",
   "PCOS/PCOD",
-  "Thyroid",
+  "Menopause",
+  "High Blood Pressure",
+  "Cardiac Issues",
   "Fatty Liver",
-  "Other",
+  "Thyroid Issues",
+  "None"
 ];
 
 const programs = [
@@ -133,10 +137,10 @@ const formSteps = [
       {
         type: "select",
         name: "knowsHealthConditions",
-        label: "Do you know if you have any specific health conditions?",
+        label: "Do you have any existing health conditions?",
         options: [
-          { value: "yes", label: "Yes, I am aware of my health conditions", icon: "✅" },
-          { value: "no", label: "No, I'm not sure about my health conditions", icon: "❓" },
+          { value: "yes", label: "Yes", icon: "✅" },
+          { value: "no", label: "No", icon: "❌" },
         ],
         required: true,
       },
@@ -151,7 +155,8 @@ const formSteps = [
         name: "healthConditions",
         label: "Do you have any of these conditions?",
         options: [
-          { value: "diabetes", label: "Diabetes/Pre-Diabetes", icon: "🩺" },
+          { value: "prediabetes", label: "Pre-Diabetes", icon: "⚠️" },
+          { value: "diabetes", label: "Diabetes", icon: "🩺" },
           { value: "pcos", label: "PCOS/PCOD", icon: "🌸" },
           { value: "menopause", label: "Menopause", icon: "🌺" },
           { value: "hypertension", label: "High Blood Pressure", icon: "❤️" },
@@ -159,17 +164,6 @@ const formSteps = [
           { value: "fattyLiver", label: "Fatty Liver", icon: "🫁" },
           { value: "thyroid", label: "Thyroid Issues", icon: "⚕️" },
           { value: "none", label: "None of the above", icon: "✅" },
-        ],
-        required: true,
-      },
-      {
-        type: "select",
-        name: "bloodSugar",
-        label: "Blood Sugar Level",
-        options: [
-          { value: "normal", label: "Normal", icon: "✅" },
-          { value: "prediabetic", label: "Pre-Diabetic", icon: "⚠️" },
-          { value: "diabetic", label: "Diabetic", icon: "🩺" },
         ],
         required: true,
       },
@@ -368,6 +362,7 @@ const HealthAssessment = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [missingField, setMissingField] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
 
   // Add useEffect for auto-dismissing validation error
   useEffect(() => {
@@ -396,7 +391,6 @@ const HealthAssessment = () => {
     const conditions = formData.healthConditions || [];
     const weightGoal = formData.weightGoal;
     const gender = formData.gender;
-    const bloodSugar = formData.bloodSugar;
     const activityLevel = formData.activityLevel;
     const lifestyleFactors = formData.lifestyleFactors || [];
     const knowsHealthConditions = formData.knowsHealthConditions;
@@ -412,7 +406,7 @@ const HealthAssessment = () => {
     }
 
     // Check for RemDi 2 (Diabetes)
-    if (bloodSugar === 'diabetic' || bloodSugar === 'prediabetic') {
+    if (conditions.includes('prediabetes') || conditions.includes('diabetes')) {
       recommendedPrograms.push('rem-di-2');
     }
 
@@ -434,7 +428,7 @@ const HealthAssessment = () => {
       if (bmiValue < 18.5) {
         // Underweight - recommend RemProtein
         recommendedPrograms.push('rem-protein');
-      } else if (bmiValue >= 18.5 && bmiValue < 25) {
+      } else if (bmiValue >= 18.5 && bmiValue < 23) {
         // Normal weight - recommend RemBalance and possibly RemProtein
         recommendedPrograms.push('rem-balance');
         
@@ -442,7 +436,7 @@ const HealthAssessment = () => {
         if (weightGoal === 'gain') {
           recommendedPrograms.push('rem-protein');
         }
-      } else if (bmiValue >= 25) {
+      } else if (bmiValue >= 23) {
         // Overweight or obese - recommend RemFit
         recommendedPrograms.push('rem-fit');
       }
@@ -475,6 +469,84 @@ const HealthAssessment = () => {
     return recommendedPrograms;
   };
 
+  // Add validation functions
+  const validateEmail = (email: string): boolean => {
+    // Basic email regex pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Common typos in domain names
+    const commonTypos = {
+      '.con': '.com',
+      '.comme': '.com',
+      '.co': '.com',
+      '.om': '.com',
+      '.net.': '.net',
+      '.og': '.org',
+      '.ord': '.org'
+    };
+
+    // Check basic format
+    if (!emailPattern.test(email)) {
+      setFieldErrors(prev => ({...prev, email: 'Please enter a valid email address'}));
+      return false;
+    }
+
+    // Check for common typos
+    const domain = email.substring(email.lastIndexOf('@') + 1);
+    for (const [typo, correction] of Object.entries(commonTypos)) {
+      if (domain.endsWith(typo)) {
+        setFieldErrors(prev => ({...prev, email: `Did you mean ${email.replace(typo, correction)}?`}));
+        return false;
+      }
+    }
+
+    setFieldErrors(prev => ({...prev, email: ''}));
+    return true;
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    // Remove all non-numeric characters except +
+    const cleanPhone = phone.replace(/[^\d+]/g, '');
+    
+    // Check if starts with + or a digit
+    if (!cleanPhone.startsWith('+') && !/^\d/.test(cleanPhone)) {
+      setFieldErrors(prev => ({...prev, phone: 'Phone number must start with + or a digit'}));
+      return false;
+    }
+
+    // Get only digits
+    const digits = cleanPhone.replace(/\D/g, '');
+
+    // Check length (7-15 digits is standard for international numbers)
+    if (digits.length < 7 || digits.length > 15) {
+      setFieldErrors(prev => ({...prev, phone: 'Phone number must be between 7 and 15 digits'}));
+      return false;
+    }
+
+    setFieldErrors(prev => ({...prev, phone: ''}));
+    return true;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
+    const value = e.target.value;
+    let error = "";
+
+    if (["age", "weight", "height"].includes(fieldName)) {
+      error = validateNumberInput(value, fieldName);
+    }
+
+    // Validate email and phone as user types
+    if (fieldName === "email") {
+      validateEmail(value);
+    } else if (fieldName === "phone") {
+      validatePhone(value);
+    }
+
+    if (!error) {
+      setFormData({ ...formData, [fieldName]: value });
+    }
+  };
+
   const validateInitialSteps = () => {
     const requiredFields = [
       { name: "name", label: "Full Name" },
@@ -492,6 +564,19 @@ const HealthAssessment = () => {
         setMissingField(field.label);
         return false;
       }
+
+      // Additional validation for email and phone
+      if (field.name === "email" && !validateEmail(formData.email)) {
+        setValidationError("Please enter a valid email address");
+        setMissingField("Email Address");
+        return false;
+      }
+
+      if (field.name === "phone" && !validatePhone(formData.phone)) {
+        setValidationError("Please enter a valid phone number");
+        setMissingField("Phone Number");
+        return false;
+      }
     }
 
     setMissingField(null);
@@ -504,19 +589,7 @@ const HealthAssessment = () => {
       return true;
     }
     
-    const requiredFields = [
-      { name: "bloodSugar", label: "Blood Sugar Level" },
-    ];
-
-    for (const field of requiredFields) {
-      if (!formData[field.name as keyof typeof formData]) {
-        setValidationError(`Please fill in ${field.label}`);
-        setMissingField(field.label);
-        return false;
-      }
-    }
-
-    setMissingField(null);
+    // No specific validation needed for health conditions as they are handled by the UI
     return true;
   };
 
@@ -632,19 +705,6 @@ const HealthAssessment = () => {
     return "";
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
-    const value = e.target.value;
-    let error = "";
-
-    if (["age", "weight", "height"].includes(fieldName)) {
-      error = validateNumberInput(value, fieldName);
-    }
-
-    if (!error) {
-      setFormData({ ...formData, [fieldName]: value });
-    }
-  };
-
   // Convert feet/inches to cm
   useEffect(() => {
     if (heightUnit === 'ft' && feet && inches) {
@@ -731,7 +791,10 @@ const HealthAssessment = () => {
   };
 
   const prevStep = () => {
-    if (currentStep > 0) {
+    if (currentStep === 0) {
+      // Navigate back to home page when on first step
+      router.push('/');
+    } else if (currentStep > 0) {
       // If we're on the Weight Goals page (step 4) and the user doesn't know their health conditions
       // we need to skip back to the Health Knowledge page (step 2) rather than the Health Screening page (step 3)
       if (currentStep === 4 && formData.knowsHealthConditions === "no") {
@@ -767,10 +830,10 @@ const HealthAssessment = () => {
           options: field.options.filter(option => {
             // Only show PCOS and menopause for females
             if (formData.gender === 'female') {
-              return ['pcos', 'menopause', 'hypertension', 'cardiac', 'fattyLiver', 'thyroid'].includes(option.value);
+              return ['prediabetes', 'diabetes', 'pcos', 'menopause', 'hypertension', 'cardiac', 'fattyLiver', 'thyroid', 'none'].includes(option.value);
             }
             // For males and others, exclude PCOS and menopause
-            return ['hypertension', 'cardiac', 'fattyLiver', 'thyroid'].includes(option.value);
+            return ['prediabetes', 'diabetes', 'hypertension', 'cardiac', 'fattyLiver', 'thyroid', 'none'].includes(option.value);
           })
         };
       }
@@ -851,42 +914,86 @@ const HealthAssessment = () => {
                 )}
               </div>
             ) : field.type === "multiselect" ? (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {field.options.map((option) => (
-                  <motion.button
-                    key={option.value}
-                    type="button"
-                    onClick={() => {
-                      const currentValue = formData[field.name] || [];
-                      
-                      // Handle the "None" option special case
-                      if (option.value === "none") {
-                        // If "None" is clicked and not already selected, clear all other selections
-                        if (!currentValue.includes("none")) {
-                          setFormData({ ...formData, [field.name]: ["none"] });
+              <div className="grid grid-cols-1 gap-4">
+                {/* Dynamic grid layout based on number of options */}
+                <div className={`grid gap-4 ${field.options.length === 9 ? 'grid-cols-3' : 'grid-cols-3'}`}>
+                  {/* First 6 options in 2x3 grid for 7 options, or all 9 in 3x3 grid */}
+                  {field.options.slice(0, field.options.length === 9 ? 9 : 6).map((option) => (
+                    <motion.button
+                      key={option.value}
+                      type="button"
+                      onClick={() => {
+                        const currentValue = formData[field.name] || [];
+                        
+                        // Handle the "None" option special case
+                        if (option.value === "none") {
+                          // If "None" is clicked and not already selected, clear all other selections
+                          if (!currentValue.includes("none")) {
+                            setFormData({ ...formData, [field.name]: ["none"] });
+                          } else {
+                            // If "None" is already selected and clicked again, deselect it
+                            setFormData({ ...formData, [field.name]: [] });
+                          }
                         } else {
-                          // If "None" is already selected and clicked again, deselect it
-                          setFormData({ ...formData, [field.name]: [] });
+                          // If any other option is clicked
+                          const newValue = currentValue.includes(option.value)
+                            ? currentValue.filter((v) => v !== option.value)
+                            : [...currentValue.filter(v => v !== "none"), option.value];
+                          setFormData({ ...formData, [field.name]: newValue });
                         }
-                      } else {
-                        // If any other option is clicked
-                        const newValue = currentValue.includes(option.value)
-                          ? currentValue.filter((v) => v !== option.value)
-                          : [...currentValue.filter(v => v !== "none"), option.value];
-                        setFormData({ ...formData, [field.name]: newValue });
-                      }
-                    }}
-                    className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
-                        ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
-                        : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                      }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="text-2xl mb-2">{option.icon}</div>
-                    <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
-                  </motion.button>
-                ))}
+                      }}
+                      className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
+                          ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                          : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                        }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="text-2xl mb-2">{option.icon}</div>
+                      <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                    </motion.button>
+                  ))}
+                </div>
+                {/* Last option in full width for 7 options */}
+                {field.options.length !== 9 && (
+                  <div className="grid grid-cols-1">
+                    {field.options.slice(6).map((option) => (
+                      <motion.button
+                        key={option.value}
+                        type="button"
+                        onClick={() => {
+                          const currentValue = formData[field.name] || [];
+                          
+                          // Handle the "None" option special case
+                          if (option.value === "none") {
+                            // If "None" is clicked and not already selected, clear all other selections
+                            if (!currentValue.includes("none")) {
+                              setFormData({ ...formData, [field.name]: ["none"] });
+                            } else {
+                              // If "None" is already selected and clicked again, deselect it
+                              setFormData({ ...formData, [field.name]: [] });
+                            }
+                          } else {
+                            // If any other option is clicked
+                            const newValue = currentValue.includes(option.value)
+                              ? currentValue.filter((v) => v !== option.value)
+                              : [...currentValue.filter(v => v !== "none"), option.value];
+                            setFormData({ ...formData, [field.name]: newValue });
+                          }
+                        }}
+                        className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
+                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                            : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                          }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className="text-2xl mb-2">{option.icon}</div>
+                        <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                      </motion.button>
+                    ))}
+                  </div>
+                )}
               </div>
             ) : field.type === "textarea" ? (
               <textarea
@@ -961,20 +1068,22 @@ const HealthAssessment = () => {
                     onChange={(e) => handleInputChange(e, field.name)}
                     placeholder="Enter your height in cm"
                     min="0"
-                    className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)]"
+                    className={`w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border ${
+                      fieldErrors[field.name] 
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                        : 'border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)]'
+                    } outline-none text-[var(--text-color-plain)] [&:-webkit-autofill]:bg-white/5 [&:-webkit-autofill]:text-[var(--text-color-plain)] [&:-webkit-autofill]:border-white/10 [&:-webkit-autofill]:shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset]`}
                   />
                 )}
                 
-                {heightUnit === 'cm' && formData.height && (
-                  <p className="text-xs text-[var(--text-color-light)] italic mt-1">
-                    {Math.floor(parseInt(formData.height) / 30.48)}'{Math.round((parseInt(formData.height) / 2.54) % 12)}"
-                  </p>
-                )}
-                
-                {heightUnit === 'ft' && feet && inches && (
-                  <p className="text-xs text-[var(--text-color-light)] italic mt-1">
-                    {formData.height} cm
-                  </p>
+                {fieldErrors[field.name] && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-500 text-sm mt-1"
+                  >
+                    {fieldErrors[field.name]}
+                  </motion.p>
                 )}
               </div>
             ) : (
@@ -986,7 +1095,11 @@ const HealthAssessment = () => {
                 placeholder={field.placeholder}
                 required={field.name !== "allergies" && field.name !== "medications"}
                 min={["age", "weight"].includes(field.name) ? "0" : undefined}
-                className="w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)] outline-none text-[var(--text-color-plain)] [&:-webkit-autofill]:bg-white/5 [&:-webkit-autofill]:text-[var(--text-color-plain)] [&:-webkit-autofill]:border-white/10 [&:-webkit-autofill]:shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset] [&:-webkit-autofill]:!bg-white/5 [&:-webkit-autofill]:!text-[var(--text-color-plain)] [&:-webkit-autofill]:!border-white/10 [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset] [&:-webkit-autofill]:!appearance-none [&:-webkit-autofill]:!background-color:rgba(255,255,255,0.05)"
+                className={`w-full px-6 py-3 rounded-xl bg-white/5 backdrop-blur-sm border ${
+                  fieldErrors[field.name] 
+                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                    : 'border-white/10 focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)]'
+                } outline-none text-[var(--text-color-plain)] [&:-webkit-autofill]:bg-white/5 [&:-webkit-autofill]:text-[var(--text-color-plain)] [&:-webkit-autofill]:border-white/10 [&:-webkit-autofill]:shadow-[0_0_0_30px_rgba(255,255,255,0.05)_inset]`}
               />
             )}
           </motion.div>
@@ -1036,7 +1149,32 @@ const HealthAssessment = () => {
     <div className="min-h-screen bg-gradient-to-b from-[var(--background-color-dark)] to-[color-mix(in_srgb,var(--background-color-dark),var(--accent-color)_5%)]">
       <Navbar />
       <div className="pt-45 pb-20">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-3xl mx-auto px-6 relative">
+          {/* Close Button */}
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => router.push('/')}
+            className="absolute -top-2 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-50"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </motion.button>
+
           <ScrollAnimation>
             <div className="text-center mb-12">
               <h1 className="text-[var(--text-color-plain)] font-['Libre_Baskerville',serif] text-3xl sm:text-4xl mb-4">
@@ -1290,21 +1428,26 @@ const HealthAssessment = () => {
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Health Conditions</h3>
                           </div>
                           {/* Health Conditions Grid - Mobile Responsive */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {formData.healthConditions.map((condition, index) => (
-                              <motion.div
-                                key={condition}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.7 + index * 0.1 }}
-                                className="flex items-start sm:items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group sm:min-h-[64px]"
-                              >
-                                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                
-                                <span className="text-black text-sm relative z-10 max-w-[calc(100%-24px)] whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal sm:text-wrap sm:overflow-visible sm:py-1">{condition}</span>
-                              </motion.div>
-                            ))}
-                          </div>
+                          {formData.healthConditions && formData.healthConditions.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              {formData.healthConditions.map((condition, index) => (
+                                <motion.div
+                                  key={condition}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.7 + index * 0.1 }}
+                                  className="flex items-start sm:items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group sm:min-h-[64px]"
+                                >
+                                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                  <span className="text-black text-sm relative z-10 max-w-[calc(100%-24px)] whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal sm:text-wrap sm:overflow-visible sm:py-1">{condition}</span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-center py-8 px-4 rounded-xl bg-[var(--background-color-light)]/5 border border-dashed border-white/20">
+                              <p className="text-[var(--text-color-light)] text-center">No health conditions reported</p>
+                            </div>
+                          )}
                         </div>
                       </motion.div>
 
@@ -1325,21 +1468,27 @@ const HealthAssessment = () => {
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Lifestyle Factors</h3>
                           </div>
                           {/* Lifestyle Factors Grid - Mobile Responsive */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {formData.lifestyleFactors.map((factor, index) => (
-                              <motion.div
-                                key={factor}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.8 + index * 0.1 }}
-                                className="flex items-start sm:items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group min-h-[48px] sm:min-h-[64px]"
-                              >
-                                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <Clock className="w-4 h-4 text-black flex-shrink-0 relative z-10 mt-[2px] sm:mt-0" />
-                                <span className="text-black text-sm relative z-10 max-w-[calc(100%-24px)] whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal sm:text-wrap sm:overflow-visible sm:py-1">{factor}</span>
-                              </motion.div>
-                            ))}
-                          </div>
+                          {formData.lifestyleFactors && formData.lifestyleFactors.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              {formData.lifestyleFactors.map((factor, index) => (
+                                <motion.div
+                                  key={factor}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.8 + index * 0.1 }}
+                                  className="flex items-start sm:items-center gap-2 py-3 px-4 rounded-xl bg-[var(--background-color-light)] transition-colors relative overflow-hidden group min-h-[48px] sm:min-h-[64px]"
+                                >
+                                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                  <Clock className="w-4 h-4 text-black flex-shrink-0 relative z-10 mt-[2px] sm:mt-0" />
+                                  <span className="text-black text-sm relative z-10 max-w-[calc(100%-24px)] whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal sm:text-wrap sm:overflow-visible sm:py-1">{factor}</span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-center py-8 px-4 rounded-xl bg-[var(--background-color-light)]/5 border border-dashed border-white/20">
+                              <p className="text-[var(--text-color-light)] text-center">No lifestyle factors specified</p>
+                            </div>
+                          )}
                         </div>
                       </motion.div>
 
@@ -1360,15 +1509,23 @@ const HealthAssessment = () => {
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Activity Level</h3>
                           </div>
                           <div className="text-center">
-                            <div className="relative inline-block">
-                              <div className="text-3xl font-bold text-[var(--accent-color)] mb-2">
-                                {formData.activityLevel.charAt(0).toUpperCase() + formData.activityLevel.slice(1)}
+                            {formData.activityLevel ? (
+                              <>
+                                <div className="relative inline-block">
+                                  <div className="text-3xl font-bold text-[var(--accent-color)] mb-2">
+                                    {formData.activityLevel.charAt(0).toUpperCase() + formData.activityLevel.slice(1)}
+                                  </div>
+                                  <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
+                                </div>
+                                <div className="text-[var(--text-color-light)]">
+                                  Current Activity Status
+                                </div>
+                              </>
+                            ) : (
+                              <div className="flex items-center justify-center py-8 px-4 rounded-xl bg-[var(--background-color-light)]/5 border border-dashed border-white/20">
+                                <p className="text-[var(--text-color-light)] text-center">No activity level specified</p>
                               </div>
-                              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
-                            </div>
-                            <div className="text-[var(--text-color-light)]">
-                              Current Activity Status
-                            </div>
+                            )}
                           </div>
                         </div>
                       </motion.div>
@@ -1452,11 +1609,7 @@ const HealthAssessment = () => {
                 <div className="flex justify-between mt-8 pt-8 border-t border-white/10">
                   <button
                     onClick={prevStep}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 cursor-pointer ${currentStep === 0
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:bg-white/10 hover:shadow-md"
-                      }`}
-                    disabled={currentStep === 0}
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 cursor-pointer hover:bg-white/10 hover:shadow-md"
                   >
                     <ArrowLeft className="w-5 h-5" />
                     <span>Previous</span>
