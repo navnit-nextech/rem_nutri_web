@@ -463,7 +463,7 @@ export const generateEmailContent = (data: any) => {
           <tr>
             <td style="background-color: #F3F4F6; padding: 36px; text-align: center;" class="section-padding">
               <p style="font-family: Arial, sans-serif; color: #6B7280; margin: 0 0 20px 0; font-size: 15px;">Report generated on ${timestamp} (IST)</p>
-              <a href="https://rem-nutri-web.vercel.app/programs" style="font-family: Arial, sans-serif; display: inline-block; background-color: #4A90E2; color: white; text-decoration: none; padding: 14px 36px; border-radius: 9999px; font-weight: bold; font-size: 16px;">Explore Wellness Programs</a>
+              <a href="https://rem-nutri-web.vercel.app" style="font-family: Arial, sans-serif; display: inline-block; background-color: #4A90E2; color: white; text-decoration: none; padding: 14px 36px; border-radius: 9999px; font-weight: bold; font-size: 16px;">Explore Wellness Programs</a>
             </td>
           </tr>
         </table>

@@ -915,49 +915,92 @@ const HealthAssessment = () => {
               </div>
             ) : field.type === "multiselect" ? (
               <div className="grid grid-cols-1 gap-4">
-                {/* Dynamic grid layout based on number of options */}
-                <div className={`grid gap-4 ${field.options.length === 9 ? 'grid-cols-3' : 'grid-cols-3'}`}>
-                  {/* First 6 options in 2x3 grid for 7 options, or all 9 in 3x3 grid */}
-                  {field.options.slice(0, field.options.length === 9 ? 9 : 6).map((option) => (
-                    <motion.button
-                      key={option.value}
-                      type="button"
-                      onClick={() => {
-                        const currentValue = formData[field.name] || [];
-                        
-                        // Handle the "None" option special case
-                        if (option.value === "none") {
-                          // If "None" is clicked and not already selected, clear all other selections
-                          if (!currentValue.includes("none")) {
-                            setFormData({ ...formData, [field.name]: ["none"] });
+                {/* Grid layout for options */}
+                <div className={`grid gap-4 ${field.name === 'healthConditions' && field.options.length === 9 ? 'md:grid-cols-3 grid-cols-2' : field.name === 'lifestyleFactors' ? 'grid-cols-2' : 'md:grid-cols-3 grid-cols-2'}`}>
+                  {/* For females with 9 options, show all in a 3x3 grid on desktop and first 8 in a 4x2 grid on mobile */}
+                  {field.name === 'healthConditions' && field.options.length === 9 ? (
+                    <>
+                      {/* First 8 options in 2-column grid for mobile, 3-column grid for desktop */}
+                      {field.options.slice(0, 8).map((option) => (
+                        <motion.button
+                          key={option.value}
+                          type="button"
+                          onClick={() => {
+                            const currentValue = formData[field.name] || [];
+                            
+                            // Handle the "None" option special case
+                            if (option.value === "none") {
+                              // If "None" is clicked and not already selected, clear all other selections
+                              if (!currentValue.includes("none")) {
+                                setFormData({ ...formData, [field.name]: ["none"] });
+                              } else {
+                                // If "None" is already selected and clicked again, deselect it
+                                setFormData({ ...formData, [field.name]: [] });
+                              }
+                            } else {
+                              // If any other option is clicked
+                              const newValue = currentValue.includes(option.value)
+                                ? currentValue.filter((v) => v !== option.value)
+                                : [...currentValue.filter(v => v !== "none"), option.value];
+                              setFormData({ ...formData, [field.name]: newValue });
+                            }
+                          }}
+                          className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
+                                ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                                : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                              }`}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <div className="text-2xl mb-2">{option.icon}</div>
+                          <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                        </motion.button>
+                      ))}
+                    </>
+                  ) : (
+                    // For other cases (male health conditions or other multiselect fields), use the original slicing logic
+                    field.options.slice(0, field.options.length === 9 ? 8 : 6).map((option) => (
+                      <motion.button
+                        key={option.value}
+                        type="button"
+                        onClick={() => {
+                          const currentValue = formData[field.name] || [];
+                          
+                          // Handle the "None" option special case
+                          if (option.value === "none") {
+                            // If "None" is clicked and not already selected, clear all other selections
+                            if (!currentValue.includes("none")) {
+                              setFormData({ ...formData, [field.name]: ["none"] });
+                            } else {
+                              // If "None" is already selected and clicked again, deselect it
+                              setFormData({ ...formData, [field.name]: [] });
+                            }
                           } else {
-                            // If "None" is already selected and clicked again, deselect it
-                            setFormData({ ...formData, [field.name]: [] });
+                            // If any other option is clicked
+                            const newValue = currentValue.includes(option.value)
+                              ? currentValue.filter((v) => v !== option.value)
+                              : [...currentValue.filter(v => v !== "none"), option.value];
+                            setFormData({ ...formData, [field.name]: newValue });
                           }
-                        } else {
-                          // If any other option is clicked
-                          const newValue = currentValue.includes(option.value)
-                            ? currentValue.filter((v) => v !== option.value)
-                            : [...currentValue.filter(v => v !== "none"), option.value];
-                          setFormData({ ...formData, [field.name]: newValue });
-                        }
-                      }}
-                      className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
-                          ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
-                          : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                        }`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <div className="text-2xl mb-2">{option.icon}</div>
-                      <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
-                    </motion.button>
-                  ))}
+                        }}
+                        className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
+                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                            : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                          }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className="text-2xl mb-2">{option.icon}</div>
+                        <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                      </motion.button>
+                    ))
+                  )}
                 </div>
-                {/* Last option in full width for 7 options */}
-                {field.options.length !== 9 && (
-                  <div className="grid grid-cols-1">
-                    {field.options.slice(6).map((option) => (
+                
+                {/* Last option in full width - for female health conditions and other multiselects */}
+                {field.name === 'healthConditions' && field.options.length === 9 ? (
+                  <div className="md:hidden grid grid-cols-1">
+                    {field.options.slice(8, 9).map((option) => (
                       <motion.button
                         key={option.value}
                         type="button"
@@ -993,6 +1036,46 @@ const HealthAssessment = () => {
                       </motion.button>
                     ))}
                   </div>
+                ) : (
+                  !(field.name === 'healthConditions' && field.options.length === 9) && (
+                    <div className="grid grid-cols-1">
+                      {field.options.slice(field.options.length === 9 ? 8 : 6).map((option) => (
+                        <motion.button
+                          key={option.value}
+                          type="button"
+                          onClick={() => {
+                            const currentValue = formData[field.name] || [];
+                            
+                            // Handle the "None" option special case
+                            if (option.value === "none") {
+                              // If "None" is clicked and not already selected, clear all other selections
+                              if (!currentValue.includes("none")) {
+                                setFormData({ ...formData, [field.name]: ["none"] });
+                              } else {
+                                // If "None" is already selected and clicked again, deselect it
+                                setFormData({ ...formData, [field.name]: [] });
+                              }
+                            } else {
+                              // If any other option is clicked
+                              const newValue = currentValue.includes(option.value)
+                                ? currentValue.filter((v) => v !== option.value)
+                                : [...currentValue.filter(v => v !== "none"), option.value];
+                              setFormData({ ...formData, [field.name]: newValue });
+                            }
+                          }}
+                          className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
+                                ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                                : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                              }`}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <div className="text-2xl mb-2">{option.icon}</div>
+                          <div className="text-sm font-medium text-[var(--text-color-plain)] text-center">{option.label}</div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  )
                 )}
               </div>
             ) : field.type === "textarea" ? (
@@ -1157,7 +1240,7 @@ const HealthAssessment = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => router.push('/')}
-            className="absolute -top-2 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-50"
+            className="absolute -top-15 md:-top-0 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-50"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1314,9 +1397,12 @@ const HealthAssessment = () => {
                         
                         <BMIGauge bmi={bmi} height={formData.height} />
                         
-                        <div className="text-center text-[var(--text-color-light)] mb-8">
-                          <p>BMI is one indicator of health, but it's not the complete picture.</p>
-                          <p>Let's continue to understand your unique health needs better.</p>
+                        <div className="mt-3 p-4 mb-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+                          <p className="text-[var(--text-color-light)] text-center">
+                            BMI is one indicator of health, but it's not the complete picture.
+                            <br />
+                            Let's continue to understand your unique health needs better.
+                          </p>
                         </div>
                         
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
