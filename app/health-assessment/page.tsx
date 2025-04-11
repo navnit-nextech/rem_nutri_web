@@ -646,11 +646,8 @@ const HealthAssessment = () => {
     // Handle data submission in the background
     const submitData = async () => {
       try {
-        // Get current IST timestamp
+        // Get current timestamp in IST
         const now = new Date();
-        const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
-        const istDate = new Date(now.getTime() + istOffset);
-        
         // Format the date in IST with proper formatting
         const options: Intl.DateTimeFormatOptions = { 
           timeZone: 'Asia/Kolkata',
@@ -660,10 +657,10 @@ const HealthAssessment = () => {
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
-          hour12: true
+          hour12: false
         };
         
-        const timestamp = istDate.toLocaleString('en-IN', options);
+        const timestamp = now.toLocaleString('en-IN', options);
 
         const response = await fetch("/api/health-assessment", {
           method: "POST",
@@ -916,11 +913,18 @@ const HealthAssessment = () => {
                   {/* For females with 9 options, show all in a 3x3 grid on desktop and first 8 in a 4x2 grid on mobile */}
                   {field.name === 'healthConditions' && field.options.length === 9 ? (
                     <>
-                      {/* First 8 options in 2-column grid for mobile, 3-column grid for desktop */}
-                      {field.options.slice(0, 8).map((option) => (
+                      {/* Show all options in desktop view, but only first 8 in mobile view */}
+                      {field.options.map((option, index) => (
                         <motion.button
                           key={option.value}
                           type="button"
+                          // Hide the last option (None) in mobile view only
+                          className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
+                            index === 8 ? 'md:block hidden' : ''
+                          } ${(formData[field.name] || []).includes(option.value)
+                              ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                              : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
+                            }`}
                           onClick={() => {
                             const currentValue = formData[field.name] || [];
                             
@@ -941,10 +945,6 @@ const HealthAssessment = () => {
                               setFormData({ ...formData, [field.name]: newValue });
                             }
                           }}
-                          className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
-                                ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
-                                : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
-                              }`}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
@@ -993,7 +993,7 @@ const HealthAssessment = () => {
                   )}
                 </div>
                 
-                {/* Last option in full width - for female health conditions and other multiselects */}
+                {/* Last option in full width - for female health conditions (mobile view only) and other multiselects */}
                 {field.name === 'healthConditions' && field.options.length === 9 ? (
                   <div className="md:hidden grid grid-cols-1">
                     {field.options.slice(8, 9).map((option) => (
