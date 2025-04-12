@@ -6,39 +6,63 @@
   --background: #ffffff;
   --foreground: #171717;
   --background-color-dark: #1B0D30;
-  --background-color-light: #D0B3FF ;
+  --background-color-light: #D0B3FF;
   --background-color-plain: #F4F1EB;
   --background-color-plain2: #EBE5DA;
   --background-color-plain3: #FFFFFF;
   --text-color-dark: #1B0D30;
   --text-color-light: #D0B3FF;
   --text-color-plain: #FFFFFF;
-
-  
-  
-
-
-
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Force color scheme to match our design regardless of system preferences */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    /* Ensure text colors remain consistent in dark mode */
+    --text-color-dark: #1B0D30;
+    --text-color-light: #D0B3FF;
+    --text-color-plain: #FFFFFF;
   }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Ensure text colors remain consistent in light mode */
+    --text-color-dark: #1B0D30;
+    --text-color-light: #D0B3FF;
+    --text-color-plain: #FFFFFF;
+  }
+}
+
+/* Add color-scheme property to override browser default colors */
+:root {
+  color-scheme: light dark;
 }
 
 body {
   background: #f4f1eb;
-  color: var(--foreground);
+  color: var(--foreground, #171717); /* Add fallback */
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fix for text colors in case CSS variables fail */
+.text-fixed-white {
+  color: #FFFFFF !important;
+}
+
+.text-fixed-purple {
+  color: #D0B3FF !important;
+}
+
+.text-fixed-dark {
+  color: #1B0D30 !important;
+}
+
+/* Class to apply directly to elements with color issues */
+.force-white-text {
+  color: #FFFFFF !important;
 }
 
 @keyframes carousel {
@@ -58,7 +82,7 @@ body {
 /* Custom input focus styles */
 .thin-focus:focus-visible {
   outline: none !important;
-  border: 0.5px solid var(--text-color-dark) !important;
+  border: 0.5px solid var(--text-color-dark, #1B0D30) !important;
   box-shadow: none !important;
   ring: 0 !important;
   ring-offset: 0 !important;

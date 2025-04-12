@@ -356,12 +356,13 @@ const RemMetaPage = () => {
             <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
               <ScrollAnimation>
                 <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
-                  <span className="text-[var(--text-color-light)]">Program Features</span> for
-                  your metabolic health journey.
+                  <span className="text-[var(--text-color-light)]">Program Features</span> 
+                  <span className="text-[var(--text-color-plain)] force-white-text">for
+                  your journey to wellness.</span>
                 </h2>
-                <p className="text-lg mb-8 text-[var(--text-color-plain)]/80">
+                <p className="text-lg mb-8 text-[var(--text-color-plain)]/80 force-white-text">
                   Our comprehensive program combines expert guidance, education, and practical solutions
-                  to help you achieve lasting health improvements and manage metabolic disorders effectively.
+                  to help you achieve lasting metabolic health improvements.
                 </p>
                 <div>
                   <a
@@ -442,10 +443,10 @@ const RemMetaPage = () => {
                         <div className="mb-2 text-[var(--text-color-light)] text-sm">
                           {step.subtitle}
                         </div>
-                        <h3 className="text-4xl text-[var(--text-color-plain)] font-bold mb-4 font-['Libre_Baskerville',serif]">
+                        <h3 className="text-4xl text-[var(--text-color-plain)] force-white-text font-bold mb-4 font-['Libre_Baskerville',serif]">
                           {step.title}
                         </h3>
-                        <p className="text-[var(--text-color-plain)]/80 max-w-2xl text-lg">
+                        <p className="text-[var(--text-color-plain)]/80 force-white-text max-w-2xl text-lg">
                           {step.description}
                         </p>
                       </div>
@@ -471,18 +472,18 @@ const RemMetaPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="text-[40px] md:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] mb-6"
+                  className="text-[40px] sm:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] force-white-text mb-6"
                 >
-                  Transform Your Metabolic Health <span className="text-[var(--text-color-light)]">Today</span>
+                  Transform Your Health <span className="text-[var(--text-color-light)]">Today</span>
                 </motion.h2>
 
                 <motion.p 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-[var(--text-color-plain)]/70 text-lg mb-8"
+                  className="text-[var(--text-color-plain)]/70 force-white-text text-lg mb-8"
                 >
-                  Take the first step towards optimizing your metabolism with our expert guidance.
+                  Take the first step towards metabolic health with our expert guidance.
                 </motion.p>
 
                 <motion.div

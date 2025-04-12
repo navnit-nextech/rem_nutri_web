@@ -349,13 +349,14 @@ const RemProteinPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
               <ScrollAnimation>
-                <h2 className="text-4xl sm:text-5xl mb-8 font-['Libre_Baskerville',serif]">
-                  <span className="text-[var(--text-color-light)]">Program Features</span> for
-                  your protein journey.
+                <h2 className="text-5xl mb-8 font-['Libre_Baskerville',serif]">
+                  <span className="text-[var(--text-color-light)]">Program Features</span> 
+                  <span className="text-[var(--text-color-plain)] force-white-text">for
+                  your journey to wellness.</span>
                 </h2>
-                <p className="text-base sm:text-lg mb-8 text-[var(--text-color-plain)]/80 pr-4 sm:pr-0">
-                  Our comprehensive program combines expert protein nutrition guidance, personalized meal planning, and ongoing support
-                  to help you optimize your protein intake for better health and vitality.
+                <p className="text-lg mb-8 text-[var(--text-color-plain)]/80 force-white-text">
+                  Our comprehensive program combines expert guidance, education, and practical solutions
+                  to help you achieve healthy weight gain and muscle development.
                 </p>
                 <div>
                   <a
@@ -436,10 +437,10 @@ const RemProteinPage = () => {
                         <div className="mb-2 text-[var(--text-color-light)] text-sm">
                           {step.subtitle}
                         </div>
-                        <h3 className="text-4xl text-[var(--text-color-plain)] font-bold mb-4 font-['Libre_Baskerville',serif]">
+                        <h3 className="text-4xl text-[var(--text-color-plain)] force-white-text font-bold mb-4 font-['Libre_Baskerville',serif]">
                           {step.title}
                         </h3>
-                        <p className="text-[var(--text-color-plain)]/80 max-w-2xl text-lg">
+                        <p className="text-[var(--text-color-plain)]/80 force-white-text max-w-2xl text-lg">
                           {step.description}
                         </p>
                       </div>
@@ -465,18 +466,18 @@ const RemProteinPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="text-[40px] sm:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] mb-6"
+                  className="text-[40px] sm:text-[48px] font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] force-white-text mb-6"
                 >
-                  Optimize Your <span className="text-[var(--text-color-light)]">Protein</span> Intake
+                  Transform Your Health <span className="text-[var(--text-color-light)]">Today</span>
                 </motion.h2>
 
                 <motion.p 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-[var(--text-color-plain)]/70 text-lg mb-8"
+                  className="text-[var(--text-color-plain)]/70 force-white-text text-lg mb-8"
                 >
-                  Take the first step towards better health with our expert protein nutrition guidance.
+                  Take the first step towards healthy weight gain with our expert guidance.
                 </motion.p>
 
                 <motion.div

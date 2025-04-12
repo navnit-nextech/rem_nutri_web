@@ -440,7 +440,7 @@ const CareersPage = () => {
                   {internship.description}
                 </p>
                 <Button
-                  className="bg-[var(--background-color-dark)] hover:bg-[var(--background-color-dark)]/70 ext-white font-medium text-sm mt-auto self-start px-5 py-2.5 rounded-md transition-all duration-300 "
+                  className="bg-[var(--background-color-dark)] hover:bg-[var(--background-color-dark)]/70 text-white font-medium text-sm mt-auto self-start px-5 py-2.5 rounded-md transition-all duration-300 "
                   asChild
                 >
                   <a href="#apply">Apply Now</a>

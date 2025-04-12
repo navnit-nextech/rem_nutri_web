@@ -1236,7 +1236,7 @@ const HealthAssessment = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => router.push('/')}
-            className="absolute -top-15 md:-top-0 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-50"
+            className="absolute -top-15 md:-top-0 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1365,7 +1365,7 @@ const HealthAssessment = () => {
                         transition={{ delay: 0.4 }}
                         className="pt-12 sm:pt-14"
                       >
-                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--accent-color)] mt-8 mb-3">
+                        <h2 className="text-2xl sm:text-3xl font-bold mt-8 text-[var(--text-color-plain)] mb-3">
                           Your BMI Results
                         </h2>
                         <p className="text-[var(--text-color-light)] max-w-2xl mx-auto mb-6">
@@ -1386,7 +1386,7 @@ const HealthAssessment = () => {
                         <div className="flex items-center gap-3 mb-6 justify-center">
                           <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                            <Scale className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                            <Scale className="w-6 h-6 text-[var(--text-color-plain)] relative z-10" />
                           </div>
                           <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Your BMI</h3>
                         </div>
@@ -1454,14 +1454,14 @@ const HealthAssessment = () => {
                         transition={{ delay: 0.4 }}
                         className="pt-12 sm:pt-14"
                       >
-                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--accent-color)] mt-8 mb-3 ">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-color-plain)] mt-8 mb-3 ">
                           Your Health Assessment Report
                         </h2>
                         <p className="text-[var(--text-color-light)] max-w-2xl mx-auto mb-3">
                           Based on your responses, we've analyzed your health profile and prepared personalized recommendations
                         </p>
 
-                        <p className="text-[var(--accent-color)] text-sm flex items-start justify-center gap-2">
+                        <p className="text-[var(--text-color-plain)] text-sm flex items-start justify-center gap-2">
                           <Mail className="w-4 h-4 mt-[2px]" />
                           A detailed report has been sent to your email address
                         </p>
@@ -1483,7 +1483,7 @@ const HealthAssessment = () => {
                           <div className="flex items-center gap-3 mb-6">
                             <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                              <Scale className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                              <Scale className="w-6 h-6 text-[var(--text-color-plain)] relative z-10" />
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">BMI Analysis</h3>
                           </div>
@@ -1505,7 +1505,7 @@ const HealthAssessment = () => {
                           <div className="flex items-center gap-3 mb-6">
                             <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                              <Activity className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                              <Activity className="w-6 h-6 text-[var(--text-color-plain)] relative z-10" />
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Health Conditions</h3>
                           </div>
@@ -1545,7 +1545,7 @@ const HealthAssessment = () => {
                           <div className="flex items-center gap-3 mb-6">
                             <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                              <Brain className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                              <Brain className="w-6 h-6 text-[var(--text-color-plain)] relative z-10" />
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Lifestyle Factors</h3>
                           </div>
@@ -1586,7 +1586,7 @@ const HealthAssessment = () => {
                           <div className="flex items-center gap-3 mb-6">
                             <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                              <Heart className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
+                              <Heart className="w-6 h-6 text-[var(--text-color-plain)] relative z-10" />
                             </div>
                             <h3 className="text-xl font-semibold text-[var(--text-color-plain)]">Activity Level</h3>
                           </div>
@@ -1594,7 +1594,7 @@ const HealthAssessment = () => {
                             {formData.activityLevel ? (
                               <>
                                 <div className="relative inline-block">
-                                  <div className="text-3xl font-bold text-[var(--accent-color)] mb-2">
+                                  <div className="text-3xl font-bold text-[var(--text-color-plain)] mb-2">
                                     {formData.activityLevel.charAt(0).toUpperCase() + formData.activityLevel.slice(1)}
                                   </div>
                                   <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[var(--accent-color)] animate-pulse" />
@@ -1622,10 +1622,16 @@ const HealthAssessment = () => {
                     >
                       <div className="text-center mb-6 sm:mb-8">
                         <div className="flex items-center justify-center gap-3 mb-3 sm:mb-4">
-                          <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                            <Target className="w-6 h-6 text-[var(--accent-color)] relative z-10" />
-                          </div>
+                        <div className="p-3 rounded-xl bg-[var(--accent-color)]/10 relative overflow-hidden">
+  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+  
+  {/* Flex container to center icon */}
+  <div className="relative z-10 flex justify-center items-center">
+    <Target className="w-6 h-6 shrink-0 text-[var(--text-color-plain)]" />
+  </div>
+</div>
+
+                          
                           <h3 className="text-xl sm:text-2xl font-semibold text-[var(--text-color-plain)]">
                             Recommended Programs
                           </h3>

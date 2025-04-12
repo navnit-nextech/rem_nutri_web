@@ -214,7 +214,7 @@ const ContactForm = () => {
 
               <div className="flex items-center gap-5">
                 <div className="w-16 h-16 rounded-full bg-[var(--background-color-dark)] flex items-center justify-center">
-                  <Phone />
+                  <Phone className='text-[var(--text-color-plain)]' />
                 </div>
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px]  font-['Libre_Baskerville',serif]">Phone us</h3>
@@ -224,7 +224,7 @@ const ContactForm = () => {
 
               <div className="flex items-center gap-5">
                 <div className="w-16 h-16 rounded-full bg-[var(--background-color-dark)] flex items-center justify-center">
-                  <MapPin  />
+                  <MapPin  className='text-[var(--text-color-plain)]'/>
                 </div>
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px]  font-['Libre_Baskerville',serif]">Find us</h3>

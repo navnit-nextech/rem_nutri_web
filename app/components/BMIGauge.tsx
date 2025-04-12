@@ -277,7 +277,7 @@ const BMIGauge = ({ bmi, height }: BMIGaugeProps) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.8, duration: 0.5 }}
       >
-        <div className="text-5xl font-bold text-[var(--accent-color)] mb-1">
+        <div className="text-5xl font-bold text-[var(--text-color-plain)] mb-1">
           {bmi?.toFixed(1)}
           <span className="text-2xl align-top ml-1">kg/m²</span>
         </div>
