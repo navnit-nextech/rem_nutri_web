@@ -26,11 +26,7 @@ const programs = [
     id: "rem-di-2",
     name: "RemDi 2",
     description: "Type 2 and Pre Diabetes Reversal Programme",
-    icon: (
-      <svg width="30" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto">
-        <path d="M11.15 15.18L9.72999 13.77L11.15 12.35L12.56 13.77L13.97 12.35L12.56 10.94L13.97 9.53L15.39 10.94L16.8 9.53L13.97 6.7L6.89999 13.77L9.72999 16.6L11.15 15.18ZM3.07999 19L6.19999 15.89L4.07999 13.77L13.97 3.87L16.1 6L17.5 4.58L16.1 3.16L17.5 1.75L21.75 6L20.34 7.4L18.92 6L17.5 7.4L19.63 9.53L9.72999 19.42L7.60999 17.3L3.07999 21.84V19Z" fill="currentColor" />
-      </svg>
-    )
+    icon: "💉"
   },
   {
     id: "rem-bliss",
@@ -875,7 +871,7 @@ const HealthAssessment = () => {
                       type="button"
                       onClick={() => setFormData({ ...formData, [field.name]: option.value })}
                       className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === option.value
-                          ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                          ? "border-[var(--text-color-plain)] bg-[var(--accent-color)]/10"
                           : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                         }`}
                       whileHover={{ scale: 1.02 }}
@@ -893,7 +889,7 @@ const HealthAssessment = () => {
                         type="button"
                         onClick={() => setFormData({ ...formData, [field.name]: option.value })}
                         className={`${index === field.options.length - 1 && field.options.length === 3 ? "col-span-2" : ""} p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${formData[field.name] === option.value
-                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                            ? "border-[var(--text-color-plain)] bg-[var(--accent-color)]/10"
                             : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                           }`}
                         whileHover={{ scale: 1.02 }}
@@ -922,7 +918,7 @@ const HealthAssessment = () => {
                           className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${
                             index === 8 ? 'md:block hidden' : ''
                           } ${(formData[field.name] || []).includes(option.value)
-                              ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                              ? "border-[var(--text-color-plain)] bg-[var(--accent-color)]/10"
                               : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                             }`}
                           onClick={() => {
@@ -980,7 +976,7 @@ const HealthAssessment = () => {
                           }
                         }}
                         className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
-                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                            ? "border-[var(--text-color-plain)] bg-[var(--accent-color)]/10"
                             : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                           }`}
                         whileHover={{ scale: 1.02 }}
@@ -1021,7 +1017,7 @@ const HealthAssessment = () => {
                           }
                         }}
                         className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
-                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                            ? "border-[var(--text-color-plain)] bg-[var(--accent-color)]/10"
                             : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                           }`}
                         whileHover={{ scale: 1.02 }}
@@ -1060,7 +1056,7 @@ const HealthAssessment = () => {
                             }
                           }}
                           className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer h-full flex flex-col items-center justify-center min-h-[120px] ${(formData[field.name] || []).includes(option.value)
-                                ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10"
+                                ? "border-[var(--text-color-plain)] bg-[var(--accent-color)]/10"
                                 : "border-white/10 bg-white/5 backdrop-blur-sm hover:border-[var(--accent-color)]/50"
                               }`}
                           whileHover={{ scale: 1.02 }}
@@ -1699,8 +1695,8 @@ const HealthAssessment = () => {
                     onClick={prevStep}
                     className="flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 cursor-pointer hover:bg-white/10 hover:shadow-md"
                   >
-                    <ArrowLeft className="w-5 h-5" />
-                    <span>Previous</span>
+                    <ArrowLeft className="w-5 h-5 text-[var(--text-color-plain)]" />
+                    <span className="text-[var(--text-color-plain)]">Previous</span>
                   </button>
                   <button
                     onClick={currentStep === 1 ? handleInitialSubmit : nextStep}
