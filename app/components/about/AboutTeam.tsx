@@ -27,32 +27,39 @@ const AboutTeam = () => {
     },
     {
       id: 3,
+      name: "SHAKILA SRIKUMAR",
+      role: "MENTOR",
+      image: "/images/team_3.jpeg",
+      linkedin: "https://linkedin.com",
+    },
+    {
+      id: 4,
       name: "BHAGIRATH.M",
       role: "CO-FOUNDER",
       image: "/images/about/team/3.avif",
       linkedin: "https://linkedin.com",
     },
     {
-      id: 4,
+      id: 5,
       name: "J. A. CHOWDARY",
       role: "MENTOR",
       image: "/images/about/team/4.avif",
       linkedin: "https://linkedin.com",
     },
     {
-      id: 2,
+      id: 6,
       name: "ARUN",
       role: "HEAD CHEF",
       image: "/images/about/team/5.webp",
       linkedin: "https://linkedin.com",
     },
-    {
-      id: 3,
-      name: "ASHOK",
-      role: "HEAD CHEF",
-      image: "/images/about/team/6.webp",
-      linkedin: "https://linkedin.com",
-    },
+    // {
+    //   id: 3,
+    //   name: "ASHOK",
+    //   role: "HEAD CHEF",
+    //   image: "/images/about/team/6.webp",
+    //   linkedin: "https://linkedin.com",
+    // },
   ];
 
   const nextCard = () => {
