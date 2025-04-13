@@ -218,42 +218,45 @@ const ServicesGrid = () => {
   
   const services = [
     {
-      icon: <Remdi2 />,
+      icon: <span className="text-3xl md:text-5xl">💉</span>,
       title: "RemDi 2",
-      description: "Type 2 and Pre Diabetes Reversal Programme. ",
-      path: "/programs/remdi2"
+      description: "Type 2 and Pre Diabetes Reversal Programme.",
+      path: "/programs/remdi2",
     },
     {
-      icon: <Rembliss />,
+      icon: <span className="text-3xl md:text-5xl">🌺</span>,
       title: "Rem Bliss",
       description: "Women's Health Programme tackling PCOS/PCOD and Menopause.",
-      path: "/programs/rembliss"
+      path: "/programs/rembliss",
     },
     {
-      icon: <Remmeta/>,
+      icon: <span className="text-3xl md:text-5xl">🫀</span>,
       title: "Rem Meta",
       description: "Tackling Metabolic issues such as High Blood Pressure, Cardiac Risk, Fatty Liver and more.",
-      path: "/programs/remmeta"
+      path: "/programs/remmeta",
     },
     {
-      icon: <Remfit />,
+      icon: <span className="text-3xl md:text-5xl">🏃</span>,
       title: "Rem Fit",
       description: "To achieve intense weight loss @4-5kg/month.",
-      path: "/programs/remfit"
+      path: "/programs/remfit",
     },
     {
-      icon: <RemBalance />,
+      icon: <span className="text-3xl md:text-5xl">⚖️</span>,
       title: "Rem Balance",
       description: "Maintain consistent weight through balanced meals and lifestyle.",
-      path: "/programs/rembalance"
+      path: "/programs/rembalance",
     },
     {
-      icon: <RemProtein />,
+      icon: <span className="text-3xl md:text-5xl">💪</span>,
       title: "Rem Protein",
       description: "Optimize protein intake for better health, energy, and overall vitality.",
-      path: "/programs/remprotein"
+      path: "/programs/remprotein",
     },
   ];
+  
+  
+  
 
   return (
     <div className="w-full bg-[var(--background-color-plain2)] cursor-pointer bg-cover bg-center bg-no-repeat py-16 pt-3 md:pt-0 md:pb-16 px-3 sm:px-4 transition-all duration-300">
