@@ -146,11 +146,11 @@ const Testimonials = () => {
           </div>
         </ScrollAnimation>
 
-        <ScrollAnimation delay={0.2}>
+        {/* <ScrollAnimation delay={0.2}>
             <div className="max-w-full mx-auto mb-16 relative flex justify-center">
               <div className="rounded-3xl overflow-hidden w-full max-w-[1000px] shadow-2xl">
                 <div className="relative w-full">
-                  {/* Video with enhanced styling */}
+              
                 <iframe
                     className="relative w-full h-[240px] sm:h-[560px] rounded-3xl border-none"
                   src="https://www.youtube.com/embed/W-XQS2NoRdc"
@@ -180,7 +180,7 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
-        </ScrollAnimation>
+        </ScrollAnimation> */}
 
           <div className="w-full h-[1px] bg-gray-500/60 mb-24"></div>
 
