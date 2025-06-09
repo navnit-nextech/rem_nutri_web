@@ -10,14 +10,18 @@ const AboutTeam = () => {
   const [advisoryCurrentIndex, setAdvisoryCurrentIndex] = useState(0);
   const [advisoryDirection, setAdvisoryDirection] = useState(0);
   
+  // Highlighted profile for Sridevi K
+  const srideviProfile = {
+    id: 1,
+    name: "MRS SRIDEVI.K",
+    role: "FOUNDER",
+    image: "/images/team_1.jpeg",
+    linkedin: "https://linkedin.com",
+    description: "Mrs. Sridevi K is the visionary founder of RemNutri, with over 20 years of experience in holistic wellness, nutrition, and women's health. Her leadership and passion have empowered countless individuals to achieve their health goals. She is dedicated to creating innovative, science-backed programs that make a real difference in people's lives."
+  };
+
+  // Team members (excluding Sridevi K, add a new member to keep 6)
   const teamMembers = [
-    {
-      id: 1,
-      name: "MRS SRIDEVI.K",
-      role: "FOUNDER",
-      image: "/images/team_1.jpeg",
-      linkedin: "https://linkedin.com",
-    },
     {
       id: 2,
       name: "HITHASRI REDDY.M",
@@ -53,13 +57,13 @@ const AboutTeam = () => {
       image: "/images/about/team/5.webp",
       linkedin: "https://linkedin.com",
     },
-    // {
-    //   id: 3,
-    //   name: "ASHOK",
-    //   role: "HEAD CHEF",
-    //   image: "/images/about/team/6.webp",
-    //   linkedin: "https://linkedin.com",
-    // },
+    {
+      id: 7,
+      name: "ASHOK",
+      role: "HEAD CHEF",
+      image: "/images/about/team/6.webp",
+      linkedin: "https://linkedin.com",
+    },
   ];
 
   const nextCard = () => {
@@ -85,16 +89,16 @@ const AboutTeam = () => {
   const advisoryPanel = [
     {
       id: 1,
-      name: "DR. SURESH KUMAR",
-      role: "MEDICAL ADVISOR",
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1000&auto=format&fit=crop",
+      name: "DR. SMITA SAXENA",
+      role: "ADVISOR",
+      image: "/images/advisory_1.jpg",
       linkedin: "https://linkedin.com",
     },
     {
       id: 2,
-      name: "DR. ANITA RAO",
-      role: "NUTRITION ADVISOR",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop",
+      name: "DR. DEEPTI ALLA",
+      role: "ADVISOR",
+      image: "/images/advisory_2.jpeg",
       linkedin: "https://linkedin.com",
     },
     {
@@ -143,6 +147,50 @@ const AboutTeam = () => {
           </div>
         </ScrollAnimation>
 
+        {/* Highlighted Sridevi K Profile */}
+        <div className="relative flex flex-col md:flex-row items-stretch justify-between bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white rounded-3xl shadow-2xl p-0 md:p-0 mb-12 overflow-hidden">
+          {/* Decorative background accent */}
+          <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-tr from-yellow-100/40 to-transparent z-0" />
+          {/* Rectangular image on left, full height */}
+          <div className="relative z-10 w-full md:w-[25rem] h-64 md:h-auto flex-shrink-0 overflow-hidden rounded-2xl">
+            <Image
+              src={srideviProfile.image}
+              alt={srideviProfile.name}
+              fill
+              className="object-cover object-center h-full w-full"
+              style={{ minHeight: '100%', minWidth: '100%', border: 'none' }}
+            />
+          </div>
+          {/* Content on right, always centered */}
+          <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center p-6 md:p-10">
+            <div className="bg-[var(--background-color-plain2)] rounded-2xl px-6 py-6 md:px-10 md:py-8 w-full max-w-2xl flex flex-col items-center">
+              <h2 className="text-3xl md:text-4xl font-extrabold font-['Libre_Baskerville',serif] text-yellow-700 mb-1 drop-shadow-lg">{srideviProfile.name}</h2>
+              <p className="text-lg md:text-xl font-semibold text-yellow-600 mb-2 tracking-wide uppercase">{srideviProfile.role}</p>
+              <p className="text-base md:text-lg text-[var(--text-color-dark)] mb-3 font-medium">{srideviProfile.description}</p>
+              {/* Mission/quote */}
+              <blockquote className="italic text-sm md:text-base text-yellow-800 mb-4 max-w-xl border-l-4 border-yellow-400 pl-4 mx-auto">“Empowering lives through holistic wellness and science-backed nutrition.”</blockquote>
+              <Link
+                href={srideviProfile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-[#024027]"
+                  style={{ minWidth: '32px', minHeight: '32px' }}
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* team grid */}
         <div className="md:pb-2">
           {/* Mobile Card View */}
@@ -189,7 +237,7 @@ const AboutTeam = () => {
                         src={teamMembers[currentIndex].image}
                         alt={teamMembers[currentIndex].name}
                         fill
-                        className="object-top object-cover"
+                        className="object-center object-cover"
                       />
                     </div>
                     <div className="p-6">
@@ -252,7 +300,7 @@ const AboutTeam = () => {
                     src={member.image}
                     alt={member.name}
                     fill
-                    className="object-cover"
+                    className="object-[top_10%] object-cover"
                   />
                 </div>
                 <div className="p-6">
@@ -409,7 +457,7 @@ const AboutTeam = () => {
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className="object-top object-cover"
                     />
                   </div>
                   <div className="p-6">

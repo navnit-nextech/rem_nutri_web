@@ -1,4 +1,3 @@
-
 'use client'
 import React, { useRef, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
@@ -117,7 +116,7 @@ const ServiceQueries = () => {
         <Accordion type="single" collapsible className="w-full mt-[10%]">
           {faqItems.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="border-b border-[#024027]/10 py-2">
-              <AccordionTrigger className="flex text-[var(--text-color-dark)]  font-['Libre_Baskerville',serif] hover:no-underline  sm:text-lg py-5 text-24px ">
+              <AccordionTrigger className="flex font-['Libre_Baskerville',serif] hover:no-underline  sm:text-lg py-5 text-24px ">
                 <span className="text-left">{item.question}</span>
               </AccordionTrigger>
               <AccordionContent className="text-[var(--text-color-dark)] font-['DM_Sans', 'sans-serif']  md:text-[20px] sm:text-base">

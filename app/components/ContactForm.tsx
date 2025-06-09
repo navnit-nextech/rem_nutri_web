@@ -13,6 +13,7 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 
 const Customright = () => (
@@ -109,9 +110,22 @@ const ContactForm = () => {
     message?: string;
   } | null>(null);
 
+  const services = [
+    { id: 'rembliss', name: 'RemBliss - PCOS & Menopause Program' },
+    { id: 'remprotein', name: 'RemProtein - Protein Optimization Program' },
+    { id: 'remfit', name: 'RemFit - Weight Loss Education Program' },
+    { id: 'rembalance', name: 'RemBalance - Gut Health Program' },
+    { id: 'remmeta', name: 'RemMeta - Metabolic Health Program' },
+    { id: 'remdi2', name: 'RemDi2 - Diabetes Management Program' }
+  ].reverse();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleServiceChange = (value: string) => {
+    setFormData(prev => ({ ...prev, service: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -307,13 +321,22 @@ const ContactForm = () => {
                   <Label htmlFor="service" className="font-['DM_Sans', 'sans-serif'] text-[16px] text-[var(--text-color-dark)]">
                     Service*
                   </Label>
-                  <Input
-                    id="service"
+                  <Select
                     value={formData.service}
-                    onChange={handleChange}
+                    onValueChange={handleServiceChange}
                     required
-                    className="bg-white border-transparent thin-focus text-black"
-                  />
+                  >
+                    <SelectTrigger className="bg-white border border-gray-300 text-black hover:bg-gray-50">
+                      <SelectValue placeholder="Select a service" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border border-gray-300 text-black">
+                      {services.map((service) => (
+                        <SelectItem key={service.id} value={service.id} className="hover:bg-gray-100 cursor-pointer text-black">
+                          {service.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div>

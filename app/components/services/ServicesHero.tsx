@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 
 const CustomHomeIcon = () => (
   <svg
@@ -307,6 +308,45 @@ const services = [
 const ServicesHero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
+  const programs = [
+    {
+      icon: "💉",
+      title: "RemDi 2",
+      description: "Type 2 and Pre Diabetes Reversal Programme",
+      path: "/programs/remdi2"
+    },
+    {
+      icon: "🌺",
+      title: "Rem Bliss",
+      description: "Programme for PCOS/PCOD and Menopause",
+      path: "/programs/rembliss"
+    },
+    {
+      icon: "🫀",
+      title: "Rem Meta",
+      description: "Tackling Metabolic issues such as High BP",
+      path: "/programs/remmeta"
+    },
+    {
+      icon: "🏃",
+      title: "Rem Fit",
+      description: "Program for intense weight loss @4-5kg/month",
+      path: "/programs/remfit"
+    },
+    {
+      icon: "⚖️",
+      title: "Rem Balance",
+      description: "Program for maintaining consistent weight",
+      path: "/programs/rembalance"
+    },
+    {
+      icon: "💪",
+      title: "Rem Protein",
+      description: "Protein-focused nutrition for healthy weight gain",
+      path: "/programs/remprotein"
+    }
+  ];
+
   useEffect(() => {
     // Add CSS animations
     const style = document.createElement('style');
@@ -397,10 +437,41 @@ const ServicesHero = () => {
       </div>
       
       <div className="bg-[var(--background-color-plain2)]">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24 pb-0 md:pb-20">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 px-4 relative -top-24 pb-0 ">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} delay={index * 200} />
           ))}
+        </div>
+
+        {/* Programs Section */}
+        <div className="max-w-7xl mx-auto px-4  pb-20">
+          <h3 className="text-center font-['Libre_Baskerville',serif] text-2xl md:text-3xl text-[var(--text-color-dark)] mb-8 font-semibold">
+            Our <span className="text-[var(--text-color-light)]">Programs</span>
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {programs.map((program, index) => (
+              <Link href={program.path} key={program.title}>
+                <div
+                  className="group bg-white rounded-xl p-6 border border-[#EBE5DA] hover:border-[var(--text-color-light)]/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-3xl transform group-hover:scale-110 transition-transform duration-300">
+                      {program.icon}
+                    </span>
+                    <div>
+                      <h4 className="font-['Libre_Baskerville',serif] text-xl text-[var(--text-color-dark)] mb-2 group-hover:text-[var(--text-color-light)] transition-colors duration-300">
+                        {program.title}
+                      </h4>
+                      <p className="text-[var(--text-color-dark)]/70 text-sm font-['DM_Sans', 'sans-serif']">
+                        {program.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

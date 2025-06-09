@@ -171,7 +171,7 @@ const HealthServices = () => {
           Our comprehensive services are designed to support your health journey at every step
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
           <HealthServiceBox icon={<CustomHexagon />} title="Remission & Reversal Programmes" delay={100} />
           <HealthServiceBox icon={<Customwellness />} title="Meal Delivery" delay={300} />
           <HealthServiceBox icon={<Customworkplace />} title="Corporate Services" delay={500} />

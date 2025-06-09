@@ -86,16 +86,16 @@ const Footer = () => {
 
           {/* First Row: Logo */}
           <Link href="/">
-            <div className="md:w-40 md:h-40 rounded-xl  h-20 w-50">
+            
               {/* SVG Logo */}
-              <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" className="" />
-            </div>
+              <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" className="h-40 w-50 md:w-200 md:h-50" />
+           
           </Link>
 
         </div>
 
         {/* Second Row: Menu & Utilities */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-2 md:pl-20 md:pr-40">
+        <div className="w-full grid grid-cols-2 gap-x-4 md:grid-cols-2 md:pl-20 md:pr-40">
           {/* Menu */}
           <div>
             {/* <h3 className="text-lg font-medium mb-3 font-['DM_Sans', 'sans-serif'] text-[var(--text-color-plain)] text-[10px] md:text-sm">Menu</h3> */}

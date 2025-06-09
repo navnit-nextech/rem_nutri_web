@@ -56,7 +56,9 @@ const createTransporter = () => {
     console.log(`Creating transporter with email: ${process.env.EMAIL_USER}`);
     
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.zoho.in',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
@@ -164,7 +166,9 @@ export async function POST(req: Request) {
       console.log(`Creating transporter with email: ${process.env.EMAIL_USER}`);
       
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.zoho.in',
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASSWORD,

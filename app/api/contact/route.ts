@@ -118,7 +118,9 @@ const createTransporter = () => {
     console.log(`Creating transporter with email: ${process.env.EMAIL_USER}`);
     
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.zoho.in',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
@@ -132,38 +134,57 @@ const createTransporter = () => {
   }
 };
 
-export async function POST(req: Request) {
+const validServices = [
+  'rembliss',
+  'remprotein',
+  'remfit',
+  'rembalance',
+  'remmeta',
+  'remdi2'
+];
+
+export async function POST(request: Request) {
   try {
-    const contactData = await req.json();
-    const { firstName, lastName, email, service, message } = contactData;
-    
+    const body = await request.json();
+    const { firstName, lastName, email, service, message } = body;
+
     // Validate required fields
     if (!firstName || !lastName || !email || !service || !message) {
-      return NextResponse.json({ 
-        success: false, 
-        message: 'All fields are required' 
-      }, { status: 400 });
+      return NextResponse.json(
+        { message: 'All fields are required' },
+        { status: 400 }
+      );
     }
-    
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ 
-        success: false, 
-        message: 'Invalid email format' 
-      }, { status: 400 });
+
+    // Validate service
+    if (!validServices.includes(service)) {
+      return NextResponse.json(
+        { message: 'Invalid service selected' },
+        { status: 400 }
+      );
     }
-    
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { message: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
     // Add timestamp
     const timestamp = new Date().toISOString();
     let storedSuccessfully = false;
     let emailSentSuccessfully = false;
     
     // 1. Try to store in Google Sheets
-    const googleSheetsSuccess = await storeContactInGoogleSheets(contactData, timestamp);
+    const googleSheetsSuccess = await storeContactInGoogleSheets(body, timestamp);
     
     // 2. If Google Sheets fails or as a backup, store locally
     if (!googleSheetsSuccess) {
       console.log('Falling back to local storage for contact data');
-      storedSuccessfully = await storeContactLocally(contactData, timestamp);
+      storedSuccessfully = await storeContactLocally(body, timestamp);
     } else {
       storedSuccessfully = true;
     }
@@ -229,7 +250,7 @@ export async function POST(req: Request) {
       let errorMessage = 'Email sending error';
       
       if (error.code === 'EAUTH') {
-        errorMessage = 'Authentication failed with email provider. Make sure you\'re using an App Password for Gmail.';
+        errorMessage = 'Authentication failed with the email provider. Please double-check your email credentials in the .env.local file.';
       } else if (error.message && error.message.includes('placeholder')) {
         errorMessage = 'Email credentials still using placeholder values in .env.local file';
       }
@@ -240,10 +261,19 @@ export async function POST(req: Request) {
     
     // 4. Return appropriate response
     if (storedSuccessfully && emailSentSuccessfully) {
-      return NextResponse.json({ 
-        success: true, 
-        message: 'Thank you for your message! We will get back to you soon.' 
-      });
+      return NextResponse.json(
+        { 
+          message: 'Thank you for your message! We will get back to you soon.',
+          data: {
+            firstName,
+            lastName,
+            email,
+            service,
+            message
+          }
+        },
+        { status: 200 }
+      );
     } else if (storedSuccessfully) {
       return NextResponse.json({ 
         success: true, 
@@ -261,7 +291,7 @@ export async function POST(req: Request) {
     console.error('Contact form submission error:', error);
     return NextResponse.json({ 
       success: false, 
-      message: 'Internal server error' 
+      message: 'An error occurred while processing your request' 
     }, { status: 500 });
   }
 } 

@@ -33,11 +33,11 @@ const AccordionTrigger = React.forwardRef<
     >
       {/* Plus Icon at Start */}
       <span className="flex items-center justify-center h-6 w-6">
-        <Plus className="h-6 w-6 shrink-0 transition-transform duration-200 plus-icon text-fizeo-dark-green/70" />
+        <Plus className="h-6 w-6 shrink-0 transition-transform duration-200 plus-icon text-[var(--text-color-dark)] opacity-100" />
       </span>
       
       {/* Question - No boldness, Increased Padding */}
-      <div className="flex-1 text-base sm:text-2xl">{children}</div>
+      <div className={cn("flex-1 text-base sm:text-2xl", className?.split(' ').filter(cls => cls.startsWith('text-')).join(' '))} style={{ color: '#000', opacity: 1 }}>{children}</div>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))

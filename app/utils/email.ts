@@ -1,51 +1,72 @@
 import { google } from 'googleapis';
 import { OAuth2Client } from 'google-auth-library';
+import nodemailer from 'nodemailer';
 
 interface EmailOptions {
   to: string;
   subject: string;
   text: string;
+  html?: string;
 }
 
-// Initialize OAuth2 client
-const oauth2Client = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_REDIRECT_URI
-);
+// Remove OAuth2 client setup as we will use SMTP
+// const oauth2Client = new OAuth2Client(
+//   process.env.GOOGLE_CLIENT_ID,
+//   process.env.GOOGLE_CLIENT_SECRET,
+//   process.env.GOOGLE_REDIRECT_URI
+// );
 
-// Set credentials
-oauth2Client.setCredentials({
-  refresh_token: process.env.GOOGLE_REFRESH_TOKEN
-});
+// Remove set credentials
+// oauth2Client.setCredentials({
+//   refresh_token: process.env.GOOGLE_REFRESH_TOKEN
+// });
 
-export async function sendEmail({ to, subject, text }: EmailOptions) {
+// Function to create and return a Nodemailer transporter for Zoho
+const createZohoTransporter = () => {
   try {
-    // @ts-ignore
-    const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+    // Validate required env vars for email
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+      console.error('Missing EMAIL_USER or EMAIL_PASSWORD environment variables.');
+      throw new Error('Email credentials not configured.');
+    }
 
-    // Create email in base64 format
-    const email = [
-      'Content-Type: text/plain; charset="UTF-8"\n',
-      'MIME-Version: 1.0\n',
-      `To: ${to}\n`,
-      `Subject: ${subject}\n\n`,
-      text,
-    ].join('');
-
-    const encodedEmail = Buffer.from(email).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-
-    const res = await gmail.users.messages.send({
-      userId: 'me',
-      requestBody: {
-        raw: encodedEmail,
+    // Create transporter using Zoho SMTP settings
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.zoho.in', // Or 'smtp.zoho.com' depending on your Zoho region
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
-
-    console.log('Email sent successfully:', res.data);
-    return res.data;
+    console.log(`Zoho transporter created for ${process.env.EMAIL_USER}`);
+    return transporter;
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error creating Zoho email transporter:', error);
+    throw new Error('Failed to create email transporter.');
+  }
+};
+
+export async function sendEmail({ to, subject, text, html }: EmailOptions) {
+  try {
+    // Use the Zoho transporter
+    const transporter = createZohoTransporter();
+
+    // Send email
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER, // Sender address (your Zoho email)
+      to: to, // List of recipients
+      subject: subject, // Subject line
+      text: text, // Plain text body
+      html: html, // HTML body (optional)
+    });
+
+    console.log('Email sent successfully:', info.messageId);
+    // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info)); // Uncomment if using Ethereal
+    return info;
+  } catch (error) {
+    console.error('Error sending email via Zoho SMTP:', error);
     throw error;
   }
 } 

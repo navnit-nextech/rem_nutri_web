@@ -69,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="max-w-7xl w-full h-full mx-auto flex items-center justify-between sm:px-8">
           {/* Logo */}
           <Link href="/" className="">
-            <div className="w-40 h-40 -pr-15 rounded-xl pt-16 pr-5">
+            <div className="w-50 h-50 pt-7  ">
               {/* SVG Logo */}
               <img src="/images/rem_nutri_logo_.png" alt="RemDi Logo" />
             </div>
@@ -96,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     : ""
                 }`}
               >
-                Services
+                Programs & Services
               </Link>
               <Link
                 href="/blog"

@@ -177,12 +177,11 @@ const RemDi2Page = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="grid grid-cols-3 gap-6 mb-12"
+                    className="grid grid-cols-2 gap-6 mb-12"
                   >
                     {[
-                      { number: "86%", label: "Success Rate" },
                       { number: "12", label: "Week Program" },
-                      { number: "7/7", label: "Expert Support" }
+                      { number: "24/7", label: "Expert Support" }
                     ].map((stat, index) => (
                       <div key={index} className="text-center">
                         <div className="text-[var(--text-color-light)] text-3xl font-bold mb-1">{stat.number}</div>
@@ -199,7 +198,7 @@ const RemDi2Page = () => {
                     className="flex flex-row gap-3 w-full"
                   >
                     <a
-                      href="/contact"
+                      href="/health-assessment"
                       className="flex-1 text-center items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-[var(--text-color-light)] text-black font-semibold rounded-xl hover:opacity-90 transition-all duration-300 text-base sm:text-base"
                     >
                       Start Your Journey
@@ -368,7 +367,7 @@ const RemDi2Page = () => {
                 </p>
                 <div>
                   <a
-                    href="/contact"
+                    href="/health-assessment"
                     className="inline-block bg-[var(--text-color-light)] text-black font-medium py-3 px-6 rounded-xl transition-colors hover:opacity-90"
                   >
                     Start Your Journey
