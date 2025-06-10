@@ -221,7 +221,7 @@ const ContactForm = () => {
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px] font-['Libre_Baskerville',serif]">Email us</h3>
                   <a href="mailto:info@fizeo.com" className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">
-                    info@remDi.com
+                  Support@remdi.in
                   </a>
                 </div>
               </div>
@@ -232,11 +232,11 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px]  font-['Libre_Baskerville',serif]">Phone us</h3>
-                  <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">8450 9087</span>
+                  <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">.........</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-5">
+              {/* <div className="flex items-center gap-5">
                 <div className="w-16 h-16 rounded-full bg-[var(--background-color-dark)] flex items-center justify-center">
                   <MapPin  className='text-[var(--text-color-plain)]'/>
                 </div>
@@ -244,7 +244,7 @@ const ContactForm = () => {
                   <h3 className="text-[var(--text-color-dark)] text-[24px]  font-['Libre_Baskerville',serif]">Find us</h3>
                   <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">123 Main Street, Banglore</span>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Social media icons */}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollAnimation from "../ScrollAnimation";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaLinkedin, FaUserTie } from "react-icons/fa";
 
 const AboutTeam = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,28 +41,32 @@ const AboutTeam = () => {
       id: 4,
       name: "BHAGIRATH.M",
       role: "CO-FOUNDER",
-      image: "/images/about/team/3.avif",
+      image: "icon",
+      icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
       linkedin: "https://linkedin.com",
     },
     {
       id: 5,
       name: "J. A. CHOWDARY",
       role: "MENTOR",
-      image: "/images/about/team/4.avif",
+      image: "icon",
+      icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
       linkedin: "https://linkedin.com",
     },
     {
       id: 6,
       name: "ARUN",
       role: "HEAD CHEF",
-      image: "/images/about/team/5.webp",
+      image: "icon",
+      icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
       linkedin: "https://linkedin.com",
     },
     {
       id: 7,
       name: "ASHOK",
       role: "HEAD CHEF",
-      image: "/images/about/team/6.webp",
+      image: "icon",
+      icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
       linkedin: "https://linkedin.com",
     },
   ];
@@ -101,13 +106,7 @@ const AboutTeam = () => {
       image: "/images/advisory_2.jpeg",
       linkedin: "https://linkedin.com",
     },
-    {
-      id: 3,
-      name: "DR. RAJESH PATEL",
-      role: "WELLNESS ADVISOR",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      linkedin: "https://linkedin.com",
-    },
+    
   ];
 
   const slideVariants = {
@@ -233,12 +232,20 @@ const AboutTeam = () => {
                 >
                   <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full">
                     <div className="relative h-[400px] w-full">
-                      <Image
-                        src={teamMembers[currentIndex].image}
-                        alt={teamMembers[currentIndex].name}
-                        fill
-                        className="object-center object-cover"
-                      />
+                      {teamMembers[currentIndex].image !== "icon" ? (
+                        <Image
+                          src={teamMembers[currentIndex].image}
+                          alt={teamMembers[currentIndex].name}
+                          fill
+                          className="object-center object-cover"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center w-full h-full bg-gray-100">
+                          <div className="text-gray-400">
+                            {teamMembers[currentIndex].icon}
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="p-6">
                       <div className="flex items-center justify-between">
@@ -295,13 +302,21 @@ const AboutTeam = () => {
           {teamMembers.map((member, index) => (
             <ScrollAnimation key={member.id} delay={0.1 * (index % 3)}>
               <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden">
-                  <div className="relative h-[400px] w-full">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-[top_10%] object-cover"
-                  />
+                <div className="relative h-[400px] w-full">
+                  {member.image !== "icon" ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-[top_10%] object-cover"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full bg-gray-100">
+                      <div className="text-gray-400">
+                        {member.icon}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between">
