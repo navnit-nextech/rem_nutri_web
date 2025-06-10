@@ -111,16 +111,16 @@ const GetInTouch = () => {
 
               {/* Contact Details */}
               <div className="space-y-3 md:space-y-4 text-sm md:text-base">
-                <div className="flex items-center space-x-3">
+                {/* <div className="flex items-center space-x-3">
                   <Customhome />
                   <span className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
                     123 Main Street,Banglore.
                   </span>
-                </div>
+                </div> */}
                 <div className="flex items-center space-x-3">
                   <Customcall />
                   <span className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif]">
-                    8450 9087
+                    ..........
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -129,7 +129,8 @@ const GetInTouch = () => {
                     href="mailto:info@fizeo.com"
                     className="text-[var(--text-color-dark)] text-[14px] md:text-[16px] font-['DM_Sans',sans-serif] underline"
                   >
-                    info@remDi.com
+                    Support@remdi.in
+
                   </a>
                 </div>
               </div>
