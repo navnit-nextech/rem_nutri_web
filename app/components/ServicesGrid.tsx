@@ -109,7 +109,7 @@ const ServiceCard = ({ icon, title, description, onClick }: {
       case "Rem Balance":
         return "https://images.unsplash.com/photo-1742281258189-3b933879867a?q=80&w=3135&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       case "Rem Protein":
-        return "https://images.unsplash.com/photo-1493770348161-369560ae357d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        return "https://images.unsplash.com/photo-1641642400143-6be68f1a0918?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       default:
         return "https://images.unsplash.com/photo-1628619876503-2db74e724757?q=80&w=3010&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     }
