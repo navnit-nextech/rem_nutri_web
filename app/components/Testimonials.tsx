@@ -7,26 +7,37 @@ import { motion, AnimatePresence } from "framer-motion";
 import ScrollAnimation from "./ScrollAnimation";
 
 const testimonials = [
-
-  
   {
-    text: "The personalised meal plan and stress management techniques  by Rem Nutri helped me regulate my hormones and lose weight. Now, I feel more in control of my body and my health than ever before.",
-    name: "Priya Sharma",
-    image:
-      "https://images.unsplash.com/photo-1631005436794-ccaa79de61ba?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aW5kaWFuJTIwd29tYW58ZW58MHx8MHx8fDA%3D",
+    text: "At 65yrs, I never thought I would be able to go on a diet. I am very set in my ways. When Sri asked me to have some blood tests, I was shocked to know I had Diabetes. When Sri said, I could follow the RemDi diet and reverse my diabetes, I decided to give it a try. In three months, I lost 12kg, reversed my diabetes and even after 9months my readings are within normal range. My friends and family are so surprised that I am looking 10yrs younger and actually have a glow in my face. I think the balanced meals really helped not only to lose weight but also to improve my overall health.",
+    name: "Rajya Lakshmi",
+    image: "/images/t_6.png",
   },
   {
-    text: "With the help of Rem Nutri's team, I've been able to manage my blood sugar levels naturally and even reduce my medication!",
-    name: "Sarah Jones",
-    image:
-      "https://framerusercontent.com/images/F8FpD28VlKZcge0xDGDslltN6k.jpg?scale-down-to=2048",
-  }
-  // {
-  //   text: "As someone with a neurological condition, finding the right physiotherapy was crucial. Fizeo exceeded my expectations. Their neuro-rehabilitation expertise and compassionate care have significantly improved my mobility and overall well-being. Highly recommended for anyone seeking top-notch physio services!",
-  //   name: "Melanie ]",
-  //   image:
-  //     "https://framerusercontent.com/images/TnND6kc2yg1n6MNWVR7VfKcvqE.jpg?scale-down-to=2048",
-  // },
+    text: "I lost hope that I will ever lose weight. No matter what I did, I felt I could not lose weight, that is, until I took the RemDi program. I lost 10kg, reversed my diabetes. Resolved my long standing hip pain. I could not believe how energetic I felt. I got a spring in my step after a very long time. Thank you RemDi.",
+    name: "Kavitha",
+    image: "/images/t_1.png",
+  },
+  {
+    text: "The last thing I expected from doing a diet program is having more energy. I was very pleasantly surprised when I started to not only lose weight but also have more energy. My Diabetes also got back into control. The variety, the combination of foods and most importantly the taste are great. I have been recommending it to all my clients.",
+    name: "Om Prakash",
+    image: "/images/t_2.png",
+  },
+  {
+    text: "I started taking the meals only for convenience but was very pleasantly surprised to find that I could actually lose 10kg and reduce my Diabetes medication from three types of tablets to just one and even that reduced by half. I'm aiming to come off all my diabetes medication. Mrs Sri's expert advice and support has been extremely helpful. My family and I liked the food so much my wife also started on the program and is losing weight.",
+    name: "Bhaskar Reddy",
+    image: "/images/t_3.png",
+  },
+  {
+    text: "Thank you RemDi, I have lost 20kg in 3months. I have tried many diet programs before but was never successful. Mainly because, most of them were either all Salads or all fully Desi and tasteless. RemDi is very different. The meal plans have such a wide range that the diet doesn't get boring at all. Once I started to lose weight, I felt motivated to exercise too. After a very long time, I am looking my best.",
+    name: "Abhimanyu",
+    image: "/images/t_4.png",
+  },
+  {
+    text: "I am into my 4th week now. Lost 5kg, looking great. The combination of the expert advice and support from the team especially from Sri and the tasty meals is what makes it work. I actually look forward to receiving my meals. The menu range is so varied and exciting. My friends have commented saying, we have never seen anyone being excited about being on a diet. I have enjoyed every meal so far. Would recommend the program to anyone.",
+    name: "Shiv",
+    image: "/images/t_5.png",
+  },
+  
 ];
 
 const variants = {
@@ -149,7 +160,7 @@ const Testimonials = () => {
 
         <ScrollAnimation delay={0.4}>
           <div className="max-w-5xl mx-auto text-center relative px-4">
-            <div className="relative overflow-hidden h-[300px] touch-pan-y">
+            <div className="relative overflow-hidden h-[400px] touch-pan-y">
               <AnimatePresence
                 initial={false}
                 custom={direction}
@@ -204,12 +215,12 @@ const Testimonials = () => {
                   </div>
 
                   <div className="flex items-center justify-center gap-3">
-                    <div className="sm:w-15 sm:h-15 w-10 h-10 rounded-full overflow-hidden">
+                    <div className="sm:w-15 sm:h-15 w-14 h-14 rounded-full overflow-hidden">
                       <Image
                         src={testimonials[currentIndex].image}
                         alt={testimonials[currentIndex].name}
-                        width={40}
-                        height={40}
+                        width={56}
+                        height={56}
                         className="w-full h-full object-cover"
                       />
                     </div>
