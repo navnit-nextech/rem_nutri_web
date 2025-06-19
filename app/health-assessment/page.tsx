@@ -391,74 +391,74 @@ const HealthAssessment = () => {
     const lifestyleFactors = formData.lifestyleFactors || [];
     const knowsHealthConditions = formData.knowsHealthConditions;
 
-    // Initialize recommended programs array
-    const recommendedPrograms: string[] = [];
-    
-    // First evaluate any specific health conditions if the user knows them
-    if (knowsHealthConditions !== 'no' && !conditions.includes('none') && conditions.length > 0) {
-      // Check for RemDi 2 (Diabetes)
-      if (conditions.includes('prediabetes') || conditions.includes('diabetes')) {
-        recommendedPrograms.push('rem-di-2');
-      }
+    // 1. If Diabetes or Pre-Diabetes, always RemDi 2
+    if (
+      knowsHealthConditions !== 'no' &&
+      !conditions.includes('none') &&
+      (conditions.includes('prediabetes') || conditions.includes('diabetes'))
+    ) {
+      return 'rem-di-2';
+    }
 
-      // Check for Rem Bliss (Women's Health)
-      if (gender === 'female' && (conditions.includes('pcos') || conditions.includes('menopause'))) {
-        recommendedPrograms.push('rem-bliss');
-      }
-
-      // Check for Rem Meta (Metabolic Issues)
-      if (conditions.includes('hypertension') ||
+    // 2. If no Diabetes, but has BP, Fatty Liver, or Cardiac Risk, Rem Meta
+    if (
+      knowsHealthConditions !== 'no' &&
+      !conditions.includes('none') &&
+      (conditions.includes('hypertension') ||
         conditions.includes('cardiac') ||
-        conditions.includes('fattyLiver') ||
-        conditions.includes('thyroid')) {
-        recommendedPrograms.push('rem-meta');
-      }
+        conditions.includes('fattyLiver'))
+    ) {
+      return 'rem-meta';
     }
 
-    // Next evaluate BMI and weight goals (always evaluate these regardless of health conditions)
-    if (bmiValue) {
-      // BMI-based recommendations
-      if (bmiValue < 18.5) {
-        // Underweight - recommend RemProtein
-        recommendedPrograms.push('rem-protein');
-      } else if (bmiValue >= 18.5 && bmiValue < 23) {
-        // Normal weight - base recommendation depends on weight goal
-        if (weightGoal === 'intense' || weightGoal === 'moderate') {
-          // Weight loss goal - recommend RemFit
-          recommendedPrograms.push('rem-fit');
-        } else if (weightGoal === 'gain') {
-          // Weight gain goal - recommend RemProtein
-          recommendedPrograms.push('rem-protein');
-        } else {
-          // Weight maintenance goal - recommend RemBalance
-          recommendedPrograms.push('rem-balance');
-        }
-      } else if (bmiValue >= 23) {
-        // Overweight or obese - recommend RemFit
-        recommendedPrograms.push('rem-fit');
+    // 3. If female, no Diabetes, but has PCOS/PCOD, Rem Bliss
+    if (
+      knowsHealthConditions !== 'no' &&
+      !conditions.includes('none') &&
+      gender === 'female' &&
+      (conditions.includes('pcos') || conditions.includes('menopause'))
+    ) {
+      return 'rem-bliss';
+    }
+
+    // 4. If no medical conditions ("none" selected or knowsHealthConditions === 'no')
+    const noMedicalConditions =
+      knowsHealthConditions === 'no' ||
+      (conditions.length === 1 && conditions.includes('none'));
+
+    if (noMedicalConditions) {
+      // 4a. If overweight/obese (BMI >= 23): Rem Fit
+      if (bmiValue && bmiValue >= 23) {
+        return 'rem-fit';
       }
-    } else {
-      // If BMI couldn't be calculated, use weight goals alone
+      // 4b. If normal weight (18.5 <= BMI < 23): Rem Balance
+      if (bmiValue && bmiValue >= 18.5 && bmiValue < 23) {
+        return 'rem-balance';
+      }
+      // 4c. If underweight (BMI < 18.5): Rem Protein
+      if (bmiValue && bmiValue < 18.5) {
+        return 'rem-protein';
+      }
+      // 4d. If no BMI, fallback to weightGoal/activityLevel
+      if (weightGoal === 'gain') {
+        return 'rem-protein';
+      }
       if (weightGoal === 'intense' || weightGoal === 'moderate') {
-        // Weight loss goal - recommend RemFit
-        recommendedPrograms.push('rem-fit');
-      } else if (weightGoal === 'gain') {
-        // Weight gain goal - recommend RemProtein
-        recommendedPrograms.push('rem-protein');
-      } else if (weightGoal === 'maintain') {
-        // Weight maintenance goal - recommend RemBalance
-        recommendedPrograms.push('rem-balance');
+        return 'rem-fit';
       }
+      if (weightGoal === 'maintain') {
+        return 'rem-balance';
+      }
+      // If very active and wants extra protein
+      if (activityLevel === 'active') {
+        return 'rem-protein';
+      }
+      // Fallback
+      return 'rem-balance';
     }
 
-    // If no programs recommended yet, add RemBalance as fallback
-    if (recommendedPrograms.length === 0) {
-      recommendedPrograms.push('rem-balance');
-    }
-
-    // Remove duplicates if any
-    const uniquePrograms = Array.from(new Set(recommendedPrograms));
-    return uniquePrograms;
+    // Fallback: Rem Balance
+    return 'rem-balance';
   };
 
   // Add validation functions
@@ -625,7 +625,7 @@ const HealthAssessment = () => {
 
     setIsSubmitting(true);
     const program = determineProgram();
-    setRecommendedProgram(program);
+    setRecommendedProgram(program ? [program] : []);
 
     // Show the report immediately
     setCurrentStep(formSteps.length);
@@ -666,7 +666,7 @@ const HealthAssessment = () => {
           body: JSON.stringify({
             ...formData,
             bmi: calculateBMI(),
-            recommendedProgram: program,
+            recommendedProgram: program ? [program] : [],
             timestamp: timestamp,
             timezone: 'Asia/Kolkata' // Add timezone information
           }),
