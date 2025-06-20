@@ -232,7 +232,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h3 className="text-[var(--text-color-dark)] text-[24px]  font-['Libre_Baskerville',serif]">Phone us</h3>
-                  <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">.........</span>
+                  <span className="text-[var(--text-color-dark)] text-[20px] font-['DM_Sans', 'sans-serif']">0091 8905135456</span>
                 </div>
               </div>
 
