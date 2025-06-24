@@ -174,10 +174,9 @@ const formSteps = [
         name: "weightGoal",
         label: "What's your primary goal?",
         options: [
-          { value: "intense", label: "Intense Weight Loss (4-5kg/month)", icon: "⚡" },
-          { value: "moderate", label: "Moderate Weight Loss", icon: "⚖️" },
-          { value: "maintain", label: "Maintain Weight", icon: "🎯" },
-          { value: "gain", label: "Healthy Weight Gain", icon: "💪" },
+          { value: "gain", label: "Gain Weight", icon: "💪" },
+          { value: "maintain", label: "Stay Consistent", icon: "🎯" },
+          { value: "intense", label: "Lose Weight", icon: "⚡" },
         ],
         required: true,
       },
@@ -427,17 +426,57 @@ const HealthAssessment = () => {
       (conditions.length === 1 && conditions.includes('none'));
 
     if (noMedicalConditions) {
-      // 4a. If overweight/obese (BMI >= 23): Rem Fit
-      if (bmiValue && bmiValue >= 23) {
-        return 'rem-fit';
-      }
-      // 4b. If normal weight (18.5 <= BMI < 23): Rem Balance
-      if (bmiValue && bmiValue >= 18.5 && bmiValue < 23) {
-        return 'rem-balance';
-      }
-      // 4c. If underweight (BMI < 18.5): Rem Protein
-      if (bmiValue && bmiValue < 18.5) {
-        return 'rem-protein';
+      if (bmiValue) {
+        // Overweight
+        if (bmiValue >= 23) {
+          if (weightGoal === 'intense' || weightGoal === 'moderate') {
+            return 'rem-fit';
+          }
+          if (weightGoal === 'maintain') {
+            return 'rem-balance';
+          }
+          if (weightGoal === 'gain') {
+            if (!weightGoalWarningConfirmed) {
+              setShowWeightGoalWarning(true);
+              setWeightGoalWarningType('overweight-gain');
+              return null;
+            }
+            setShowWeightGoalWarning(false);
+            setWeightGoalWarningType(null);
+            return 'rem-balance';
+          }
+        }
+        // Normal weight
+        if (bmiValue >= 18.5 && bmiValue < 23) {
+          if (weightGoal === 'gain') {
+            return 'rem-protein';
+          }
+          if (weightGoal === 'maintain') {
+            return 'rem-balance';
+          }
+          if (weightGoal === 'intense' || weightGoal === 'moderate') {
+            return 'rem-fit';
+          }
+        }
+        // Underweight
+        if (bmiValue < 18.5) {
+          if (weightGoal === 'gain') {
+            return 'rem-protein';
+          }
+          if (weightGoal === 'maintain') {
+            return 'rem-balance';
+          }
+          if (weightGoal === 'intense' || weightGoal === 'moderate') {
+            if (!weightGoalWarningConfirmed) {
+              setShowWeightGoalWarning(true);
+              setWeightGoalWarningType('underweight-lose');
+              return null;
+            }
+            setShowWeightGoalWarning(false);
+            setWeightGoalWarningType(null);
+            return 'rem-balance';
+          }
+        }
       }
       // 4d. If no BMI, fallback to weightGoal/activityLevel
       if (weightGoal === 'gain') {
@@ -618,6 +657,7 @@ const HealthAssessment = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (showWeightGoalWarning && !weightGoalWarningConfirmed) return;
 
     if (!validateForm()) {
       return;
@@ -746,7 +786,21 @@ const HealthAssessment = () => {
     }));
   };
 
-  const nextStep = () => {
+  const nextStep = (allowOverride = false) => {
+    // Only check for warning on the weight goal step
+    if (currentStep === 4) {
+      const bmiValue = formData.weight && formData.height
+        ? parseFloat(formData.weight) / Math.pow(parseFloat(formData.height) / 100, 2)
+        : null;
+      if (!allowOverride && ((bmiValue && bmiValue >= 23 && formData.weightGoal === 'gain') || (bmiValue && bmiValue < 18.5 && formData.weightGoal === 'intense'))) {
+        if (!weightGoalWarningConfirmed) {
+          setShowWeightGoalWarning(true);
+          setWeightGoalWarningType(bmiValue >= 23 ? 'overweight-gain' : 'underweight-lose');
+          return;
+        }
+      }
+    }
+    if (showWeightGoalWarning && !allowOverride && !weightGoalWarningConfirmed) return;
     if (currentStep < 1) {
       // For the first two steps (personal info and physical details)
       if (currentStep === 1) {
@@ -1219,6 +1273,16 @@ const HealthAssessment = () => {
       localStorage.removeItem('healthAssessmentPrograms');
     }
   };
+
+  // Weight goal warning popup state
+  const [showWeightGoalWarning, setShowWeightGoalWarning] = useState(false);
+  const [weightGoalWarningType, setWeightGoalWarningType] = useState<'overweight-gain' | 'underweight-lose' | null>(null);
+  const [weightGoalWarningConfirmed, setWeightGoalWarningConfirmed] = useState(false);
+
+  // Reset confirmation if weight, height, or goal changes
+  useEffect(() => {
+    setWeightGoalWarningConfirmed(false);
+  }, [formData.weight, formData.height, formData.weightGoal]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[var(--background-color-dark)] to-[color-mix(in_srgb,var(--background-color-dark),var(--accent-color)_5%)]">
@@ -1699,7 +1763,7 @@ const HealthAssessment = () => {
                     <span className="text-[var(--text-color-plain)]">Previous</span>
                   </button>
                   <button
-                    onClick={currentStep === 1 ? handleInitialSubmit : nextStep}
+                    onClick={currentStep === 1 ? handleInitialSubmit : () => nextStep()}
                     disabled={isSubmitting}
                     className="flex items-center gap-2 px-6 py-3 rounded-xl text-white bg-[var(--accent-color)] transition-all duration-300 hover:bg-white/10 hover:shadow-md cursor-pointer"
                   >
@@ -1724,6 +1788,39 @@ const HealthAssessment = () => {
           </ScrollAnimation>
         </div>
       </div>
+      {showWeightGoalWarning && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl flex flex-col gap-4">
+            <div className="text-lg font-semibold text-yellow-700 flex items-center gap-2">
+              ⚠️
+              {weightGoalWarningType === 'overweight-gain' && 'You are overweight, do you still want to gain weight?'}
+              {weightGoalWarningType === 'underweight-lose' && 'You are already underweight, do you still want to lose weight?'}
+            </div>
+            <div className="flex gap-4 mt-2">
+              <button
+                className="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition"
+                onClick={() => {
+                  setWeightGoalWarningConfirmed(true);
+                  setShowWeightGoalWarning(false);
+                  // After confirmation, call nextStep again
+                  nextStep(true);
+                }}
+              >
+                Yes, continue
+              </button>
+              <button
+                className="bg-white border border-yellow-500 text-yellow-700 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-50 transition"
+                onClick={() => {
+                  setShowWeightGoalWarning(false);
+                  setWeightGoalWarningConfirmed(false);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

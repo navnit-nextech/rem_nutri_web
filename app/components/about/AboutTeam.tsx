@@ -10,15 +10,18 @@ const AboutTeam = () => {
   const [direction, setDirection] = useState(0);
   const [advisoryCurrentIndex, setAdvisoryCurrentIndex] = useState(0);
   const [advisoryDirection, setAdvisoryDirection] = useState(0);
+  const [flippedIndexes, setFlippedIndexes] = useState<number[]>([]);
+  const [flippedAdvisorIndexes, setFlippedAdvisorIndexes] = useState<number[]>([]);
+  const [flippedFounder, setFlippedFounder] = useState(false);
   
   // Highlighted profile for Sridevi K
   const srideviProfile = {
     id: 1,
-    name: "MRS SRIDEVI.K",
-    role: "FOUNDER",
+    name: "Mrs. Sridevi Kakarlapudi",
+    role: "Founder & CEO, RemNutri Health Pvt. Ltd.",
     image: "/images/team_1.jpeg",
     linkedin: "https://linkedin.com",
-    description: "Mrs. Sridevi K is the visionary founder of RemNutri, with over 20 years of experience in holistic wellness, nutrition, and women's health. Her leadership and passion have empowered countless individuals to achieve their health goals. She is dedicated to creating innovative, science-backed programs that make a real difference in people's lives."
+    description: `MSc Diabetes Care, University of York\nPG Diplomas, Nutrition & Dietetics (UK & India)\nRegistered Dietitian (HCPC, UK)\n\n25+ years in Diabetes & Metabolic Health. Former Clinical Lead, Rotherham NHS (UK).\nBlending Western clinical practice with Indian wellness for scalable, patient-centric care.`
   };
 
   // Team members (excluding Sridevi K, add a new member to keep 6)
@@ -29,13 +32,7 @@ const AboutTeam = () => {
       role: "CO-FOUNDER",
       image: "/images/team_2.jpeg",
       linkedin: "https://linkedin.com",
-    },
-    {
-      id: 3,
-      name: "SHAKILA SRIKUMAR",
-      role: "MENTOR",
-      image: "/images/team_3.jpeg",
-      linkedin: "https://linkedin.com",
+      description: "Consultant Dietitian with 35 years of experience in administration, teaching, clinical, and academic roles. Retired Chief Dietitian at NIMS. Has held a lead role in the Indian Dietetic Association. Passionate about patient empowerment and strongly believes in the power of nutrition over pharmaceuticals.",
     },
     {
       id: 4,
@@ -44,6 +41,15 @@ const AboutTeam = () => {
       image: "icon",
       icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
       linkedin: "https://linkedin.com",
+      description: "Experienced in project management at an MNC with a lead role in building new teams. Expert in handling operations with strong abilities in team motivation, management, and effective communication.",
+    },
+    {
+      id: 3,
+      name: "SHAKILA SRIKUMAR",
+      role: "MENTOR",
+      image: "/images/team_3.jpeg",
+      linkedin: "https://linkedin.com",
+      description: "",
     },
     {
       id: 5,
@@ -52,22 +58,7 @@ const AboutTeam = () => {
       image: "icon",
       icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
       linkedin: "https://linkedin.com",
-    },
-    {
-      id: 6,
-      name: "ARUN",
-      role: "HEAD CHEF",
-      image: "icon",
-      icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
-      linkedin: "https://linkedin.com",
-    },
-    {
-      id: 7,
-      name: "ASHOK",
-      role: "HEAD CHEF",
-      image: "icon",
-      icon: <FaUserTie className="w-40 h-40 text-gray-500" />,
-      linkedin: "https://linkedin.com",
+      description: "",
     },
   ];
 
@@ -98,6 +89,7 @@ const AboutTeam = () => {
       role: "ADVISOR",
       image: "/images/advisory_1.jpg",
       linkedin: "https://linkedin.com",
+      description: "I am currently employed as a consultant psychiatrist in Derbyshire for the older peoples services since 2011. I am an inpatient and community consultant with responsibility for the care of service users with Organic issues including Dementia , Delirium and other neuropsychiatric illnesses . I also provide care to people with functional illnesses such as Depression, Schizophrenia , Bipolar and Personality disorders .",
     },
     {
       id: 2,
@@ -105,6 +97,7 @@ const AboutTeam = () => {
       role: "ADVISOR",
       image: "/images/advisory_2.jpeg",
       linkedin: "https://linkedin.com",
+      description: "Dr. Deepti Alla, a Primary Care Physician in York, UK, completed her MBBS in Guntur and specialist training in the UK. She is interested in women’s health, dermatology, medical education, and health commissioning, and advocates healthy living. She has known award-winning dietician Mrs. Sridevi Kakarlapudi (Sri) for over a decade and supports her work in diabetes care and weight loss. Deepti is keen to join Sri’s panel to promote healthy lifestyles in Hyderabad.",
     },
     
   ];
@@ -128,6 +121,25 @@ const AboutTeam = () => {
     }
   };
 
+  // Helper to toggle flip state
+  const toggleFlip = (index: number) => {
+    setFlippedIndexes((prev) =>
+      prev.includes(index)
+        ? prev.filter((i) => i !== index)
+        : [...prev, index]
+    );
+  };
+
+  const toggleAdvisorFlip = (index: number) => {
+    setFlippedAdvisorIndexes((prev) =>
+      prev.includes(index)
+        ? prev.filter((i) => i !== index)
+        : [...prev, index]
+    );
+  };
+
+  const toggleFounderFlip = () => setFlippedFounder((prev) => !prev);
+
   return (
     <div className="bg-[var(--background-color-dark)] text-[var(--text-color-plain)] pb-10 sm:pb-20">
       <div className="container mx-auto px-4 md:px-6">
@@ -147,11 +159,15 @@ const AboutTeam = () => {
         </ScrollAnimation>
 
         {/* Highlighted Sridevi K Profile */}
-        <div className="relative flex flex-col md:flex-row items-stretch justify-between bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white rounded-3xl shadow-2xl p-0 md:p-0 mb-12 overflow-hidden">
+        <div className="relative flex flex-col md:flex-row items-stretch justify-between bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white rounded-3xl shadow-2xl p-0 md:p-0 mb-12 overflow-hidden perspective-1000" onMouseEnter={toggleFounderFlip} onMouseLeave={toggleFounderFlip} onTouchStart={toggleFounderFlip}>
           {/* Decorative background accent */}
           <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-tr from-yellow-100/40 to-transparent z-0" />
-          {/* Rectangular image on left, full height */}
-          <div className="relative z-10 w-full md:w-[25rem] h-64 md:h-auto flex-shrink-0 overflow-hidden rounded-2xl">
+          <div className={`relative w-full flex-1 h-[500px] flex flex-col md:flex-row`}>
+            <div className={`absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] ${flippedFounder ? 'rotate-y-180' : ''}`}>
+              {/* Front Side */}
+              <div className="absolute inset-0 flex flex-col md:flex-row h-full w-full [backface-visibility:hidden]">
+                {/* Image section */}
+                <div className="relative w-full md:w-[25rem] h-[300px] md:h-full flex-shrink-0 overflow-hidden rounded-2xl">
             <Image
               src={srideviProfile.image}
               alt={srideviProfile.name}
@@ -160,13 +176,12 @@ const AboutTeam = () => {
               style={{ minHeight: '100%', minWidth: '100%', border: 'none' }}
             />
           </div>
-          {/* Content on right, always centered */}
+                {/* Content section */}
           <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center p-6 md:p-10">
             <div className="bg-[var(--background-color-plain2)] rounded-2xl px-6 py-6 md:px-10 md:py-8 w-full max-w-2xl flex flex-col items-center">
               <h2 className="text-3xl md:text-4xl font-extrabold font-['Libre_Baskerville',serif] text-yellow-700 mb-1 drop-shadow-lg">{srideviProfile.name}</h2>
               <p className="text-lg md:text-xl font-semibold text-yellow-600 mb-2 tracking-wide uppercase">{srideviProfile.role}</p>
-              <p className="text-base md:text-lg text-[var(--text-color-dark)] mb-3 font-medium">{srideviProfile.description}</p>
-              {/* Mission/quote */}
+              <div className="text-base md:text-lg text-[var(--text-color-dark)] mb-3 font-medium whitespace-pre-line break-words max-w-xl mx-auto">{srideviProfile.description}</div>
               <blockquote className="italic text-sm md:text-base text-yellow-800 mb-4 max-w-xl border-l-4 border-yellow-400 pl-4 mx-auto">“Empowering lives through holistic wellness and science-backed nutrition.”</blockquote>
               <Link
                 href={srideviProfile.linkedin}
@@ -186,6 +201,45 @@ const AboutTeam = () => {
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
               </Link>
+                  </div>
+                </div>
+              </div>
+              {/* Back Side */}
+              <div className="absolute inset-0 flex flex-col md:flex-row h-full w-full [backface-visibility:hidden] rotate-y-180 bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white shadow-xl p-6 rounded-2xl items-center justify-center">
+                <div className="flex flex-col items-center justify-center h-full w-full py-8">
+                  <div className="text-base md:text-lg text-[var(--text-color-dark)] mb-4 font-medium max-w-3xl mx-auto text-left leading-relaxed break-words">
+                    <div className="mb-3">
+                      <h4 className="font-semibold text-yellow-700 mb-1 text-sm uppercase tracking-wide">Education & Credentials</h4>
+                      <ul className="list-disc pl-5 mb-2 text-sm">
+                        <li>MSc Diabetes Care, University of York (UK)</li>
+                        <li>PG Diploma, Nutrition & Dietetics, Cardiff University (UK)</li>
+                        <li>PG Diploma, Nutrition & Dietetics, Padmavathi Mahila University (India)</li>
+                        <li>Registered Dietitian, Health & Care Professions Council (HCPC, UK)</li>
+                      </ul>
+                    </div>
+                    <div className="mb-3">
+                      <h4 className="font-semibold text-yellow-700 mb-1 text-sm uppercase tracking-wide">Professional Experience</h4>
+                      <ul className="list-disc pl-5 mb-2 text-sm">
+                        <li>25+ years as Advanced Dietetic Practitioner in UK & India</li>
+                        <li>Clinical Lead, Nutrition & Dietetics, Rotherham NHS Foundation Trust (UK)</li>
+                        <li>Led award-winning, innovative dietetic service with measurable outcomes</li>
+                        <li>Expert in scalable, patient-centric metabolic care delivery</li>
+                      </ul>
+                    </div>
+                    <div className="mb-3">
+                      <h4 className="font-semibold text-yellow-700 mb-1 text-sm uppercase tracking-wide">Leadership & Innovation</h4>
+                      <ul className="list-disc pl-5 mb-2 text-sm">
+                        <li>Founder & CEO, RemNutri Health Private Ltd.</li>
+                        <li>Develops integrative, evidence-based solutions for Diabetes prevention & management</li>
+                        <li>Bridges Western medical practice with traditional Indian wellness principles</li>
+                        <li>Creates scalable, culturally adaptive healthcare models</li>
+                        <li>Deep clinical insight into emerging trends in nutritional science</li>
+                      </ul>
+                    </div>
+                    <span className="italic text-yellow-800 block mt-2 text-center text-sm">"Transforming lives through integrative, evidence-based nutrition."</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -230,8 +284,16 @@ const AboutTeam = () => {
                     backfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full">
-                    <div className="relative h-[400px] w-full">
+                  <div
+                    className={`relative h-[500px] w-full perspective-1000`}
+                    onClick={() => toggleFlip(currentIndex)}
+                  >
+                    <div
+                      className={`absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] ${flippedIndexes.includes(currentIndex) ? 'rotate-y-180' : ''}`}
+                    >
+                      {/* Front Side */}
+                      <div className="absolute inset-0 bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full w-full [backface-visibility:hidden] flex flex-col">
+                        <div className="relative h-[500px] w-full">
                       {teamMembers[currentIndex].image !== "icon" ? (
                         <Image
                           src={teamMembers[currentIndex].image}
@@ -247,7 +309,7 @@ const AboutTeam = () => {
                         </div>
                       )}
                     </div>
-                    <div className="p-6">
+                        <div className="p-6 flex-1 flex flex-col justify-end">
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="text-2xl font-semibold font-['Libre_Baskerville',serif]">
@@ -271,6 +333,18 @@ const AboutTeam = () => {
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                           </svg>
                         </Link>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Back Side */}
+                      <div className="absolute inset-0 rounded-2xl h-full w-full [backface-visibility:hidden] rotate-y-180 flex flex-col items-center justify-center bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white shadow-xl p-6">
+                        <div className="flex flex-col items-center justify-center h-full w-full">
+                          <h3 className="text-2xl font-bold text-yellow-700 mb-2 font-['Libre_Baskerville',serif]">{teamMembers[currentIndex].name}</h3>
+                          <p className="text-yellow-600 font-semibold mb-2 uppercase tracking-wide">{teamMembers[currentIndex].role}</p>
+                          <p className="text-[var(--text-color-dark)] text-base text-center italic max-w-xs mx-auto">
+                            {teamMembers[currentIndex].description || 'A valued member of our team, dedicated to your wellness journey.'}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -298,11 +372,95 @@ const AboutTeam = () => {
           </div>
 
           {/* Desktop Grid View */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teamMembers.map((member, index) => (
-            <ScrollAnimation key={member.id} delay={0.1 * (index % 3)}>
-              <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden">
-                <div className="relative h-[400px] w-full">
+          <div className="hidden md:grid grid-cols-3 gap-6">
+            {/* First row: 2 profiles, 1 empty */}
+            {teamMembers.slice(0, 2).map((member, index) => (
+              <ScrollAnimation key={member.id} delay={0.1 * index}>
+                <div
+                  className="relative h-[500px] w-full perspective-1000"
+                  onMouseEnter={() => toggleFlip(index)}
+                  onMouseLeave={() => toggleFlip(index)}
+                  onTouchStart={() => toggleFlip(index)}
+                >
+                  <div
+                    className={`absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] ${flippedIndexes.includes(index) ? 'rotate-y-180' : ''}`}
+                  >
+                    {/* Front Side */}
+                    <div className="absolute inset-0 bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full w-full [backface-visibility:hidden] flex flex-col">
+                      <div className="relative h-[500px] w-full">
+                        {member.image !== "icon" ? (
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            fill
+                            className="object-[top_10%] object-cover"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-full bg-gray-100">
+                            <div className="text-gray-400">
+                              {member.icon}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-6 flex-1 flex flex-col justify-end">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h3 className="text-2xl font-semibold font-['Libre_Baskerville',serif]">
+                              {member.name}
+                            </h3>
+                            <p className="text-[var(--text-color-dark)]">{member.role}</p>
+                          </div>
+                          <Link
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="text-[#024027]"
+                            >
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Back Side */}
+                    <div className="absolute inset-0 rounded-2xl h-full w-full [backface-visibility:hidden] rotate-y-180 flex flex-col items-center justify-center bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white shadow-xl p-6">
+                      <div className="flex flex-col items-center justify-center h-full w-full">
+                        <h3 className="text-2xl font-bold text-yellow-700 mb-2 font-['Libre_Baskerville',serif]">{member.name}</h3>
+                        <p className="text-yellow-600 font-semibold mb-2 uppercase tracking-wide">{member.role}</p>
+                        <p className="text-[var(--text-color-dark)] text-base text-center italic max-w-xs mx-auto">
+                          {member.description || 'A valued member of our team, dedicated to your wellness journey.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            ))}
+            {/* Empty placeholder for third card in first row */}
+            <div></div>
+            {/* Second row: last 2 profiles, 1 empty */}
+            {teamMembers.slice(2, 4).map((member, index) => (
+              <ScrollAnimation key={member.id} delay={0.1 * (index + 2)}>
+                <div
+                  className="relative h-[500px] w-full perspective-1000"
+                  onMouseEnter={() => toggleFlip(index + 2)}
+                  onMouseLeave={() => toggleFlip(index + 2)}
+                  onTouchStart={() => toggleFlip(index + 2)}
+                >
+                  <div
+                    className={`absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] ${flippedIndexes.includes(index + 2) ? 'rotate-y-180' : ''}`}
+                  >
+                    {/* Front Side */}
+                    <div className="absolute inset-0 bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full w-full [backface-visibility:hidden] flex flex-col">
+                      <div className="relative h-[500px] w-full">
                   {member.image !== "icon" ? (
                     <Image
                       src={member.image}
@@ -318,7 +476,7 @@ const AboutTeam = () => {
                     </div>
                   )}
                 </div>
-                <div className="p-6">
+                      <div className="p-6 flex-1 flex flex-col justify-end">
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-2xl font-semibold font-['Libre_Baskerville',serif]">
@@ -342,11 +500,25 @@ const AboutTeam = () => {
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                     </Link>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Back Side */}
+                    <div className="absolute inset-0 rounded-2xl h-full w-full [backface-visibility:hidden] rotate-y-180 flex flex-col items-center justify-center bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white shadow-xl p-6">
+                      <div className="flex flex-col items-center justify-center h-full w-full">
+                        <h3 className="text-2xl font-bold text-yellow-700 mb-2 font-['Libre_Baskerville',serif]">{member.name}</h3>
+                        <p className="text-yellow-600 font-semibold mb-2 uppercase tracking-wide">{member.role}</p>
+                        <p className="text-[var(--text-color-dark)] text-base text-center italic max-w-xs mx-auto">
+                          {member.description || 'A valued member of our team, dedicated to your wellness journey.'}
+                        </p>
+                      </div>
                   </div>
                 </div>
               </div>
             </ScrollAnimation>
           ))}
+            {/* Empty placeholder for third card in second row */}
+            <div></div>
           </div>
         </div>
 
@@ -403,8 +575,16 @@ const AboutTeam = () => {
                     backfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full">
-                    <div className="relative h-[400px] w-full">
+                  <div
+                    className={`relative h-[500px] w-full perspective-1000`}
+                    onClick={() => toggleAdvisorFlip(advisoryCurrentIndex)}
+                  >
+                    <div
+                      className={`absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] ${flippedAdvisorIndexes.includes(advisoryCurrentIndex) ? 'rotate-y-180' : ''}`}
+                    >
+                      {/* Front Side */}
+                      <div className="absolute inset-0 bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full w-full [backface-visibility:hidden] flex flex-col">
+                        <div className="relative h-[500px] w-full">
                       <Image
                         src={advisoryPanel[advisoryCurrentIndex].image}
                         alt={advisoryPanel[advisoryCurrentIndex].name}
@@ -412,7 +592,7 @@ const AboutTeam = () => {
                         className="object-top object-cover"
                       />
                     </div>
-                    <div className="p-6">
+                        <div className="p-6 flex-1 flex flex-col justify-end">
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="text-2xl font-semibold font-['Libre_Baskerville',serif]">
@@ -436,6 +616,18 @@ const AboutTeam = () => {
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                           </svg>
                         </Link>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Back Side */}
+                      <div className="absolute inset-0 rounded-2xl h-full w-full [backface-visibility:hidden] rotate-y-180 flex flex-col items-center justify-center bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white shadow-xl p-6">
+                        <div className="flex flex-col items-center justify-center h-full w-full">
+                          <h3 className="text-2xl font-bold text-yellow-700 mb-2 font-['Libre_Baskerville',serif]">{advisoryPanel[advisoryCurrentIndex].name}</h3>
+                          <p className="text-yellow-600 font-semibold mb-2 uppercase tracking-wide">{advisoryPanel[advisoryCurrentIndex].role}</p>
+                          <p className="text-[var(--text-color-dark)] text-base text-center italic max-w-xs mx-auto">
+                            {advisoryPanel[advisoryCurrentIndex].description || 'A valued advisor, guiding our programs with expertise and care.'}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -466,8 +658,18 @@ const AboutTeam = () => {
           <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-14">
             {advisoryPanel.map((member, index) => (
               <ScrollAnimation key={member.id} delay={0.1 * (index % 3)}>
-                <div className="bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden">
-                  <div className="relative h-[400px] w-full">
+                <div
+                  className={`relative h-[500px] w-full perspective-1000`}
+                  onMouseEnter={() => toggleAdvisorFlip(index)}
+                  onMouseLeave={() => toggleAdvisorFlip(index)}
+                  onTouchStart={() => toggleAdvisorFlip(index)}
+                >
+                  <div
+                    className={`absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] ${flippedAdvisorIndexes.includes(index) ? 'rotate-y-180' : ''}`}
+                  >
+                    {/* Front Side */}
+                    <div className="absolute inset-0 bg-[var(--background-color-plain2)] text-black rounded-2xl overflow-hidden h-full w-full [backface-visibility:hidden] flex flex-col">
+                      <div className="relative h-[500px] w-full">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -475,7 +677,7 @@ const AboutTeam = () => {
                       className="object-top object-cover"
                     />
                   </div>
-                  <div className="p-6">
+                      <div className="p-6 flex-1 flex flex-col justify-end">
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="text-2xl font-semibold font-['Libre_Baskerville',serif]">
@@ -499,11 +701,61 @@ const AboutTeam = () => {
                           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg>
                       </Link>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Back Side */}
+                  <div className="absolute inset-0 rounded-2xl h-full w-full [backface-visibility:hidden] rotate-y-180 flex flex-col items-center justify-center bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white shadow-xl p-6">
+                    <div className="flex flex-col items-center justify-center h-full w-full">
+                      <h3 className="text-2xl font-bold text-yellow-700 mb-2 font-['Libre_Baskerville',serif]">{member.name}</h3>
+                      <p className="text-yellow-600 font-semibold mb-2 uppercase tracking-wide">{member.role}</p>
+                      <p className="text-[var(--text-color-dark)] text-base text-center italic max-w-xs mx-auto">
+                        {member.description || 'A valued advisor, guiding our programs with expertise and care.'}
+                      </p>
+                    </div>
                     </div>
                   </div>
                 </div>
               </ScrollAnimation>
             ))}
+          </div>
+        </div>
+
+        {/* Kitchen Team Section - Full Width Prominent Card */}
+        <div className="mt-2">
+          <ScrollAnimation>
+            <div className="md:py-8 pt-2 md:pt-10">
+              <h2 className="font-['Libre_Baskerville',serif] text-[var(--text-color-plain)] text-3xl md:text-5xl mb-5 max-w-4xl">
+                Meet our <span className="text-[var(--text-color-light)]">kitchen team</span>
+              </h2>
+              <p className="text-lg max-w-3xl mb-8 text-[var(--text-color-plain)] md:px-0">
+                Our expert chefs craft every meal with care and nutrition in mind, ensuring every bite supports your wellness journey.
+              </p>
+            </div>
+          </ScrollAnimation>
+          <div className="w-full flex justify-center">
+            <div className="relative w-full bg-gradient-to-br from-yellow-50 via-[var(--background-color-plain2)] to-white rounded-3xl shadow-2xl flex flex-col md:flex-row items-center overflow-hidden p-0 md:p-0 mb-12">
+              {/* Decorative background accent */}
+              <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-tr from-yellow-100/40 to-transparent z-0" />
+              {/* Icon or group image */}
+              <div className="relative z-10 w-full md:w-[25rem] h-64 md:h-[500px] flex-shrink-0 overflow-hidden rounded-2xl flex items-center justify-center bg-yellow-50">
+                <FaUserTie className="w-40 h-40 md:w-60 md:h-60 text-gray-400" />
+              </div>
+              {/* Content on right, always centered */}
+              <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center p-6 md:p-10">
+                <div className="bg-[var(--background-color-plain2)] rounded-2xl px-6 py-6 md:px-10 md:py-8 w-full max-w-2xl flex flex-col items-center">
+                  <h3 className="text-3xl md:text-4xl font-extrabold font-['Libre_Baskerville',serif] text-yellow-700 mb-2 drop-shadow-lg">Our Kitchen Team</h3>
+                  <p className="text-lg md:text-xl text-[var(--text-color-dark)] mb-4 font-medium text-center">A passionate group of chefs dedicated to preparing healthy, delicious, and balanced meals for our clients every day.</p>
+                  <ul className="text-left text-[var(--text-color-dark)] text-base mb-4 max-w-xl mx-auto list-disc pl-6">
+                    <li>Expertise in nutrition-focused meal preparation</li>
+                    <li>Commitment to hygiene and quality</li>
+                    <li>Innovative, seasonal, and diverse menu offerings</li>
+                    <li>Personalized meal plans for every client</li>
+                  </ul>
+                  <span className="italic text-yellow-800">"Bringing health and taste together, one meal at a time."</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
