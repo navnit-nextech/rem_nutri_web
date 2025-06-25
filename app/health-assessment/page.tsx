@@ -610,6 +610,13 @@ const HealthAssessment = () => {
       }
     }
 
+    // Age restriction check
+    const ageNum = parseInt(formData.age, 10);
+    if (!isNaN(ageNum) && ageNum < 16) {
+      setShowAgeWarning(true);
+      return false;
+    }
+
     setMissingField(null);
     return true;
   };
@@ -1284,6 +1291,9 @@ const HealthAssessment = () => {
     setWeightGoalWarningConfirmed(false);
   }, [formData.weight, formData.height, formData.weightGoal]);
 
+  // Age warning popup state
+  const [showAgeWarning, setShowAgeWarning] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[var(--background-color-dark)] to-[color-mix(in_srgb,var(--background-color-dark),var(--accent-color)_5%)]">
       <Navbar />
@@ -1816,6 +1826,26 @@ const HealthAssessment = () => {
                 }}
               >
                 Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showAgeWarning && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl flex flex-col gap-4">
+            <div className="text-lg font-semibold text-red-700 flex items-center gap-2">
+              🚫 We cannot proceed with your assessment due to your age being below 16.
+            </div>
+            <div className="flex gap-4 mt-2 justify-end">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+                onClick={() => {
+                  setShowAgeWarning(false);
+                  resetForm();
+                }}
+              >
+                Close
               </button>
             </div>
           </div>
