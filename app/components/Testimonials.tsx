@@ -89,7 +89,7 @@ const Testimonials = () => {
 
   return (
     <div className="w-full bg-[var(--background-color-dark)] pt-20 md:pb-25 sm:pt-40 sm:pb-15  relative">
-      <div className=" absolute -top-[6.5%] md:-top-16 left-[50%] transform -translate-x-1/2 ">
+      <div className=" absolute -top-12 md:-top-16 left-[50%] transform -translate-x-1/2 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56 56"
@@ -160,7 +160,7 @@ const Testimonials = () => {
 
         <ScrollAnimation delay={0.4}>
           <div className="max-w-5xl mx-auto text-center relative px-4">
-            <div className="relative overflow-hidden h-[400px] touch-pan-y">
+            <div className="relative overflow-hidden min-h-[400px] pb-24 sm:pb-0 touch-pan-y">
               <AnimatePresence
                 initial={false}
                 custom={direction}
@@ -190,7 +190,7 @@ const Testimonials = () => {
                     x: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 },
                   }}
-                  className="absolute w-full left-0 right-0 cursor-grab active:cursor-grabbing"
+                  className="w-full left-0 right-0 cursor-grab active:cursor-grabbing"
                 >
                   <div className="flex justify-center mb-7">
                     {[1, 2, 3, 4, 5].map((star) => (
